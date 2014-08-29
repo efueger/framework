@@ -2,7 +2,7 @@ This framework is an event management system that implements the architectual MV
 
 Usage
 --
-The skeleton <a href="https://github.com/mvc5/application">Application</a> demonstrates its usage as an MVC web application.
+The <a href="https://github.com/mvc5/application">mvc5/application</a> demonstrates its usage as an MVC web application.
 
 ```php
 include __DIR__ . '/../vendor/autoload.php';
