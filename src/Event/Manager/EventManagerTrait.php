@@ -19,14 +19,6 @@ trait EventManagerTrait
     abstract protected function event($event);
 
     /**
-     * @return Events
-     */
-    protected function eventListeners()
-    {
-        return $this->events;
-    }
-
-    /**
      * @param Events $events
      */
     public function events(Events $events)
@@ -41,6 +33,14 @@ trait EventManagerTrait
      * @return mixed|null
      */
     abstract protected function generate(EventInterface $event, $options = null, callable $callback = null);
+
+    /**
+     * @return Events
+     */
+    protected function listeners()
+    {
+        return $this->events;
+    }
 
     /**
      * @param EventInterface $event
