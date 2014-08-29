@@ -21,9 +21,9 @@ class Application
      */
     public function __construct(Config $config)
     {
-        $this->config    = $config;
-        $this->listeners = $config->get(self::LISTENERS);
-        $this->services  = $config->get(self::SERVICES);
+        $this->config   = $config;
+        $this->events   = $config->get(self::EVENTS);
+        $this->services = $config->get(self::SERVICES);
     }
 
     /**

@@ -9,6 +9,11 @@ use Generator;
 trait GeneratorTrait
 {
     /**
+     * @return ConfigInterface
+     */
+    abstract protected function eventListeners();
+
+    /**
      * @param Event $event
      * @param null $options
      * @param callable $callback
@@ -39,17 +44,12 @@ trait GeneratorTrait
     abstract protected function listener($listener);
 
     /**
-     * @return ConfigInterface
-     */
-    abstract protected function listeners();
-
-    /**
      * @param string $event
      * @return Generator
      */
     protected function queue($event)
     {
-        foreach($this->listeners()->queue($event) as $listeners) {
+        foreach($this->eventListeners()->queue($event) as $listeners) {
             foreach($listeners as $listener) {
                 yield $this->listener($listener);
             }

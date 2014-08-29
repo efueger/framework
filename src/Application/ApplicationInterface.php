@@ -7,7 +7,7 @@ interface ApplicationInterface
     /**
      *
      */
-    const LISTENERS = 'listeners';
+    const EVENTS = 'events';
 
     /**
      *
