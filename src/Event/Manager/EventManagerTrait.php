@@ -50,7 +50,7 @@ trait EventManagerTrait
      */
     protected function signal(EventInterface $event, callable $listener, $options = null)
     {
-        /** @var callable|EventInterface $event */
+        /** @var callable $event */
         return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
     }
 
