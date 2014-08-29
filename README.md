@@ -27,17 +27,17 @@ $config = new Config([
 ##Benchmark
 *Current*
 ```
-HTML transferred: 422918 bytes
-Requests per second: 1262.95 [#/sec] (mean)
-Time per request: 7.918 [ms] (mean)
-Time per request: 0.792 [ms] (mean, across all concurrent requests)
+HTML transferred:       4229135 bytes
+Requests per second:    1290.86 [#/sec] (mean)
+Time per request:       7.747 [ms] (mean)
+Time per request:       0.775 [ms] (mean, across all concurrent requests)
 ```
 *Other/Previous*
 ```
-HTML transferred: 550200 bytes
-Requests per second: 313.41 [#/sec] (mean)
-Time per request: 31.907 [ms] (mean)
-Time per request: 3.191 [ms] (mean, across all concurrent requests)
+HTML transferred:       5502000 bytes
+Requests per second:    315.78 [#/sec] (mean)
+Time per request:       31.667 [ms] (mean)
+Time per request:       3.167 [ms] (mean, across all concurrent requests)
 ```
 ##Dependency Injection
 ```php
