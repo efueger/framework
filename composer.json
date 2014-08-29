@@ -1,0 +1,13 @@
+{
+    "name": "mvc5/framework",
+    "description": "MVC event management system with dependency injection and no bootstrap",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "./src"
+        }
+    }
+}
