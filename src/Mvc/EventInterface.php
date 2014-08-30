@@ -32,11 +32,6 @@ interface EventInterface
     const ROUTE = 'Route';
 
     /**
-     *
-     */
-    const VIEW_MODEL = 'View\Model';
-
-    /**
      * @return Request
      */
     public function request();
