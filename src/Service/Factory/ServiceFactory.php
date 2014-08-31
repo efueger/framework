@@ -57,11 +57,9 @@ class ServiceFactory
         }
 
         if ($arg instanceof Config) {
-            if ($this->configured($arg->name()) && $arg->shared()) {
-                return $this->get($arg->name(), $arg->args());
-            }
-
-            return $this->di($arg); //never shared
+            return $this->configured($arg->name()) && $arg->shared()
+                        ? $this->get($arg->name())
+                            : $this->di($arg); //never shared
         }
 
         if ($arg instanceof ConfigLink) {
