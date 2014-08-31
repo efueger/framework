@@ -47,7 +47,7 @@ class ServiceFactory
         }
 
         if ($arg instanceof Child) {
-            /** @var \Framework\Service\Config\Child\Child $arg */
+            /** @var Child|Config $arg */
 
             $parent = clone $this->configured($this->arg($arg->parent()));
 
