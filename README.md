@@ -41,17 +41,17 @@ Time per request:       3.167 [ms] (mean, across all concurrent requests)
 ```
 ##Dependency Injection
 ```php
-'Route\Match\Wildcard' => 'Framework\Route\Match\Wildcard\Wildcard',
+'Route\Match\Wildcard' => Framework\Route\Match\Wildcard\Wildcard::class,
 ```
 ```php
 'Route\Generator' => new Service(
-  'Framework\Route\Generator\Generator', 
+  Framework\Route\Generator\Generator::class, 
   [new Param('routes.definitions')]
 ),
 ```
 ```php
 'Controller\Manager' => new Hydrator(
-    'Framework\Controller\Manager\Manager',
+    Framework\Controller\Manager\Manager::class,
     [
         'configuration' => new ConfigLink,
         'events'        => new Param('controllers'),
@@ -61,7 +61,7 @@ Time per request:       3.167 [ms] (mean, across all concurrent requests)
 ```
 ```php
 'Mvc\SendResponse' => new Hydrator(
-  'Framework\Mvc\SendResponse\Listener',
+  Framework\Mvc\SendResponse\Listener::class,
   [
     'setResponseManager' => new Dependency('Response\Manager')
   ]
