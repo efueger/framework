@@ -19,7 +19,7 @@ trait EventTrait
      */
     public function event()
     {
-        return isset($this->event) ? $this->event : static::EVENT;
+        return $this->event ? : static::EVENT;
     }
 
     /**
