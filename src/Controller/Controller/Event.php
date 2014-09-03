@@ -23,8 +23,8 @@ class Event
      */
     public function __construct(Route $route)
     {
-        $this->event  = $route->controller();
-        $this->route  = $route;
+        $this->event = $route->controller();
+        $this->route = $route;
     }
 
     /**
