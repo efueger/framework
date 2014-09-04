@@ -11,7 +11,7 @@ class Param
     protected $name;
 
     /**
-     * @name string $name
+     * @param string $name
      */
     public function __construct($name)
     {

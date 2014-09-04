@@ -9,6 +9,7 @@ use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\FactoryInterface as ConfigFactory;
+use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
@@ -255,6 +256,25 @@ class ServiceFactory
                 $config->add(Config::NAME, $this->arg($config->name()));
 
                 return $this->di($this->merge($config, $this->configured($config->parent())), func_get_args());
+
+                break;
+            case $config instanceof Invoke:
+
+                return function() use ($config) {
+                    /** @var Config|Invoke $config */
+                    switch(true) {
+                        default:
+
+                            return call_user_func_array($config->service(), $this->args($config->args()));
+
+                            break;
+                        case is_array($config->service()):
+
+                            return call_user_func_array($this->args($config->service()), $this->args($config->args()));
+
+                            break;
+                    }
+                };
 
                 break;
         }
