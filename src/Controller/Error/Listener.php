@@ -22,7 +22,7 @@ class Listener
      */
     public function __invoke(EventInterface $event, Request $request, Response $response)
     {
-        $response->setStatus(Response::STATUS_404);
+        $response->setStatus(404);
 
         return $this->viewModel();
     }

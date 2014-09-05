@@ -1,8 +1,7 @@
 <?php
 
-namespace Framework\Response\Send\Http;
+namespace Framework\Response\Send;
 
-use Framework\Response\Send\EventInterface;
 use Framework\Response\ResponseInterface as Response;
 
 interface ListenerInterface

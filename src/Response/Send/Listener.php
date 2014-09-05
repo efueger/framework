@@ -1,18 +1,12 @@
 <?php
 
-namespace Framework\Response\Send\Http;
+namespace Framework\Response\Send;
 
-use Framework\Response\Send\EventInterface;
 use Framework\Response\ResponseInterface as Response;
 
 class Listener
     implements ListenerInterface
 {
-    /**
-     *
-     */
-    use HeadersTrait;
-
     /**
      * @param EventInterface $event
      * @param Response $response
@@ -20,9 +14,7 @@ class Listener
      */
     public function __invoke(EventInterface $event, Response $response)
     {
-        $this->sendHeaders($response);
-
-        echo $response->content();
+        $response->send();
 
         $event->stop();
     }

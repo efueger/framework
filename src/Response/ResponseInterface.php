@@ -5,34 +5,9 @@ namespace Framework\Response;
 interface ResponseInterface
 {
     /**
-     *
+     * @return void
      */
-    const STATUS_404 = 404;
-
-    /**
-     *
-     */
-    const STATUS_500 = 500;
-
-    /**
-     * @return mixed
-     */
-    public function content();
-
-    /**
-     * @return array|\Traversable
-     */
-    public function headers();
-
-    /**
-     * @return string
-     */
-    public function reason();
-
-    /**
-     * @return int
-     */
-    public function status();
+    public function send();
 
     /**
      * @param  mixed $content
@@ -41,25 +16,8 @@ interface ResponseInterface
     public function setContent($content);
 
     /**
-     * @param $reason
+     * @param int $status
      * @return void
      */
-    public function setReason($reason);
-
-    /**
-     * @param int $code
-     * @return void
-     */
-    public function setStatus($code);
-
-    /**
-     * @return int
-     */
-    public function version();
-
-    /**
-     * @param $version
-     * @return void
-     */
-    public function setVersion($version);
+    public function setStatus($status);
 }
