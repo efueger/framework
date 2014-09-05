@@ -6,8 +6,8 @@ use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Response\Response\EventInterface as Response;
 use Framework\Response\Send\EventInterface as Send;
-use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 use Framework\Response\ResponseInterface;
+use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Manager
     implements ManagerInterface, EventManagerInterface, ServiceManagerInterface
