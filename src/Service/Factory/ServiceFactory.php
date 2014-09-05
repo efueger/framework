@@ -265,7 +265,7 @@ class ServiceFactory
                     switch(true) {
                         default:
 
-                            return call_user_func_array($config->service(), $this->args($config->args()));
+                            return call_user_func_array($this->arg($config->service()), $this->args($config->args()));
 
                             break;
                         case is_array($config->service()):
