@@ -21,8 +21,8 @@ class Hydrator
     public function __construct($name, array $calls)
     {
         $this->config = [
-            self::NAME  => $name,
-            self::CALLS => $calls
+            self::CALLS => $calls,
+            self::NAME  => $name
         ];
     }
 }

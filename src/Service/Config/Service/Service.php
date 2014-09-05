@@ -21,8 +21,8 @@ class Service
     public function __construct($name, array $args = [])
     {
         $this->config = [
-            self::NAME => $name,
-            self::ARGS => $args
+            self::ARGS => $args,
+            self::NAME => $name
         ];
     }
 }
