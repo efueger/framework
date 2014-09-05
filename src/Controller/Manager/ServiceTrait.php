@@ -32,13 +32,12 @@ trait ServiceTrait
 
     /**
      * @param Route $route
-     * @param string $controller
      * @param null $options
      * @return mixed
      */
-    public function dispatch(Route $route, $controller, $options = null)
+    public function dispatch(Route $route, $options = null)
     {
-        return $this->cm->dispatch($route, $controller, $options);
+        return $this->cm->dispatch($route, $options);
     }
 
     /**
