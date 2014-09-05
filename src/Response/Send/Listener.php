@@ -2,19 +2,19 @@
 
 namespace Framework\Response\Send;
 
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\ResponderInterface as Responder;
 
 class Listener
     implements ListenerInterface
 {
     /**
      * @param EventInterface $event
-     * @param Response $response
+     * @param Responder $responder
      * @return bool
      */
-    public function __invoke(EventInterface $event, Response $response)
+    public function __invoke(EventInterface $event, Responder $responder)
     {
-        $response->send();
+        $responder->send();
 
         $event->stop();
     }

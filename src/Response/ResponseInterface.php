@@ -5,11 +5,6 @@ namespace Framework\Response;
 interface ResponseInterface
 {
     /**
-     * @return void
-     */
-    public function send();
-
-    /**
      * @param  mixed $content
      * @return void
      */
