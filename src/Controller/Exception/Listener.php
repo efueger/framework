@@ -30,6 +30,6 @@ class Listener
 
         $viewModel->setException($event->exception());
 
-        return $this->viewModel();
+        return $viewModel;
     }
 }
