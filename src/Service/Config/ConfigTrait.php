@@ -50,13 +50,4 @@ trait ConfigTrait
     {
         return $this->get(ConfigInterface::SHARED) ? : false;
     }
-
-    /**
-     * @param string $serialized
-     * @return void|ConfigInterface
-     */
-    public function unserialize($serialized)
-    {
-        $this->config = unserialize($serialized);
-    }
 }

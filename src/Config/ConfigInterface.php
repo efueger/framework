@@ -2,10 +2,7 @@
 
 namespace Framework\Config;
 
-use Serializable;
-
 interface ConfigInterface
-    extends Serializable
 {
     /**
      * @param string $name

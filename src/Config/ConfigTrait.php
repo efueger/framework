@@ -61,21 +61,4 @@ trait ConfigTrait
     {
         unset($this->config[$name]);
     }
-
-    /**
-     * @return string|void
-     */
-    public function serialize()
-    {
-        return serialize($this->config);
-    }
-
-    /**
-     * @param string $serialized
-     * @return void|ConfigInterface
-     */
-    public function unserialize($serialized)
-    {
-        $this->__construct(unserialize($serialized));
-    }
 }
