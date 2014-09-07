@@ -30,7 +30,7 @@ class Application
      * @param null $options
      * @return mixed
      */
-    public function run($options = null)
+    public function __invoke($options = null)
     {
         return $this->trigger(Event::MVC, $options);
     }
