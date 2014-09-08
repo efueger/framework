@@ -45,14 +45,6 @@ trait EventTrait
     }
 
     /**
-     * @return mixed
-     */
-    public function responseContent()
-    {
-        return $this->response()->content();
-    }
-
-    /**
      * @return Route
      */
     public function route()

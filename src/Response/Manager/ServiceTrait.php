@@ -21,15 +21,6 @@ trait ServiceTrait
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return mixed
-     */
-    public function send(ResponseInterface $response)
-    {
-        return $this->rm->send($response);
-    }
-
-    /**
      * @param  ManagerInterface $rm
      */
     public function setResponseManager(ManagerInterface $rm)
