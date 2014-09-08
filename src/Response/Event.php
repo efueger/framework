@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Response\Response;
+namespace Framework\Response;
 
 class Event
     implements EventInterface

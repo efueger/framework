@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Response\Response;
+namespace Framework\Response;
 
 use Framework\Event\EventInterface as Event;
 use Framework\Response\ResponseInterface as Response;

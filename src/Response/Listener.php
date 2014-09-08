@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Response\Response;
+namespace Framework\Response;
 
 use Framework\View\Model\ServiceTrait as ViewModel;
 
