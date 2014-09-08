@@ -22,7 +22,7 @@ $config = new Config([
 ]);
 ```
 ```php
-call_user_func(new Application($config));
+call_user_func(new Application($config))->send();
 ```
 ##Benchmark
 *Current*
