@@ -1,8 +1,6 @@
 <?php
 
-namespace Framework\Mvc\SendResponse;
-
-use Framework\Mvc\EventInterface;
+namespace Framework\Response\Response;
 
 interface ListenerInterface
 {

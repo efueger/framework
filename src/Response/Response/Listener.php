@@ -1,9 +1,8 @@
 <?php
 
-namespace Framework\Mvc\SendResponse;
+namespace Framework\Response\Response;
 
-use Framework\Mvc\EventInterface;
-use Framework\Response\Manager\ServiceTrait as ResponseManager;
+use Framework\View\Model\ServiceTrait as ViewModel;
 
 class Listener
     implements ListenerInterface
@@ -11,15 +10,15 @@ class Listener
     /**
      *
      */
-    use ResponseManager;
+    use ViewModel;
 
     /**
      * @param EventInterface $event
      * @param null $options
-     * @return mixed|void
+     * @return mixed
      */
     public function __invoke(EventInterface $event, $options = null)
     {
-        $this->send($event->response());
+        return $event->response();
     }
 }
