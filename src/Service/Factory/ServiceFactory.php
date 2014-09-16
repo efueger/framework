@@ -79,7 +79,7 @@ class ServiceFactory
         }
 
         if ($arg instanceof Call) {
-            return $this->call($arg->config());
+            return $this->call($arg->config(), $this->args($arg->args()));
         }
 
         if ($arg instanceof Args) {
@@ -104,19 +104,21 @@ class ServiceFactory
 
     /**
      * @param $config
+     * @param array $args
      * @return mixed
      */
-    protected function call($config)
+    protected function call($config, array $args = [])
     {
         $name = explode('.', $config);
 
+        $call  = $args ? array_pop($name) : null;
         $value = $this->get(array_shift($name));
 
         foreach($name as $method) {
             $value = $value->$method();
         }
 
-        return $value;
+        return $args ? call_user_func_array([$value, $call], $args) : $value;
     }
 
     /**
