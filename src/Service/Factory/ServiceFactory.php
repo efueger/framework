@@ -2,6 +2,7 @@
 
 namespace Framework\Service\Factory;
 
+use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
 use Framework\Service\Config\Child\ChildInterface as Child;
@@ -210,7 +211,14 @@ class ServiceFactory
         $value = $this->config()->get(array_shift($name));
 
         foreach($name as $n) {
-            $value = $value->get($n);
+            switch(true) {
+                default:
+                    $value = $value[$n];
+                    break;
+                case $value instanceof ConfigInterface:
+                    $value = $value->get($n);
+                    break;
+            }
         }
 
         return $value;
