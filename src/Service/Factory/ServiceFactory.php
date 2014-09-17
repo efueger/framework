@@ -133,12 +133,12 @@ class ServiceFactory
 
         $parent = $this->configured($name);
 
-        if (!$parent || ($parent instanceof Config && $config->name() == $parent->name())) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        if ($parent && !$parent instanceof Config) {
+            return $this->hydrate($config, $this->create($name, $this->args($args)));
         }
 
-        if (!$parent instanceof Config) {
-            return $this->hydrate($config, $this->create($name, $this->args($args)));
+        if (!$parent || $config->name() == $parent->name()) {
+            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
         }
 
         return $this->di($this->merge(clone $parent, $config), $args);
