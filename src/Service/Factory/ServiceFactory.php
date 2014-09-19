@@ -266,6 +266,7 @@ class ServiceFactory
                 return $this->di($this->merge($config, $this->configured($config->parent())), func_get_args());
 
                 break;
+
             case $config instanceof Invoke:
 
                 return function() use ($config) {
