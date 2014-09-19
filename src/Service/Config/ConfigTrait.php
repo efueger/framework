@@ -42,12 +42,4 @@ trait ConfigTrait
     {
         return $this->get(ConfigInterface::NAME);
     }
-
-    /**
-     * @return bool
-     */
-    public function shared()
-    {
-        return $this->get(ConfigInterface::SHARED) ? : false;
-    }
 }

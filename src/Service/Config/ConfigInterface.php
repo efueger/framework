@@ -28,11 +28,6 @@ interface ConfigInterface
     const NAME = 'name';
 
     /**
-     *
-     */
-    const SHARED = 'shared';
-
-    /**
      * @return array
      */
     public function args();
@@ -51,9 +46,4 @@ interface ConfigInterface
      * @return string
      */
     public function name();
-
-    /**
-     * @return bool
-     */
-    public function shared();
 }
