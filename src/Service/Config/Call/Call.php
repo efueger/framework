@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Call;
 
+use Framework\Service\Config\FactoryInterface;
+
 class Call
-    implements CallInterface
+    implements CallInterface, FactoryInterface
 {
     /**
      * @var array
