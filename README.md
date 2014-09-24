@@ -1,4 +1,4 @@
-This framework is an event management system that implements the architectual MVC pattern using events, listeners and dependency injection. It does not need to be boot strapped. Listeners closely follow the Single Responsibility Principle, they are SOLID and `callable`. Events manage their own state by signaling each listener and managing the response, this allows them to have different behaviors.
+This framework is an event management system that implements an MVC model using events, listeners and dependency injection. It does not need to be boot strapped. Listeners closely follow the Single Responsibility Principle, they are SOLID and `callable`. Events manage their own state by signaling each listener and managing the response, this allows them to have different behaviors.
 
 Usage
 --
@@ -77,7 +77,7 @@ Routes are pre-compiled so that they can be immediately matched against the requ
 ])
 ```
 ##MVC
-The MVC event workflow is completely <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
+The MVC workflow is completely <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
 ```php
 'Mvc\Event' => [
     ['Mvc\Route'],
