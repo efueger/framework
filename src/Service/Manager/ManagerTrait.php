@@ -32,7 +32,7 @@ trait ManagerTrait
     /**
      * @param array|FactoryConfig|string $name
      * @param null $args
-     * @return null|object
+     * @return null|object|callable
      */
     public function create($name, $args = null)
     {
@@ -49,7 +49,7 @@ trait ManagerTrait
      * @param $name
      * @param null $args
      * @param bool $shared
-     * @return null|object
+     * @return null|object|callable
      */
     public function get($name, $args = null, $shared = true)
     {

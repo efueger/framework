@@ -17,7 +17,7 @@ interface ManagerInterface
     /**
      * @param array|string $name
      * @param null $args
-     * @return null|object
+     * @return null|object|callable
      */
     public function create($name, $args = null);
 
@@ -25,7 +25,7 @@ interface ManagerInterface
      * @param array|string $name
      * @param null $args
      * @param bool $shared
-     * @return null|object
+     * @return null|object|callable
      */
     public function get($name, $args = null, $shared = true);
 }

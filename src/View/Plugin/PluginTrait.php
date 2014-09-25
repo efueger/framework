@@ -12,12 +12,12 @@ trait PluginTrait
     use ViewManager;
 
     /**
-     * @param $name
-     * @param $args
+     * @param string $name
+     * @param null $args
      * @return mixed
      */
-    public function __call($name, $args)
+    public function __call($name, $args = null)
     {
-        return call_user_func_array($this->plugin($name), $args);
+        return call_user_func_array($this->plugin($name), (array) $args);
     }
 }
