@@ -217,7 +217,7 @@ $fixedTrace = array_merge(array(array('file' => $exception->getFile(), 'line' =>
                     }
                     if
                     (strrpos($line, '</span>') < strrpos($line, '<span') || strpos($line, '</span>') === false) $line .= '</span>';
-                    if(strpos($line, ' ', 20) == 29) $line = substr_replace($line, '&#160;', 29, 1);
+                    if(@strpos($line, ' ', 20) == 29) $line = substr_replace($line, '&#160;', 29, 1);
                     echo $line;
 
                     ?></code></li>
