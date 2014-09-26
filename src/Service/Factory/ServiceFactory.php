@@ -10,6 +10,7 @@ use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\FactoryInterface as ConfigFactory;
+use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
@@ -89,6 +90,10 @@ class ServiceFactory
             return $this->args($arg->config());
         }
 
+        if ($arg instanceof Filter) {
+            return $this->filter($this->arg($arg->config()), $arg->filter());
+        }
+
         return $arg;
     }
 
@@ -149,6 +154,20 @@ class ServiceFactory
         }
 
         return $this->di($this->merge(clone $parent, $config), $args);
+    }
+
+    /**
+     * @param $arg
+     * @param array $filters
+     * @return mixed
+     */
+    protected function filter($arg, array $filters)
+    {
+        foreach($filters as $filter) {
+            $arg = $filter($arg);
+        }
+
+        return $arg;
     }
 
     /**
