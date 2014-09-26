@@ -23,15 +23,9 @@ class Listener
     {
         try {
 
-            $obStartLevel = ob_get_level();
-
             return $this->render($event->viewModel());
 
         } catch(Exception $exception) {
-
-            while(ob_get_level() > $obStartLevel) {
-                ob_get_clean();
-            }
 
             return $this->exception($exception);
 

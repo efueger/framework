@@ -3,6 +3,7 @@
 namespace Framework\View\Render;
 
 use Closure;
+use Exception;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 trait RenderTrait
@@ -26,9 +27,20 @@ trait RenderTrait
 
                 ob_start();
 
-                include $this->template();
+                try {
 
-                return ob_get_clean();
+                    include $this->template();
+
+                    return ob_get_clean();
+
+                } catch(Exception $exception) {
+
+                    ob_get_clean();
+
+                    throw $exception;
+                }
+
+
             },
             $model
         );
