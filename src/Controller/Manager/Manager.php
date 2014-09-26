@@ -24,7 +24,7 @@ class Manager
     public function dispatch(Route $route, $options = null)
     {
         return is_callable($route->controller())
-                    ? call_user_func_array($route->controller(), $route->params())
+                    ? $this->call($route->controller(), $route->params())
                         : $this->trigger([$route->controller(), $route], $options);
     }
 
