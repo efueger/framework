@@ -52,6 +52,12 @@ class Generator
             $url .= $this->build($names[1], $params, $options, $definition);
         }
 
+        if ($params && $definition->wildcard()) {
+            foreach(array_diff_key($params, $definition->constraints()) as $key => $value) {
+                $url .= '/' . $key . '/' . $value;
+            }
+        }
+
         return $url;
     }
 
