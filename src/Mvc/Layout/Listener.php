@@ -26,7 +26,7 @@ class Listener
         $model  = $event->viewModel();
 
         if (!$model) {
-            return $layout;
+            return null;
         }
 
         if ($model instanceof LayoutModel) {

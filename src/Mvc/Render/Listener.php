@@ -21,6 +21,10 @@ class Listener
      */
     public function __invoke(EventInterface $event, $options = null)
     {
+        if (!$event->viewModel()) {
+            return null;
+        }
+
         try {
 
             return $this->render($event->viewModel());
