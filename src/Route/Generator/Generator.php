@@ -31,12 +31,11 @@ class Generator
     /**
      * @param $name
      * @param array $params
-     * @param array $options
      * @param Definition $definition
      * @return string|void
      * @throws Exception
      */
-    protected function build($name, array $params = [], array $options = [], Definition $definition = null)
+    protected function build($name, array $params = [], Definition $definition = null)
     {
         $names = explode('/', $name, 2);
 
@@ -49,7 +48,7 @@ class Generator
         $url = $this->compile($definition->tokens(), $params, $definition->defaults());
 
         if (isset($names[1])) {
-            $url .= $this->build($names[1], $params, $options, $definition);
+            $url .= $this->build($names[1], $params, $definition);
         }
 
         if ($params && $definition->wildcard()) {
@@ -162,11 +161,10 @@ class Generator
     /**
      * @param string $name
      * @param array $params
-     * @param array $options
      * @return string
      */
-    public function url($name, array $params = [], array $options = [])
+    public function url($name, array $params = [])
     {
-        return rtrim($this->build($name, $params, $options), '/') ?: '/';
+        return rtrim($this->build($name, $params), '/') ?: '/';
     }
 }

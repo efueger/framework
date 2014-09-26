@@ -16,11 +16,10 @@ class Plugin
     /**
      * @param null|string $name
      * @param array $params
-     * @param array $options
      * @return string
      */
-    public function __invoke($name = null, array $params = [], array $options = [])
+    public function __invoke($name = null, array $params = [])
     {
-        return $this->generate($name ?: ltrim($this->route()->name(), '/') ?: '/', $params, $options);
+        return $this->generate($name ?: $this->route()->name(), $params);
     }
 }
