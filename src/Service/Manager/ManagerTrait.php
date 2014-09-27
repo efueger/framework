@@ -59,7 +59,13 @@ trait ManagerTrait
             return $service;
         }
 
-        $service = $this->initialize($name, $this->assigned($name) ? : $this->configured($name) ? : $name, $args);
+        $config = $this->assigned($name) ? : $this->configured($name) ? : null;
+
+        if (!$config) {
+            return null;
+        }
+
+        $service = $this->initialize($name, $config, $args);
 
         if ($shared && $service) {
             $this->add($name, $service);

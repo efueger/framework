@@ -44,6 +44,6 @@ trait FactoryTrait
 
         }
 
-        return $factory;
+        return null;
     }
 }
