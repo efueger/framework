@@ -7,6 +7,7 @@ use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
+use Framework\Service\Config\Call\Call;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 use Framework\Route\Route\RouteInterface as Route;
 
@@ -34,8 +35,7 @@ class Manager
 
         if (false !== strpos($controller, '.')) {
             return function() use($controller) {
-                list($service, $method) = explode('.', $controller, 2);
-                return call_user_func_array([$this->get($service), $method], func_get_args());
+                return $this->invoke(new Call($controller, func_get_args()));
             };
         }
 
