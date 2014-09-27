@@ -2,6 +2,7 @@
 
 namespace Framework\Controller\Manager;
 
+use Closure;
 use Framework\Controller\Controller\EventInterface as Controller;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
@@ -23,7 +24,15 @@ class Manager
      */
     public function controller($controller)
     {
-        return is_callable($controller) ? $this->factory($controller) : $this->create($controller);
+        if ($controller instanceof Closure) {
+            return $this->factory($controller);
+        }
+
+        if (is_callable($controller)) {
+            return $controller;
+        }
+
+        return $this->create($controller);
     }
 
     /**

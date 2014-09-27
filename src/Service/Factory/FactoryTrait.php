@@ -21,6 +21,10 @@ trait FactoryTrait
                 return new $factory($this);
             }
 
+            if (is_callable($factory)) {
+                return new CallableFactory($this, $factory);
+            }
+
             return new InstanceFactory($this, $factory);
         }
 
