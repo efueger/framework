@@ -15,7 +15,7 @@ use Framework\Service\Factory\FactoryInterface;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
 
 class Provider
-    implements ProviderInterface
+    implements FactoryInterface, ProviderInterface
 {
     /**
      *
@@ -38,7 +38,7 @@ class Provider
     }
 
     /**
-     * @return null|object
+     * @return callable|null|object
      */
     public function __invoke()
     {
