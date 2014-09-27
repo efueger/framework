@@ -25,27 +25,21 @@ trait FactoryTrait
         }
 
         if (is_object($factory)) {
+
             if ($factory instanceof ConfigFactory) {
                 return new ServiceFactory($this, $factory);
-            }
-
-            if ($factory instanceof FactoryInterface) {
-                return $factory;
             }
 
             if ($factory instanceof Closure) {
                 return $factory::bind($factory, $this);
             }
-        }
 
-        if (is_callable($factory)) {
+        } elseif (is_callable($factory)) {
+
             return new CallableFactory($this, $factory);
+
         }
 
-        if (is_array($factory)) {
-            return new AbstractFactory($this, $factory);
-        }
-
-        return null;
+        return $factory;
     }
 }

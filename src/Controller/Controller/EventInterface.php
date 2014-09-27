@@ -14,6 +14,11 @@ interface EventInterface
     const DISPATCH = 'Controller\Event';
 
     /**
+     * @return callable|string
+     */
+    public function controller();
+
+    /**
      * @return Route
      */
     public function route();

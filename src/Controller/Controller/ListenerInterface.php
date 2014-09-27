@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Error;
+namespace Framework\Controller\Controller;
 
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;

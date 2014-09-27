@@ -14,6 +14,11 @@ class Event
     use EventTrait;
 
     /**
+     *
+     */
+    const EVENT = self::DISPATCH;
+
+    /**
      * @var Route
      */
     protected $route;
@@ -23,8 +28,15 @@ class Event
      */
     public function __construct(Route $route)
     {
-        $this->event = $route->controller();
         $this->route = $route;
+    }
+
+    /**
+     * @return callable|string
+     */
+    public function controller()
+    {
+        return $this->route->controller();
     }
 
     /**

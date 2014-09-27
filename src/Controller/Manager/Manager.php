@@ -2,6 +2,7 @@
 
 namespace Framework\Controller\Manager;
 
+use Framework\Controller\Controller\EventInterface as Controller;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
@@ -17,15 +18,22 @@ class Manager
     use Events;
 
     /**
+     * @param callable|string $controller
+     * @return callable|null|object
+     */
+    public function controller($controller)
+    {
+        return is_callable($controller) ? $this->factory($controller) : $this->create($controller);
+    }
+
+    /**
      * @param Route $route
      * @param null $options
      * @return mixed
      */
     public function dispatch(Route $route, $options = null)
     {
-        return is_callable($route->controller())
-                    ? $this->call($route->controller(), $route->params())
-                        : $this->trigger([$route->controller(), $route], $options);
+        return $this->trigger([Controller::DISPATCH, $route], $options);
     }
 
     /**

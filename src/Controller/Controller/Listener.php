@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework\Controller\Error;
+namespace Framework\Controller\Controller;
 
-use Framework\View\Model\ServiceTrait as ViewModel;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
+use Framework\Controller\Manager\ServiceTrait as ControllerManager;
 
 class Listener
     implements ListenerInterface
@@ -12,7 +12,7 @@ class Listener
     /**
      *
      */
-    use ViewModel;
+    use ControllerManager;
 
     /**
      * @param EventInterface $event
@@ -22,8 +22,6 @@ class Listener
      */
     public function __invoke(EventInterface $event, Request $request, Response $response)
     {
-        $response->setStatus(404);
-
-        return $this->viewModel();
+        return call_user_func_array($this->controller($event->controller()), $event->route()->params());
     }
 }

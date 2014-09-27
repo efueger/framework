@@ -13,6 +13,15 @@ trait ServiceTrait
     protected $cm;
 
     /**
+     * @param callable|string $controller
+     * @return callable|null|object
+     */
+    public function controller($controller)
+    {
+        return $this->cm->controller($controller);
+    }
+
+    /**
      * @return ManagerInterface
      */
     public function controllerManager()

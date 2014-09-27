@@ -8,6 +8,12 @@ use Framework\Route\Route\RouteInterface as Route;
 interface ManagerInterface
 {
     /**
+     * @param callable|string $controller
+     * @return callable|null|object
+     */
+    public function controller($controller);
+
+    /**
      * @param Route $route
      * @param null $options
      * @return mixed
