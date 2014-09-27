@@ -25,7 +25,7 @@ class Manager
     public function controller($controller)
     {
         if ($controller instanceof Closure) {
-            return $this->factory($controller);
+            return $controller::bind($controller, $this);
         }
 
         if (is_callable($controller)) {
