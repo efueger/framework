@@ -168,16 +168,15 @@ trait ProviderTrait
                 }
 
                 $service->$method($this->arg($value));
-
                 continue;
             }
 
             if (is_string($value[0])) {
-                call_user_func_array([$service, $value[0]], $this->args($value[1]));
+                $this->invoke([$service, $value[0]], $value[1]);
                 continue;
             }
 
-            call_user_func_array($this->args($value[0]), $this->args($value[1]));
+            $this->invoke($value[0], $value[1]);
         }
 
         return $service;
