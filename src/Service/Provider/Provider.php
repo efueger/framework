@@ -55,13 +55,6 @@ class Provider
             return $this->di($this->merge($config, $this->configured($config->parent())), func_get_args());
         }
 
-        if ($config instanceof Invoke) {
-            return function() use ($config) {
-                /** @var Invoke $config */
-                return $this->invoke($config->service(), $config->args());
-            };
-        }
-
         if ($config instanceof Dependency) {
             return $this->get($config->name());
         }
@@ -76,6 +69,13 @@ class Provider
 
         if ($config instanceof ServiceManagerLink) {
             return $this->sm;
+        }
+
+        if ($config instanceof Invoke) {
+            return function() use ($config) {
+                /** @var Invoke $config */
+                return $this->invoke($config->service(), $config->args());
+            };
         }
 
         return $this->di($config, func_get_args());

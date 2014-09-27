@@ -48,16 +48,8 @@ trait ProviderTrait
             return $this->di($arg);
         }
 
-        if ($arg instanceof ConfigLink) {
-            return $this->config();
-        }
-
         if ($arg instanceof Dependency) {
             return $this->get($arg->name());
-        }
-
-        if ($arg instanceof ServiceManagerLink) {
-            return $this->sm;
         }
 
         if ($arg instanceof Param) {
@@ -74,6 +66,14 @@ trait ProviderTrait
 
         if ($arg instanceof Filter) {
             return $this->filter($this->arg($arg->config()), $arg->filter());
+        }
+
+        if ($arg instanceof ConfigLink) {
+            return $this->config();
+        }
+
+        if ($arg instanceof ServiceManagerLink) {
+            return $this->sm;
         }
 
         return $arg;
@@ -162,11 +162,8 @@ trait ProviderTrait
         foreach($config->calls() as $method => $value) {
 
             if (is_string($method)) {
-
                 if ('$' == $method[0]) {
-
                     $service->{substr($method, 1)} = $this->arg($value);
-
                     continue;
                 }
 
@@ -176,9 +173,7 @@ trait ProviderTrait
             }
 
             if (is_string($value[0])) {
-
                 call_user_func_array([$service, $value[0]], $this->args($value[1]));
-
                 continue;
             }
 
