@@ -271,11 +271,19 @@ class ServiceFactory
             /** @var Config|Invoke $config */
 
             return function() use ($config) {
-                if (is_array($config->service())) {
-                    return call_user_func_array($this->args($config->service()), $this->args($config->args()));
+                $service = is_array($config->service())
+                                ? $this->args($config->service()) : $this->arg($config->service());
+
+                if (is_string($service) && false !== strpos($service, '.')) {
+                    list($service, $method) = explode('.', $service, 2);
+                    $service = [$this->get($service), $method];
                 }
 
-                return call_user_func_array($this->arg($config->service()), $this->args($config->args()));
+                if (is_array($service)) {
+                    return call_user_func_array($service, $this->args($config->args()));
+                }
+
+                return call_user_func_array($service, $this->args($config->args()));
             };
         }
 
