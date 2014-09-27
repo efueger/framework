@@ -11,7 +11,7 @@ interface EventInterface
     /**
      *
      */
-    const EXCEPTION = 'Controller\Exception';
+    const EXCEPTION = 'Controller\Exception\Event';
 
     /**
      * @return Exception
