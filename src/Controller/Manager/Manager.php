@@ -3,7 +3,7 @@
 namespace Framework\Controller\Manager;
 
 use Closure;
-use Framework\Controller\Controller\EventInterface as Controller;
+use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
@@ -49,7 +49,7 @@ class Manager
      */
     public function dispatch(Route $route, $options = null)
     {
-        return $this->trigger([Controller::DISPATCH, $route], $options);
+        return $this->trigger([Dispatch::DISPATCH, $route], $options);
     }
 
     /**

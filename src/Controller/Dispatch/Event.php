@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Controller;
+namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
 use Framework\Route\Route\RouteInterface as Route;

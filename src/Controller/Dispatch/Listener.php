@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Controller;
+namespace Framework\Controller\Dispatch;
 
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
