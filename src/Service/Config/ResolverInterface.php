@@ -2,6 +2,6 @@
 
 namespace Framework\Service\Config;
 
-interface FactoryInterface
+interface ResolverInterface
 {
 }

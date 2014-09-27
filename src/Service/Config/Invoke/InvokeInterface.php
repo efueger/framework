@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Config\Invoke;
 
-use Framework\Service\Config\FactoryInterface;
+use Framework\Service\Config\ResolverInterface;
 
 interface InvokeInterface
 {
@@ -12,7 +12,7 @@ interface InvokeInterface
     public function args();
 
     /**
-     * @return string|array|FactoryInterface
+     * @return string|array|ResolverInterface
      */
     public function service();
 }

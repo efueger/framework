@@ -2,9 +2,9 @@
 
 namespace Framework\Service\Config\ServiceManagerLink;
 
-use Framework\Service\Config\FactoryInterface;
+use Framework\Service\Config\ResolverInterface;
 
 class ServiceManagerLink
-    implements ServiceManagerLinkInterface, FactoryInterface
+    implements ServiceManagerLinkInterface, ResolverInterface
 {
 }

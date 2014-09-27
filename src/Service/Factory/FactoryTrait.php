@@ -2,48 +2,77 @@
 
 namespace Framework\Service\Factory;
 
-use Closure;
-use Framework\Service\Config\FactoryInterface as ServiceConfig;
+use ReflectionClass;
+use Framework\Config\ConfigInterface;
 use Framework\Service\Manager\ManagerInterface;
 
 trait FactoryTrait
 {
     /**
-     * @param array|callable|Closure|FactoryInterface|object|ServiceConfig|string $factory
-     * @return callable|FactoryInterface|null
+     * @var ManagerInterface
      */
-    protected function factory($factory)
+    protected $sm;
+
+    /**
+     * @return ConfigInterface
+     */
+    public function config()
     {
-        /** @var ManagerInterface $this */
+        return $this->sm->config();
+    }
 
-        if (is_string($factory)) {
-            if (is_subclass_of($factory, Factory::class)) {
-                return new $factory($this);
-            }
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function configured($name)
+    {
+        return $this->sm->configured($name);
+    }
 
-            if (is_callable($factory)) {
-                return new CallableFactory($this, $factory);
-            }
+    /**
+     * @param string $name
+     * @param null $args
+     * @return null|object|callable
+     */
+    public function create($name, $args = null)
+    {
+        return $this->sm->create($name, $args);
+    }
 
-            return new InstanceFactory($this, $factory);
+    /**
+     * @param array|string $name
+     * @param null $args
+     * @param bool $shared
+     * @return null|object
+     */
+    public function get($name, $args = null, $shared = true)
+    {
+        return $this->sm->get($name, $args, $shared);
+    }
+
+    /**
+     * @param string $name
+     * @param array $args
+     * @return object
+     */
+    protected function newInstanceArgs($name, array $args = [])
+    {
+        if (!$args) {
+            return new $name;
         }
 
-        if (is_object($factory)) {
+        $class = new ReflectionClass($name);
 
-            if ($factory instanceof ServiceConfig) {
-                return new ServiceFactory($this, $factory);
-            }
+        return $class->hasMethod('__construct') ? $class->newInstanceArgs($args) : $class->newInstance();
+    }
 
-            if ($factory instanceof Closure) {
-                return $factory::bind($factory, $this);
-            }
-
-        } elseif (is_callable($factory)) {
-
-            return new CallableFactory($this, $factory);
-
-        }
-
-        return null;
+    /**
+     * @param $name
+     * @return object
+     */
+    public function service($name)
+    {
+        return $this->sm->service($name);
     }
 }

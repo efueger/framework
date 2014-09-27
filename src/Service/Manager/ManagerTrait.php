@@ -2,10 +2,15 @@
 
 namespace Framework\Service\Manager;
 
+use Closure;
 use RuntimeException;
+use Framework\Service\Config\ResolverInterface as Resolver;
+use Framework\Service\Config\Invoke\Invoke;
+use Framework\Service\Config\Service\Service;
 use Framework\Service\Container\ServiceTrait as Container;
+use Framework\Service\Factory\Factory;
 use Framework\Service\Factory\FactoryInterface;
-use Framework\Service\Config\FactoryInterface as FactoryConfig;
+use Framework\Service\Provider\Provider;
 
 trait ManagerTrait
 {
@@ -20,30 +25,14 @@ trait ManagerTrait
     protected $pending = [];
 
     /**
-     * @param array|callable|FactoryInterface|object|FactoryConfig|string $factory
-     * @param null $args
-     * @return mixed
-     */
-    protected function call($factory, $args = null)
-    {
-        return call_user_func_array($this->factory($factory), (array) $args);
-    }
-
-    /**
-     * @param array|FactoryConfig|string $name
+     * @param array|Resolver|string $name
      * @param null $args
      * @return null|object|callable
      */
     public function create($name, $args = null)
     {
-        return $name instanceof FactoryConfig ? $this->call($name, $args) : $this->get($name, $args, false);
+        return $name instanceof Resolver ? $this->invoke($name, $args) : $this->get($name, $args, false);
     }
-
-    /**
-     * @param array|callable|FactoryInterface|object|FactoryConfig|string $factory
-     * @return callable|FactoryInterface
-     */
-    abstract protected function factory($factory);
 
     /**
      * @param $name
@@ -76,18 +65,18 @@ trait ManagerTrait
 
     /**
      * @param string $name
-     * @param array|callable|FactoryInterface|object|FactoryConfig|string $factory
+     * @param array|callable|Resolver|FactoryInterface|object|string $config
      * @param null $args
      * @return mixed
      * @throws RuntimeException
      */
-    protected function initialize($name, $factory, $args = null)
+    protected function initialize($name, $config, $args = null)
     {
         if ($this->initializing($name)) {
             throw new RuntimeException('Circular dependency: ' . $name);
         }
 
-        $service = $this->call($factory, $args);
+        $service = $this->invoke($config, $args);
 
         $this->initialized($name);
 
@@ -119,6 +108,17 @@ trait ManagerTrait
     }
 
     /**
+     * @param array|callable|Resolver|FactoryInterface|object|string $config
+     * @param null $args
+     * @return mixed
+     */
+    protected function invoke($config, $args = null)
+    {
+        /** @var ManagerInterface|self $this */
+        return call_user_func_array(new Provider($this, $this->resolve($config)), (array) $args);
+    }
+
+    /**
      * @param array|string $name
      * @param null $args
      * @return array
@@ -134,5 +134,23 @@ trait ManagerTrait
         }
 
         return [$name, is_array($args) ? $args : [$args]];
+    }
+
+    /**
+     * @param array|callable|Closure|FactoryInterface|object|Resolver|string $config
+     * @return Resolver
+     */
+    protected function resolve($config)
+    {
+        if ($config instanceof Resolver) {
+            return $config;
+
+        }
+
+        if (is_string($config) && !is_subclass_of($config, Factory::class) && is_callable($config)) {
+            return new Invoke($config);
+        }
+
+        return is_array($config) ? new Invoke($config) : new Service($config);
     }
 }

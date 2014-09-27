@@ -2,10 +2,10 @@
 
 namespace Framework\Service\Config\Filter;
 
-use Framework\Service\Config\FactoryInterface;
+use Framework\Service\Config\ResolverInterface;
 
 class Filter
-    implements FilterInterface, FactoryInterface
+    implements FilterInterface, ResolverInterface
 {
     /**
      * @var string

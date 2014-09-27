@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Service\Factory;
+namespace Framework\Service\Provider;
 
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
@@ -9,35 +9,18 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
-use Framework\Service\Config\FactoryInterface as ConfigFactory;
+use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
-use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Manager\ManagerInterface as ServiceManager;
+use Framework\Service\Factory\FactoryTrait;
 
-class ServiceFactory
-    implements FactoryInterface
+trait ProviderTrait
 {
     /**
      *
      */
-    use ServiceTrait;
-
-    /**
-     * @var Config|ConfigFactory
-     */
-    protected $config;
-
-    /**
-     * @param ServiceManager $sm
-     * @param Config|ConfigFactory $config
-     */
-    public function __construct(ServiceManager $sm, ConfigFactory $config)
-    {
-        $this->config = $config;
-        $this->sm     = $sm;
-    }
+    use FactoryTrait;
 
     /**
      * @param mixed $arg
@@ -45,6 +28,8 @@ class ServiceFactory
      */
     protected function arg($arg)
     {
+        /** @var ProviderInterface|self $this */
+
         if (!is_object($arg)) {
             return $arg;
         }
@@ -80,10 +65,7 @@ class ServiceFactory
         }
 
         if ($arg instanceof Call) {
-            return $this->call(
-                is_array($arg->config()) ? $this->args($arg->config()) : $this->arg($arg->config()),
-                $this->args($arg->args())
-            );
+            return $this->invoke($arg->config(), $arg->args());
         }
 
         if ($arg instanceof Args) {
@@ -207,6 +189,16 @@ class ServiceFactory
     }
 
     /**
+     * @param array|callable|ResolverInterface|string $config
+     * @param array $args
+     * @return mixed
+     */
+    protected function invoke($config, array $args = [])
+    {
+        return $this->call(is_array($config) ? $this->args($config) : $this->arg($config), $this->args($args));
+    }
+
+    /**
      * @param Config $parent
      * @param Config $config
      * @return Config
@@ -248,64 +240,5 @@ class ServiceFactory
         }
 
         return $value;
-    }
-
-    /**
-     * @return null|object
-     */
-    public function __invoke()
-    {
-        $config = $this->config;
-
-        if ($config instanceof Child) {
-
-            /** @var Child|Config $config */
-
-            $config->add(Config::NAME, $this->arg($config->name()));
-
-            return $this->di($this->merge($config, $this->configured($config->parent())), func_get_args());
-        }
-
-        if ($config instanceof Invoke) {
-
-            /** @var Config|Invoke $config */
-
-            return function() use ($config) {
-                $service = is_array($config->service())
-                                ? $this->args($config->service()) : $this->arg($config->service());
-
-                if (is_string($service) && false !== strpos($service, '.')) {
-                    list($service, $method) = explode('.', $service, 2);
-                    $service = [$this->get($service), $method];
-                }
-
-                if (is_array($service)) {
-                    return call_user_func_array($service, $this->args($config->args()));
-                }
-
-                return call_user_func_array($service, $this->args($config->args()));
-            };
-        }
-
-        if ($config instanceof Dependency) {
-            return $this->get($config->name());
-        }
-
-        if ($config instanceof Call) {
-            return $this->call(
-                is_array($config->config()) ? $this->args($config->config()) : $this->arg($config->config()),
-                $this->args($config->args())
-            );
-        }
-
-        if ($config instanceof ConfigLink) {
-            return $this->config();
-        }
-
-        if ($config instanceof ServiceManagerLink) {
-            return $this->sm;
-        }
-
-        return $this->di($config, func_get_args());
     }
 }

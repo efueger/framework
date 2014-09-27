@@ -3,7 +3,7 @@
 namespace Framework\Service\Config;
 
 class Config
-    implements ConfigInterface, FactoryInterface
+    implements ConfigInterface, ResolverInterface
 {
     /**
      *

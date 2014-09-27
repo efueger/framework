@@ -2,9 +2,9 @@
 
 namespace Framework\Service\Config\ConfigLink;
 
-use Framework\Service\Config\FactoryInterface;
+use Framework\Service\Config\ResolverInterface;
 
 class ConfigLink
-    implements ConfigLinkInterface, FactoryInterface
+    implements ConfigLinkInterface, ResolverInterface
 {
 }

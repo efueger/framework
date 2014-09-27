@@ -5,7 +5,6 @@ namespace Framework\Event\Manager;
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
 use Framework\Event\Manager\GeneratorTrait as EventGenerator;
-use Framework\Service\Factory\FactoryTrait as Factory;
 use Framework\Service\Manager\ManagerInterface;
 use Framework\Service\Manager\ManagerTrait as ServiceManager;
 
@@ -16,7 +15,6 @@ trait EventsTrait
      */
     use EventGenerator,
         EventManager,
-        Factory,
         ServiceManager;
 
     /**

@@ -10,7 +10,7 @@ class InstanceFactory
     /**
      *
      */
-    use ServiceTrait;
+    use FactoryTrait;
 
     /**
      * @var string

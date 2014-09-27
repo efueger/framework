@@ -3,11 +3,11 @@
 namespace Framework\Service\Config\Hydrator;
 
 use Framework\Service\Config\ConfigInterface;
-use Framework\Service\Config\FactoryInterface;
+use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\ConfigTrait;
 
 class Hydrator
-    implements ConfigInterface, FactoryInterface, HydratorInterface
+    implements ConfigInterface, ResolverInterface, HydratorInterface
 {
     /**
      *

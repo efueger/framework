@@ -10,7 +10,7 @@ class CallableFactory
     /**
      *
      */
-    use ServiceTrait;
+    use FactoryTrait;
 
     /**
      * @var callable
