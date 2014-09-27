@@ -3,13 +3,13 @@
 namespace Framework\Service\Factory;
 
 use Closure;
-use Framework\Service\Config\FactoryInterface as ConfigFactory;
+use Framework\Service\Config\FactoryInterface as ServiceConfig;
 use Framework\Service\Manager\ManagerInterface;
 
 trait FactoryTrait
 {
     /**
-     * @param array|callable|Closure|FactoryInterface|object|ConfigFactory|string $factory
+     * @param array|callable|Closure|FactoryInterface|object|ServiceConfig|string $factory
      * @return callable|FactoryInterface|null
      */
     protected function factory($factory)
@@ -30,7 +30,7 @@ trait FactoryTrait
 
         if (is_object($factory)) {
 
-            if ($factory instanceof ConfigFactory) {
+            if ($factory instanceof ServiceConfig) {
                 return new ServiceFactory($this, $factory);
             }
 

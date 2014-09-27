@@ -32,6 +32,13 @@ class Manager
             return $controller;
         }
 
+        if (false !== strpos($controller, '.')) {
+            return function() use($controller) {
+                list($service, $method) = explode('.', $controller, 2);
+                return call_user_func_array([$this->get($service), $method], func_get_args());
+            };
+        }
+
         return $this->create($controller);
     }
 
