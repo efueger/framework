@@ -32,6 +32,11 @@ interface EventInterface
     const ROUTE = 'Route';
 
     /**
+     * @return array
+     */
+    public function args();
+
+    /**
      * @return Request
      */
     public function request();

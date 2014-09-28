@@ -28,7 +28,7 @@ class Event
      */
     public function __construct(Exception $exception)
     {
-        $this->exception  = $exception;
+        $this->exception = $exception;
     }
 
     /**
@@ -46,6 +46,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        return $listener($this, $options[0], $options[1]); //[$request, $response]
+        return $listener($this, $options[self::REQUEST], $options[self::RESPONSE]);
     }
 }

@@ -14,6 +14,16 @@ interface EventInterface
     const EXCEPTION = 'Controller\Exception\Event';
 
     /**
+     *
+     */
+    const REQUEST = 'Request';
+
+    /**
+     *
+     */
+    const RESPONSE = 'Response';
+
+    /**
      * @return Exception
      */
     public function exception();

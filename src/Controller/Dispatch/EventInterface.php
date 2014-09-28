@@ -14,6 +14,16 @@ interface EventInterface
     const DISPATCH = 'Dispatch\Event';
 
     /**
+     *
+     */
+    const REQUEST = 'Request';
+
+    /**
+     *
+     */
+    const RESPONSE = 'Response';
+
+    /**
      * @return callable|string
      */
     public function controller();

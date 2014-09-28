@@ -23,11 +23,11 @@ class Listener
     {
         try {
 
-            return $this->dispatch($event->route(), [$event->request(), $event->response()]);
+            return $this->dispatch($event->route(), $event->args());
 
         } catch (Exception $exception) {
 
-            return $this->exception($exception, [$event->request(), $event->response()]);
+            return $this->exception($exception, $event->args());
 
         }
     }

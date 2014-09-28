@@ -29,6 +29,17 @@ trait EventTrait
     }
 
     /**
+     * @return array
+     */
+    public function args()
+    {
+        return [
+            EventInterface::REQUEST  => $this->request(),
+            EventInterface::RESPONSE => $this->response()
+        ];
+    }
+
+    /**
      * @return Request
      */
     public function request()
