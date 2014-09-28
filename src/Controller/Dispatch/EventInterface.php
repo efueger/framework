@@ -19,6 +19,11 @@ interface EventInterface
     public function controller();
 
     /**
+     * @return array
+     */
+    public function params();
+
+    /**
      * @return Route
      */
     public function route();

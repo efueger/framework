@@ -40,6 +40,14 @@ class Event
     }
 
     /**
+     * @return array
+     */
+    public function params()
+    {
+        return $this->route->params();
+    }
+
+    /**
      * @return Route
      */
     public function route()
