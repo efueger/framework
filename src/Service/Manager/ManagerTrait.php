@@ -6,7 +6,6 @@ use Closure;
 use RuntimeException;
 use Framework\Service\Config\Call\Call;
 use Framework\Service\Config\ResolverInterface as Resolver;
-use Framework\Service\Config\Service\Service;
 use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Factory\FactoryInterface;
 use Framework\Service\Provider\Provider;
@@ -137,10 +136,7 @@ trait ManagerTrait
     protected function invoke($config, $args = null)
     {
         /** @var ManagerInterface $this */
-        return (new Provider($this))->__invoke(
-            $config instanceof Resolver ? $config : new Service($config),
-            (array) $args
-        );
+        return (new Provider($this))->__invoke($config, (array) $args);
     }
 
     /**

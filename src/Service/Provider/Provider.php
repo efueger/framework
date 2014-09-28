@@ -9,6 +9,7 @@ use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\ResolverInterface as Resolver;
+use Framework\Service\Config\Service\Service as Service;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Factory\FactoryInterface;
@@ -31,13 +32,17 @@ class Provider
     }
 
     /**
-     * @param Resolver $config
+     * @param $config
      * @param array $args
      * @return callable|null|object
      */
-    public function __invoke(Resolver $config, array $args = [])
+    public function __invoke($config, array $args = [])
     {
         /** @var Config|Resolver $config */
+
+        if (!$config instanceof Resolver) {
+            return $this->resolve(new Service($config), $args);
+        }
 
         if ($config instanceof Factory) {
             /** @var Child $config */
