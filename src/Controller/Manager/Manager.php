@@ -2,12 +2,10 @@
 
 namespace Framework\Controller\Manager;
 
-use Closure;
 use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Service\Config\Call\Call;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 use Framework\Route\Route\RouteInterface as Route;
 
@@ -25,21 +23,7 @@ class Manager
      */
     public function controller($controller)
     {
-        if ($controller instanceof Closure) {
-            return $controller::bind($controller, $this);
-        }
-
-        if (is_callable($controller)) {
-            return $controller;
-        }
-
-        if (false !== strpos($controller, '.')) {
-            return function() use($controller) {
-                return $this->invoke(new Call($controller, func_get_args()));
-            };
-        }
-
-        return $this->create($controller);
+        return $this->resolve($controller);
     }
 
     /**

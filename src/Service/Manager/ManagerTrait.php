@@ -4,6 +4,7 @@ namespace Framework\Service\Manager;
 
 use Closure;
 use RuntimeException;
+use Framework\Service\Config\Call\Call;
 use Framework\Service\Config\ResolverInterface as Resolver;
 use Framework\Service\Config\Invoke\Invoke;
 use Framework\Service\Config\Service\Service;
@@ -115,7 +116,7 @@ trait ManagerTrait
     protected function invoke($config, $args = null)
     {
         /** @var ManagerInterface|self $this */
-        return call_user_func_array(new Provider($this, $this->resolve($config)), (array) $args);
+        return call_user_func_array(new Provider($this, $this->resolver($config)), (array) $args);
     }
 
     /**
@@ -137,10 +138,33 @@ trait ManagerTrait
     }
 
     /**
+     * @param callable|string $config
+     * @return callable|null|object
+     */
+    protected function resolve($config)
+    {
+        if ($config instanceof Closure) {
+            return $config::bind($config, $this);
+        }
+
+        if (is_callable($config)) {
+            return $config;
+        }
+
+        if (false !== strpos($config, '.')) {
+            return function() use($config) {
+                return $this->invoke(new Call($config, func_get_args()));
+            };
+        }
+
+        return $this->create($config);
+    }
+
+    /**
      * @param array|callable|Closure|FactoryInterface|object|Resolver|string $config
      * @return Resolver
      */
-    protected function resolve($config)
+    protected function resolver($config)
     {
         if ($config instanceof Resolver) {
             return $config;
