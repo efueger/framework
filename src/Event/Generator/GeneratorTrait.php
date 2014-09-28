@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Event\Manager;
+namespace Framework\Event\Generator;
 
 use Framework\Event\Config\ConfigInterface;
 use Framework\Event\EventInterface as Event;
@@ -62,5 +62,9 @@ trait GeneratorTrait
      * @param null $options
      * @return mixed
      */
-    abstract protected function signal(Event $event, callable $listener, $options = null);
+    protected function signal(Event $event, callable $listener, $options = null)
+    {
+        /** @var callable $event */
+        return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
+    }
 }

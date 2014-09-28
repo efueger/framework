@@ -4,7 +4,7 @@ namespace Framework\Event\Manager;
 
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
-use Framework\Event\Manager\GeneratorTrait as EventGenerator;
+use Framework\Event\Generator\GeneratorTrait as EventGenerator;
 use Framework\Service\Manager\ManagerInterface;
 use Framework\Service\Manager\ManagerTrait as ServiceManager;
 

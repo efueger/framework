@@ -43,18 +43,6 @@ trait EventManagerTrait
     }
 
     /**
-     * @param EventInterface $event
-     * @param callable $listener
-     * @param null $options
-     * @return mixed
-     */
-    protected function signal(EventInterface $event, callable $listener, $options = null)
-    {
-        /** @var callable $event */
-        return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
-    }
-
-    /**
      * @param array|EventInterface|string $event
      * @param null $options
      * @param callable $callback
