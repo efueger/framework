@@ -112,7 +112,7 @@ trait ProviderTrait
             $value = $value->$method();
         }
 
-        return $call ? call_user_func_array([$value, $call], $args) : $value;
+        return $args ? call_user_func_array([$value, $call], $args) : $value;
     }
 
     /**
