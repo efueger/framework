@@ -171,6 +171,11 @@ trait ProviderTrait
                 continue;
             }
 
+            if ($value instanceof ResolverInterface) {
+                $this->invoke($this->arg($value));
+                continue;
+            }
+
             if (is_string($value[0])) {
                 $this->invoke([$service, $value[0]], $value[1]);
                 continue;
