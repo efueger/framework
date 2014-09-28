@@ -23,7 +23,7 @@ class Manager
      */
     public function controller($controller)
     {
-        return $this->resolve($controller);
+        return $this->invokable($controller);
     }
 
     /**

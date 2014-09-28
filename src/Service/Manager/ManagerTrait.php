@@ -109,6 +109,29 @@ trait ManagerTrait
     }
 
     /**
+     * @param callable|string $config
+     * @return callable|null|object
+     */
+    protected function invokable($config)
+    {
+        if ($config instanceof Closure) {
+            return $config::bind($config, $this);
+        }
+
+        if (is_callable($config)) {
+            return $config;
+        }
+
+        if (is_string($config) && false !== strpos($config, '.')) {
+            return function() use($config) {
+                return $this->invoke(new Call($config, func_get_args()));
+            };
+        }
+
+        return $this->create($config);
+    }
+
+    /**
      * @param array|callable|Resolver|FactoryInterface|object|string $config
      * @param null $args
      * @return mixed
@@ -135,29 +158,6 @@ trait ManagerTrait
         }
 
         return [$name, is_array($args) ? $args : [$args]];
-    }
-
-    /**
-     * @param callable|string $config
-     * @return callable|null|object
-     */
-    protected function resolve($config)
-    {
-        if ($config instanceof Closure) {
-            return $config::bind($config, $this);
-        }
-
-        if (is_callable($config)) {
-            return $config;
-        }
-
-        if (is_string($config) && false !== strpos($config, '.')) {
-            return function() use($config) {
-                return $this->invoke(new Call($config, func_get_args()));
-            };
-        }
-
-        return $this->create($config);
     }
 
     /**
