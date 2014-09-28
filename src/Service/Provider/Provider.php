@@ -2,7 +2,6 @@
 
 namespace Framework\Service\Provider;
 
-use Closure;
 use Framework\Service\Config\Call\CallInterface as Call;
 use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;

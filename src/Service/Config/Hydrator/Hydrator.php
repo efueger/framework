@@ -7,7 +7,7 @@ use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\ConfigTrait;
 
 class Hydrator
-    implements ConfigInterface, ResolverInterface, HydratorInterface
+    implements ConfigInterface, HydratorInterface, ResolverInterface
 {
     /**
      *

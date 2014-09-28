@@ -5,7 +5,7 @@ namespace Framework\Service\Config\Invoke;
 use Framework\Service\Config\ResolverInterface;
 
 class Invoke
-    implements ResolverInterface, InvokeInterface
+    implements InvokeInterface, ResolverInterface
 {
     /**
      * @var array
