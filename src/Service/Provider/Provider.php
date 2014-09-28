@@ -23,15 +23,15 @@ class Provider
     use ProviderTrait;
 
     /**
-     * @var array|callable|Closure|FactoryInterface|object|Resolver|string $config
+     * @var Resolver $config
      */
     protected $config;
 
     /**
      * @param ServiceManager $sm
-     * @param array|callable|Closure|FactoryInterface|object|Resolver|string $config
+     * @param Resolver $config
      */
-    public function __construct(ServiceManager $sm, $config)
+    public function __construct(ServiceManager $sm, Resolver $config)
     {
         $this->config = $config;
         $this->sm     = $sm;
