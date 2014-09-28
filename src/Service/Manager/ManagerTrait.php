@@ -151,7 +151,7 @@ trait ManagerTrait
             return $config;
         }
 
-        if (false !== strpos($config, '.')) {
+        if (is_string($config) && false !== strpos($config, '.')) {
             return function() use($config) {
                 return $this->invoke(new Call($config, func_get_args()));
             };
