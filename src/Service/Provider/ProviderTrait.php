@@ -185,7 +185,7 @@ trait ProviderTrait
             }
 
             if ($value instanceof ResolverInterface) {
-                $this->invoke($this->arg($value));
+                $this->invoke($value);
                 continue;
             }
 
