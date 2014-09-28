@@ -130,7 +130,7 @@ trait ManagerTrait
     }
 
     /**
-     * @param array|callable|Resolver|FactoryInterface|object|string $config
+     * @param Resolver|string $config
      * @param null $args
      * @return mixed
      */
