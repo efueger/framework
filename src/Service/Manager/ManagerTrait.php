@@ -136,9 +136,9 @@ trait ManagerTrait
      */
     protected function invoke($config, $args = null)
     {
-        /** @var ManagerInterface|self $this */
-        return call_user_func_array(
-            new Provider($this, $config instanceof Resolver ? $config : new Service($config)),
+        /** @var ManagerInterface $this */
+        return (new Provider($this))->__invoke(
+            $config instanceof Resolver ? $config : new Service($config),
             (array) $args
         );
     }

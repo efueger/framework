@@ -41,11 +41,11 @@ trait ProviderTrait
 
             $parent->add(Config::NAME, $this->arg($arg->name()));
 
-            return $this->di($parent);
+            return $this->resolve($parent);
         }
 
         if ($arg instanceof Config) {
-            return $this->di($arg);
+            return $this->resolve($arg);
         }
 
         if ($arg instanceof Dependency) {
@@ -125,30 +125,7 @@ trait ProviderTrait
         /** @var Child|Config $config */
         $config->add(Config::NAME, $this->arg($config->name()));
 
-        return $this->di($this->merge($config, $this->configured($config->parent())), (array) $args);
-    }
-
-    /**
-     * @param Config $config
-     * @param array $args
-     * @return null|object
-     */
-    protected function di(Config $config, array $args = [])
-    {
-        $args = $args ? : $config->args();
-        $name = $config->name();
-
-        $parent = $this->configured($name);
-
-        if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->create($name, $this->args($args)));
-        }
-
-        if (!$parent || $config->name() == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
-        }
-
-        return $this->di($this->merge(clone $parent, $config), $args);
+        return $this->resolve($this->merge($config, $this->configured($config->parent())), (array) $args);
     }
 
     /**
@@ -252,5 +229,28 @@ trait ProviderTrait
         }
 
         return $value;
+    }
+
+    /**
+     * @param Config $config
+     * @param array $args
+     * @return null|object
+     */
+    public function resolve(Config $config, array $args = [])
+    {
+        $args = $args ? : $config->args();
+        $name = $config->name();
+
+        $parent = $this->configured($name);
+
+        if ($parent && !$parent instanceof Config) {
+            return $this->hydrate($config, $this->create($name, $this->args($args)));
+        }
+
+        if (!$parent || $config->name() == $parent->name()) {
+            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        }
+
+        return $this->resolve($this->merge(clone $parent, $config), $args);
     }
 }

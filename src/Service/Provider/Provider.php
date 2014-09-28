@@ -23,37 +23,30 @@ class Provider
     use ProviderTrait;
 
     /**
-     * @var Resolver $config
-     */
-    protected $config;
-
-    /**
      * @param ServiceManager $sm
-     * @param Resolver $config
      */
-    public function __construct(ServiceManager $sm, Resolver $config)
+    public function __construct(ServiceManager $sm)
     {
-        $this->config = $config;
-        $this->sm     = $sm;
+        $this->sm = $sm;
     }
 
     /**
+     * @param Resolver $config
+     * @param array $args
      * @return callable|null|object
      */
-    public function __invoke()
+    public function __invoke(Resolver $config, array $args = [])
     {
         /** @var Config|Resolver $config */
 
-        $config = $this->config;
-
         if ($config instanceof Factory) {
             /** @var Child $config */
-            return $this->call($this->child($config, func_get_args()));
+            return $this->call($this->child($config, $args));
         }
 
         if ($config instanceof Child) {
             /** @var Child $config */
-            return $this->child($config, func_get_args());
+            return $this->child($config, $args);
         }
 
         if ($config instanceof Dependency) {
@@ -79,6 +72,6 @@ class Provider
             };
         }
 
-        return $this->di($config, func_get_args());
+        return $this->resolve($config, $args);
     }
 }
