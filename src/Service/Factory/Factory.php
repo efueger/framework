@@ -4,7 +4,7 @@ namespace Framework\Service\Factory;
 
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
 
-class Factory
+abstract class Factory
     implements FactoryInterface
 {
     /**
