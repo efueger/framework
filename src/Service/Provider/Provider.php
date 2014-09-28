@@ -7,6 +7,7 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
+use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\ResolverInterface as Resolver;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
@@ -45,13 +46,14 @@ class Provider
 
         $config = $this->config;
 
+        if ($config instanceof Factory) {
+            /** @var Child $config */
+            return $this->call($this->child($config, func_get_args()));
+        }
+
         if ($config instanceof Child) {
-
-            /** @var Child|Config $config */
-
-            $config->add(Config::NAME, $this->arg($config->name()));
-
-            return $this->di($this->merge($config, $this->configured($config->parent())), func_get_args());
+            /** @var Child $config */
+            return $this->child($config, func_get_args());
         }
 
         if ($config instanceof Dependency) {

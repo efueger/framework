@@ -116,6 +116,19 @@ trait ProviderTrait
     }
 
     /**
+     * @param Child $config
+     * @param null $args
+     * @return null|object
+     */
+    protected function child(Child $config, $args = null)
+    {
+        /** @var Child|Config $config */
+        $config->add(Config::NAME, $this->arg($config->name()));
+
+        return $this->di($this->merge($config, $this->configured($config->parent())), (array) $args);
+    }
+
+    /**
      * @param Config $config
      * @param array $args
      * @return null|object
