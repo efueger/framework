@@ -12,7 +12,7 @@ use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Provider\ProviderTrait as Provider;
+use Framework\Service\Resolver\ResolverTrait as Resolver;
 use ReflectionClass;
 use RuntimeException;
 
@@ -22,7 +22,7 @@ trait ManagerTrait
      *
      */
     use Container,
-        Provider;
+        Resolver;
 
     /**
      * @var array

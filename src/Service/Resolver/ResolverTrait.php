@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Service\Provider;
+namespace Framework\Service\Resolver;
 
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
@@ -14,7 +14,7 @@ use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 
-trait ProviderTrait
+trait ResolverTrait
 {
     /**
      * @param mixed $arg
