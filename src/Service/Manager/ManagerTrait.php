@@ -55,6 +55,10 @@ trait ManagerTrait
             return $this->newInstanceArgs($config, $args);
         }
 
+        if (!is_object($config)) {
+            return $config;
+        }
+
         /** @var Config $config */
 
         if ($config instanceof Factory) {
