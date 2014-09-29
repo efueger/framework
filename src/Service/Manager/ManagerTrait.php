@@ -80,7 +80,7 @@ trait ManagerTrait
         }
 
         if ($config instanceof Call) {
-            return $this->invoke($config->config(), $config->args());
+            return $this->call($config->config(), $config->args());
         }
 
         if ($config instanceof ConfigLink) {
