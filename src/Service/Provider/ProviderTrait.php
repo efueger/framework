@@ -99,7 +99,7 @@ trait ProviderTrait
     {
         /** @var ManagerInterface|self $this */
 
-        if (is_callable($config)) {
+        if (!is_string($config) || false === strpos($config, '.')) {
             return call_user_func_array($config, $args);
         }
 
