@@ -12,11 +12,10 @@ use Framework\Service\Config\ResolverInterface as Resolver;
 use Framework\Service\Config\Service\Service as Service;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Factory\FactoryInterface;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
 
 class Provider
-    implements FactoryInterface, ProviderInterface
+    implements ProviderInterface
 {
     /**
      *

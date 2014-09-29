@@ -2,9 +2,10 @@
 
 namespace Framework\Service\Manager;
 
-use RuntimeException;
+use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Provider\Provider;
+use RuntimeException;
 
 trait ManagerTrait
 {
@@ -53,8 +54,7 @@ trait ManagerTrait
     }
 
     /**
-     * @param string $name
-     * @return self
+     * @param $name
      */
     protected function initialized($name)
     {
@@ -62,8 +62,8 @@ trait ManagerTrait
     }
 
     /**
-     * @param string $name
-     * @return self
+     * @param $name
+     * @return bool
      */
     protected function initializing($name)
     {
@@ -72,5 +72,30 @@ trait ManagerTrait
         }
 
         return $this->pending[$name] = true;
+    }
+
+    /**
+     * @param callable|string $config
+     * @return callable|null
+     */
+    protected function invokable($config)
+    {
+        if (is_string($config)) {
+            if (false !== strpos($config, '.')) {
+                return function () use ($config) {
+                    return $this->create($config, func_get_args());
+                };
+            }
+
+            if (is_callable($config)) {
+                return $config;
+            }
+        }
+
+        if ($config instanceof Closure) {
+            return $config::bind($config, $this);
+        }
+
+        return $this->create($config);
     }
 }

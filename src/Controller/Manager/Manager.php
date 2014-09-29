@@ -23,23 +23,7 @@ class Manager
      */
     public function controller($controller)
     {
-        if (is_string($controller)) {
-            if (false !== strpos($controller, '.')) {
-                return function () use ($controller) {
-                    return $this->create($controller, func_get_args());
-                };
-            }
-
-            if (is_callable($controller)) {
-                return $controller;
-            }
-        }
-
-        if ($controller instanceof \Closure) {
-            return $controller::bind($controller, $this);
-        }
-
-        return $this->create($controller);
+        return $this->invokable($controller);
     }
 
     /**
