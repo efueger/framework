@@ -37,10 +37,6 @@ class Provider
      */
     public function create($config, array $args = [])
     {
-        if (is_array($config) && is_callable($config)) {
-            return $this->invoke($config, $args);
-        }
-
         list($config, $args) = $this->options($config, $args);
 
         if (is_string($config)) {
