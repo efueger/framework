@@ -13,16 +13,16 @@ class Invoke
     /**
      * @var string|array
      */
-    protected $service;
+    protected $config;
 
     /**
-     * @param string|array $service
+     * @param string|array $config
      * @param array $args
      */
-    public function __construct($service, array $args = [])
+    public function __construct($config, array $args = [])
     {
-        $this->args    = $args;
-        $this->service = $service;
+        $this->args   = $args;
+        $this->config = $config;
     }
 
     /**
@@ -36,8 +36,8 @@ class Invoke
     /**
      * @return string|array
      */
-    public function service()
+    public function config()
     {
-        return $this->service;
+        return $this->config;
     }
 }

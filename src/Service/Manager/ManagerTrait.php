@@ -92,8 +92,7 @@ trait ManagerTrait
 
         if ($config instanceof Invoke) {
             return function() use ($config) {
-                /** @var Invoke $config */
-                return $this->invoke($config->service(), $config->args());
+                return $this->invoke($config->config(), $config->args());
             };
         }
 

@@ -12,5 +12,5 @@ interface InvokeInterface
     /**
      * @return string|array
      */
-    public function service();
+    public function config();
 }
