@@ -265,7 +265,7 @@ trait ResolverTrait
      * @param array $args
      * @return null|object
      */
-    public function resolve(Config $config, array $args = [])
+    protected function resolve(Config $config, array $args = [])
     {
         /** @var ManagerInterface|self $this */
 
