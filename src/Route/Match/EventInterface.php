@@ -17,10 +17,10 @@ interface EventInterface
     /**
      * @return Definition
      */
-    public function definition();
+    function definition();
 
     /**
      * @return Route
      */
-    public function route();
+    function route();
 }

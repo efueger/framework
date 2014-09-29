@@ -34,25 +34,25 @@ interface EventInterface
     /**
      * @return array
      */
-    public function args();
+    function args();
 
     /**
      * @return Request
      */
-    public function request();
+    function request();
 
     /**
      * @return Response
      */
-    public function response();
+    function response();
 
     /**
      * @return Route
      */
-    public function route();
+    function route();
 
     /**
      * @return ViewModel
      */
-    public function viewModel();
+    function viewModel();
 }

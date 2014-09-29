@@ -7,5 +7,5 @@ interface ArgsInterface
     /**
      * @return array
      */
-    public function config();
+    function config();
 }

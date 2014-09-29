@@ -19,11 +19,11 @@ interface ConfigInterface
      * @param $priority
      * @return void
      */
-    public function add($name, $listener, $priority = self::PRIORITY);
+    function add($name, $listener, $priority = self::PRIORITY);
 
     /**
      * @param string $name
      * @return array
      */
-    public function queue($name);
+    function queue($name);
 }

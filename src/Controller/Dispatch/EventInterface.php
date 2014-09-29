@@ -26,15 +26,15 @@ interface EventInterface
     /**
      * @return callable|string
      */
-    public function controller();
+    function controller();
 
     /**
      * @return array
      */
-    public function params();
+    function params();
 
     /**
      * @return Route
      */
-    public function route();
+    function route();
 }

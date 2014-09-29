@@ -7,10 +7,10 @@ interface InvokeInterface
     /**
      * @return array
      */
-    public function args();
+    function args();
 
     /**
      * @return string|array
      */
-    public function config();
+    function config();
 }

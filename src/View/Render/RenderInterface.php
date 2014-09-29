@@ -10,5 +10,5 @@ interface RenderInterface
      * @param ViewModel $viewModel
      * @return mixed
      */
-    public function render(ViewModel $viewModel);
+    function render(ViewModel $viewModel);
 }

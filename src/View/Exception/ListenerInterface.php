@@ -8,5 +8,5 @@ interface ListenerInterface
      * @param EventInterface $event
      * @return mixed
      */
-    public function __invoke(EventInterface $event);
+    function __invoke(EventInterface $event);
 }

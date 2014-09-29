@@ -13,5 +13,5 @@ interface ListenerInterface
      * @param Response $response
      * @return mixed
      */
-    public function __invoke(EventInterface $event, Request $request, Response $response);
+    function __invoke(EventInterface $event, Request $request, Response $response);
 }

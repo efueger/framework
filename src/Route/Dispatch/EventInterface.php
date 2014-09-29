@@ -16,5 +16,5 @@ interface EventInterface
     /**
      * @return Route $route
      */
-    public function route();
+    function route();
 }

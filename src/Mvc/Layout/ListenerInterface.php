@@ -11,5 +11,5 @@ interface ListenerInterface
      * @param array $options
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $options = []);
+    function __invoke(EventInterface $event, array $options = []);
 }

@@ -76,70 +76,70 @@ interface DefinitionInterface
      * @param string $name
      * @return self
      */
-    public function child($name);
+    function child($name);
 
     /**
      * @return self[]
      */
-    public function children();
+    function children();
 
     /**
      * @return array
      */
-    public function constraints();
+    function constraints();
 
     /**
      * @return string
      */
-    public function controller();
+    function controller();
 
     /**
      * @return array
      */
-    public function defaults();
+    function defaults();
 
     /**
      * @return array|string
      */
-    public function hostname();
+    function hostname();
 
     /**
      * @return string
      */
-    public function method();
+    function method();
 
     /**
      * @return string
      */
-    public function name();
+    function name();
 
     /**
      * @return string
      */
-    public function paramMap();
+    function paramMap();
 
     /**
      * @return string
      */
-    public function regex();
+    function regex();
 
     /**
      * @return string
      */
-    public function route();
+    function route();
 
     /**
      * @return string
      */
-    public function scheme();
+    function scheme();
 
     /**
      * @return array
      */
-    public function tokens();
+    function tokens();
 
     /**
      * @return true
      */
-    public function wildcard();
+    function wildcard();
 }

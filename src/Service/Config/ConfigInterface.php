@@ -30,20 +30,20 @@ interface ConfigInterface
     /**
      * @return array
      */
-    public function args();
+    function args();
 
     /**
      * @return array
      */
-    public function calls();
+    function calls();
 
     /**
      * @return bool
      */
-    public function merge();
+    function merge();
 
     /**
      * @return string
      */
-    public function name();
+    function name();
 }

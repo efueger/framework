@@ -56,45 +56,45 @@ interface RouteInterface
     /**
      * @return string
      */
-    public function controller();
+    function controller();
 
     /**
      * @return string|string[]
      */
-    public function hostname();
+    function hostname();
 
     /**
      * @return int
      */
-    public function length();
+    function length();
 
     /**
      * @return bool
      */
-    public function matched();
+    function matched();
 
     /**
      * @return string|string[]
      */
-    public function method();
+    function method();
 
     /**
      * @return string
      */
-    public function name();
+    function name();
 
     /**
      * @return array
      */
-    public function params();
+    function params();
 
     /**
      * @return string
      */
-    public function path();
+    function path();
 
     /**
      * @return string|string[]
      */
-    public function scheme();
+    function scheme();
 }

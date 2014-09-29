@@ -16,5 +16,5 @@ interface EventInterface
     /**
      * @return Exception
      */
-    public function exception();
+    function exception();
 }

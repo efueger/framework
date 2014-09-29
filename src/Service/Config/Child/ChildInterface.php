@@ -12,5 +12,5 @@ interface ChildInterface
     /**
      * @return string
      */
-    public function parent();
+    function parent();
 }

@@ -7,5 +7,5 @@ interface DependencyInterface
     /**
      * @return string
      */
-    public function name();
+    function name();
 }

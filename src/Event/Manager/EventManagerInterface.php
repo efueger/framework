@@ -12,5 +12,5 @@ interface EventManagerInterface
      * @param callable $callback
      * @return mixed
      */
-    public function trigger($event, array $options = [], callable $callback = null);
+    function trigger($event, array $options = [], callable $callback = null);
 }

@@ -12,35 +12,35 @@ interface ContainerInterface
      * @param array|callable|object|string $factory
      * @return void
      */
-    public function assign($name, $factory);
+    function assign($name, $factory);
 
     /**
      * @param string $name
      * @return array|callable|null|object|string
      */
-    public function assigned($name);
+    function assigned($name);
 
     /**
      * @return Config
      */
-    public function config();
+    function config();
 
     /**
      * @param string $name
      * @param mixed $config
      * @return void
      */
-    public function configure($name, $config);
+    function configure($name, $config);
 
     /**
      * @param string $name
      * @return mixed
      */
-    public function configured($name);
+    function configured($name);
 
     /**
      * @param string $name
      * @return object
      */
-    public function service($name);
+    function service($name);
 }

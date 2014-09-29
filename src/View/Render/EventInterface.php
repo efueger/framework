@@ -16,5 +16,5 @@ interface EventInterface
     /**
      * @return ModelInterface
      */
-    public function viewModel();
+    function viewModel();
 }

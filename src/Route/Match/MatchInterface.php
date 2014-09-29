@@ -12,5 +12,5 @@ interface MatchInterface
      * @param Definition $definition
      * @return Route
      */
-    public function match(Route $route, Definition $definition);
+    function match(Route $route, Definition $definition);
 }

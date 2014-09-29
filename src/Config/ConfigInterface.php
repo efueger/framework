@@ -9,28 +9,28 @@ interface ConfigInterface
      * @param mixed $config
      * @return void
      */
-    public function add($name, $config);
+    function add($name, $config);
 
     /**
      * @return array
      */
-    public function config();
+    function config();
 
     /**
      * @param string $name
      * @return mixed
      */
-    public function get($name);
+    function get($name);
 
     /**
      * @param string $name
      * @return bool
      */
-    public function has($name);
+    function has($name);
 
     /**
      * @param string $name
      * @return void
      */
-    public function remove($name);
+    function remove($name);
 }

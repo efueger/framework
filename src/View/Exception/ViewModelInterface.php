@@ -12,10 +12,10 @@ interface ViewModelInterface
      * @param Exception $exception
      * @return mixed
      */
-    public function setException(Exception $exception);
+    function setException(Exception $exception);
 
     /**
      * @param $message
      */
-    public function setMessage($message);
+    function setMessage($message);
 }

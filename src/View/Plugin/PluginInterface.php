@@ -9,5 +9,5 @@ interface PluginInterface
      * @param array $args
      * @return null|callable|object
      */
-    public function plugin($name, array $args = []);
+    function plugin($name, array $args = []);
 }

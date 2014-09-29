@@ -10,5 +10,5 @@ interface ViewModelInterface
     /**
      * @param $message
      */
-    public function setMessage($message);
+    function setMessage($message);
 }

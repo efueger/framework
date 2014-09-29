@@ -11,19 +11,19 @@ interface ManagerInterface
      * @param callable|string $controller
      * @return callable|null|object
      */
-    public function controller($controller);
+    function controller($controller);
 
     /**
      * @param Route $route
      * @param array $options
      * @return mixed
      */
-    public function dispatch(Route $route, array $options = []);
+    function dispatch(Route $route, array $options = []);
 
     /**
      * @param Exception $exception
      * @param array $options
      * @return mixed
      */
-    public function exception(Exception $exception, array $options = []);
+    function exception(Exception $exception, array $options = []);
 }

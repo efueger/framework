@@ -10,25 +10,25 @@ interface FactoryInterface
      * @param $name
      * @return mixed
      */
-    public function assigned($name);
+    function assigned($name);
 
     /**
      * @return Config
      */
-    public function config();
+    function config();
 
     /**
      * @param $name
      * @return mixed
      */
-    public function configured($name);
+    function configured($name);
 
     /**
      * @param array|object|string $config
      * @param array $args
      * @return null|object
      */
-    public function create($config, array $args = []);
+    function create($config, array $args = []);
 
     /**
      * @param string $name
@@ -36,11 +36,11 @@ interface FactoryInterface
      * @param bool $shared
      * @return null|object
      */
-    public function get($name, array $args = [], $shared = true);
+    function get($name, array $args = [], $shared = true);
 
     /**
      * @param $name
      * @return object
      */
-    public function service($name);
+    function service($name);
 }

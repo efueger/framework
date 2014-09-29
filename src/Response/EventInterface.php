@@ -16,5 +16,5 @@ interface EventInterface
     /**
      * @return Response
      */
-    public function response();
+    function response();
 }

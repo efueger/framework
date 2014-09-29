@@ -11,12 +11,12 @@ interface ManagerInterface
      * @param Route $route
      * @return Route
      */
-    public function dispatch(Route $route);
+    function dispatch(Route $route);
 
     /**
      * @param Definition $definition
      * @param Route $route
      * @return Route
      */
-    public function match(Definition $definition, Route $route);
+    function match(Definition $definition, Route $route);
 }

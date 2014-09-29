@@ -7,10 +7,10 @@ interface CallInterface
     /**
      * @return array
      */
-    public function args();
+    function args();
 
     /**
      * @return string
      */
-    public function config();
+    function config();
 }

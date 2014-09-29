@@ -9,5 +9,5 @@ interface GeneratorInterface
      * @param array $params
      * @return string
      */
-    public function url($name, array $params = []);
+    function url($name, array $params = []);
 }

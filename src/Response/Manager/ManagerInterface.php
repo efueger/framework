@@ -10,5 +10,5 @@ interface ManagerInterface
      * @param ResponseInterface $response
      * @return mixed
      */
-    public function response(ResponseInterface $response);
+    function response(ResponseInterface $response);
 }

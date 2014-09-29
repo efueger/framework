@@ -7,15 +7,15 @@ interface EventInterface
     /**
      * @return string
      */
-    public function event();
+    function event();
 
     /**
      * @return void
      */
-    public function stop();
+    function stop();
 
     /**
      * @return bool
      */
-    public function stopped();
+    function stopped();
 }

@@ -12,12 +12,12 @@ interface ManagerInterface
      * @param array $args
      * @return callable|null|object
      */
-    public function create($config, array $args = []);
+    function create($config, array $args = []);
 
     /**
      * @param string $name
      * @param array $args
      * @return callable|null|object
      */
-    public function get($name, array $args = []);
+    function get($name, array $args = []);
 }

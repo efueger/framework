@@ -32,32 +32,32 @@ interface BuilderInterface
      * @param array $definitions
      * @return array
      */
-    public static function children(array $definitions);
+    static function children(array $definitions);
 
     /**
      * @param $definition
      * @return Definition
      */
-    public static function definition($definition);
+    static function definition($definition);
 
     /**
      * @param array $definitions
      * @return ConfigInterface
      */
-    public static function definitions(array $definitions);
+    static function definitions(array $definitions);
 
     /**
      * @param array $tokens
      * @return array
      */
-    public static function paramMap(array $tokens);
+    static function paramMap(array $tokens);
 
     /**
      * @param array $tokens
      * @param string $delimiter
      * @return array
      */
-    public static function regex($tokens, $delimiter = '/');
+    static function regex($tokens, $delimiter = '/');
 
     /**
      * @param $pattern
@@ -65,5 +65,5 @@ interface BuilderInterface
      * @return array
      * @throws RuntimeException
      */
-    public static function tokens($pattern, $delimiter = '/');
+    static function tokens($pattern, $delimiter = '/');
 }

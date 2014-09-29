@@ -7,10 +7,10 @@ interface FilterInterface
     /**
      * @return string
      */
-    public function config();
+    function config();
 
     /**
      * @return string|array
      */
-    public function filter();
+    function filter();
 }
