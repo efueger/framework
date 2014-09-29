@@ -267,10 +267,6 @@ trait ProviderTrait
 
         $parent = $this->configured($name);
 
-        if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->create($parent, $this->args($args)));
-        }
-
         if (!$parent || $config->name() == $parent->name()) {
             return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
         }
