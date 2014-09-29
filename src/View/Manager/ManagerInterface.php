@@ -15,10 +15,10 @@ interface ManagerInterface
 
     /**
      * @param string $name
-     * @param null $args
+     * @param array $args
      * @return null|callable|object
      */
-    public function plugin($name, $args = null);
+    public function plugin($name, array $args = []);
 
     /**
      * @param ViewModel $viewModel

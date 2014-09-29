@@ -13,11 +13,11 @@ trait PluginTrait
 
     /**
      * @param string $name
-     * @param null $args
+     * @param array $args
      * @return mixed
      */
-    public function __call($name, $args = null)
+    public function __call($name, array $args = [])
     {
-        return call_user_func_array($this->plugin($name), (array) $args);
+        return call_user_func_array($this->plugin($name), $args);
     }
 }

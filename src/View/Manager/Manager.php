@@ -36,12 +36,12 @@ class Manager
 
     /**
      * @param string $name
-     * @param null $args
+     * @param array $args
      * @return null|callable|object
      */
-    public function plugin($name, $args = null)
+    public function plugin($name, array $args = [])
     {
-        return $this->get($this->alias(strtolower($name)), (array) $args);
+        return $this->get($this->alias(strtolower($name)), $args);
     }
 
     /**
