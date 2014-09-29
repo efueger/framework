@@ -136,7 +136,7 @@ trait ResolverTrait
      * @param array $args
      * @return callable|null|object
      */
-    abstract public function create($config, array $args = []);
+    abstract protected function create($config, array $args = []);
 
     /**
      * @param $arg
