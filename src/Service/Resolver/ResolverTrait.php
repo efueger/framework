@@ -24,6 +24,7 @@ trait ResolverTrait
     protected function arg($arg)
     {
         /** @var ManagerInterface|self $this */
+
         if (!$arg || !is_object($arg)) {
             return $arg;
         }
@@ -102,6 +103,7 @@ trait ResolverTrait
     protected function call($config, array $args = [])
     {
         /** @var ManagerInterface|self $this */
+
         $name = explode('.', $config);
 
         $call  = $args ? array_pop($name) : null;
@@ -125,6 +127,7 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          * @var Child|Config $config
          */
+
         $config->add(Config::NAME, $this->arg($config->name()));
 
         return $this->resolve($this->merge($config, $this->configured($config->parent())), $args);
