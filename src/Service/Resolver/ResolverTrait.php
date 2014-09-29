@@ -84,7 +84,7 @@ trait ResolverTrait
         }
 
         if ($arg instanceof Call) {
-            return $this->call($arg->config(), $arg->args());
+            return $this->call($arg->config(), $this->args($arg->args()));
         }
 
         if ($arg instanceof Args) {
@@ -205,16 +205,16 @@ trait ResolverTrait
             }
 
             if (is_object($value)) {
-                $this->invoke($value);
+                $this->invoke($this->arg($value));
                 continue;
             }
 
             if (is_string($value[0])) {
-                $this->invoke([$service, $value[0]], $value[1]);
+                $this->invoke($this->args([$service, $value[0]]), $this->args($value[1]));
                 continue;
             }
 
-            $this->invoke($value[0], $value[1]);
+            $this->invoke($value[0], $this->args($value[1]));
         }
 
         return $service;
@@ -227,7 +227,7 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        return call_user_func_array($this->args($config), $this->args($args));
+        return call_user_func_array($config, $args);
     }
 
     /**

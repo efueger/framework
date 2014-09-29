@@ -84,7 +84,7 @@ trait ManagerTrait
 
         if ($config instanceof Factory) {
             /** @var Child $config */
-            return $this->invoke($this->child($config, $args));
+            return $this->invoke($this->child($config, $this->args($args)));
         }
 
         if ($config instanceof Child) {
@@ -97,7 +97,7 @@ trait ManagerTrait
         }
 
         if ($config instanceof Call) {
-            return $this->call($config->config(), $config->args());
+            return $this->call($config->config(), $this->args($config->args()));
         }
 
         if ($config instanceof ConfigLink) {
@@ -110,7 +110,7 @@ trait ManagerTrait
 
         if ($config instanceof Invoke) {
             return function() use ($config) {
-                return $this->invoke($config->config(), $config->args());
+                return $this->invoke($this->args($config->config()), $this->args($config->args()));
             };
         }
 
