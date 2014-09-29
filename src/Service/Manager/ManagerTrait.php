@@ -14,7 +14,7 @@ use Framework\Service\Config\ResolverInterface as Resolver;
 use Framework\Service\Config\Service\Service as Service;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Provider\ProviderTrait;
+use Framework\Service\Provider\ProviderTrait as Provider;
 use ReflectionClass;
 use RuntimeException;
 
@@ -24,7 +24,7 @@ trait ManagerTrait
      *
      */
     use Container,
-        ProviderTrait;
+        Provider;
 
     /**
      * @var array
