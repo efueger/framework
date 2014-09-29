@@ -13,6 +13,7 @@ use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
+use ReflectionClass;
 
 trait ResolverTrait
 {
@@ -222,7 +223,16 @@ trait ResolverTrait
      * @param array $args
      * @return object
      */
-    abstract protected function newInstanceArgs($name, array $args = []);
+    protected function newInstanceArgs($name, array $args = [])
+    {
+        if (!$args) {
+            return new $name;
+        }
+
+        $class = new ReflectionClass($name);
+
+        return $class->hasMethod('__construct') ? $class->newInstanceArgs($args) : $class->newInstance();
+    }
 
     /**
      * @param array|string $config

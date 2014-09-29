@@ -13,7 +13,6 @@ use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
-use ReflectionClass;
 use RuntimeException;
 
 trait ManagerTrait
@@ -159,21 +158,5 @@ trait ManagerTrait
         }
 
         return $this->create($config);
-    }
-
-    /**
-     * @param string $name
-     * @param array $args
-     * @return object
-     */
-    protected function newInstanceArgs($name, array $args = [])
-    {
-        if (!$args) {
-            return new $name;
-        }
-
-        $class = new ReflectionClass($name);
-
-        return $class->hasMethod('__construct') ? $class->newInstanceArgs($args) : $class->newInstance();
     }
 }
