@@ -3,7 +3,6 @@
 namespace Framework\Service\Container;
 
 use Framework\Config\ConfigTrait;
-use Framework\Service\Factory\FactoryInterface;
 
 class Container
     implements ContainerInterface
@@ -35,7 +34,7 @@ class Container
 
     /**
      * @param string $name
-     * @param array|callable|FactoryInterface|object|string $factory
+     * @param array|callable|object|string $factory
      * @return void
      */
     public function assign($name, $factory)
@@ -45,7 +44,7 @@ class Container
 
     /**
      * @param string $name
-     * @return array|callable|FactoryInterface|null|object|string
+     * @return array|callable|null|object|string
      */
     public function assigned($name)
     {

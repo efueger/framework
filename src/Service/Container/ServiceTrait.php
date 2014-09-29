@@ -4,7 +4,6 @@ namespace Framework\Service\Container;
 
 use Framework\Config\ConfigInterface as Config;
 use Framework\Config\ConfigTrait;
-use Framework\Service\Factory\FactoryInterface;
 
 trait ServiceTrait
 {
@@ -30,7 +29,7 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @param array|callable|FactoryInterface|object|string $factory
+     * @param array|callable|object|string $factory
      * @return void
      */
     public function assign($name, $factory)
@@ -40,7 +39,7 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @return array|callable|FactoryInterface|null|object|string
+     * @return array|callable|null|object|string
      */
     public function assigned($name)
     {
