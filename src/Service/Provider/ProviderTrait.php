@@ -220,6 +220,13 @@ trait ProviderTrait
     }
 
     /**
+     * @param string $name
+     * @param array $args
+     * @return object
+     */
+    abstract protected function newInstanceArgs($name, array $args = []);
+
+    /**
      * @param array|string $config
      * @param array $args
      * @return array
@@ -252,13 +259,6 @@ trait ProviderTrait
 
         return $value;
     }
-
-    /**
-     * @param string $name
-     * @param array $args
-     * @return object
-     */
-    abstract protected function newInstanceArgs($name, array $args = []);
 
     /**
      * @param Config $config
