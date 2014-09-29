@@ -34,12 +34,6 @@ trait ManagerTrait
     /**
      * @param array|object|string $config
      * @param array $args
-     * @return null|object|callable
-     */
-
-    /**
-     * @param array|object|string $config
-     * @param array $args
      * @return callable|null|object
      */
     public function create($config, array $args = [])

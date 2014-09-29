@@ -132,6 +132,13 @@ trait ProviderTrait
     }
 
     /**
+     * @param array|object|string $config
+     * @param array $args
+     * @return callable|null|object
+     */
+    abstract public function create($config, array $args = []);
+
+    /**
      * @param $arg
      * @param array $filters
      * @return mixed
