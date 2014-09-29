@@ -17,8 +17,7 @@ interface ManagerInterface
     /**
      * @param string $name
      * @param array $args
-     * @param bool $shared
      * @return callable|null|object
      */
-    public function get($name, array $args = [], $shared = true);
+    public function get($name, array $args = []);
 }

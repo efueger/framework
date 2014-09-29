@@ -109,22 +109,21 @@ trait ManagerTrait
     /**
      * @param string $name
      * @param array $args
-     * @param bool $shared
      * @return null|object|callable
      */
-    public function get($name, array $args = [], $shared = true)
+    public function get($name, array $args = [])
     {
-        if ($shared && $service = $this->service($name)) {
+        if ($service = $this->service($name)) {
             return $service;
         }
 
-        $shared && $this->initializing($name);
+        $this->initializing($name);
 
         $service = $this->create($name, $args);
 
-        $shared && $this->initialized($name);
+        $this->initialized($name);
 
-        $shared && $service && $this->add($name, $service);
+        $service && $this->add($name, $service);
 
         return $service;
     }
@@ -139,7 +138,6 @@ trait ManagerTrait
 
     /**
      * @param $name
-     * @return bool
      */
     protected function initializing($name)
     {
@@ -147,7 +145,7 @@ trait ManagerTrait
             throw new RuntimeException('Circular dependency: ' . $name);
         }
 
-        return $this->pending[$name] = true;
+        $this->pending[$name] = true;
     }
 
     /**
