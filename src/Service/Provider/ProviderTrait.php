@@ -12,22 +12,17 @@ use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Factory\FactoryTrait;
+use Framework\Service\Manager\ManagerInterface;
 
 trait ProviderTrait
 {
-    /**
-     *
-     */
-    use FactoryTrait;
-
     /**
      * @param mixed $arg
      * @return mixed
      */
     protected function arg($arg)
     {
-        /** @var ProviderInterface|self $this */
+        /** @var ManagerInterface|self $this */
 
         if (!is_object($arg)) {
             return $arg;
@@ -72,7 +67,7 @@ trait ProviderTrait
         }
 
         if ($arg instanceof ServiceManagerLink) {
-            return $this->sm;
+            return $this;
         }
 
         return $arg;
@@ -102,6 +97,8 @@ trait ProviderTrait
      */
     protected function call($config, array $args = [])
     {
+        /** @var ManagerInterface|self $this */
+
         if (is_callable($config)) {
             return call_user_func_array($config, $args);
         }
@@ -125,7 +122,10 @@ trait ProviderTrait
      */
     protected function child(Child $config, array $args = [])
     {
-        /** @var Child|Config $config */
+        /**
+         * @var ManagerInterface|self $this
+         * @var Child|Config $config
+         */
         $config->add(Config::NAME, $this->arg($config->name()));
 
         return $this->resolve($this->merge($config, $this->configured($config->parent())), $args);
@@ -228,6 +228,8 @@ trait ProviderTrait
      */
     protected function param($name)
     {
+        /** @var ManagerInterface|self $this */
+
         $name = explode('.', $name);
 
         $value = $this->config()->get(array_shift($name));
@@ -251,6 +253,8 @@ trait ProviderTrait
      */
     public function resolve(Config $config, array $args = [])
     {
+        /** @var ManagerInterface|self $this */
+
         $args = $args ? : $config->args();
         $name = $config->name();
 
