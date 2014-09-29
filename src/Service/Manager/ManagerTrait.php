@@ -12,6 +12,7 @@ use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
+use Framework\Service\Factory\FactoryInterface;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use ReflectionClass;
 use RuntimeException;
@@ -39,7 +40,7 @@ trait ManagerTrait
         list($config, $args) = $this->options($config, $args);
 
         if (is_string($config)) {
-            if ($config instanceof Factory) {
+            if (is_subclass_of($config, FactoryInterface::class)) {
                 return $this->invoke(new $config($this), $args);
             }
 
@@ -66,7 +67,7 @@ trait ManagerTrait
 
         if ($config instanceof Factory) {
             /** @var Child $config */
-            return $this->call($this->child($config, $args));
+            return $this->invoke($this->child($config, $args));
         }
 
         if ($config instanceof Child) {
@@ -149,7 +150,7 @@ trait ManagerTrait
     {
         if (is_string($config) && false !== strpos($config, '.')) {
             return function () use ($config) {
-                return $this->create($config, func_get_args());
+                return $this->call($config, func_get_args());
             };
         }
 

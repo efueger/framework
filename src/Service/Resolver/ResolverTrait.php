@@ -51,7 +51,7 @@ trait ResolverTrait
         }
 
         if ($arg instanceof Call) {
-            return $this->invoke($arg->config(), $arg->args());
+            return $this->call($arg->config(), $arg->args());
         }
 
         if ($arg instanceof Args) {
@@ -99,10 +99,6 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
-        if (!is_string($config) || false === strpos($config, '.')) {
-            return call_user_func_array($config, $args);
-        }
-
         $name = explode('.', $config);
 
         $call  = $args ? array_pop($name) : null;
@@ -112,7 +108,7 @@ trait ResolverTrait
             $value = $value->$method();
         }
 
-        return $args ? call_user_func_array([$value, $call], $args) : $value;
+        return $args ? $this->invoke([$value, $call], $args) : $value;
     }
 
     /**
@@ -194,7 +190,7 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        return $this->call($this->args($config), $this->args($args));
+        return call_user_func_array($this->args($config), $this->args($args));
     }
 
     /**
