@@ -35,10 +35,10 @@ trait ServiceTrait
 
     /**
      * @param ViewModel $viewModel
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function render(ViewModel $viewModel, $options = null)
+    public function render(ViewModel $viewModel, array $options = [])
     {
         return $this->vm->render($viewModel, $options);
     }

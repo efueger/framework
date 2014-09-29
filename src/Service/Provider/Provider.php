@@ -32,12 +32,42 @@ class Provider
     }
 
     /**
-     * @param $config
+     * @param array|object|string $config
      * @param array $args
      * @return callable|null|object
      */
-    public function __invoke($config, array $args = [])
+    public function create($config, array $args = [])
     {
+        if (is_array($config) && is_callable($config)) {
+            return $this->invoke($config, $args);
+        }
+
+        list($config, $args) = $this->options($config, $args);
+
+        if (is_string($config)) {
+            if ($config instanceof Factory) {
+                return $this->invoke(new $config($this), $args);
+            }
+
+            if (false !== strpos($config, '.')) {
+                return $this->call($config, $args);
+            }
+
+            if ($assigned = $this->assigned($config)) {
+                return $this->create($assigned, $args);
+            }
+
+            if ($configured = $this->configured($config)) {
+                return $this->create($configured, $args);
+            }
+
+            if (is_callable($config)) {
+                return $this->invoke($config, $args);
+            }
+
+            return $this->newInstanceArgs($config, $args);
+        }
+
         /** @var Config|Resolver $config */
 
         if (!$config instanceof Resolver) {

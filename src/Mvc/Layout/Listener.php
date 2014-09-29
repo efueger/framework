@@ -17,10 +17,10 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param null $options
+     * @param array $options
      * @return ViewModel
      */
-    public function __invoke(EventInterface $event, $options = null)
+    public function __invoke(EventInterface $event, array $options = [])
     {
         $layout = $this->viewModel();
         $model  = $event->viewModel();

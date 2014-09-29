@@ -8,24 +8,17 @@ interface ManagerInterface
     extends ContainerInterface
 {
     /**
+     * @param array|object|string $config
+     * @param array $args
+     * @return callable|null|object
+     */
+    public function create($config, array $args = []);
+
+    /**
      * @param string $name
-     * @param mixed $service
-     * @return void
-     */
-    public function add($name, $service);
-
-    /**
-     * @param array|string $name
-     * @param null $args
-     * @return null|object|callable
-     */
-    public function create($name, $args = null);
-
-    /**
-     * @param array|string $name
-     * @param null $args
+     * @param array $args
      * @param bool $shared
-     * @return null|object|callable
+     * @return callable|null|object
      */
-    public function get($name, $args = null, $shared = true);
+    public function get($name, array $args = [], $shared = true);
 }

@@ -29,10 +29,10 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param null $options
+     * @param array $options
      * @return Route
      */
-    public function __invoke(EventInterface $event, $options = null)
+    public function __invoke(EventInterface $event, array $options = [])
     {
         return $this->dispatch($this->route);
     }

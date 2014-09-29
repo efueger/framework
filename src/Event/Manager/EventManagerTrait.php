@@ -28,11 +28,11 @@ trait EventManagerTrait
 
     /**
      * @param EventInterface $event
-     * @param null $options
+     * @param array $options
      * @param callable $callback
      * @return mixed|null
      */
-    abstract protected function generate(EventInterface $event, $options = null, callable $callback = null);
+    abstract protected function generate(EventInterface $event, array $options = [], callable $callback = null);
 
     /**
      * @return Events
@@ -44,11 +44,11 @@ trait EventManagerTrait
 
     /**
      * @param array|EventInterface|string $event
-     * @param null $options
+     * @param array $options
      * @param callable $callback
      * @return mixed
      */
-    public function trigger($event, $options = null, callable $callback = null)
+    public function trigger($event, array $options = [], callable $callback = null)
     {
         return $this->generate($this->event($event), $options, $callback);
     }

@@ -22,8 +22,8 @@ interface ManagerInterface
 
     /**
      * @param ViewModel $viewModel
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function render(ViewModel $viewModel, $options = null);
+    public function render(ViewModel $viewModel, array $options = []);
 }

@@ -14,6 +14,15 @@ trait FactoryTrait
     protected $sm;
 
     /**
+     * @param $name
+     * @return mixed
+     */
+    public function assigned($name)
+    {
+        return $this->sm->assigned($name);
+    }
+
+    /**
      * @return ConfigInterface
      */
     public function config()
@@ -32,21 +41,21 @@ trait FactoryTrait
 
     /**
      * @param string $name
-     * @param null $args
+     * @param array $args
      * @return null|object|callable
      */
-    public function create($name, $args = null)
+    public function create($name, array $args = [])
     {
         return $this->sm->create($name, $args);
     }
 
     /**
      * @param array|string $name
-     * @param null $args
+     * @param array $args
      * @param bool $shared
      * @return null|object
      */
-    public function get($name, $args = null, $shared = true)
+    public function get($name, array $args = [], $shared = true)
     {
         return $this->sm->get($name, $args, $shared);
     }

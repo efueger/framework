@@ -2,12 +2,8 @@
 
 namespace Framework\Service\Manager;
 
-use Closure;
 use RuntimeException;
-use Framework\Service\Config\Call\Call;
-use Framework\Service\Config\ResolverInterface as Resolver;
 use Framework\Service\Container\ServiceTrait as Container;
-use Framework\Service\Factory\FactoryInterface;
 use Framework\Service\Provider\Provider;
 
 trait ManagerTrait
@@ -23,60 +19,35 @@ trait ManagerTrait
     protected $pending = [];
 
     /**
-     * @param array|Resolver|string $name
-     * @param null $args
+     * @param array|object|string $config
+     * @param array $args
      * @return null|object|callable
      */
-    public function create($name, $args = null)
+    public function create($config, array $args = [])
     {
-        return $name instanceof Resolver ? $this->invoke($name, $args) : $this->get($name, $args, false);
-    }
-
-    /**
-     * @param $name
-     * @param null $args
-     * @param bool $shared
-     * @return null|object|callable
-     */
-    public function get($name, $args = null, $shared = true)
-    {
-        list($name, $args) = $this->options($name, $args);
-
-        if ($shared && $service = $this->service($name)) {
-            return $service;
-        }
-
-        $config = $this->assigned($name) ? : $this->configured($name) ? : null;
-
-        if (!$config) {
-            return null;
-        }
-
-        $service = $this->initialize($name, $config, $args);
-
-        if ($shared && $service) {
-            $this->add($name, $service);
-        }
-
-        return $service;
+        /** @var ManagerInterface $this */
+        return (new Provider($this))->create($config, $args);
     }
 
     /**
      * @param string $name
-     * @param array|callable|Resolver|FactoryInterface|object|string $config
-     * @param null $args
-     * @return mixed
-     * @throws RuntimeException
+     * @param array $args
+     * @param bool $shared
+     * @return null|object|callable
      */
-    protected function initialize($name, $config, $args = null)
+    public function get($name, array $args = [], $shared = true)
     {
-        if ($this->initializing($name)) {
-            throw new RuntimeException('Circular dependency: ' . $name);
+        if ($shared && $service = $this->service($name)) {
+            return $service;
         }
 
-        $service = $this->invoke($config, $args);
+        $shared && $this->initializing($name);
 
-        $this->initialized($name);
+        $service = $this->create($name, $args);
+
+        $shared && $this->initialized($name);
+
+        $shared && $service && $this->add($name, $service);
 
         return $service;
     }
@@ -97,63 +68,9 @@ trait ManagerTrait
     protected function initializing($name)
     {
         if (!empty($this->pending[$name])) {
-            return true;
+            throw new RuntimeException('Circular dependency: ' . $name);
         }
 
-        $this->pending[$name] = true;
-
-        return false;
-    }
-
-    /**
-     * @param callable|string $config
-     * @return callable|null|object
-     */
-    protected function invokable($config)
-    {
-        if ($config instanceof Closure) {
-            return $config::bind($config, $this);
-        }
-
-        if (is_callable($config)) {
-            return $config;
-        }
-
-        if (is_string($config) && false !== strpos($config, '.')) {
-            return function() use($config) {
-                return $this->invoke(new Call($config, func_get_args()));
-            };
-        }
-
-        return $this->create($config);
-    }
-
-    /**
-     * @param Resolver|string $config
-     * @param null $args
-     * @return mixed
-     */
-    protected function invoke($config, $args = null)
-    {
-        /** @var ManagerInterface $this */
-        return (new Provider($this))->__invoke($config, (array) $args);
-    }
-
-    /**
-     * @param array|string $name
-     * @param null $args
-     * @return array
-     */
-    protected function options($name, $args = null)
-    {
-        if (is_array($name)) {
-            return [array_shift($name), $name];
-        }
-
-        if (null === $args) {
-            return [$name, []];
-        }
-
-        return [$name, is_array($args) ? $args : [$args]];
+        return $this->pending[$name] = true;
     }
 }

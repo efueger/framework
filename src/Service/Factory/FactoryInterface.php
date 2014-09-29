@@ -7,6 +7,12 @@ use Framework\Config\ConfigInterface as Config;
 interface FactoryInterface
 {
     /**
+     * @param $name
+     * @return mixed
+     */
+    public function assigned($name);
+
+    /**
      * @return Config
      */
     public function config();
@@ -18,19 +24,19 @@ interface FactoryInterface
     public function configured($name);
 
     /**
-     * @param string $name
-     * @param null $args
+     * @param array|object|string $config
+     * @param array $args
      * @return null|object
      */
-    public function create($name, $args = null);
+    public function create($config, array $args = []);
 
     /**
-     * @param array|string $name
-     * @param null $args
+     * @param string $name
+     * @param array $args
      * @param bool $shared
      * @return null|object
      */
-    public function get($name, $args = null, $shared = true);
+    public function get($name, array $args = [], $shared = true);
 
     /**
      * @param $name

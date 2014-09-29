@@ -23,25 +23,41 @@ class Manager
      */
     public function controller($controller)
     {
-        return $this->invokable($controller);
+        if (is_string($controller)) {
+            if (false !== strpos($controller, '.')) {
+                return function () use ($controller) {
+                    return $this->create($controller, func_get_args());
+                };
+            }
+
+            if (is_callable($controller)) {
+                return $controller;
+            }
+        }
+
+        if ($controller instanceof \Closure) {
+            return $controller::bind($controller, $this);
+        }
+
+        return $this->create($controller);
     }
 
     /**
      * @param Route $route
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function dispatch(Route $route, $options = null)
+    public function dispatch(Route $route, array $options = [])
     {
         return $this->trigger([Dispatch::DISPATCH, $route], $options);
     }
 
     /**
      * @param \Exception $exception
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function exception(\Exception $exception, $options = null)
+    public function exception(\Exception $exception, array $options = [])
     {
         return $this->trigger([Exception::EXCEPTION, $exception], $options);
     }

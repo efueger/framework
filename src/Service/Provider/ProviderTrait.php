@@ -9,7 +9,6 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
-use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
@@ -80,11 +79,15 @@ trait ProviderTrait
     }
 
     /**
-     * @param array $args
-     * @return array
+     * @param $args
+     * @return mixed
      */
-    protected function args(array $args)
+    protected function args($args)
     {
+        if (!is_array($args)) {
+            return $this->arg($args);
+        }
+
         foreach($args as $index => $value) {
             $args[$index] = $this->arg($value);
         }
@@ -117,15 +120,15 @@ trait ProviderTrait
 
     /**
      * @param Child $config
-     * @param null $args
+     * @param array $args
      * @return null|object
      */
-    protected function child(Child $config, $args = null)
+    protected function child(Child $config, array $args = [])
     {
         /** @var Child|Config $config */
         $config->add(Config::NAME, $this->arg($config->name()));
 
-        return $this->resolve($this->merge($config, $this->configured($config->parent())), (array) $args);
+        return $this->resolve($this->merge($config, $this->configured($config->parent())), $args);
     }
 
     /**
@@ -161,7 +164,7 @@ trait ProviderTrait
                 continue;
             }
 
-            if ($value instanceof ResolverInterface) {
+            if (is_object($value)) {
                 $this->invoke($value);
                 continue;
             }
@@ -178,13 +181,13 @@ trait ProviderTrait
     }
 
     /**
-     * @param array|callable|ResolverInterface|string $config
+     * @param array|object|string $config
      * @param array $args
      * @return mixed
      */
     protected function invoke($config, array $args = [])
     {
-        return $this->call(is_array($config) ? $this->args($config) : $this->arg($config), $this->args($args));
+        return $this->call($this->args($config), $this->args($args));
     }
 
     /**
@@ -207,6 +210,16 @@ trait ProviderTrait
         $parent->add(Config::CALLS, $config->merge() ? array_merge($parent->calls(), $calls) : $calls);
 
         return $parent;
+    }
+
+    /**
+     * @param array|string $config
+     * @param array $args
+     * @return array
+     */
+    protected function options($config, array $args = [])
+    {
+        return is_array($config) ? [array_shift($config), $config] : [$config, $args];
     }
 
     /**
@@ -244,7 +257,7 @@ trait ProviderTrait
         $parent = $this->configured($name);
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->create($name, $this->args($args)));
+            return $this->hydrate($config, $this->create($parent, $this->args($args)));
         }
 
         if (!$parent || $config->name() == $parent->name()) {

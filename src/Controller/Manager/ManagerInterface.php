@@ -15,15 +15,15 @@ interface ManagerInterface
 
     /**
      * @param Route $route
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function dispatch(Route $route, $options = null);
+    public function dispatch(Route $route, array $options = []);
 
     /**
      * @param Exception $exception
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function exception(Exception $exception, $options = null);
+    public function exception(Exception $exception, array $options = []);
 }

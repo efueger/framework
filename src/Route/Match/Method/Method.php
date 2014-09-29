@@ -22,10 +22,10 @@ class Method
 
     /**
      * @param EventInterface $event
-     * @param null $options
+     * @param array $options
      * @return Route
      */
-    public function __invoke(EventInterface $event, $options = null)
+    public function __invoke(EventInterface $event, array $options = [])
     {
         return $this->match($event->route(), $event->definition());
     }

@@ -10,11 +10,11 @@ trait GeneratorTrait
 {
     /**
      * @param Event $event
-     * @param null $options
+     * @param array $options
      * @param callable $callback
      * @return mixed|null
      */
-    protected function generate(Event $event, $options = null, callable $callback = null)
+    protected function generate(Event $event, array $options = [], callable $callback = null)
     {
         $result = null;
 
@@ -59,10 +59,10 @@ trait GeneratorTrait
     /**
      * @param Event $event
      * @param callable $listener
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    protected function signal(Event $event, callable $listener, $options = null)
+    protected function signal(Event $event, callable $listener, array $options = [])
     {
         /** @var callable $event */
         return is_callable($event) ? $event($listener, $options) : $listener($event, $options);

@@ -27,10 +27,10 @@ class Application
     }
 
     /**
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function __invoke($options = null)
+    public function __invoke(array $options = [])
     {
         return $this->trigger(Event::MVC, $options);
     }

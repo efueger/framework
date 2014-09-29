@@ -41,15 +41,15 @@ class Manager
      */
     public function plugin($name, $args = null)
     {
-        return $this->get($this->alias(strtolower($name)), $args);
+        return $this->get($this->alias(strtolower($name)), (array) $args);
     }
 
     /**
      * @param ViewModel $viewModel
-     * @param null $options
+     * @param array $options
      * @return mixed
      */
-    public function render(ViewModel $viewModel, $options = null)
+    public function render(ViewModel $viewModel, array $options = [])
     {
         return $this->trigger([Render::RENDER, $viewModel], $options);
     }
