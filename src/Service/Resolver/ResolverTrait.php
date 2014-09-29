@@ -23,41 +23,7 @@ trait ResolverTrait
     protected function arg($arg)
     {
         /** @var ManagerInterface|self $this */
-
-        if (!$arg) {
-            return $arg;
-        }
-
-        if (is_string($arg)) {
-            if ('@' === $arg[0]) {
-                return $this->call(substr($arg, 1));
-            }
-
-            if ('%' === $arg[0]) {
-                return $this->param(substr($arg, 1));
-            }
-
-            if ('#' === $arg[0]) {
-                return $this->get(substr($arg, 1));
-            }
-
-            if ('*' === $arg[0]) {
-                switch(substr($arg, 1)) {
-                    default:
-                        break;
-                    case 'Config':
-                        return $this->config();
-                        break;
-                    case 'ServiceManager':
-                        return $this;
-                        break;
-                }
-            }
-
-            return $arg;
-        }
-
-        if (!is_object($arg)) {
+        if (!$arg || !is_object($arg)) {
             return $arg;
         }
 
@@ -84,7 +50,7 @@ trait ResolverTrait
         }
 
         if ($arg instanceof Call) {
-            return $this->call($arg->config(), $this->args($arg->args()));
+            return $this->call($arg->config(), $arg->args());
         }
 
         if ($arg instanceof Args) {
@@ -135,7 +101,6 @@ trait ResolverTrait
     protected function call($config, array $args = [])
     {
         /** @var ManagerInterface|self $this */
-
         $name = explode('.', $config);
 
         $call  = $args ? array_pop($name) : null;
@@ -205,16 +170,16 @@ trait ResolverTrait
             }
 
             if (is_object($value)) {
-                $this->invoke($this->arg($value));
+                $this->invoke($value);
                 continue;
             }
 
             if (is_string($value[0])) {
-                $this->invoke($this->args([$service, $value[0]]), $this->args($value[1]));
+                $this->invoke([$service, $value[0]], $value[1]);
                 continue;
             }
 
-            $this->invoke($value[0], $this->args($value[1]));
+            $this->invoke($value[0], $value[1]);
         }
 
         return $service;
@@ -227,7 +192,7 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        return call_user_func_array($config, $args);
+        return call_user_func_array($this->args($config), $this->args($args));
     }
 
     /**

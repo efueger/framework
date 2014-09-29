@@ -40,31 +40,6 @@ trait ManagerTrait
 
         if (is_string($config)) {
 
-            if ('@' === $config[0]) {
-                return $this->call(substr($config, 1), $args);
-            }
-
-            if ('%' === $config[0]) {
-                return $this->param(substr($config, 1), $args);
-            }
-
-            if ('#' === $config[0]) {
-                return $this->get(substr($config, 1), $args);
-            }
-
-            if ('*' === $config[0]) {
-                switch(substr($config, 1)) {
-                    default:
-                        break;
-                    case 'Config':
-                        return $this->config();
-                        break;
-                    case 'ServiceManager':
-                        return $this;
-                        break;
-                }
-            }
-
             if ($assigned = $this->assigned($config)) {
                 return $this->create($assigned, $args);
             }
@@ -84,7 +59,7 @@ trait ManagerTrait
 
         if ($config instanceof Factory) {
             /** @var Child $config */
-            return $this->invoke($this->child($config, $this->args($args)));
+            return $this->invoke($this->child($config, $args));
         }
 
         if ($config instanceof Child) {
@@ -97,7 +72,7 @@ trait ManagerTrait
         }
 
         if ($config instanceof Call) {
-            return $this->call($config->config(), $this->args($config->args()));
+            return $this->call($config->config(), $config->args());
         }
 
         if ($config instanceof ConfigLink) {
@@ -110,7 +85,7 @@ trait ManagerTrait
 
         if ($config instanceof Invoke) {
             return function() use ($config) {
-                return $this->invoke($this->args($config->config()), $this->args($config->args()));
+                return $this->invoke($config->config(), $config->args());
             };
         }
 
