@@ -39,8 +39,30 @@ trait ManagerTrait
         list($config, $args) = $this->options($config, $args);
 
         if (is_string($config)) {
-            if (false !== strpos($config, '.')) {
-                return $this->call($config, $args);
+
+            if ('@' === $config[0]) {
+                return $this->call(substr($config, 1), $args);
+            }
+
+            if ('%' === $config[0]) {
+                return $this->param(substr($config, 1), $args);
+            }
+
+            if ('#' === $config[0]) {
+                return $this->get(substr($config, 1), $args);
+            }
+
+            if ('*' === $config[0]) {
+                switch(substr($config, 1)) {
+                    default:
+                        break;
+                    case 'Config':
+                        return $this->config();
+                        break;
+                    case 'ServiceManager':
+                        return $this;
+                        break;
+                }
             }
 
             if ($assigned = $this->assigned($config)) {
@@ -143,9 +165,9 @@ trait ManagerTrait
      */
     protected function invokable($config)
     {
-        if (is_string($config) && false !== strpos($config, '.')) {
+        if (is_string($config) && '@' === $config[0]) {
             return function () use ($config) {
-                return $this->call($config, func_get_args());
+                return $this->call(substr($config, 1), func_get_args());
             };
         }
 

@@ -24,6 +24,39 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
+        if (!$arg) {
+            return $arg;
+        }
+
+        if (is_string($arg)) {
+            if ('@' === $arg[0]) {
+                return $this->call(substr($arg, 1));
+            }
+
+            if ('%' === $arg[0]) {
+                return $this->param(substr($arg, 1));
+            }
+
+            if ('#' === $arg[0]) {
+                return $this->get(substr($arg, 1));
+            }
+
+            if ('*' === $arg[0]) {
+                switch(substr($arg, 1)) {
+                    default:
+                        break;
+                    case 'Config':
+                        return $this->config();
+                        break;
+                    case 'ServiceManager':
+                        return $this;
+                        break;
+                }
+            }
+
+            return $arg;
+        }
+
         if (!is_object($arg)) {
             return $arg;
         }
@@ -79,6 +112,10 @@ trait ResolverTrait
      */
     protected function args($args)
     {
+        if (!$args) {
+            return $args;
+        }
+
         if (!is_array($args)) {
             return $this->arg($args);
         }
