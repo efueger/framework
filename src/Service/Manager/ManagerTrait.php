@@ -96,6 +96,10 @@ trait ManagerTrait
             return $config::bind($config, $this);
         }
 
+        if (is_array($config) && is_callable($config)) {
+            return $config;
+        }
+
         return $this->create($config);
     }
 }
