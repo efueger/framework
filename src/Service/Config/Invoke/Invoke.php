@@ -2,10 +2,8 @@
 
 namespace Framework\Service\Config\Invoke;
 
-use Framework\Service\Config\ResolverInterface;
-
 class Invoke
-    implements InvokeInterface, ResolverInterface
+    implements InvokeInterface
 {
     /**
      * @var array
@@ -13,12 +11,12 @@ class Invoke
     protected $args = [];
 
     /**
-     * @var string|array|ResolverInterface
+     * @var string|array
      */
     protected $service;
 
     /**
-     * @param string|array|ResolverInterface $service
+     * @param string|array $service
      * @param array $args
      */
     public function __construct($service, array $args = [])
@@ -36,7 +34,7 @@ class Invoke
     }
 
     /**
-     * @return string|array|ResolverInterface
+     * @return string|array
      */
     public function service()
     {

@@ -2,10 +2,8 @@
 
 namespace Framework\Service\Config\Dependency;
 
-use Framework\Service\Config\ResolverInterface;
-
 class Dependency
-    implements DependencyInterface, ResolverInterface
+    implements DependencyInterface
 {
     /**
      * @var string

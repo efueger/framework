@@ -2,10 +2,8 @@
 
 namespace Framework\Service\Config\Call;
 
-use Framework\Service\Config\ResolverInterface;
-
 class Call
-    implements CallInterface, ResolverInterface
+    implements CallInterface
 {
     /**
      * @var array

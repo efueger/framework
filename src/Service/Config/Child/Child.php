@@ -3,11 +3,10 @@
 namespace Framework\Service\Config\Child;
 
 use Framework\Service\Config\ConfigInterface;
-use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\ConfigTrait;
 
 class Child
-    implements ConfigInterface, ChildInterface, ResolverInterface
+    implements ConfigInterface, ChildInterface
 {
     /**
      *

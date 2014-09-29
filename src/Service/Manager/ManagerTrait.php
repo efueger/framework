@@ -10,8 +10,6 @@ use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
-use Framework\Service\Config\ResolverInterface as Resolver;
-use Framework\Service\Config\Service\Service as Service;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Provider\ProviderTrait as Provider;
@@ -64,11 +62,7 @@ trait ManagerTrait
             return $this->newInstanceArgs($config, $args);
         }
 
-        /** @var Config|Resolver $config */
-
-        if (!$config instanceof Resolver) {
-            return $this->resolve(new Service($config), $args);
-        }
+        /** @var Config $config */
 
         if ($config instanceof Factory) {
             /** @var Child $config */

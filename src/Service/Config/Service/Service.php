@@ -3,11 +3,10 @@
 namespace Framework\Service\Config\Service;
 
 use Framework\Service\Config\ConfigInterface;
-use Framework\Service\Config\ResolverInterface;
 use Framework\Service\Config\ConfigTrait;
 
 class Service
-    implements ConfigInterface, ServiceInterface, ResolverInterface
+    implements ConfigInterface, ServiceInterface
 {
     /**
      *
