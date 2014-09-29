@@ -80,23 +80,17 @@ trait ManagerTrait
      */
     protected function invokable($config)
     {
-        if (is_string($config)) {
-            if (false !== strpos($config, '.')) {
-                return function () use ($config) {
-                    return $this->create($config, func_get_args());
-                };
-            }
-
-            if (is_callable($config)) {
-                return $config;
-            }
+        if (is_string($config) && false !== strpos($config, '.')) {
+            return function () use ($config) {
+                return $this->create($config, func_get_args());
+            };
         }
 
         if ($config instanceof Closure) {
             return $config::bind($config, $this);
         }
 
-        if (is_array($config) && is_callable($config)) {
+        if (is_callable($config)) {
             return $config;
         }
 
