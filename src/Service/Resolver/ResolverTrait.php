@@ -134,12 +134,14 @@ trait ResolverTrait
             }
 
             if (is_array($value)) {
-                if (is_string($value[0]) && is_string($value[1])) {
-                    $this->invoke($value);
+                list($method, $args) = $value;
+
+                if (!is_string($method)) {
+                    $this->invoke($method, $args);
                     continue;
                 }
 
-                $this->invoke($value[0], $value[1]);
+                is_string($args) ? $this->invoke($value) : $this->invoke([$service, $method], $args);
                 continue;
             }
 
