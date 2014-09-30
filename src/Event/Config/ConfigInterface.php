@@ -2,10 +2,10 @@
 
 namespace Framework\Event\Config;
 
-use Framework\Config\ConfigInterface as BaseConfig;
+use Framework\Config\ConfigInterface as Base;
 
 interface ConfigInterface
-    extends BaseConfig
+    extends Base
 {
     /**
      * Default priority

@@ -2,7 +2,7 @@
 
 namespace Framework\Response;
 
-use Framework\Event\EventTrait as BaseEventTrait;
+use Framework\Event\EventTrait as Base;
 use Framework\Response\ResponseInterface as Response;
 
 trait EventTrait
@@ -10,7 +10,7 @@ trait EventTrait
     /**
      *
      */
-    use BaseEventTrait;
+    use Base;
 
     /**
      * @var Response

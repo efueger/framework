@@ -2,14 +2,14 @@
 
 namespace Framework\Event\Config;
 
-use Framework\Config\ConfigTrait as BaseConfig;
+use Framework\Config\ConfigTrait as Base;
 
 trait ConfigTrait
 {
     /**
      *
      */
-    use BaseConfig;
+    use Base;
 
     /**
      * @param string $name

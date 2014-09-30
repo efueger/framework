@@ -2,14 +2,14 @@
 
 namespace Framework\Service\Config;
 
-use Framework\Config\ConfigTrait as BaseConfigTrait;
+use Framework\Config\ConfigTrait as Base;
 
 trait ConfigTrait
 {
     /**
      *
      */
-    use BaseConfigTrait;
+    use Base;
 
     /**
      * @return array
