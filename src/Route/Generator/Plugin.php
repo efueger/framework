@@ -10,8 +10,8 @@ class Plugin
     /**
      *
      */
-    use ServiceTrait;
     use RouteTrait;
+    use ServiceTrait;
 
     /**
      * @param null|string $name
