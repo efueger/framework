@@ -2,9 +2,9 @@
 
 namespace Framework\Mvc;
 
-use Framework\Route\Route\RouteInterface as Route;
 use Framework\Mvc\Render\ListenerInterface as Render;
 use Framework\Response\ResponseInterface as Response;
+use Framework\Route\Route\RouteInterface as Route;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 class Event
