@@ -25,7 +25,7 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
-        if (!$arg || !is_object($arg)) {
+        if (!is_object($arg)) {
             return $arg;
         }
 
@@ -165,12 +165,14 @@ trait ResolverTrait
                 continue;
             }
 
+            $args = isset($value[1]) ? (array) $value[1] : [];
+
             if (is_string($value[0])) {
-                $this->invoke([$service, $value[0]], $value[1]);
+                $this->invoke([$service, $value[0]], $args);
                 continue;
             }
 
-            $this->invoke($value[0], $value[1]);
+            $this->invoke($value[0], $args);
         }
 
         return $service;
