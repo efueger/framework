@@ -168,7 +168,6 @@ trait ResolverTrait
 
         $parent->add(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
-
         if ($config->args()) {
             $parent->add(Config::ARGS, $config->args());
         }
