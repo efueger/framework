@@ -22,7 +22,7 @@ trait GeneratorTrait
 
             $result = $this->signal($event, $listener, $options);
 
-            !$callback ?: $callback($event, $listener, $options, $result);
+            $callback && $callback($event, $listener, $options, $result);
 
             if ($event->stopped()) {
                 break;
