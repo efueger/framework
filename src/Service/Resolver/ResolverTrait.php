@@ -9,7 +9,9 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
+use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
+use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
@@ -17,53 +19,6 @@ use ReflectionClass;
 
 trait ResolverTrait
 {
-    /**
-     * @param mixed $arg
-     * @return mixed
-     */
-    protected function arg($arg)
-    {
-        /** @var ManagerInterface|self $this */
-
-        if (!is_object($arg)) {
-            return $arg;
-        }
-
-        if ($arg instanceof Config) {
-            return $this->resolve($arg);
-        }
-
-        if ($arg instanceof Dependency) {
-            return $this->get($arg->name());
-        }
-
-        if ($arg instanceof Param) {
-            return $this->arg($this->param($arg->name()));
-        }
-
-        if ($arg instanceof Call) {
-            return $this->call($arg->config(), $arg->args());
-        }
-
-        if ($arg instanceof Args) {
-            return $this->args($arg->config());
-        }
-
-        if ($arg instanceof Filter) {
-            return $this->filter($this->arg($arg->config()), $arg->filter());
-        }
-
-        if ($arg instanceof ConfigLink) {
-            return $this->config();
-        }
-
-        if ($arg instanceof ServiceManagerLink) {
-            return $this;
-        }
-
-        return $arg;
-    }
-
     /**
      * @param $args
      * @return mixed
@@ -75,11 +30,11 @@ trait ResolverTrait
         }
 
         if (!is_array($args)) {
-            return $this->arg($args);
+            return $this->resolve($args);
         }
 
         foreach($args as $index => $value) {
-            $args[$index] = $this->arg($value);
+            $args[$index] = $this->resolve($value);
         }
 
         return $args;
@@ -117,7 +72,7 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          * @var Child|Config $config
          */
-        return $this->resolve($this->merge(clone $this->configured($this->arg($config->parent())), $config), $args);
+        return $this->di($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
 
     /**
@@ -126,6 +81,27 @@ trait ResolverTrait
      * @return callable|null|object
      */
     abstract protected function create($config, array $args = []);
+
+    /**
+     * @param Config $config
+     * @param array $args
+     * @return null|object
+     */
+    protected function di(Config $config, array $args = [])
+    {
+        /** @var ManagerInterface|self $this */
+
+        $args = $args ? : $config->args();
+        $name = $config->name();
+
+        $parent = $this->configured($name);
+
+        if (!$parent || $config->name() == $parent->name()) {
+            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        }
+
+        return $this->di($this->merge(clone $parent, $config), $args);
+    }
 
     /**
      * @param $arg
@@ -152,11 +128,11 @@ trait ResolverTrait
 
             if (is_string($method)) {
                 if ('$' == $method[0]) {
-                    $service->{substr($method, 1)} = $this->arg($value);
+                    $service->{substr($method, 1)} = $this->resolve($value);
                     continue;
                 }
 
-                $service->$method($this->arg($value));
+                $service->$method($this->resolve($value));
                 continue;
             }
 
@@ -196,7 +172,7 @@ trait ResolverTrait
     protected function merge(Config $parent, Config $config)
     {
         /** @var Child|Config $config */
-        $parent->add(Config::NAME, $parent->name() ? : $this->arg($config->name()));
+        $parent->add(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
 
         if ($config->args()) {
@@ -265,23 +241,67 @@ trait ResolverTrait
     }
 
     /**
-     * @param Config $config
+     * @param $config
      * @param array $args
      * @return null|object
      */
-    protected function resolve(Config $config, array $args = [])
+    protected function resolve($config, array $args = [])
     {
-        /** @var ManagerInterface|self $this */
+        /**
+         * @var Config|Child|Filter $config
+         * @var ManagerInterface|self $this
+         */
 
-        $args = $args ? : $config->args();
-        $name = $config->name();
-
-        $parent = $this->configured($name);
-
-        if (!$parent || $config->name() == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        if (!is_object($config)) {
+            return $config;
         }
 
-        return $this->resolve($this->merge(clone $parent, $config), $args);
+        if ($config instanceof Factory) {
+            return $this->invoke($this->child($config, $args));
+        }
+
+        if ($config instanceof Child) {
+            return $this->child($config, $args);
+        }
+
+        if ($config instanceof Dependency) {
+            return $this->get($config->name());
+        }
+
+        if ($config instanceof Param) {
+            return $this->resolve($this->param($config->name()));
+        }
+
+        if ($config instanceof Call) {
+            return $this->call($config->config(), $config->args());
+        }
+
+        if ($config instanceof Args) {
+            return $this->args($config->config());
+        }
+
+        if ($config instanceof Filter) {
+            return $this->filter($this->resolve($config->config()), $config->filter());
+        }
+
+        if ($config instanceof ConfigLink) {
+            return $this->config();
+        }
+
+        if ($config instanceof ServiceManagerLink) {
+            return $this;
+        }
+
+        if ($config instanceof Invoke) {
+            return function() use ($config) {
+                return $this->invoke($config->config(), $config->args() ?: func_get_args());
+            };
+        }
+
+        if ($config instanceof Config) {
+            return $this->di($config);
+        }
+
+        return $config;
     }
 }

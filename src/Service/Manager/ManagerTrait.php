@@ -4,14 +4,6 @@ namespace Framework\Service\Manager;
 
 use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
-use Framework\Service\Config\Call\CallInterface as Call;
-use Framework\Service\Config\Child\ChildInterface as Child;
-use Framework\Service\Config\ConfigInterface as Config;
-use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
-use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
-use Framework\Service\Config\Factory\FactoryInterface as Factory;
-use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
-use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use RuntimeException;
 
@@ -52,44 +44,6 @@ trait ManagerTrait
             }
 
             return $this->newInstanceArgs($config, $args);
-        }
-
-        if (!is_object($config)) {
-            return $config;
-        }
-
-        /** @var Config $config */
-
-        if ($config instanceof Factory) {
-            /** @var Child $config */
-            return $this->invoke($this->child($config, $args));
-        }
-
-        if ($config instanceof Child) {
-            /** @var Child $config */
-            return $this->child($config, $args);
-        }
-
-        if ($config instanceof Dependency) {
-            return $this->get($config->name());
-        }
-
-        if ($config instanceof Call) {
-            return $this->call($config->config(), $config->args());
-        }
-
-        if ($config instanceof ConfigLink) {
-            return $this->config();
-        }
-
-        if ($config instanceof ServiceManagerLink) {
-            return $this;
-        }
-
-        if ($config instanceof Invoke) {
-            return function() use ($config) {
-                return $this->invoke($config->config(), $config->args() ?: func_get_args());
-            };
         }
 
         return $this->resolve($config, $args);
