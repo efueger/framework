@@ -41,7 +41,7 @@ trait ResolverTrait
     }
 
     /**
-     * @param callable|string $config
+     * @param string $config
      * @param array $args
      * @return mixed
      */
@@ -58,7 +58,7 @@ trait ResolverTrait
             $value = $value->$method();
         }
 
-        return $args ? $this->invoke([$value, $call], $args) : $value;
+        return $args ? $this->invoke(!$config && !$value ? $call : [$value, $call], $args) : $value;
     }
 
     /**

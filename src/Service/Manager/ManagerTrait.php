@@ -39,10 +39,6 @@ trait ManagerTrait
                 return $this->create($configured, $args);
             }
 
-            if (is_callable($config)) {
-                return $this->invoke($config, $args);
-            }
-
             return $this->newInstanceArgs($config, $args);
         }
 
@@ -97,16 +93,16 @@ trait ManagerTrait
      */
     protected function invokable($config)
     {
+        if ($config instanceof Closure) {
+            return $config::bind($config, $this);
+        }
+
         if (is_string($config) && '@' === $config[0]) {
             return function () use ($config) {
                 return $this->call(substr($config, 1), func_get_args());
             };
         }
 
-        if ($config instanceof Closure) {
-            return $config::bind($config, $this);
-        }
-
-        return $this->create($config) ? : $config;
+        return $this->create($config);
     }
 }
