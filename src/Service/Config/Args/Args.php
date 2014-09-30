@@ -11,7 +11,7 @@ class Args
     protected $config;
 
     /**
-     * @name string $array
+     * @param $config
      */
     public function __construct($config)
     {

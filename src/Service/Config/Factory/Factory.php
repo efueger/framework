@@ -17,7 +17,7 @@ class Factory
         ConfigTrait;
 
     /**
-     * @name string $name
+     * @param string $name
      */
     public function __construct($name)
     {

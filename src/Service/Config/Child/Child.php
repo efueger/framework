@@ -15,8 +15,8 @@ class Child
         ConfigTrait;
 
     /**
-     * @name string $name
-     * @name string $parent
+     * @param string $name
+     * @param string $parent
      */
     public function __construct($name, $parent)
     {
