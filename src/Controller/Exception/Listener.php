@@ -2,10 +2,10 @@
 
 namespace Framework\Controller\Exception;
 
-use Framework\View\Model\ServiceTrait as ViewModel;
-use Framework\View\Exception\ViewModelInterface;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
+use Framework\View\Exception\ViewModelInterface;
+use Framework\View\Model\ServiceTrait as ViewModel;
 
 class Listener
     implements ListenerInterface

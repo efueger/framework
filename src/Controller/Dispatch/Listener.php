@@ -2,9 +2,9 @@
 
 namespace Framework\Controller\Dispatch;
 
+use Framework\Controller\Manager\ServiceTrait as ControllerManager;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
-use Framework\Controller\Manager\ServiceTrait as ControllerManager;
 
 class Listener
     implements ListenerInterface

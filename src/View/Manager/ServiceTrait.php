@@ -3,9 +3,9 @@
 namespace Framework\View\Manager;
 
 use Exception;
+use Framework\View\Model\ModelInterface as ViewModel;
 use Framework\View\Plugin\PluginInterface;
 use Framework\View\Render\RenderInterface;
-use Framework\View\Model\ModelInterface as ViewModel;
 
 trait ServiceTrait
 {

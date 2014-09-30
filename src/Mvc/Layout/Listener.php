@@ -3,8 +3,8 @@
 namespace Framework\Mvc\Layout;
 
 use Framework\Mvc\EventInterface;
-use Framework\View\Model\ServiceTrait as ViewModelTrait;
 use Framework\View\Layout\LayoutInterface as LayoutModel;
+use Framework\View\Model\ServiceTrait as ViewModelTrait;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 class Listener

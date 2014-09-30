@@ -2,10 +2,10 @@
 
 namespace Framework\Route\Manager;
 
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Dispatch\EventInterface as Dispatch;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
+use Framework\Route\Definition\DefinitionInterface as Definition;
+use Framework\Route\Dispatch\EventInterface as Dispatch;
 use Framework\Route\Match\EventInterface as Match;
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;

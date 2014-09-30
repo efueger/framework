@@ -3,8 +3,8 @@
 namespace Framework\Mvc\Dispatch;
 
 use Exception;
-use Framework\Mvc\EventInterface;
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;
+use Framework\Mvc\EventInterface;
 
 class Listener
     implements ListenerInterface

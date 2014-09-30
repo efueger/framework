@@ -2,9 +2,9 @@
 
 namespace Framework\Service\Factory;
 
-use ReflectionClass;
 use Framework\Config\ConfigInterface;
 use Framework\Service\Manager\ManagerInterface;
+use ReflectionClass;
 
 trait FactoryTrait
 {

@@ -3,10 +3,10 @@
 namespace Framework\Mvc;
 
 use Framework\Event\EventTrait as Event;
-use Framework\Route\Route\RouteInterface as Route;
-use Framework\Service\Manager\ManagerInterface as ServiceManager;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
+use Framework\Route\Route\RouteInterface as Route;
+use Framework\Service\Manager\ManagerInterface as ServiceManager;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
 trait EventTrait

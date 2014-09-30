@@ -7,10 +7,10 @@ use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Service\AliasTrait as Alias;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 use Framework\View\Exception\EventInterface as Exception;
-use Framework\View\Render\EventInterface as Render;
-use Framework\View\Plugin\PluginInterface;
-use Framework\View\Render\RenderInterface;
 use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\View\Plugin\PluginInterface;
+use Framework\View\Render\EventInterface as Render;
+use Framework\View\Render\RenderInterface;
 
 class Manager
     implements EventManagerInterface,

@@ -6,8 +6,8 @@ use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 use Framework\Route\Route\RouteInterface as Route;
+use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Manager
     implements EventManagerInterface, ManagerInterface, ServiceManagerInterface

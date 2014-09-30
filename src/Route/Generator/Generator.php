@@ -2,11 +2,11 @@
 
 namespace Framework\Route\Generator;
 
-use Framework\Config\ConfigInterface as Config;
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Definition\Builder\BuilderInterface as Route;
-use InvalidArgumentException;
 use Exception;
+use Framework\Config\ConfigInterface as Config;
+use Framework\Route\Definition\Builder\BuilderInterface as Route;
+use Framework\Route\Definition\DefinitionInterface as Definition;
+use InvalidArgumentException;
 
 /**
  * Portions copyright (c) 2013 Ben Scholzen 'DASPRiD'. (http://github.com/DASPRiD/Dash)

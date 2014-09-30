@@ -3,8 +3,8 @@
 namespace Framework\Service\Config\Controller;
 
 use Framework\Service\Config\Child\ChildInterface;
-use Framework\Service\Config\ConfigInterface;
 use Framework\Service\Config\Child\ChildTrait;
+use Framework\Service\Config\ConfigInterface;
 use Framework\Service\Config\ConfigTrait;
 
 class Controller

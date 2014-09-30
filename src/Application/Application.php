@@ -3,9 +3,9 @@
 namespace Framework\Application;
 
 use Framework\Config\ConfigInterface as Config;
-use Framework\Mvc\EventInterface as Event;
 use Framework\Event\Manager\EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
+use Framework\Mvc\EventInterface as Event;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Application
