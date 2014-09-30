@@ -94,12 +94,12 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
-        $name = explode('.', $config);
+        $config = explode('.', $config);
 
-        $call  = $args ? array_pop($name) : null;
-        $value = $this->get(array_shift($name));
+        $call  = $args ? array_pop($config) : null;
+        $value = $this->get(array_shift($config));
 
-        foreach($name as $method) {
+        foreach($config as $method) {
             $value = $value->$method();
         }
 
