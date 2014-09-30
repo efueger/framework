@@ -246,6 +246,10 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          */
 
+        if (!is_object($config)) {
+            return $config;
+        }
+
         if ($config instanceof Factory) {
             return $this->invoke($this->child($config, $args));
         }
