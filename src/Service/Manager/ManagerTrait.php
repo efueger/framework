@@ -27,8 +27,6 @@ trait ManagerTrait
      */
     public function create($config, array $args = [])
     {
-        list($config, $args) = $this->options($config, $args);
-
         if (is_string($config)) {
 
             if ($assigned = $this->assigned($config)) {
@@ -40,6 +38,10 @@ trait ManagerTrait
             }
 
             return $this->newInstanceArgs($config, $args);
+        }
+
+        if (is_array($config)) {
+            return $this->create(array_shift($config), $config);
         }
 
         return $this->resolve($config, $args);

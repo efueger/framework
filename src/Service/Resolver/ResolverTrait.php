@@ -201,16 +201,6 @@ trait ResolverTrait
     }
 
     /**
-     * @param array|string $config
-     * @param array $args
-     * @return array
-     */
-    protected function options($config, array $args = [])
-    {
-        return is_array($config) ? [array_shift($config), $config] : [$config, $args];
-    }
-
-    /**
      * @param $name
      * @return mixed
      */
