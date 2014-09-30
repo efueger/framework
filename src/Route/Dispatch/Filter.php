@@ -10,14 +10,11 @@ class Filter
     /**
      * @param EventInterface $event
      * @param array $options
-     * @return null
      */
     public function __invoke(EventInterface $event, array $options = [])
     {
         $route = $event->route();
 
         $route->add(Route::PATH, rtrim($route->path(), '/') ?: '/');
-
-        return null;
     }
 }
