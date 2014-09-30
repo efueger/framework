@@ -106,9 +106,7 @@ trait ManagerTrait
         }
 
         if (is_array($config) && is_callable($config)) {
-            return function () use ($config) {
-                return $this->invoke($config, func_get_args());
-            };
+            return $config;
         }
 
         return $this->create($config);
