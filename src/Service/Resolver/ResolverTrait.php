@@ -29,16 +29,6 @@ trait ResolverTrait
             return $arg;
         }
 
-        if ($arg instanceof Child) {
-            /** @var Child|Config $arg */
-
-            $parent = clone $this->configured($this->arg($arg->parent()));
-
-            $parent->add(Config::NAME, $this->arg($arg->name()));
-
-            return $this->resolve($parent);
-        }
-
         if ($arg instanceof Config) {
             return $this->resolve($arg);
         }
@@ -127,10 +117,7 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          * @var Child|Config $config
          */
-
-        $config->add(Config::NAME, $this->arg($config->name()));
-
-        return $this->resolve($this->merge($config, $this->configured($config->parent())), $args);
+        return $this->resolve($this->merge(clone $this->configured($this->arg($config->parent())), $config), $args);
     }
 
     /**
@@ -206,6 +193,10 @@ trait ResolverTrait
      */
     protected function merge(Config $parent, Config $config)
     {
+        /** @var Child|Config $config */
+        $parent->add(Config::NAME, $parent->name() ? : $this->arg($config->name()));
+
+
         if ($config->args()) {
             $parent->add(Config::ARGS, $config->args());
         }
