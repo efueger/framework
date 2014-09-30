@@ -7,6 +7,7 @@ use Framework\Route\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
+use Framework\View\Model\ServiceTrait as ViewModel;
 
 trait EventTrait
 {
@@ -14,6 +15,7 @@ trait EventTrait
      *
      */
     use Event;
+    use ViewModel;
 
     /**
      * @var ServiceManager
