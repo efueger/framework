@@ -11,8 +11,8 @@ class Controller
     /**
      *
      */
-    use Response,
-        ViewModel;
+    use Response;
+    use ViewModel;
 
     /**
      * @return mixed

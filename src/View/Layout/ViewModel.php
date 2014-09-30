@@ -11,6 +11,6 @@ class ViewModel
     /**
      *
      */
-    use ModelTrait,
-        PluginTrait;
+    use ModelTrait;
+    use PluginTrait;
 }

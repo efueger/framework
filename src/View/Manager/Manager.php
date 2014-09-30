@@ -22,8 +22,8 @@ class Manager
     /**
      *
      */
-    use Alias,
-        Events;
+    use Alias;
+    use Events;
 
     /**
      * @param \Exception $exception

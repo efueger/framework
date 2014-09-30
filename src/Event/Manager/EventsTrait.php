@@ -13,9 +13,9 @@ trait EventsTrait
     /**
      *
      */
-    use EventGenerator,
-        EventManager,
-        ServiceManager;
+    use EventGenerator;
+    use EventManager;
+    use ServiceManager;
 
     /**
      * @param array|Event|string $event

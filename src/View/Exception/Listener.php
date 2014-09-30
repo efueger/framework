@@ -11,8 +11,8 @@ class Listener
     /**
      *
      */
-    use ViewManager,
-        ViewModelTrait;
+    use ViewManager;
+    use ViewModelTrait;
 
     /**
      * @param EventInterface $event

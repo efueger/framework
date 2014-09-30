@@ -12,8 +12,8 @@ trait ManagerTrait
     /**
      *
      */
-    use Container,
-        Resolver;
+    use Container;
+    use Resolver;
 
     /**
      * @var array

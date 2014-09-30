@@ -13,8 +13,8 @@ class Manager
     /**
      *
      */
-    use ChildTrait,
-        ConfigTrait;
+    use ChildTrait;
+    use ConfigTrait;
 
     /**
      * @param string $name
