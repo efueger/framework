@@ -105,7 +105,7 @@ trait ManagerTrait
             };
         }
 
-        if (is_array($config) && is_callable($config)) {
+        if (is_array($config) && is_string($config[0])) {
             return $config;
         }
 

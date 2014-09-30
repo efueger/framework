@@ -41,13 +41,17 @@ trait ResolverTrait
     }
 
     /**
-     * @param string $config
+     * @param array|object|string $config
      * @param array $args
      * @return mixed
      */
     protected function call($config, array $args = [])
     {
         /** @var ManagerInterface|self $this */
+
+        if (!is_string($config)) {
+            return $this->invoke($config, $args);
+        }
 
         $config = explode('.', $config);
 
@@ -129,19 +133,17 @@ trait ResolverTrait
                 continue;
             }
 
-            if (is_object($value)) {
-                $this->invoke($value);
+            if (is_array($value)) {
+                if (is_string($value[0]) && is_string($value[1])) {
+                    $this->invoke($value);
+                    continue;
+                }
+
+                $this->invoke($value[0], $value[1]);
                 continue;
             }
 
-            $args = isset($value[1]) ? (array) $value[1] : [];
-
-            if (is_string($value[0])) {
-                $this->invoke([$service, $value[0]], $args);
-                continue;
-            }
-
-            $this->invoke($value[0], $args);
+            $this->invoke($value);
         }
 
         return $service;
