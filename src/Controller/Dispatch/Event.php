@@ -32,19 +32,19 @@ class Event
     }
 
     /**
+     * @return array
+     */
+    public function args()
+    {
+        return $this->route->params();
+    }
+
+    /**
      * @return callable|string
      */
     public function controller()
     {
         return $this->route->controller();
-    }
-
-    /**
-     * @return array
-     */
-    public function params()
-    {
-        return $this->route->params();
     }
 
     /**

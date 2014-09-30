@@ -22,6 +22,6 @@ class Listener
      */
     public function __invoke(EventInterface $event, Request $request, Response $response)
     {
-        return call_user_func_array($this->controller($event->controller()), $event->params());
+        return call_user_func_array($this->controller($event->controller()), $event->args());
     }
 }

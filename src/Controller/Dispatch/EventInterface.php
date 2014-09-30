@@ -24,14 +24,14 @@ interface EventInterface
     const RESPONSE = 'Response';
 
     /**
+     * @return array
+     */
+    function args();
+
+    /**
      * @return callable|string
      */
     function controller();
-
-    /**
-     * @return array
-     */
-    function params();
 
     /**
      * @return Route
