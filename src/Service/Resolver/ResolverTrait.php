@@ -76,13 +76,6 @@ trait ResolverTrait
     }
 
     /**
-     * @param array|object|string $config
-     * @param array $args
-     * @return callable|null|object
-     */
-    abstract protected function create($config, array $args = []);
-
-    /**
      * @param Config $config
      * @param array $args
      * @return null|object
