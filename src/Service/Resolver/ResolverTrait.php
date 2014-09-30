@@ -165,6 +165,7 @@ trait ResolverTrait
     protected function merge(Config $parent, Config $config)
     {
         /** @var Child|Config $config */
+
         $parent->add(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
 
