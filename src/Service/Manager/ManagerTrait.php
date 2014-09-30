@@ -88,7 +88,7 @@ trait ManagerTrait
 
         if ($config instanceof Invoke) {
             return function() use ($config) {
-                return $this->invoke($config->config(), $config->args());
+                return $this->invoke($config->config(), $config->args() ?: func_get_args());
             };
         }
 
