@@ -13,7 +13,6 @@ use Framework\Service\Container\Container;
 use Framework\Event\Config\Config as Events;
 
 $config = new Config([
-    'controllers' => new Events(include __DIR__ . '/controller.php'),
     'events'      => new Events(include __DIR__ . '/event.php'),
     'services'    => new Container(include __DIR__ . '/service.php'),
     'routes'      => new Config(include __DIR__ . '/route.php'),
@@ -77,7 +76,7 @@ Routes are pre-compiled so that they can be immediately matched against the requ
 ])
 ```
 ##MVC
-The MVC event workflow is completely <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
+The MVC event workflow is <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
 ```php
 'Mvc\Event' => [
     ['Mvc\Route'],
