@@ -15,6 +15,6 @@ class Filter
     {
         $route = $event->route();
 
-        $route->add(Route::PATH, rtrim($route->path(), '/') ?: '/');
+        $route->add(Route::PATH, urldecode(rtrim($route->path(), '/')) ?: '/');
     }
 }
