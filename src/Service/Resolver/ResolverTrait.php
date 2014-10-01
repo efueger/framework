@@ -251,6 +251,10 @@ trait ResolverTrait
             return $this->child($config, $args);
         }
 
+        if ($config instanceof Config) {
+            return $this->provide($config);
+        }
+
         if ($config instanceof Dependency) {
             return $this->get($config->name());
         }
@@ -267,10 +271,6 @@ trait ResolverTrait
             return $this->args($config->config());
         }
 
-        if ($config instanceof Filter) {
-            return $this->filter($this->resolve($config->config()), $config->filter());
-        }
-
         if ($config instanceof ConfigLink) {
             return $this->config();
         }
@@ -279,14 +279,14 @@ trait ResolverTrait
             return $this;
         }
 
+        if ($config instanceof Filter) {
+            return $this->filter($this->resolve($config->config()), $config->filter());
+        }
+
         if ($config instanceof Invoke) {
             return function() use ($config) {
                 return $this->invoke($config->config(), $config->args() ?: func_get_args());
             };
-        }
-
-        if ($config instanceof Config) {
-            return $this->provide($config);
         }
 
         return $config;
