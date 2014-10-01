@@ -76,28 +76,7 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          * @var Child|Config $config
          */
-        return $this->di($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
-    }
-
-    /**
-     * @param Config $config
-     * @param array $args
-     * @return null|object
-     */
-    protected function di(Config $config, array $args = [])
-    {
-        /** @var ManagerInterface|self $this */
-
-        $args = $args ? : $config->args();
-        $name = $config->name();
-
-        $parent = $this->configured($name);
-
-        if (!$parent || $config->name() == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
-        }
-
-        return $this->di($this->merge(clone $parent, $config), $args);
+        return $this->provide($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
 
     /**
@@ -228,6 +207,27 @@ trait ResolverTrait
     }
 
     /**
+     * @param Config $config
+     * @param array $args
+     * @return null|object
+     */
+    protected function provide(Config $config, array $args = [])
+    {
+        /** @var ManagerInterface|self $this */
+
+        $args = $args ? : $config->args();
+        $name = $config->name();
+
+        $parent = $this->configured($name);
+
+        if (!$parent || $config->name() == $parent->name()) {
+            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        }
+
+        return $this->provide($this->merge(clone $parent, $config), $args);
+    }
+
+    /**
      * @param $config
      * @param array $args
      * @return null|object
@@ -286,7 +286,7 @@ trait ResolverTrait
         }
 
         if ($config instanceof Config) {
-            return $this->di($config);
+            return $this->provide($config);
         }
 
         return $config;
