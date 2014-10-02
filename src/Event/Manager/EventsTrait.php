@@ -36,6 +36,6 @@ trait EventsTrait
     {
         /** @var ManagerInterface $this */
 
-        return is_callable($listener) ? $listener : $this->create($listener);
+        return is_callable($listener) ? $listener : $this->invokable($listener);
     }
 }

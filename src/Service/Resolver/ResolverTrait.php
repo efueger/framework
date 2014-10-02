@@ -56,13 +56,14 @@ trait ResolverTrait
         $config = explode('.', $config);
 
         $call  = $args ? array_pop($config) : null;
-        $value = $this->get(array_shift($config));
+        $name  = $config ? array_shift($config) : $call;
+        $value = $this->get($name);
 
         foreach($config as $method) {
             $value = $value->$method();
         }
 
-        return $args ? $this->invoke(!$config && !$value ? $call : [$value, $call], $args) : $value;
+        return $args ? $this->invoke(!$config && ($name == $call) ? $value : [$value, $call], $args) : $value;
     }
 
     /**
