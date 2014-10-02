@@ -200,7 +200,7 @@ trait ResolverTrait
                 continue;
             }
 
-            $value = $value[$n];
+            $value = isset($value->$n) ? $value->$n : $value[$n];
         }
 
         return $value;
