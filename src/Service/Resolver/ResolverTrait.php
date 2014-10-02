@@ -239,6 +239,10 @@ trait ResolverTrait
          * @var ManagerInterface|self $this
          */
 
+        if (is_array($config)) {
+            return $this->args($config);
+        }
+
         if (!is_object($config)) {
             return $config;
         }
