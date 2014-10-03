@@ -17,12 +17,12 @@ class Manager
     use Events;
 
     /**
-     * @param callable|string $controller
+     * @param callable|string $config
      * @return callable|null|object
      */
-    public function controller($controller)
+    public function controller($config)
     {
-        return $this->invokable($controller);
+        return $this->invokable($config);
     }
 
     /**

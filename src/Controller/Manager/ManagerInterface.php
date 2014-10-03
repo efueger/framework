@@ -7,10 +7,10 @@ use Exception;
 interface ManagerInterface
 {
     /**
-     * @param callable|string $controller
+     * @param callable|string $config
      * @return callable|null|object
      */
-    function controller($controller);
+    function controller($config);
 
     /**
      * @param callable $controller

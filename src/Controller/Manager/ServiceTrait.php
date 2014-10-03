@@ -3,7 +3,6 @@
 namespace Framework\Controller\Manager;
 
 use Exception;
-use Framework\Route\Route\RouteInterface as Route;
 
 trait ServiceTrait
 {

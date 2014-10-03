@@ -4,7 +4,6 @@ namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
 use Framework\Event\Signal\SignalTrait;
-use Framework\Route\Route\RouteInterface as Route;
 
 class Event
     implements EventInterface
