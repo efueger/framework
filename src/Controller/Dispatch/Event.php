@@ -3,6 +3,7 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\Signal\SignalTrait;
 use Framework\Route\Route\RouteInterface as Route;
 
 class Event
@@ -11,12 +12,18 @@ class Event
     /**
      *
      */
-    use EventTrait;
+    use EventTrait,
+        SignalTrait;
 
     /**
      *
      */
     const EVENT = self::DISPATCH;
+
+    /**
+     * @var array
+     */
+    protected $args = [];
 
     /**
      * @var Route
@@ -32,11 +39,12 @@ class Event
     }
 
     /**
+     * @param array $options
      * @return array
      */
-    public function args()
+    public function args(array $options = [])
     {
-        return $this->route->params();
+        return ['event' => $this, 'eventArgs' => $options] + $options;
     }
 
     /**
@@ -62,6 +70,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        return $listener($this, $options[self::REQUEST], $options[self::RESPONSE]);
+        return $this->signal($listener, $this->args($options));
     }
 }

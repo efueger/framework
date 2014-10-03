@@ -29,11 +29,11 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $options
-     * @return Route
+     * @param Route $route
+     * @return Route|mixed
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, Route $route)
     {
-        return $this->dispatch($this->route);
+        return $this->dispatch($route, $event->args()) ?: $this->route;
     }
 }

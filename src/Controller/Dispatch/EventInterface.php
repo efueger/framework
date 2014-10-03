@@ -24,14 +24,22 @@ interface EventInterface
     const RESPONSE = 'Response';
 
     /**
+     * @param array $options
      * @return array
      */
-    function args();
+    function args(array $options = []);
 
     /**
      * @return callable|string
      */
     function controller();
+
+    /**
+     * @param callable $listener
+     * @param array $options
+     * @return mixed
+     */
+    function signal(callable $listener, array $options = []);
 
     /**
      * @return Route

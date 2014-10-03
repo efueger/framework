@@ -34,7 +34,7 @@ trait EventsTrait
      */
     protected function listener($listener)
     {
-        /** @var ManagerInterface $this */
+        /** @var ManagerInterface|self $this */
 
         return is_callable($listener) ? $listener : $this->invokable($listener);
     }

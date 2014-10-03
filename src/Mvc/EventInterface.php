@@ -32,6 +32,11 @@ interface EventInterface
     const ROUTE = 'Route';
 
     /**
+     *
+     */
+    const VIEWMODEL = 'ViewModel';
+
+    /**
      * @return array
      */
     function args();

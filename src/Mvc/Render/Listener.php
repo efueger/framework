@@ -4,6 +4,7 @@ namespace Framework\Mvc\Render;
 
 use Exception;
 use Framework\Mvc\EventInterface;
+use Framework\View\Model\ModelInterface as View;
 use Framework\View\Manager\ServiceTrait as ViewManager;
 
 class Listener
@@ -16,18 +17,18 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param View $viewModel
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, View $viewModel = null)
     {
-        if (!$event->viewModel()) {
+        if (!$viewModel) {
             return null;
         }
 
         try {
 
-            return $this->render($event->viewModel());
+            return $this->render($viewModel);
 
         } catch(Exception $exception) {
 

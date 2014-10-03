@@ -3,6 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Event\EventTrait as Event;
+use Framework\Event\Signal\SignalTrait as Signal;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;
@@ -15,6 +16,7 @@ trait EventTrait
      *
      */
     use Event;
+    use Signal;
     use ViewModel;
 
     /**
@@ -28,17 +30,6 @@ trait EventTrait
     public function __construct(ServiceManager $sm)
     {
         $this->sm = $sm;
-    }
-
-    /**
-     * @return array
-     */
-    public function args()
-    {
-        return [
-            EventInterface::REQUEST  => $this->request(),
-            EventInterface::RESPONSE => $this->response()
-        ];
     }
 
     /**

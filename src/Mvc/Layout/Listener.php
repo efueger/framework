@@ -17,23 +17,22 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param ViewModel $viewModel
      * @return ViewModel
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, ViewModel $viewModel = null)
     {
         $layout = $this->viewModel();
-        $model  = $event->viewModel();
 
-        if (!$model) {
+        if (!$viewModel) {
             return null;
         }
 
-        if ($model instanceof LayoutModel) {
-            return $model;
+        if ($viewModel instanceof LayoutModel) {
+            return $viewModel;
         }
 
-        $layout->setContent($model);
+        $layout->setContent($viewModel);
 
         return $layout;
     }

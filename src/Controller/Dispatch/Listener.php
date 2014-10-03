@@ -3,8 +3,6 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;
-use Framework\Request\RequestInterface as Request;
-use Framework\Response\ResponseInterface as Response;
 
 class Listener
     implements ListenerInterface
@@ -16,12 +14,11 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param Request $request
-     * @param Response $response
+     * @param array $eventArgs
      * @return mixed
      */
-    public function __invoke(EventInterface $event, Request $request, Response $response)
+    public function __invoke(EventInterface $event, array $eventArgs = [])
     {
-        return call_user_func_array($this->controller($event->controller()), $event->args());
+        return $event->signal($this->controller($event->controller()), $eventArgs);
     }
 }

@@ -21,13 +21,27 @@ class Event
     const EVENT = self::MVC;
 
     /**
+     * @return array
+     */
+    public function args()
+    {
+        return [
+            'event'         => $this,
+            self::REQUEST   => $this->request(),
+            self::RESPONSE  => $this->response(),
+            self::ROUTE     => $this->route(),
+            self::VIEWMODEL => $this->viewModel()
+        ];
+    }
+
+    /**
      * @param callable $listener
      * @param array $options
      * @return mixed
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        $response = $listener($this, $options);
+        $response = $this->signal($listener, $this->args());
 
         switch(true) {
             default:

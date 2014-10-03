@@ -3,6 +3,7 @@
 namespace Framework\Mvc\Response;
 
 use Framework\Mvc\EventInterface;
+use Framework\Response\ResponseInterface as Response;
 use Framework\Response\Manager\ServiceTrait as ResponseManager;
 
 class Listener
@@ -15,11 +16,11 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param Response $response
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, Response $response)
     {
-        return $this->response($event->response());
+        return $this->response($response, $event->args());
     }
 }
