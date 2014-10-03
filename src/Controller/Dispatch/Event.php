@@ -21,30 +21,16 @@ class Event
     const EVENT = self::DISPATCH;
 
     /**
-     * @var array
+     * @var callable
      */
-    protected $args = [];
+    protected $controller;
 
     /**
-     * @var Route
+     * @param callable $controller
      */
-    protected $route;
-
-    /**
-     * @param Route $route
-     */
-    public function __construct(Route $route)
+    public function __construct(callable $controller)
     {
-        $this->route = $route;
-    }
-
-    /**
-     * @param array $options
-     * @return array
-     */
-    public function args(array $options = [])
-    {
-        return ['event' => $this, 'eventArgs' => $options] + $options;
+        $this->controller = $controller;
     }
 
     /**
@@ -52,15 +38,7 @@ class Event
      */
     public function controller()
     {
-        return $this->route->controller();
-    }
-
-    /**
-     * @return Route
-     */
-    public function route()
-    {
-        return $this->route;
+        return $this->controller;
     }
 
     /**
@@ -70,6 +48,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        return $this->signal($listener, $this->args($options));
+        return $this->signal($listener, ['event' => $this, 'options' => ['event' => $this] + $options] + $options);
     }
 }

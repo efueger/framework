@@ -2,6 +2,7 @@
 
 namespace Framework\Event\Signal;
 
+use Closure;
 use ReflectionMethod;
 
 trait SignalTrait
@@ -40,6 +41,6 @@ trait SignalTrait
             }
         }
 
-        return $args ? call_user_func_array($listener, $args) : $listener();
+        return call_user_func_array($listener, !$args && $listener instanceof Closure ? $options : $args);
     }
 }

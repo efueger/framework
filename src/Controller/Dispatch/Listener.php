@@ -14,11 +14,11 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $eventArgs
+     * @param array $options
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $eventArgs = [])
+    public function __invoke(EventInterface $event, array $options = [])
     {
-        return $event->signal($this->controller($event->controller()), $eventArgs);
+        return $event->signal($event->controller(), $options);
     }
 }

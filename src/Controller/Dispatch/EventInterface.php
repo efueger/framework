@@ -3,7 +3,6 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventInterface as Event;
-use Framework\Route\Route\RouteInterface as Route;
 
 interface EventInterface
     extends Event
@@ -24,12 +23,6 @@ interface EventInterface
     const RESPONSE = 'Response';
 
     /**
-     * @param array $options
-     * @return array
-     */
-    function args(array $options = []);
-
-    /**
      * @return callable|string
      */
     function controller();
@@ -40,9 +33,4 @@ interface EventInterface
      * @return mixed
      */
     function signal(callable $listener, array $options = []);
-
-    /**
-     * @return Route
-     */
-    function route();
 }

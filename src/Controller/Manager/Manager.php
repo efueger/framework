@@ -6,7 +6,6 @@ use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Route\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Manager
@@ -27,13 +26,13 @@ class Manager
     }
 
     /**
-     * @param Route $route
+     * @param callable $controller
      * @param array $options
      * @return mixed
      */
-    public function dispatch(Route $route, array $options = [])
+    public function dispatch(callable $controller, array $options = [])
     {
-        return $this->trigger([Dispatch::DISPATCH, $route], $options);
+        return $this->trigger([Dispatch::DISPATCH, $controller], $options);
     }
 
     /**

@@ -40,13 +40,13 @@ trait ServiceTrait
     }
 
     /**
-     * @param Route $route
+     * @param callable $controller
      * @param array $options
      * @return mixed
      */
-    public function dispatch(Route $route, array $options = [])
+    public function dispatch(callable $controller, array $options = [])
     {
-        return $this->cm->dispatch($route, $options);
+        return $this->cm->dispatch($controller, $options);
     }
 
     /**

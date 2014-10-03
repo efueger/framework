@@ -3,7 +3,6 @@
 namespace Framework\Controller\Manager;
 
 use Exception;
-use Framework\Route\Route\RouteInterface as Route;
 
 interface ManagerInterface
 {
@@ -14,11 +13,11 @@ interface ManagerInterface
     function controller($controller);
 
     /**
-     * @param Route $route
+     * @param callable $controller
      * @param array $options
      * @return mixed
      */
-    function dispatch(Route $route, array $options = []);
+    function dispatch(callable $controller, array $options = []);
 
     /**
      * @param Exception $exception

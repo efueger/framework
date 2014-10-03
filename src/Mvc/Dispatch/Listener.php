@@ -24,7 +24,7 @@ class Listener
     {
         try {
 
-            return $this->dispatch($route, $event->args());
+            return $this->dispatch($this->controller($route->controller()), $event->args());
 
         } catch (Exception $exception) {
 
