@@ -2,6 +2,7 @@
 
 namespace Framework\Service\Resolver;
 
+use Closure;
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
@@ -16,6 +17,7 @@ use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
+use ReflectionMethod;
 
 trait ResolverTrait
 {
@@ -62,11 +64,7 @@ trait ResolverTrait
             $value = $value->$method();
         }
 
-        if (!$args) {
-            return $value;
-        }
-
-        return $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args);
+        return $args ? $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args) : $value;
     }
 
     /**
@@ -145,34 +143,30 @@ trait ResolverTrait
             return call_user_func_array($this->args($config), $this->args($args));
         }
 
-        /** @var ArgsInterface|array $options */
-        $options = $args[0];
-        $options = $options->args();
-
         $method = '__invoke';
 
         if (is_array($config)) {
             if (is_string($config[0])) {
-                return call_user_func($config, $options);
+                return call_user_func($config, $args[0]->args());
             }
 
             $method   = isset($config[1]) ? $config[1] : $method;
             $config = $config[0];
         }
 
-        $methods = (new \ReflectionMethod($config, $method))->getParameters();
+        $methods = (new ReflectionMethod($config, $method))->getParameters();
 
-        $args    = [];
-        $options = array_change_key_case($options);
+        $matched = [];
+        $params  = array_change_key_case($args[0]->args());
 
         foreach($methods as $arg) {
             $name = strtolower($arg->name);
-            if (isset($options[$name])) {
-                $args[] = $options[$name];
+            if (isset($params[$name])) {
+                $matched[] = $params[$name];
             }
         }
 
-        return call_user_func_array([$config, $method], !$args && $config instanceof \Closure ? $options : $args);
+        return call_user_func_array([$config, $method], !$matched && $config instanceof Closure ? $params : $matched);
     }
 
     /**
