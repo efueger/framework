@@ -33,7 +33,7 @@ trait SignalTrait
         $method = new ReflectionMethod($listener, $method);
 
         $args   = [];
-        $params = isset($options[0]) && $options[0] instanceof EventArgs ? $options[0]->args() : $options;
+        $params = $options[0] instanceof EventArgs ? $options[0]->args() : $options;
         $params = array_change_key_case($params);
 
         foreach($method->getParameters() as $arg) {
