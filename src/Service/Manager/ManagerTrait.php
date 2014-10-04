@@ -5,7 +5,6 @@ namespace Framework\Service\Manager;
 use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
-use ReflectionMethod;
 use RuntimeException;
 
 trait ManagerTrait

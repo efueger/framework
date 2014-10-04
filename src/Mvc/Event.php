@@ -25,13 +25,13 @@ class Event
      */
     public function args()
     {
-        return [
+        return [new Args([
             'event'         => $this,
             self::REQUEST   => $this->request(),
             self::RESPONSE  => $this->response(),
             self::ROUTE     => $this->route(),
             self::VIEWMODEL => $this->viewModel()
-        ];
+        ])];
     }
 
     /**

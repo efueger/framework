@@ -3,6 +3,7 @@
 namespace Framework\Event\Signal;
 
 use Closure;
+use Framework\Event\Args\ArgsInterface as EventArgs;
 use ReflectionMethod;
 
 trait SignalTrait
@@ -31,13 +32,14 @@ trait SignalTrait
 
         $method = new ReflectionMethod($listener, $method);
 
-        $args    = [];
-        $options = array_change_key_case($options);
+        $args   = [];
+        $params = isset($options[0]) && $options[0] instanceof EventArgs ? $options[0]->args() : $options;
+        $params = array_change_key_case($params);
 
         foreach($method->getParameters() as $arg) {
             $name = strtolower($arg->name);
-            if (isset($options[$name])) {
-                $args[] = $options[$name];
+            if (isset($params[$name])) {
+                $args[] = $params[$name];
             }
         }
 

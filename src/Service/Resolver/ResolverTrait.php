@@ -62,7 +62,11 @@ trait ResolverTrait
             $value = $value->$method();
         }
 
-        return $args ? $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args) : $value;
+        if (!$args) {
+            return $value;
+        }
+
+        return $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args);
     }
 
     /**
@@ -137,7 +141,38 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        return call_user_func_array($this->args($config), $this->args($args));
+        if (!$args || !$args[0] instanceof ArgsInterface) {
+            return call_user_func_array($this->args($config), $this->args($args));
+        }
+
+        /** @var ArgsInterface|array $options */
+        $options = $args[0];
+        $options = $options->args(0);
+
+        $method = '__invoke';
+
+        if (is_array($config)) {
+            if (is_string($config[0])) {
+                return call_user_func($config, $options);
+            }
+
+            $method   = isset($config[1]) ? $config[1] : $method;
+            $config = $config[0];
+        }
+
+        $methods = (new \ReflectionMethod($config, $method))->getParameters();
+
+        $args    = [];
+        $options = array_change_key_case($options);
+
+        foreach($methods as $arg) {
+            $name = strtolower($arg->name);
+            if (isset($options[$name])) {
+                $args[] = $options[$name];
+            }
+        }
+
+        return call_user_func_array([$config, $method], !$args && $config instanceof \Closure ? $options : $args);
     }
 
     /**
