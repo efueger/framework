@@ -52,12 +52,11 @@ trait FactoryTrait
     /**
      * @param array|string $name
      * @param array $args
-     * @param bool $shared
      * @return null|object
      */
-    public function get($name, array $args = [], $shared = true)
+    public function get($name, array $args = [])
     {
-        return $this->sm->get($name, $args, $shared);
+        return $this->sm->get($name, $args);
     }
 
     /**

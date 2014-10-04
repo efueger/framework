@@ -33,10 +33,9 @@ interface FactoryInterface
     /**
      * @param string $name
      * @param array $args
-     * @param bool $shared
      * @return null|object
      */
-    function get($name, array $args = [], $shared = true);
+    function get($name, array $args = []);
 
     /**
      * @param $name
