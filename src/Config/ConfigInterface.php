@@ -12,11 +12,6 @@ interface ConfigInterface
     function add($name, $config);
 
     /**
-     * @return array
-     */
-    function config();
-
-    /**
      * @param string $name
      * @return mixed
      */

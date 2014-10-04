@@ -28,14 +28,6 @@ trait ConfigTrait
     }
 
     /**
-     * @return array
-     */
-    public function config()
-    {
-        return $this->config;
-    }
-
-    /**
      * @param string $name
      * @return mixed
      */

@@ -52,6 +52,14 @@ class Container
     }
 
     /**
+     * @return array
+     */
+    public function config()
+    {
+        return $this->config;
+    }
+
+    /**
      * @param string $name
      * @param mixed $config
      * @return void
