@@ -147,7 +147,7 @@ trait ResolverTrait
 
         /** @var ArgsInterface|array $options */
         $options = $args[0];
-        $options = $options->args(0);
+        $options = $options->args();
 
         $method = '__invoke';
 
