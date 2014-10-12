@@ -9,9 +9,10 @@ interface ManagerInterface
 {
     /**
      * @param Route $route
+     * @param array $options
      * @return Route
      */
-    function dispatch(Route $route);
+    function dispatch(Route $route, array $options = []);
 
     /**
      * @param Definition $definition

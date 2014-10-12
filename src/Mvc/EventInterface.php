@@ -37,7 +37,7 @@ interface EventInterface
     const VIEWMODEL = 'ViewModel';
 
     /**
-     * @return ArgsInterface
+     * @return array
      */
     function args();
 
