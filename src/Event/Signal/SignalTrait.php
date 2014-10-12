@@ -32,8 +32,8 @@ trait SignalTrait
 
         $params = (new ReflectionMethod($listener, $method))->getParameters();
 
-        $matched   = [];
-        
+        $matched = [];
+
         $opts = isset($args[0]) && $args[0] instanceof EventArgs ? $args[0]->args() : $args;
 
         foreach($params as $param) {
