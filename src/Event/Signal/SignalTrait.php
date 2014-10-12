@@ -10,12 +10,12 @@ trait SignalTrait
 {
     /**
      * @param callable $listener
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function signal(callable $listener, array $options = [])
+    public function signal(callable $listener, array $args = [])
     {
-        if (!$options) {
+        if (!$args) {
             return $listener();
         }
 
@@ -23,26 +23,25 @@ trait SignalTrait
 
         if (is_array($listener)) {
             if (is_string($listener[0])) {
-                return call_user_func($listener, $options);
+                return call_user_func($listener, $args);
             }
 
             $method   = isset($listener[1]) ? $listener[1] : $method;
             $listener = $listener[0];
         }
 
-        $method = new ReflectionMethod($listener, $method);
+        $params = (new ReflectionMethod($listener, $method))->getParameters();
 
-        $args   = [];
-        $params = isset($options[0]) && $options[0] instanceof EventArgs ? $options[0]->args() : $options;
-        $params = array_change_key_case($params);
+        $matched   = [];
+        
+        $opts = isset($args[0]) && $args[0] instanceof EventArgs ? $args[0]->args() : $args;
 
-        foreach($method->getParameters() as $arg) {
-            $name = strtolower($arg->name);
-            if (isset($params[$name])) {
-                $args[] = $params[$name];
+        foreach($params as $param) {
+            if (isset($opts[$param->name])) {
+                $matched[] = $opts[$param->name];
             }
         }
 
-        return call_user_func_array($listener, !$args && $listener instanceof Closure ? $options : $args);
+        return call_user_func_array($listener, !$matched && $listener instanceof Closure ? $args : $matched);
     }
 }

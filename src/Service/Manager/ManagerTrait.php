@@ -4,6 +4,7 @@ namespace Framework\Service\Manager;
 
 use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
+use Framework\Service\Resolver\ArgsInterface as Args;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use RuntimeException;
 
@@ -101,7 +102,13 @@ trait ManagerTrait
 
         if (is_string($config) && '@' === $config[0]) {
             return function () use ($config) {
-                return $this->call(substr($config, 1), func_get_args());
+                $args = func_get_args();
+
+                if ($args && $args[0] instanceof Args) {
+                    $args = $args[0]->args();
+                }
+
+                return $this->call(substr($config, 1), $args);
             };
         }
 

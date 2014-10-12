@@ -139,7 +139,7 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        if (!$args || !$args[0] instanceof ArgsInterface) {
+        if (!$args || !is_string(key($args))) {
             return call_user_func_array($this->args($config), $this->args($args));
         }
 
@@ -147,26 +147,24 @@ trait ResolverTrait
 
         if (is_array($config)) {
             if (is_string($config[0])) {
-                return call_user_func($config, $args[0]->args());
+                return call_user_func($config, $args);
             }
 
             $method   = isset($config[1]) ? $config[1] : $method;
             $config = $config[0];
         }
 
-        $methods = (new ReflectionMethod($config, $method))->getParameters();
+        $params = (new ReflectionMethod($config, $method))->getParameters();
 
         $matched = [];
-        $params  = array_change_key_case($args[0]->args());
 
-        foreach($methods as $arg) {
-            $name = strtolower($arg->name);
-            if (isset($params[$name])) {
-                $matched[] = $params[$name];
+        foreach($params as $param) {
+            if (isset($args[$param->name])) {
+                $matched[] = $args[$param->name];
             }
         }
 
-        return call_user_func_array([$config, $method], !$matched && $config instanceof Closure ? $params : $matched);
+        return call_user_func_array([$config, $method], !$matched && $config instanceof Closure ? $args : $matched);
     }
 
     /**
