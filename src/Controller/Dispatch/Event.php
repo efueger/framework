@@ -3,10 +3,11 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\Signal\SignalInterface;
 use Framework\Event\Signal\SignalTrait;
 
 class Event
-    implements EventInterface
+    implements EventInterface, SignalInterface
 {
     /**
      *

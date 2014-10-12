@@ -5,10 +5,11 @@ namespace Framework\Mvc;
 use Framework\Mvc\Render\ListenerInterface as Render;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;
+use Framework\Event\Signal\SignalInterface;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 class Event
-    implements EventInterface
+    implements EventInterface, SignalInterface
 {
     /**
      *
@@ -25,13 +26,13 @@ class Event
      */
     public function args()
     {
-        return [new Args([
+        return new Args([
             'event'         => $this,
             self::REQUEST   => $this->request(),
             self::RESPONSE  => $this->response(),
             self::ROUTE     => $this->route(),
             self::VIEWMODEL => $this->viewModel()
-        ])];
+        ]);
     }
 
     /**
@@ -41,7 +42,7 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        $response = $this->signal($listener, $this->args());
+        $response = $this->signal($listener, [$this->args()]);
 
         switch(true) {
             default:

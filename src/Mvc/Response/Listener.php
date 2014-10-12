@@ -21,6 +21,6 @@ class Listener
      */
     public function __invoke(EventInterface $event, Response $response)
     {
-        return $this->response($response, $event->args());
+        return $this->response($response, [$event->args()]);
     }
 }

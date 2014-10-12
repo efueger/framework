@@ -3,7 +3,7 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Event\Args\ArgsInterface as EventArgsInterface;
-use Framework\Service\Resolver\ArgsTrait;
+use Framework\Event\Args\ArgsTrait;
 
 class Args
     implements ArgsInterface, EventArgsInterface

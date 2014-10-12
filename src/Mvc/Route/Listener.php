@@ -34,6 +34,6 @@ class Listener
      */
     public function __invoke(EventInterface $event, Route $route)
     {
-        return $this->dispatch($route, $event->args()) ?: $this->route;
+        return $this->dispatch($route, [$event->args()]) ?: $this->route;
     }
 }
