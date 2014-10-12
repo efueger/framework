@@ -22,7 +22,7 @@ class Event
     const EVENT = self::MVC;
 
     /**
-     * @return array
+     * @return Args
      */
     public function args()
     {
