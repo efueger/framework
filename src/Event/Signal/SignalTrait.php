@@ -42,6 +42,6 @@ trait SignalTrait
             }
         }
 
-        return call_user_func_array($listener, !$matched && $listener instanceof Closure ? $args : $matched);
+        return call_user_func_array($listener, $params ? $matched : $args);
     }
 }
