@@ -101,7 +101,7 @@ trait ManagerTrait
         }
 
         if (is_string($config) && '@' === $config[0]) {
-            $closure = function () use ($config) {
+            $closure = function() use ($config) {
                 $args = func_get_args();
 
                 if ($args && is_array($args[0]) && isset($args[0][ResolverInterface::ARGS])) {
