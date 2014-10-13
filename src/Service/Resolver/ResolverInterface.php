@@ -23,4 +23,9 @@ interface ResolverInterface
      *
      */
     const SEPARATOR = '.';
+
+    /**
+     *
+     */
+    const STATIC_STRING = '::';
 }

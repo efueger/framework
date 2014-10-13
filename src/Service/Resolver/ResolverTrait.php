@@ -186,7 +186,7 @@ trait ResolverTrait
         $params   = null;
 
         if (is_string($config) && !class_exists($config)) {
-            $static = explode('::', $config);
+            $static = explode(ResolverInterface::STATIC_STRING, $config);
             if ($static && isset($static[1])) {
                 list($config, $method) = $static;
                 goto call;
