@@ -2,10 +2,10 @@
 
 namespace Framework\Service\Resolver;
 
-interface ArgsInterface
+interface ResolverInterface
 {
     /**
-     * @return array
+     *
      */
-    function args();
+    const ARGS = '__args__';
 }

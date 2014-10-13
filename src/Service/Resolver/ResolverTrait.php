@@ -139,8 +139,18 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [])
     {
-        if (!$args || !is_string(key($args))) {
-            return call_user_func_array($this->args($config), $this->args($args));
+        if (!$args) {
+            return call_user_func($this->args($config));
+        }
+
+        if (!is_string(key($args))) {
+            $config = $this->args($config);
+
+            if (!is_array($args[0]) || !isset($args[0][ResolverInterface::ARGS])) {
+                return call_user_func_array($config, $this->args($args));
+            }
+
+            $args   = $args[0][ResolverInterface::ARGS];
         }
 
         $method = '__invoke';

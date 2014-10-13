@@ -26,13 +26,13 @@ class Event
      */
     public function args()
     {
-        return [new Args([
-            Args::EVENT     => $this,
-            Args::REQUEST   => $this->request(),
-            Args::RESPONSE  => $this->response(),
-            Args::ROUTE     => $this->route(),
-            Args::VIEWMODEL => $this->viewModel()
-        ])];
+        return [
+            ArgsInterface::EVENT     => $this,
+            ArgsInterface::REQUEST   => $this->request(),
+            ArgsInterface::RESPONSE  => $this->response(),
+            ArgsInterface::ROUTE     => $this->route(),
+            ArgsInterface::VIEWMODEL => $this->viewModel()
+        ];
     }
 
     /**

@@ -16,12 +16,12 @@ interface EventInterface
     /**
      *
      */
-    const REQUEST = 'Request';
+    const REQUEST = 'request';
 
     /**
      *
      */
-    const RESPONSE = 'Response';
+    const RESPONSE = 'response';
 
     /**
      * @return Exception
