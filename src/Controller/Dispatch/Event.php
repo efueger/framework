@@ -48,11 +48,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        $options = [
-            ArgsInterface::EVENT   => $this,
-            ArgsInterface::OPTIONS => [ArgsInterface::EVENT => $this] + $options
-        ] + $options;
-
-        return $this->signal($listener, $options);
+        return $this->signal($listener, [ArgsInterface::EVENT => $this, ArgsInterface::OPTIONS => $options] + $options);
     }
 }
