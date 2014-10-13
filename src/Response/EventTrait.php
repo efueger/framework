@@ -3,7 +3,6 @@
 namespace Framework\Response;
 
 use Framework\Event\EventTrait as Base;
-use Framework\Response\ResponseInterface as Response;
 
 trait EventTrait
 {
@@ -13,12 +12,12 @@ trait EventTrait
     use Base;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     protected $response;
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function response()
     {
@@ -26,9 +25,9 @@ trait EventTrait
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      */
-    public function setResponse(Response $response)
+    public function setResponse(ResponseInterface $response)
     {
         $this->response = $response;
     }

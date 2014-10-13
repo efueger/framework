@@ -3,7 +3,6 @@
 namespace Framework\Response;
 
 use Framework\Event\EventInterface as Event;
-use Framework\Response\ResponseInterface as Response;
 
 interface EventInterface
     extends Event
@@ -14,7 +13,7 @@ interface EventInterface
     const RESPONSE = 'Response\Event';
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     function response();
 }
