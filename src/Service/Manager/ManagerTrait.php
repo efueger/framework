@@ -105,7 +105,7 @@ trait ManagerTrait
                 $args = func_get_args();
 
                 if ($args && is_array($args[0]) && isset($args[0][ResolverInterface::ARGS])) {
-                    $args = $args[0]['__args__'];
+                    $args = $args[0][ResolverInterface::ARGS];
                 }
 
                 return $this->call(substr($config, 1), $args);
