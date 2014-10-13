@@ -48,6 +48,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        return $this->signal($listener, [new Args(['event' => $this, 'options' => $options] + $options)]);
+        return $this->signal($listener, [new Args([Args::EVENT => $this, Args::OPTIONS => $options] + $options)]);
     }
 }

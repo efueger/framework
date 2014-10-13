@@ -27,11 +27,11 @@ class Event
     public function args()
     {
         return [new Args([
-            'event'     => $this,
-            'request'   => $this->request(),
-            'response'  => $this->response(),
-            'route'     => $this->route(),
-            'viewModel' => $this->viewModel()
+            Args::EVENT     => $this,
+            Args::REQUEST   => $this->request(),
+            Args::RESPONSE  => $this->response(),
+            Args::ROUTE     => $this->route(),
+            Args::VIEWMODEL => $this->viewModel()
         ])];
     }
 
