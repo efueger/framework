@@ -4,7 +4,6 @@ namespace Framework\Service\Manager;
 
 use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
-use Framework\Service\Resolver\ResolverInterface;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use RuntimeException;
 
@@ -102,13 +101,7 @@ trait ManagerTrait
 
         if (is_string($config) && '@' === $config[0]) {
             $closure = function() use ($config) {
-                $args = func_get_args();
-
-                if ($args && is_array($args[0]) && isset($args[0][ResolverInterface::ARGS])) {
-                    $args = $args[0][ResolverInterface::ARGS];
-                }
-
-                return $this->call(substr($config, 1), $args);
+                return $this->call(substr($config, 1), func_get_args());
             };
 
             return $closure;
