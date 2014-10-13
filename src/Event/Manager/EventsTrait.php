@@ -50,15 +50,7 @@ trait EventsTrait
     {
         /** @var callable $event */
         if ($event instanceof Event) {
-            if (is_callable($event)) {
-                return $event($listener, $options);
-            }
-
-            if (is_string(key($options))) {
-                return $this->invoke($listener, [Args::EVENT => $event] + $options);
-            }
-
-            return $listener($event, $options);
+            return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
         }
 
         return $this->invoke($listener, $options);
