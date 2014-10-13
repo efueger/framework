@@ -17,6 +17,7 @@ use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
+use ReflectionFunction;
 use ReflectionMethod;
 
 trait ResolverTrait
@@ -192,7 +193,7 @@ trait ResolverTrait
                 goto call;
             }
 
-            $params = (new \ReflectionFunction($config))->getParameters();
+            $params = (new ReflectionFunction($config))->getParameters();
             $callable = $config;
         }
 
