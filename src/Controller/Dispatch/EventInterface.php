@@ -21,16 +21,4 @@ interface EventInterface
      *
      */
     const RESPONSE = 'Response';
-
-    /**
-     * @return callable|string
-     */
-    function controller();
-
-    /**
-     * @param callable $listener
-     * @param array $options
-     * @return mixed
-     */
-    function signal(callable $listener, array $options = []);
 }

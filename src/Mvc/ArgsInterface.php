@@ -7,6 +7,11 @@ interface ArgsInterface
     /**
      *
      */
+    const CONTROLLER = 'controller';
+
+    /**
+     *
+     */
     const EVENT = 'event';
 
     /**

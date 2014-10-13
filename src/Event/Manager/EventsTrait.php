@@ -48,7 +48,7 @@ trait EventsTrait
      * @param array $options
      * @return mixed
      */
-    protected function signal($event, callable $listener, array $options = [])
+    protected function emit($event, callable $listener, array $options = [])
     {
         /** @var callable $event */
 

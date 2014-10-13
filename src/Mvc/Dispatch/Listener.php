@@ -4,8 +4,6 @@ namespace Framework\Mvc\Dispatch;
 
 use Exception;
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;
-use Framework\Mvc\EventInterface;
-use Framework\Route\Route\RouteInterface as Route;
 
 class Listener
     implements ListenerInterface
@@ -16,19 +14,19 @@ class Listener
     use ControllerManager;
 
     /**
-     * @param EventInterface $event
-     * @param Route $route
+     * @param $controller
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(EventInterface $event, Route $route)
+    public function __invoke($controller, array $args = [])
     {
         try {
 
-            return $this->dispatch($this->controller($route->controller()), $event->args());
+            return $this->dispatch($this->controller($controller), $args);
 
         } catch (Exception $exception) {
 
-            return $this->exception($exception, $event->args());
+            return $this->exception($exception, $args);
 
         }
     }

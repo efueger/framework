@@ -5,9 +5,9 @@ namespace Framework\Controller\Dispatch;
 interface ListenerInterface
 {
     /**
-     * @param EventInterface $event
-     * @param array $options
+     * @param $controller
+     * @param array $args
      * @return mixed
      */
-    function __invoke(EventInterface $event, array $options = []);
+    function __invoke($controller, array $args = []);
 }

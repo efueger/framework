@@ -3,11 +3,10 @@
 namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
-use Framework\Event\Signal\SignalInterface;
 use Framework\Event\Signal\SignalTrait;
 
 class Event
-    implements EventInterface, SignalInterface
+    implements EventInterface
 {
     /**
      *
@@ -34,11 +33,14 @@ class Event
     }
 
     /**
-     * @return callable|string
+     * @return array
      */
-    public function controller()
+    protected function args()
     {
-        return $this->controller;
+        return [
+            ArgsInterface::EVENT      => $this,
+            ArgsInterface::CONTROLLER => $this->controller
+        ];
     }
 
     /**
@@ -48,6 +50,6 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        return $this->signal($listener, [ArgsInterface::EVENT => $this, ArgsInterface::OPTIONS => $options] + $options);
+        return $this->signal($listener, $this->args() + $options);
     }
 }

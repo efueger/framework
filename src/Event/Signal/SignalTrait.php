@@ -12,7 +12,7 @@ trait SignalTrait
      * @param array $args
      * @return mixed
      */
-    public function signal(callable $listener, array $args = [])
+    protected function signal(callable $listener, array $args = [])
     {
         if (!$args) {
             return $listener();
@@ -34,6 +34,11 @@ trait SignalTrait
         $matched = [];
 
         foreach($params as $param) {
+            if (SignalInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
+                $matched[] = $args;
+                continue;
+            }
+
             if (isset($args[$param->name])) {
                 $matched[] = $args[$param->name];
             }

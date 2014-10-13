@@ -187,24 +187,34 @@ trait ResolverTrait
         $params   = null;
 
         if (is_string($config) && !class_exists($config)) {
-            $static = explode(ResolverInterface::STATIC_STRING, $config);
-            if ($static && isset($static[1])) {
-                list($config, $method) = $static;
-                goto call;
-            }
 
-            $params = (new ReflectionFunction($config))->getParameters();
-            $callable = $config;
+            $static = explode(ResolverInterface::STATIC_STRING, $config);
+
+            if ($static && isset($static[1])) {
+
+                list($config, $method) = $static;
+
+            } else {
+
+                $params   = (new ReflectionFunction($config))->getParameters();
+                $callable = $config;
+
+            }
         }
 
-        call:
         if (!$callable) {
             $params = (new ReflectionMethod($config, $method))->getParameters();
         }
 
         foreach($params as $param) {
+
+            if (ResolverInterface::ARGS === $param->name) {var_dump($param->name);
+                $matched[] = $args;
+                continue;
+            }
+
             if (isset($args[$param->name])) {
-                $matched[] = $args[$param->name];
+                $matched[$param->name] = $args[$param->name];
             }
         }
 

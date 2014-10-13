@@ -13,12 +13,12 @@ class Listener
     use ControllerManager;
 
     /**
-     * @param EventInterface $event
-     * @param array $options
+     * @param $controller
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke($controller, array $args = [])
     {
-        return $event->signal($event->controller(), $options);
+        return $this->action($controller, $args);
     }
 }

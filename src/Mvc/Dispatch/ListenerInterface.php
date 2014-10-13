@@ -2,15 +2,12 @@
 
 namespace Framework\Mvc\Dispatch;
 
-use Framework\Mvc\EventInterface;
-use Framework\Route\Route\RouteInterface as Route;
-
 interface ListenerInterface
 {
     /**
-     * @param EventInterface $event
-     * @param Route $route
+     * @param $controller
+     * @param array $__args__
      * @return mixed
      */
-    function __invoke(EventInterface $event, Route $route);
+    function __invoke($controller, array $__args__ = []);
 }

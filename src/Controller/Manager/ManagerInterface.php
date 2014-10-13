@@ -7,6 +7,13 @@ use Exception;
 interface ManagerInterface
 {
     /**
+     * @param callable $listener
+     * @param array $args
+     * @return mixed
+     */
+    function action(callable $listener, array $args = []);
+
+    /**
      * @param callable|string $config
      * @return callable|null|object
      */

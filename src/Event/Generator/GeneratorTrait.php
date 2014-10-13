@@ -20,7 +20,7 @@ trait GeneratorTrait
 
         foreach($this->queue(is_string($event) ? $event : $event->event()) as $listener) {
 
-            $result = $this->signal($event, $listener, $options);
+            $result = $this->emit($event, $listener, $options);
 
             $callback && $callback($event, $listener, $options, $result);
 
@@ -62,7 +62,7 @@ trait GeneratorTrait
      * @param array $options
      * @return mixed
      */
-    protected function signal($event, callable $listener, array $options = [])
+    protected function emit($event, callable $listener, array $options = [])
     {
         /** @var callable $event */
         return $event instanceof Event && is_callable($event)

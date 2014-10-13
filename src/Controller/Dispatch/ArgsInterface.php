@@ -7,10 +7,10 @@ interface ArgsInterface
     /**
      *
      */
-    const EVENT  = 'event';
+    const CONTROLLER = 'controller';
 
     /**
      *
      */
-    const OPTIONS = 'options';
+    const EVENT = 'event';
 }
