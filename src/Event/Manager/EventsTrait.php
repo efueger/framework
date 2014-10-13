@@ -2,6 +2,7 @@
 
 namespace Framework\Event\Manager;
 
+use Framework\Event\ArgsInterface as Args;
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Generator\GeneratorTrait as EventGenerator;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
@@ -25,7 +26,7 @@ trait EventsTrait
     {
         /** @var ManagerInterface $this */
 
-        return $event instanceof Event ? $event : $this->create($event);
+        return $event instanceof Event ? $event : $this->create($event, [], function($name) { return $name; });
     }
 
     /**
@@ -37,5 +38,29 @@ trait EventsTrait
         /** @var ManagerInterface|self $this */
 
         return is_callable($listener) ? $listener : $this->invokable($listener);
+    }
+
+    /**
+     * @param Event|string $event
+     * @param callable $listener
+     * @param array $options
+     * @return mixed
+     */
+    protected function signal($event, callable $listener, array $options = [])
+    {
+        /** @var callable $event */
+        if ($event instanceof Event) {
+            if (is_callable($event)) {
+                return $event($listener, $options);
+            }
+
+            if (is_string(key($options))) {
+                return $this->invoke($listener, [Args::EVENT => $event] + $options);
+            }
+
+            return $listener($event, $options);
+        }
+
+        return $this->invoke($listener, $options);
     }
 }

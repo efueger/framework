@@ -14,7 +14,7 @@ trait EventManagerTrait
 
     /**
      * @param array|EventInterface|string $event
-     * @return EventInterface
+     * @return EventInterface|string
      */
     abstract protected function event($event);
 
@@ -27,12 +27,12 @@ trait EventManagerTrait
     }
 
     /**
-     * @param EventInterface $event
+     * @param EventInterface|string $event
      * @param array $options
      * @param callable $callback
      * @return mixed|null
      */
-    abstract protected function generate(EventInterface $event, array $options = [], callable $callback = null);
+    abstract protected function generate($event, array $options = [], callable $callback = null);
 
     /**
      * @return Events

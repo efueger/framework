@@ -9,22 +9,22 @@ use Generator;
 trait GeneratorTrait
 {
     /**
-     * @param Event $event
+     * @param Event|string $event
      * @param array $options
      * @param callable $callback
      * @return mixed|null
      */
-    protected function generate(Event $event, array $options = [], callable $callback = null)
+    protected function generate($event, array $options = [], callable $callback = null)
     {
         $result = null;
 
-        foreach($this->queue($event->event()) as $listener) {
+        foreach($this->queue(is_string($event) ? $event : $event->event()) as $listener) {
 
             $result = $this->signal($event, $listener, $options);
 
             $callback && $callback($event, $listener, $options, $result);
 
-            if ($event->stopped()) {
+            if ($event instanceof Event && $event->stopped()) {
                 break;
             }
         }
@@ -57,14 +57,15 @@ trait GeneratorTrait
     }
 
     /**
-     * @param Event $event
+     * @param Event|string $event
      * @param callable $listener
      * @param array $options
      * @return mixed
      */
-    protected function signal(Event $event, callable $listener, array $options = [])
+    protected function signal($event, callable $listener, array $options = [])
     {
         /** @var callable $event */
-        return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
+        return $event instanceof Event && is_callable($event)
+                    ? $event($listener, $options) : $listener($event, $options);
     }
 }
