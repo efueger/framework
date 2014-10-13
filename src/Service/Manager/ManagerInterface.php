@@ -10,9 +10,10 @@ interface ManagerInterface
     /**
      * @param array|object|string $config
      * @param array $args
+     * @param callable $callback
      * @return callable|null|object
      */
-    function create($config, array $args = []);
+    function create($config, array $args = [], callable $callback = null);
 
     /**
      * @param string $name
