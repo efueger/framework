@@ -23,9 +23,10 @@ trait ManagerTrait
     /**
      * @param array|object|string $config
      * @param array $args
+     * @param callable $callback
      * @return callable|null|object
      */
-    public function create($config, array $args = [])
+    public function create($config, array $args = [], callable $callback = null)
     {
         if (is_string($config)) {
 
@@ -35,6 +36,10 @@ trait ManagerTrait
 
             if ($configured = $this->configured($config)) {
                 return $this->create($configured, $args);
+            }
+
+            if ($callback && !class_exists($config)) {
+                return $callback($config, $args);
             }
 
             return $this->newInstanceArgs($config, $args);
@@ -50,9 +55,10 @@ trait ManagerTrait
     /**
      * @param string $name
      * @param array $args
+     * @param callable $callback
      * @return null|object|callable
      */
-    public function get($name, array $args = [])
+    public function get($name, array $args = [], callable $callback = null)
     {
         if ($service = $this->service($name)) {
             return $service;
@@ -60,7 +66,7 @@ trait ManagerTrait
 
         $this->initializing($name);
 
-        $service = $this->create($name, $args);
+        $service = $this->create($name, $args, $callback);
 
         $this->initialized($name);
 

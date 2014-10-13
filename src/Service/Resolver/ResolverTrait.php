@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Resolver;
 
-use Closure;
+use Exception;
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
@@ -45,7 +45,8 @@ trait ResolverTrait
     /**
      * @param array|object|string $config
      * @param array $args
-     * @return mixed
+     * @return callable|mixed|null|object
+     * @throws Exception
      */
     protected function call($config, array $args = [])
     {
@@ -55,10 +56,25 @@ trait ResolverTrait
             return $this->invoke($config, $args);
         }
 
-        $config = explode('.', $config);
-        $call   = $args   ? array_pop($config)   : null;
-        $name   = $config ? array_shift($config) : $call;
-        $value  = $this->get($name);
+        $config = explode(ResolverInterface::SEPARATOR, $config);
+
+        $call     = $args ? array_pop($config) : null;
+        $callable = false;
+        $name     = $config ? array_shift($config) : $call;
+
+        $value  = $this->get($name, [], function($name) use(&$callable, $args) {
+            $callable = true;
+
+            if (!is_callable($name)) {
+                throw new Exception('Callable not found: ' . $name);
+            }
+
+            return $this->invoke($name, $args);
+        });
+
+        if ($callable) {
+            return $value;
+        }
 
         foreach($config as $method) {
             $value = $value->$method();
@@ -105,7 +121,7 @@ trait ResolverTrait
         foreach($config->calls() as $method => $value) {
 
             if (is_string($method)) {
-                if ('$' == $method[0]) {
+                if (ResolverInterface::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
                     continue;
                 }
@@ -150,23 +166,40 @@ trait ResolverTrait
                 return call_user_func_array($config, $this->args($args));
             }
 
-            $args   = $args[0][ResolverInterface::ARGS];
+            $args = $args[0][ResolverInterface::ARGS];
         }
 
-        $method = '__invoke';
+        $method = ResolverInterface::INVOKE;
 
         if (is_array($config)) {
             if (is_string($config[0])) {
                 return call_user_func($config, $args);
             }
 
-            $method   = isset($config[1]) ? $config[1] : $method;
+            $method = isset($config[1]) ? $config[1] : $method;
+
             $config = $config[0];
         }
 
-        $params = (new ReflectionMethod($config, $method))->getParameters();
+        $callable = null;
+        $matched  = [];
+        $params   = null;
 
-        $matched = [];
+        if (is_string($config) && !class_exists($config)) {
+            $static = explode('::', $config);
+            if ($static && isset($static[1])) {
+                list($config, $method) = $static;
+                goto call;
+            }
+
+            $params = (new \ReflectionFunction($config))->getParameters();
+            $callable = $config;
+        }
+
+        call:
+        if (!$callable) {
+            $params = (new ReflectionMethod($config, $method))->getParameters();
+        }
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
@@ -174,7 +207,7 @@ trait ResolverTrait
             }
         }
 
-        return call_user_func_array([$config, $method], !$matched && $config instanceof Closure ? $args : $matched);
+        return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
     }
 
     /**
@@ -227,7 +260,7 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
-        $name = explode('.', $name);
+        $name = explode(ResolverInterface::SEPARATOR, $name);
 
         $value = $this->config()->get(array_shift($name));
 

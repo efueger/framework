@@ -17,7 +17,8 @@ interface ManagerInterface
     /**
      * @param string $name
      * @param array $args
+     * @param callable $callback
      * @return callable|null|object
      */
-    function get($name, array $args = []);
+    function get($name, array $args = [], callable $callback = null);
 }
