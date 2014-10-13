@@ -50,7 +50,7 @@ class Event
     {
         return $this->signal(
             $listener,
-            [ArgsInterface::EVENT => $this, ArgsInterface::OPTIONS => $options] + $options
+            [ArgsInterface::EVENT => $this, ArgsInterface::OPTIONS => [ArgsInterface::EVENT => $this] + $options] + $options
         );
     }
 }
