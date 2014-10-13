@@ -2,12 +2,14 @@
 
 namespace Framework\Event\Manager;
 
-use Framework\Event\ArgsInterface as Args;
+use Closure;
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Generator\GeneratorTrait as EventGenerator;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
+use Framework\Service\Resolver\ResolverInterface;
 use Framework\Service\Manager\ManagerInterface;
 use Framework\Service\Manager\ManagerTrait as ServiceManager;
+use ReflectionMethod;
 
 trait EventsTrait
 {
@@ -49,8 +51,15 @@ trait EventsTrait
     protected function signal($event, callable $listener, array $options = [])
     {
         /** @var callable $event */
+
         if ($event instanceof Event) {
             return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
+        }
+
+        if ($listener instanceof Closure
+                && is_string(key($options))
+                    && !(new ReflectionMethod($listener, ResolverInterface::INVOKE))->getParameters()) {
+            return call_user_func_array($listener, [[ResolverInterface::ARGS => $options]]);
         }
 
         return $this->invoke($listener, $options);
