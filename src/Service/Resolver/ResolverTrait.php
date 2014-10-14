@@ -207,13 +207,13 @@ trait ResolverTrait
         }
 
         foreach($params as $param) {
-            if (ResolverInterface::ARGUMENTS === $param->name) {
-                $matched[] = $args;
+            if (isset($args[$param->name])) {
+                $matched[] = $args[$param->name];
                 continue;
             }
 
-            if (isset($args[$param->name])) {
-                $matched[] = $args[$param->name];
+            if (ResolverInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
+                $matched[] = $args;
                 continue;
             }
 

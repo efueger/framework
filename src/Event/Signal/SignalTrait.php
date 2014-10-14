@@ -36,13 +36,13 @@ trait SignalTrait
         $matched = [];
 
         foreach($params as $param) {
-            if (SignalInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
-                $matched[] = $args;
+            if (isset($args[$param->name])) {
+                $matched[] = $args[$param->name];
                 continue;
             }
 
-            if (isset($args[$param->name])) {
-                $matched[] = $args[$param->name];
+            if (SignalInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
+                $matched[] = $args;
                 continue;
             }
 
