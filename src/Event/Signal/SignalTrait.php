@@ -18,7 +18,7 @@ trait SignalTrait
             return $listener();
         }
 
-        $method = '__invoke';
+        $method = SignalInterface::INVOKE;
 
         if (is_array($listener)) {
             if (is_string($listener[0])) {
@@ -29,9 +29,8 @@ trait SignalTrait
             $listener = $listener[0];
         }
 
-        $params = (new ReflectionMethod($listener, $method))->getParameters();
-
         $matched = [];
+        $params  = (new ReflectionMethod($listener, $method))->getParameters();
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
