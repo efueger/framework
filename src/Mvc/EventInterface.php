@@ -34,7 +34,7 @@ interface EventInterface
     /**
      *
      */
-    const VIEWMODEL = 'ViewModel';
+    const VIEW_MODEL = 'ViewModel';
 
     /**
      * @return array

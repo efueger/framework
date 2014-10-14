@@ -30,7 +30,7 @@ class Event
             ArgsInterface::REQUEST    => $this->request(),
             ArgsInterface::RESPONSE   => $this->response(),
             ArgsInterface::ROUTE      => $this->route(),
-            ArgsInterface::VIEWMODEL  => $this->viewModel(),
+            ArgsInterface::VIEW_MODEL => $this->viewModel(),
             ArgsInterface::CONTROLLER => $this->route()->controller(),
         ];
     }

@@ -39,8 +39,8 @@ class Event
     protected function args()
     {
         return [
-            ArgsInterface::EVENT     => $this,
-            ArgsInterface::VIEWMODEL => $this->viewModel
+            ArgsInterface::EVENT      => $this,
+            ArgsInterface::VIEW_MODEL => $this->viewModel
         ];
     }
 
