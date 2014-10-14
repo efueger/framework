@@ -40,17 +40,4 @@ trait ConfigTrait
 
         return $this->config[$name];
     }
-
-    /**
-     * @param string|callable $listener
-     * @return void
-     */
-    public function remove($listener)
-    {
-        foreach($this->config as $name => $listeners) {
-            foreach(array_keys($listeners) as $priority) {
-                $this->config[$name][$priority] = array_diff($this->config[$name][$priority], [$listener]);
-            }
-        }
-    }
 }
