@@ -12,8 +12,8 @@ class Event
     /**
      *
      */
-    use EventTrait,
-        SignalTrait;
+    use EventTrait;
+    use SignalTrait;
 
     /**
      *
