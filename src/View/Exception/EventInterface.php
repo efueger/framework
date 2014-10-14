@@ -2,7 +2,6 @@
 
 namespace Framework\View\Exception;
 
-use Exception;
 use Framework\Event\EventInterface as Event;
 
 interface EventInterface
@@ -12,9 +11,4 @@ interface EventInterface
      *
      */
     const EXCEPTION = 'View\Exception\Event';
-
-    /**
-     * @return Exception
-     */
-    function exception();
 }

@@ -2,6 +2,7 @@
 
 namespace Framework\View\Exception;
 
+use Exception;
 use Framework\View\Manager\ServiceTrait as ViewManager;
 use Framework\View\Model\ServiceTrait as ViewModelTrait;
 
@@ -15,16 +16,16 @@ class Listener
     use ViewModelTrait;
 
     /**
-     * @param EventInterface $event
+     * @param Exception $exception
      * @return mixed
      */
-    public function __invoke(EventInterface $event)
+    public function __invoke(Exception $exception)
     {
         /** @var ViewModelInterface $viewModel */
 
         $viewModel = $this->viewModel();
 
-        $viewModel->setException($event->exception());
+        $viewModel->setException($exception);
 
         return $this->render($viewModel);
     }

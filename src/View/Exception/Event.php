@@ -3,7 +3,8 @@
 namespace Framework\View\Exception;
 
 use Exception;
-use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\EventTrait;
+use Framework\Event\Signal\SignalTrait;
 
 class Event
     implements EventInterface
@@ -12,6 +13,7 @@ class Event
      *
      */
     use EventTrait;
+    use SignalTrait;
 
     /**
      *
@@ -32,10 +34,23 @@ class Event
     }
 
     /**
-     * @return Exception
+     * @return array
      */
-    public function exception()
+    protected function args()
     {
-        return $this->exception;
+        return [
+            ArgsInterface::EVENT     => $this,
+            ArgsInterface::EXCEPTION => $this->exception
+        ];
+    }
+
+    /**
+     * @param callable $listener
+     * @param array $args
+     * @return mixed
+     */
+    public function __invoke(callable $listener, array $args = [])
+    {
+        return $this->signal($listener, $this->args() + $args);
     }
 }

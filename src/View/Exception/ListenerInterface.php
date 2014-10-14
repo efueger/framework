@@ -2,11 +2,13 @@
 
 namespace Framework\View\Exception;
 
+use Exception;
+
 interface ListenerInterface
 {
     /**
-     * @param EventInterface $event
+     * @param Exception $exception
      * @return mixed
      */
-    function __invoke(EventInterface $event);
+    function __invoke(Exception $exception);
 }
