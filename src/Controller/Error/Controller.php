@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Error;
 
-use Framework\Response\ServiceTrait as Response;
+use Framework\Response\ResponseInterface as Response;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
 class Controller
@@ -11,15 +11,15 @@ class Controller
     /**
      *
      */
-    use Response;
     use ViewModel;
 
     /**
-     * @return mixed
+     * @param Response $response
+     * @return ViewModel
      */
-    public function __invoke()
+    public function __invoke(Response $response)
     {
-        $this->response()->setStatus(404);
+        $response->setStatus(404);
 
         return $this->viewModel();
     }
