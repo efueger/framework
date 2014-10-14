@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Dispatch;
 
-use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\EventTrait;
 use Framework\Event\Signal\SignalTrait;
 use Framework\Route\Route\RouteInterface as Route;
 

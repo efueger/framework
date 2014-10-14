@@ -2,8 +2,8 @@
 
 namespace Framework\Route\Match;
 
-use Framework\Event\EventTrait as EventTrait;
-use Framework\Event\Signal\SignalTrait as SignalTrait;
+use Framework\Event\EventTrait;
+use Framework\Event\Signal\SignalTrait;
 use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Route\RouteInterface as Route;
 
