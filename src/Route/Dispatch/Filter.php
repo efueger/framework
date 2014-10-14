@@ -8,13 +8,10 @@ class Filter
     implements FilterInterface
 {
     /**
-     * @param EventInterface $event
-     * @param array $options
+     * @param Route $route
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(Route $route)
     {
-        $route = $event->route();
-
         $route->add(Route::PATH, urldecode(rtrim($route->path(), '/')) ?: '/');
     }
 }

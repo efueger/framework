@@ -54,12 +54,11 @@ class Dispatch
     }
 
     /**
-     * @param EventInterface $event
-     * @param array $options
+     * @param Route $route
      * @return Route
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(Route $route)
     {
-        return $this->dispatch($event->route());
+        return $this->dispatch($route);
     }
 }

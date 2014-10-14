@@ -3,6 +3,7 @@
 namespace Framework\Route\Dispatch;
 
 use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\Signal\SignalTrait;
 use Framework\Route\Route\RouteInterface as Route;
 
 class Event
@@ -11,7 +12,8 @@ class Event
     /**
      *
      */
-    use EventTrait;
+    use EventTrait,
+        SignalTrait;
 
     /**
      *
@@ -32,6 +34,17 @@ class Event
     }
 
     /**
+     * @return array
+     */
+    protected function args()
+    {
+        return [
+            ArgsInterface::EVENT => $this,
+            ArgsInterface::ROUTE => $this->route
+        ];
+    }
+
+    /**
      * @return Route $route
      */
     public function route()
@@ -46,7 +59,7 @@ class Event
      */
     public function __invoke(callable $listener, array $options = [])
     {
-        $result = $listener($this, $options);
+        $result = $this->signal($listener, $this->args() + $options);
 
         if ($result && $result instanceof Route) {
             $this->stop();
