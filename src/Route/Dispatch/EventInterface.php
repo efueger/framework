@@ -3,7 +3,6 @@
 namespace Framework\Route\Dispatch;
 
 use Framework\Event\EventInterface as Event;
-use Framework\Route\Route\RouteInterface as Route;
 
 interface EventInterface
     extends Event
@@ -12,9 +11,4 @@ interface EventInterface
      *
      */
     const DISPATCH = 'Route\Dispatch\Event';
-
-    /**
-     * @return Route $route
-     */
-    function route();
 }

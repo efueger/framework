@@ -45,14 +45,6 @@ class Event
     }
 
     /**
-     * @return Route $route
-     */
-    public function route()
-    {
-        return $this->route;
-    }
-
-    /**
      * @param callable $listener
      * @param array $args
      * @return mixed
