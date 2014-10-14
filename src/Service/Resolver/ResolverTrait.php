@@ -217,7 +217,7 @@ trait ResolverTrait
                 continue;
             }
 
-            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : ($param->isArray() ? [] : null);
+            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : $param->isArray() ? [] : null;
         }
 
         return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
