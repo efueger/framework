@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Service\Factory;
+namespace Framework\Service;
 
 use Framework\Config\ConfigInterface;
 use Framework\Service\Manager\ManagerInterface;
