@@ -39,21 +39,21 @@ class Manager
 
     /**
      * @param callable $controller
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function dispatch(callable $controller, array $options = [])
+    public function dispatch(callable $controller, array $args = [])
     {
-        return $this->trigger([Dispatch::DISPATCH, $controller], $options);
+        return $this->trigger([Dispatch::DISPATCH, $controller], $args);
     }
 
     /**
      * @param \Exception $exception
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function exception(\Exception $exception, array $options = [])
+    public function exception(\Exception $exception, array $args = [])
     {
-        return $this->trigger([Exception::EXCEPTION, $exception], $options);
+        return $this->trigger([Exception::EXCEPTION, $exception], $args);
     }
 }

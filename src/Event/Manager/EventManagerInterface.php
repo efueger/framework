@@ -8,9 +8,9 @@ interface EventManagerInterface
 {
     /**
      * @param array|EventInterface|string $event
-     * @param array $options
+     * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    function trigger($event, array $options = [], callable $callback = null);
+    function trigger($event, array $args = [], callable $callback = null);
 }

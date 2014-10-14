@@ -45,23 +45,23 @@ trait EventsTrait
     /**
      * @param Event|string $event
      * @param callable $listener
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    protected function emit($event, callable $listener, array $options = [])
+    protected function emit($event, callable $listener, array $args = [])
     {
         /** @var callable $event */
 
         if ($event instanceof Event) {
-            return is_callable($event) ? $event($listener, $options) : $listener($event, $options);
+            return is_callable($event) ? $event($listener, $args) : $listener($event, $args);
         }
 
         if ($listener instanceof Closure
                 && is_string(key($options))
                     && !(new ReflectionMethod($listener, ResolverInterface::INVOKE))->getParameters()) {
-            return call_user_func_array($listener, [[ResolverInterface::ARGS => $options]]);
+            return call_user_func_array($listener, [[ResolverInterface::ARGS => $args]]);
         }
 
-        return $this->invoke($listener, $options);
+        return $this->invoke($listener, $args);
     }
 }

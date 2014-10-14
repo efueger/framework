@@ -6,8 +6,8 @@ interface ListenerInterface
 {
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    function __invoke(EventInterface $event, array $options = []);
+    function __invoke(EventInterface $event, array $args = []);
 }

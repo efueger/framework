@@ -14,12 +14,12 @@ trait ServiceTrait
 
     /**
      * @param Route $route
-     * @param array $options
+     * @param array $args
      * @return Route
      */
-    public function dispatch(Route $route, array $options = [])
+    public function dispatch(Route $route, array $args = [])
     {
-        return $this->rm->dispatch($route, $options);
+        return $this->rm->dispatch($route, $args);
     }
 
     /**

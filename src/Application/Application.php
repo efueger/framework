@@ -27,11 +27,11 @@ class Application
     }
 
     /**
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(array $options = [])
+    public function __invoke(array $args = [])
     {
-        return $this->trigger(Event::MVC, $options);
+        return $this->trigger(Event::MVC, $args);
     }
 }

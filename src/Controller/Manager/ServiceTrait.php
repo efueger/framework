@@ -40,22 +40,22 @@ trait ServiceTrait
 
     /**
      * @param Exception $exception
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function exception(Exception $exception, array $options = [])
+    public function exception(Exception $exception, array $args = [])
     {
-        return $this->cm->exception($exception, $options);
+        return $this->cm->exception($exception, $args);
     }
 
     /**
      * @param callable $controller
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function dispatch(callable $controller, array $options = [])
+    public function dispatch(callable $controller, array $args = [])
     {
-        return $this->cm->dispatch($controller, $options);
+        return $this->cm->dispatch($controller, $args);
     }
 
     /**

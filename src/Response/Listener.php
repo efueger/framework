@@ -14,10 +14,10 @@ class Listener
 
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, array $args = [])
     {
         return $event->response();
     }

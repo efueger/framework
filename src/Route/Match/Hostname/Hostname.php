@@ -22,10 +22,10 @@ class Hostname
 
     /**
      * @param EventInterface $event
-     * @param array $options
+     * @param array $args
      * @return Route
      */
-    public function __invoke(EventInterface $event, array $options = [])
+    public function __invoke(EventInterface $event, array $args = [])
     {
         return $this->match($event->route(), $event->definition());
     }

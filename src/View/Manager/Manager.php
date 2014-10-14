@@ -46,11 +46,11 @@ class Manager
 
     /**
      * @param ViewModel $viewModel
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function render(ViewModel $viewModel, array $options = [])
+    public function render(ViewModel $viewModel, array $args = [])
     {
-        return $this->trigger([Render::RENDER, $viewModel], $options);
+        return $this->trigger([Render::RENDER, $viewModel], $args);
     }
 }

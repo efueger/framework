@@ -20,12 +20,12 @@ class Manager
 
     /**
      * @param Route $route
-     * @param array $options
+     * @param array $args
      * @return Route
      */
-    public function dispatch(Route $route, array $options = [])
+    public function dispatch(Route $route, array $args = [])
     {
-       return $this->trigger([Dispatch::DISPATCH, $route], $options);
+       return $this->trigger([Dispatch::DISPATCH, $route], $args);
     }
 
     /**

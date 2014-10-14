@@ -21,15 +21,15 @@ interface ManagerInterface
 
     /**
      * @param callable $controller
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    function dispatch(callable $controller, array $options = []);
+    function dispatch(callable $controller, array $args = []);
 
     /**
      * @param Exception $exception
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    function exception(Exception $exception, array $options = []);
+    function exception(Exception $exception, array $args = []);
 }

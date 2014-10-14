@@ -45,11 +45,11 @@ class Event
 
     /**
      * @param callable $listener
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(callable $listener, array $options = [])
+    public function __invoke(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $this->args() + $options);
+        return $this->signal($listener, $this->args() + $args);
     }
 }

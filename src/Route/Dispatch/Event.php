@@ -54,12 +54,12 @@ class Event
 
     /**
      * @param callable $listener
-     * @param array $options
+     * @param array $args
      * @return mixed
      */
-    public function __invoke(callable $listener, array $options = [])
+    public function __invoke(callable $listener, array $args = [])
     {
-        $result = $this->signal($listener, $this->args() + $options);
+        $result = $this->signal($listener, $this->args() + $args);
 
         if ($result && $result instanceof Route) {
             $this->stop();
