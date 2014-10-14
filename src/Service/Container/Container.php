@@ -2,16 +2,9 @@
 
 namespace Framework\Service\Container;
 
-use Framework\Config\ConfigTrait;
-
 class Container
     implements ContainerInterface
 {
-    /**
-     *
-     */
-    use ConfigTrait;
-
     /**
      * @var array
      */
@@ -20,7 +13,20 @@ class Container
     /**
      * @var array
      */
+    protected $config = [];
+
+    /**
+     * @var array
+     */
     protected $services = [];
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        $this->config = $config;
+    }
 
     /**
      * @param string $name
