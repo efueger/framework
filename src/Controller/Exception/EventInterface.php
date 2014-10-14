@@ -2,7 +2,6 @@
 
 namespace Framework\Controller\Exception;
 
-use Exception;
 use Framework\Event\EventInterface as Event;
 
 interface EventInterface
@@ -22,9 +21,4 @@ interface EventInterface
      *
      */
     const RESPONSE = 'response';
-
-    /**
-     * @return Exception
-     */
-    function exception();
 }

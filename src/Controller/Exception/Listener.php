@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Exception;
 
-use Framework\Request\RequestInterface as Request;
+use Exception;
 use Framework\Response\ResponseInterface as Response;
 use Framework\View\Exception\ViewModelInterface;
 use Framework\View\Model\ServiceTrait as ViewModel;
@@ -16,19 +16,18 @@ class Listener
     use ViewModel;
 
     /**
-     * @param EventInterface $event
-     * @param Request $request
+     * @param Exception $exception
      * @param Response $response
      * @return mixed
      */
-    public function __invoke(EventInterface $event, Request $request, Response $response)
+    public function __invoke(Exception $exception, Response $response)
     {
         $response->setStatus(500);
 
         /** @var ViewModelInterface $viewModel */
         $viewModel = $this->viewModel();
 
-        $viewModel->setException($event->exception());
+        $viewModel->setException($exception);
 
         return $viewModel;
     }
