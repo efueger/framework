@@ -3,6 +3,7 @@
 namespace Framework\Route\Match;
 
 use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\Signal\SignalTrait as SignalTrait;
 use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Route\RouteInterface as Route;
 
@@ -13,6 +14,7 @@ class Event
      *
      */
     use EventTrait;
+    use SignalTrait;
 
     /**
      *
@@ -40,19 +42,15 @@ class Event
     }
 
     /**
-     * @return Definition
+     * @return array
      */
-    public function definition()
+    protected function args()
     {
-        return $this->definition;
-    }
-
-    /**
-     * @return Route
-     */
-    public function route()
-    {
-        return $this->route;
+        return [
+            ArgsInterface::EVENT      => $this,
+            ArgsInterface::DEFINITION => $this->definition,
+            ArgsInterface::ROUTE      => $this->route,
+        ];
     }
 
     /**
@@ -62,7 +60,7 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        $result = $listener($this, $args);
+        $result = $this->signal($listener, $this->args() + $args);
 
         if (!$result) {
             $this->stop();
