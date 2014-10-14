@@ -14,6 +14,14 @@ trait FactoryTrait
     protected $sm;
 
     /**
+     * @param ManagerInterface $sm
+     */
+    public function __construct(ManagerInterface $sm)
+    {
+        $this->sm = $sm;
+    }
+
+    /**
      * @param $name
      * @return mixed
      */
