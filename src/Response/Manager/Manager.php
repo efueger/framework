@@ -22,6 +22,6 @@ class Manager
      */
     public function response(ResponseInterface $response)
     {
-        return $this->trigger(Response::RESPONSE, [$response]);
+        return $this->trigger([Response::RESPONSE, $response]);
     }
 }
