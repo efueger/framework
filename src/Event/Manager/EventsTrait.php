@@ -6,7 +6,7 @@ use Closure;
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Generator\GeneratorTrait as EventGenerator;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
-use Framework\Service\Resolver\ResolverInterface;
+use Framework\Event\Signal\SignalInterface as Signal;
 use Framework\Service\Manager\ManagerInterface;
 use Framework\Service\Manager\ManagerTrait as ServiceManager;
 use ReflectionMethod;
@@ -58,8 +58,8 @@ trait EventsTrait
 
         if ($listener instanceof Closure
                 && is_string(key($options))
-                    && !(new ReflectionMethod($listener, ResolverInterface::INVOKE))->getParameters()) {
-            return call_user_func_array($listener, [[ResolverInterface::ARGS => $args]]);
+                    && !(new ReflectionMethod($listener, Signal::INVOKE))->getParameters()) {
+            return call_user_func_array($listener, [[Signal::ARGS => $args]]);
         }
 
         return $this->invoke($listener, $args);
