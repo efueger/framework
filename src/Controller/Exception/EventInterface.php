@@ -2,10 +2,7 @@
 
 namespace Framework\Controller\Exception;
 
-use Framework\Event\EventInterface as Event;
-
 interface EventInterface
-    extends Event
 {
     /**
      *

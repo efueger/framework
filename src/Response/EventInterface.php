@@ -2,10 +2,7 @@
 
 namespace Framework\Response;
 
-use Framework\Event\EventInterface as Event;
-
 interface EventInterface
-    extends Event
 {
     /**
      *

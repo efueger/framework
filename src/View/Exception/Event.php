@@ -3,11 +3,12 @@
 namespace Framework\View\Exception;
 
 use Exception;
+use Framework\Event\EventInterface as Base;
 use Framework\Event\EventTrait;
 use Framework\Event\Signal\SignalTrait;
 
 class Event
-    implements EventInterface
+    implements Base, EventInterface
 {
     /**
      *

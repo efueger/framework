@@ -2,10 +2,7 @@
 
 namespace Framework\Controller\Dispatch;
 
-use Framework\Event\EventInterface as Event;
-
 interface EventInterface
-    extends Event
 {
     /**
      *

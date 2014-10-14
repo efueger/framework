@@ -2,10 +2,7 @@
 
 namespace Framework\Route\Match;
 
-use Framework\Event\EventInterface as Event;
-
 interface EventInterface
-    extends Event
 {
     /**
      *

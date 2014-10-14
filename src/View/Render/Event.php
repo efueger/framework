@@ -2,12 +2,13 @@
 
 namespace Framework\View\Render;
 
+use Framework\Event\EventInterface as Base;
 use Framework\Event\EventTrait;
 use Framework\Event\Signal\SignalTrait;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 class Event
-    implements EventInterface
+    implements Base, EventInterface
 {
     /**
      *

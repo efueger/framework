@@ -2,13 +2,14 @@
 
 namespace Framework\Mvc;
 
+use Framework\Event\EventInterface as Base;
 use Framework\Mvc\Render\ListenerInterface as Render;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\View\Model\ModelInterface as ViewModel;
 
 class Event
-    implements EventInterface
+    implements Base, EventInterface
 {
     /**
      *
