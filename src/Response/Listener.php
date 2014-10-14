@@ -13,12 +13,11 @@ class Listener
     use ViewModel;
 
     /**
-     * @param EventInterface $event
-     * @param array $args
+     * @param ResponseInterface $response
      * @return mixed
      */
-    public function __invoke(EventInterface $event, array $args = [])
+    public function __invoke(ResponseInterface $response)
     {
-        return $event->response();
+        return $response;
     }
 }

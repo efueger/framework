@@ -11,9 +11,4 @@ interface EventInterface
      *
      */
     const RESPONSE = 'Response\Event';
-
-    /**
-     * @return ResponseInterface
-     */
-    function response();
 }

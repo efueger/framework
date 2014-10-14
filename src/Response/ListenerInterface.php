@@ -5,9 +5,8 @@ namespace Framework\Response;
 interface ListenerInterface
 {
     /**
-     * @param EventInterface $event
-     * @param array $args
+     * @param ResponseInterface $response
      * @return mixed
      */
-    function __invoke(EventInterface $event, array $args = []);
+    function __invoke(ResponseInterface $response);
 }
