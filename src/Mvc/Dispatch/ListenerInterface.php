@@ -6,8 +6,8 @@ interface ListenerInterface
 {
     /**
      * @param $controller
-     * @param array $__args__
+     * @param array $args
      * @return mixed
      */
-    function __invoke($controller, array $__args__ = []);
+    function __invoke($controller, array $args = []);
 }
