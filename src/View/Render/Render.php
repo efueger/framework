@@ -13,11 +13,10 @@ class Render
     use RenderTrait;
 
     /**
-     * @param EventInterface $event
      * @param ViewModel $viewModel
      * @return mixed
      */
-    public function __invoke(EventInterface $event, ViewModel $viewModel)
+    public function __invoke(ViewModel $viewModel)
     {
         return $this->render($viewModel);
     }

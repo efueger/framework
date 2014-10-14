@@ -3,7 +3,6 @@
 namespace Framework\View\Render;
 
 use Framework\Event\EventInterface as Event;
-use Framework\View\Model\ModelInterface;
 
 interface EventInterface
     extends Event
@@ -12,9 +11,4 @@ interface EventInterface
      *
      */
     const RENDER = 'View\Render\Event';
-
-    /**
-     * @return ModelInterface
-     */
-    function viewModel();
 }
