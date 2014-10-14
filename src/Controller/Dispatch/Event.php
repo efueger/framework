@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Dispatch;
 
-use Framework\Event\EventTrait as EventTrait;
+use Framework\Event\EventTrait;
 use Framework\Event\Signal\SignalTrait;
 
 class Event
