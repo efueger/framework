@@ -32,7 +32,7 @@ class Dispatch
      * @param Definition $definition
      * @return Route|null
      */
-    public function dispatch(Route $route, Definition $definition = null)
+    public function __invoke(Route $route, Definition $definition = null)
     {
         $definition = $definition ?: $this->definition;
 
@@ -43,7 +43,7 @@ class Dispatch
         }
 
         foreach($definition->children() as $definition) {
-            $match = $this->dispatch($route, $definition);
+            $match = $this($route, $definition);
 
             if ($match) {
                 return $match;
@@ -51,14 +51,5 @@ class Dispatch
         }
 
         return null;
-    }
-
-    /**
-     * @param Route $route
-     * @return Route
-     */
-    public function __invoke(Route $route)
-    {
-        return $this->dispatch($route);
     }
 }

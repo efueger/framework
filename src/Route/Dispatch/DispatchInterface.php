@@ -12,5 +12,5 @@ interface DispatchInterface
      * @param Definition $definition
      * @return Route|null
      */
-    function dispatch(Route $route, Definition $definition = null);
+    function __invoke(Route $route, Definition $definition = null);
 }
