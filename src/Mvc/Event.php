@@ -46,18 +46,22 @@ class Event
 
         if ($response instanceof Route) {
             $this->setRoute($response);
+            return $response;
         }
 
         if ($response instanceof Response) {
             $this->setResponse($response);
+            return $response;
         }
 
         if ($response instanceof ViewModel) {
             $this->setViewModel($response);
+            return $response;
         }
 
         if ($listener instanceof Render) {
             $this->setResponseContent($response);
+            return $response;
         }
 
         return $response;
