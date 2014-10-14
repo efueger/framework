@@ -4,13 +4,11 @@ namespace Framework\View\Manager;
 
 use Exception;
 use Framework\View\Model\ModelInterface as ViewModel;
-use Framework\View\Plugin\PluginInterface;
-use Framework\View\Render\RenderInterface;
 
 trait ServiceTrait
 {
     /**
-     * @var ManagerInterface|PluginInterface|RenderInterface
+     * @var ManagerInterface
      */
     protected $vm;
 

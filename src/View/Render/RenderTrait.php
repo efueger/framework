@@ -9,14 +9,14 @@ use Framework\View\Model\ModelInterface as ViewModel;
 trait RenderTrait
 {
     /**
-     * @param ViewModel $model
+     * @param ViewModel $viewModel
      * @return string
      */
-    public function render(ViewModel $model)
+    public function __invoke(ViewModel $viewModel)
     {
-        foreach($model as $k => $v) {
+        foreach($viewModel as $k => $v) {
             if ($v instanceof ViewModel) {
-                $model->$k = $this->render($v);
+                $viewModel->$k = $this($v);
             }
         }
 
@@ -42,7 +42,7 @@ trait RenderTrait
 
 
             },
-            $model
+            $viewModel
         );
 
         return $render();
