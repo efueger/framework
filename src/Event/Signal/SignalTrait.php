@@ -29,7 +29,9 @@ trait SignalTrait
             $listener = $listener[0];
         }
 
-        $params = (new ReflectionMethod($listener, $method))->getParameters();
+        $reflection = new ReflectionMethod($listener, $method);
+
+        $params = $reflection->getParameters();
 
         $matched = [];
 
@@ -41,7 +43,10 @@ trait SignalTrait
 
             if (isset($args[$param->name])) {
                 $matched[] = $args[$param->name];
+                continue;
             }
+
+            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : $param->isArray() ? [] : null;
         }
 
         if ($listener instanceof Closure && is_string(key($args))) {

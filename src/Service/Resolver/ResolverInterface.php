@@ -12,6 +12,11 @@ interface ResolverInterface
     /**
      *
      */
+    const ARGUMENTS = 'args';
+
+    /**
+     *
+     */
     const INVOKE = '__invoke';
 
     /**

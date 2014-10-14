@@ -207,15 +207,17 @@ trait ResolverTrait
         }
 
         foreach($params as $param) {
-
-            if (ResolverInterface::ARGS === $param->name) {var_dump($param->name);
+            if (ResolverInterface::ARGUMENTS === $param->name) {
                 $matched[] = $args;
                 continue;
             }
 
             if (isset($args[$param->name])) {
-                $matched[$param->name] = $args[$param->name];
+                $matched[] = $args[$param->name];
+                continue;
             }
+
+            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : ($param->isArray() ? [] : null);
         }
 
         return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
