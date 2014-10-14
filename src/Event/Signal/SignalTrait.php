@@ -29,9 +29,7 @@ trait SignalTrait
             $listener = $listener[0];
         }
 
-        $reflection = new ReflectionMethod($listener, $method);
-
-        $params = $reflection->getParameters();
+        $params = (new ReflectionMethod($listener, $method))->getParameters();
 
         $matched = [];
 
