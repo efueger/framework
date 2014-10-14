@@ -37,11 +37,11 @@ class Path
             return null;
         }
 
-        $route->add(Route::CONTROLLER, $definition->controller());
-        $route->add(Route::LENGTH,     $route->length() + strlen($matches[0]));
-        $route->add(Route::MATCHED,    $route->length() == strlen($route->path()));
-        $route->add(Route::NAME,       (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
-        $route->add(Route::PARAMS,     $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
+        $route->set(Route::CONTROLLER, $definition->controller());
+        $route->set(Route::LENGTH,     $route->length() + strlen($matches[0]));
+        $route->set(Route::MATCHED,    $route->length() == strlen($route->path()));
+        $route->set(Route::NAME,       (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
+        $route->set(Route::PARAMS,     $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
 
         return $route;
     }

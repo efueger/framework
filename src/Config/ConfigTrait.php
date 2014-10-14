@@ -19,16 +19,6 @@ trait ConfigTrait
 
     /**
      * @param string $name
-     * @param mixed $config
-     * @return void
-     */
-    public function add($name, $config)
-    {
-        $this->config[$name] = $config;
-    }
-
-    /**
-     * @param string $name
      * @return mixed
      */
     public function get($name)
@@ -52,5 +42,15 @@ trait ConfigTrait
     public function remove($name)
     {
         unset($this->config[$name]);
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $config
+     * @return void
+     */
+    public function set($name, $config)
+    {
+        $this->config[$name] = $config;
     }
 }

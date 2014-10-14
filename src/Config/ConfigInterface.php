@@ -6,13 +6,6 @@ interface ConfigInterface
 {
     /**
      * @param string $name
-     * @param mixed $config
-     * @return void
-     */
-    function add($name, $config);
-
-    /**
-     * @param string $name
      * @return mixed
      */
     function get($name);
@@ -28,4 +21,11 @@ interface ConfigInterface
      * @return void
      */
     function remove($name);
+
+    /**
+     * @param string $name
+     * @param mixed $config
+     * @return void
+     */
+    function set($name, $config);
 }

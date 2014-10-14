@@ -22,9 +22,9 @@ trait ServiceTrait
      * @param mixed $service
      * @return void
      */
-    public function add($name, $service)
+    public function set($name, $service)
     {
-        $this->services->add($name, $service);
+        $this->services->set($name, $service);
     }
 
     /**

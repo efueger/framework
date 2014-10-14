@@ -12,6 +12,6 @@ class Filter
      */
     public function __invoke(Route $route)
     {
-        $route->add(Route::PATH, urldecode(rtrim($route->path(), '/')) ?: '/');
+        $route->set(Route::PATH, urldecode(rtrim($route->path(), '/')) ?: '/');
     }
 }

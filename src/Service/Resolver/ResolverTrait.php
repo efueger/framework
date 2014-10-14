@@ -232,10 +232,10 @@ trait ResolverTrait
     {
         /** @var Child|Config $config */
 
-        $parent->add(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
+        $parent->set(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
         if ($config->args()) {
-            $parent->add(Config::ARGS, $config->args());
+            $parent->set(Config::ARGS, $config->args());
         }
 
         $calls = $config->calls();
@@ -244,7 +244,7 @@ trait ResolverTrait
             return $parent;
         }
 
-        $parent->add(Config::CALLS, $config->merge() ? array_merge($parent->calls(), $calls) : $calls);
+        $parent->set(Config::CALLS, $config->merge() ? array_merge($parent->calls(), $calls) : $calls);
 
         return $parent;
     }

@@ -31,8 +31,8 @@ class Wildcard
             $params[$parts[$i]] = $parts[$i + 1];
         }
 
-        $route->add(Route::PARAMS,  $params);
-        $route->add(Route::MATCHED, true);
+        $route->set(Route::PARAMS,  $params);
+        $route->set(Route::MATCHED, true);
 
         return $route;
     }

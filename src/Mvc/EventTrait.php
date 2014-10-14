@@ -61,7 +61,7 @@ trait EventTrait
      */
     protected function setRequest(Request $request)
     {
-        $this->sm->add(EventInterface::REQUEST, $request);
+        $this->sm->set(EventInterface::REQUEST, $request);
     }
 
     /**
@@ -69,7 +69,7 @@ trait EventTrait
      */
     protected function setResponse(Response $response)
     {
-        $this->sm->add(EventInterface::RESPONSE, $response);
+        $this->sm->set(EventInterface::RESPONSE, $response);
     }
 
     /**
@@ -86,6 +86,6 @@ trait EventTrait
      */
     protected function setRoute(Route $route)
     {
-        $this->sm->add(EventInterface::ROUTE, $route);
+        $this->sm->set(EventInterface::ROUTE, $route);
     }
 }

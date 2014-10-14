@@ -70,7 +70,7 @@ trait ManagerTrait
 
         $this->initialized($name);
 
-        $service && $this->add($name, $service);
+        $service && $this->set($name, $service);
 
         return $service;
     }

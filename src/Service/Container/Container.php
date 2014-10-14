@@ -24,16 +24,6 @@ class Container
 
     /**
      * @param string $name
-     * @param mixed $service
-     * @return void
-     */
-    public function add($name, $service)
-    {
-        $this->services[$name] = $service;
-    }
-
-    /**
-     * @param string $name
      * @param array|callable|object|string $factory
      * @return void
      */
@@ -112,5 +102,15 @@ class Container
     public function service($name)
     {
         return isset($this->services[$name]) ? $this->services[$name] : null;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $service
+     * @return void
+     */
+    public function set($name, $service)
+    {
+        $this->services[$name] = $service;
     }
 }
