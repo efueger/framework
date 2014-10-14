@@ -19,16 +19,6 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @param mixed $service
-     * @return void
-     */
-    public function set($name, $service)
-    {
-        $this->services->set($name, $service);
-    }
-
-    /**
-     * @param string $name
      * @param array|callable|object|string $factory
      * @return void
      */
@@ -101,6 +91,15 @@ trait ServiceTrait
 
     /**
      * @param string $name
+     * @return void
+     */
+    public function remove($name)
+    {
+        $this->services->remove($name);
+    }
+
+    /**
+     * @param string $name
      * @return object|null
      */
     public function service($name)
@@ -118,10 +117,11 @@ trait ServiceTrait
 
     /**
      * @param string $name
+     * @param mixed $service
      * @return void
      */
-    public function remove($name)
+    public function set($name, $service)
     {
-        $this->services->remove($name);
+        $this->services->set($name, $service);
     }
 }
