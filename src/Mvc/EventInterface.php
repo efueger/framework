@@ -60,4 +60,11 @@ interface EventInterface
      * @return ViewModel
      */
     function viewModel();
+
+    /**
+     * @param callable $listener
+     * @param array $args
+     * @return mixed
+     */
+    function __invoke(callable $listener, array $args = []);
 }
