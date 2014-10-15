@@ -4,6 +4,7 @@ namespace Framework\Service\Resolver;
 
 use ReflectionFunction;
 use ReflectionMethod;
+use RuntimeException;
 
 trait SignalTrait
 {
@@ -61,7 +62,19 @@ trait SignalTrait
                 continue;
             }
 
-            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : $param->isArray() ? [] : null;
+            if ($param->isDefaultValueAvailable()) {
+                $matched[] = $param->getDefaultValue();
+                continue;
+            }
+
+            if ($param->isArray()) {
+                $matched[] = [];
+                continue;
+            }
+
+            if (!$param->isOptional()) {
+                throw new RuntimeException('Missing required parameter ' . $param->name);
+            }
         }
 
         return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
