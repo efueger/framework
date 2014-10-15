@@ -24,8 +24,7 @@ trait SignalTrait
                 return call_user_func($listener, $args);
             }
 
-            $method = isset($listener[1]) ? $listener[1] : $method;
-
+            $method   = isset($listener[1]) ? $listener[1] : $method;
             $listener = $listener[0];
         }
 
