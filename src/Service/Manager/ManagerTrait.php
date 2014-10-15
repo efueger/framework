@@ -106,8 +106,8 @@ trait ManagerTrait
         }
 
         if (is_string($config) && '@' === $config[0]) {
-            return function() use ($config) {
-                return $this->call(substr($config, 1), func_get_args());
+            return function(array $args = []) use ($config) {
+                return $this->call(substr($config, 1), $args);
             };
         }
 

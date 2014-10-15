@@ -56,11 +56,6 @@ trait EventsTrait
             return is_callable($event) ? $event($listener, $args) : $listener($event, $args);
         }
 
-        if ($listener instanceof Closure
-                && is_string(key($args)) && !(new ReflectionMethod($listener, Signal::INVOKE))->getParameters()) {
-            return call_user_func_array($listener, [[Signal::ARGS => $args]]);
-        }
-
         return $this->invoke($listener, $args);
     }
 }
