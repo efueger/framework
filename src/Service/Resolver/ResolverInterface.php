@@ -17,11 +17,6 @@ interface ResolverInterface
     /**
      *
      */
-    const INVOKE = '__invoke';
-
-    /**
-     *
-     */
     const PROPERTY = '$';
 
     /**

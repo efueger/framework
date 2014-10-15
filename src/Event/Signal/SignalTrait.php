@@ -17,7 +17,7 @@ trait SignalTrait
             return $listener();
         }
 
-        $method = SignalInterface::INVOKE;
+        $method = '__invoke';
 
         if (is_array($listener)) {
             if (is_string($listener[0])) {

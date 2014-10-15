@@ -170,7 +170,7 @@ trait ResolverTrait
             $args = $args[0][ResolverInterface::ARGS];
         }
 
-        $method = ResolverInterface::INVOKE;
+        $method = '__invoke';
 
         if (is_array($config)) {
             if (is_string($config[0])) {

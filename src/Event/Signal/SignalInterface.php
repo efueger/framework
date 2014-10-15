@@ -13,9 +13,4 @@ interface SignalInterface
      *
      */
     const ARGUMENTS = 'args';
-
-    /**
-     *
-     */
-    const INVOKE = '__invoke';
 }
