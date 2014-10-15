@@ -2,7 +2,6 @@
 
 namespace Framework\Service\Resolver;
 
-use Exception;
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
@@ -19,6 +18,7 @@ use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionMethod;
+use RuntimeException;
 
 trait ResolverTrait
 {
@@ -47,7 +47,7 @@ trait ResolverTrait
      * @param array|object|string $config
      * @param array $args
      * @return callable|mixed|null|object
-     * @throws Exception
+     * @throws RuntimeException
      */
     protected function call($config, array $args = [])
     {
@@ -67,7 +67,7 @@ trait ResolverTrait
             $callable = true;
 
             if (!is_callable($name)) {
-                throw new Exception('Callable not found: ' . $name);
+                throw new RuntimeException('Callable not found: ' . $name);
             }
 
             return $this->invoke($name, $args);
