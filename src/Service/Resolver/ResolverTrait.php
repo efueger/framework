@@ -57,13 +57,11 @@ trait ResolverTrait
             return $this->invoke($config, $args);
         }
 
-        $config = explode(ResolverInterface::SEPARATOR, $config);
-
+        $config   = explode(ResolverInterface::CALL_SEPARATOR, $config);
         $call     = $args ? array_pop($config) : null;
         $callable = false;
         $name     = $config ? array_shift($config) : $call;
-
-        $value  = $this->get($name, [], function($name) use(&$callable, $args) {
+        $value    = $this->get($name, [], function($name) use(&$callable, $args) {
             $callable = true;
 
             if (!is_callable($name)) {
@@ -120,7 +118,6 @@ trait ResolverTrait
     protected function hydrate(Config $config, $service)
     {
         foreach($config->calls() as $method => $value) {
-
             if (is_string($method)) {
                 if (ResolverInterface::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
@@ -172,7 +169,6 @@ trait ResolverTrait
             }
 
             $method = isset($config[1]) ? $config[1] : $method;
-
             $config = $this->args($config[0]);
         }
 
@@ -181,24 +177,16 @@ trait ResolverTrait
         $params   = null;
 
         if (is_string($config) && !class_exists($config)) {
-
             $static = explode(ResolverInterface::CALLABLE_STRING, $config);
-
             if ($static && isset($static[1])) {
-
                 list($config, $method) = $static;
-
             } else {
-
-                $params = (new ReflectionFunction($config))->getParameters();
-
+                $params   = (new ReflectionFunction($config))->getParameters();
                 $callable = $config;
             }
         }
 
-        if (!$callable) {
-            $params = (new ReflectionMethod($config, $method))->getParameters();
-        }
+        !$callable && $params = (new ReflectionMethod($config, $method))->getParameters();
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
@@ -228,9 +216,7 @@ trait ResolverTrait
 
         $parent->set(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
-        if ($config->args()) {
-            $parent->set(Config::ARGS, $config->args());
-        }
+        $config->args() && $parent->set(Config::ARGS, $config->args());
 
         $calls = $config->calls();
 
@@ -267,7 +253,7 @@ trait ResolverTrait
     {
         /** @var ManagerInterface|self $this */
 
-        $name = explode(ResolverInterface::SEPARATOR, $name);
+        $name = explode(ResolverInterface::CALL_SEPARATOR, $name);
 
         $value = $this->config()->get(array_shift($name));
 

@@ -17,7 +17,7 @@ interface ResolverInterface
     /**
      *
      */
-    const SEPARATOR = '.';
+    const CALL_SEPARATOR = '.';
 
     /**
      *

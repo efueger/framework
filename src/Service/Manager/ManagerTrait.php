@@ -29,7 +29,6 @@ trait ManagerTrait
     public function create($config, array $args = [], callable $callback = null)
     {
         if (is_string($config)) {
-
             if ($assigned = $this->assigned($config)) {
                 return $this->create($assigned, $args);
             }
