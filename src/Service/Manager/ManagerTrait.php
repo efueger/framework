@@ -114,11 +114,7 @@ trait ManagerTrait
         }
 
         if (is_array($config)) {
-            if (is_string($config[0])) {
-                return $config;
-            }
-
-            return [$this->create($config[0]), $config[1]];
+            return is_string($config[0]) ? $config : [$this->create($config[0]), $config[1]];
         }
 
         return $this->create($config);
