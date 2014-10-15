@@ -32,7 +32,7 @@ class Event
             ArgsInterface::RESPONSE   => $this->response(),
             ArgsInterface::ROUTE      => $this->route(),
             ArgsInterface::VIEW_MODEL => $this->viewModel(),
-            ArgsInterface::CONTROLLER => $this->route()->controller(),
+            ArgsInterface::CONTROLLER => $this->route()->controller()
         ];
     }
 
