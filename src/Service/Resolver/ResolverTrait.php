@@ -311,10 +311,7 @@ trait ResolverTrait
 
         if ($config instanceof Invoke) {
             return function(array $args = []) use ($config) {
-                return $this->invoke($config->config(), $config->args() + $args, function($name) {
-                    /** @var ManagerInterface $this */
-                    return $this->get(ucfirst($name), [], function() {});
-                });
+                return $this->invoke($config->config(), $config->args() + $args);
             };
         }
 

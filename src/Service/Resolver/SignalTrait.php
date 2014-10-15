@@ -75,6 +75,8 @@ trait SignalTrait
             if (!$param->isOptional()) {
                 throw new RuntimeException('Missing required parameter ' . $param->name);
             }
+
+            $matched[] = null;
         }
 
         return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
