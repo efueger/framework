@@ -179,7 +179,7 @@ trait ResolverTrait
 
             $method = isset($config[1]) ? $config[1] : $method;
 
-            $config = $config[0];
+            $config = $this->args($config[0]);
         }
 
         $callable = null;
@@ -367,8 +367,8 @@ trait ResolverTrait
         }
 
         if ($config instanceof Invoke) {
-            return function() use ($config) {
-                return $this->invoke($config->config(), $config->args() ?: func_get_args());
+            return function(array $args = []) use ($config) {
+                return $this->invoke($config->config(), $config->args() + $args);
             };
         }
 
