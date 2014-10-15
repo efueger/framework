@@ -65,7 +65,6 @@ trait GeneratorTrait
     protected function emit($event, callable $listener, array $args = [])
     {
         /** @var callable $event */
-        return $event instanceof Event && is_callable($event)
-                    ? $event($listener, $args) : $listener($event, $args);
+        return $event instanceof Event && is_callable($event) ? $event($listener, $args) : $listener($event, $args);
     }
 }
