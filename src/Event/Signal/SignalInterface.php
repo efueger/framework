@@ -7,10 +7,5 @@ interface SignalInterface
     /**
      *
      */
-    const ARGS = '__args__';
-
-    /**
-     *
-     */
-    const ARGS_NAME = 'args';
+    const ARGS = 'args';
 }

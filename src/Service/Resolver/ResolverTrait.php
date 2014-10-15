@@ -161,13 +161,7 @@ trait ResolverTrait
         }
 
         if (!is_string(key($args))) {
-            $config = $this->args($config);
-
-            if (!is_array($args[0]) || !isset($args[0][ResolverInterface::ARGS])) {
-                return call_user_func_array($config, $this->args($args));
-            }
-
-            $args = $args[0][ResolverInterface::ARGS];
+            return call_user_func_array($this->args($config), $this->args($args));
         }
 
         $method = '__invoke';
@@ -212,7 +206,7 @@ trait ResolverTrait
                 continue;
             }
 
-            if (ResolverInterface::ARGS_NAME === $param->name && !isset($args[$param->name])) {
+            if (ResolverInterface::ARGS === $param->name && !isset($args[$param->name])) {
                 $matched[] = $args;
                 continue;
             }
