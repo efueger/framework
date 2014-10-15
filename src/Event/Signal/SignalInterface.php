@@ -12,5 +12,5 @@ interface SignalInterface
     /**
      *
      */
-    const ARGUMENTS = 'args';
+    const ARGS_NAME = 'args';
 }

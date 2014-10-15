@@ -12,7 +12,7 @@ interface ResolverInterface
     /**
      *
      */
-    const ARGUMENTS = 'args';
+    const ARGS_NAME = 'args';
 
     /**
      *
@@ -27,5 +27,5 @@ interface ResolverInterface
     /**
      *
      */
-    const STATIC_STRING = '::';
+    const CALLABLE_STRING = '::';
 }

@@ -38,7 +38,7 @@ trait SignalTrait
                 continue;
             }
 
-            if (SignalInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
+            if (SignalInterface::ARGS_NAME === $param->name && !isset($args[$param->name])) {
                 $matched[] = $args;
                 continue;
             }

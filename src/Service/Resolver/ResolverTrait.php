@@ -188,7 +188,7 @@ trait ResolverTrait
 
         if (is_string($config) && !class_exists($config)) {
 
-            $static = explode(ResolverInterface::STATIC_STRING, $config);
+            $static = explode(ResolverInterface::CALLABLE_STRING, $config);
 
             if ($static && isset($static[1])) {
 
@@ -212,7 +212,7 @@ trait ResolverTrait
                 continue;
             }
 
-            if (ResolverInterface::ARGUMENTS === $param->name && !isset($args[$param->name])) {
+            if (ResolverInterface::ARGS_NAME === $param->name && !isset($args[$param->name])) {
                 $matched[] = $args;
                 continue;
             }
