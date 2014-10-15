@@ -35,11 +35,6 @@ interface EventInterface
     const VIEW_MODEL = 'ViewModel';
 
     /**
-     * @return array
-     */
-    function args();
-
-    /**
      * @return Request
      */
     function request();

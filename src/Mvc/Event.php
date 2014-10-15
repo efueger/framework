@@ -24,7 +24,7 @@ class Event
     /**
      * @return array
      */
-    public function args()
+    protected function args()
     {
         return [
             ArgsInterface::EVENT      => $this,
