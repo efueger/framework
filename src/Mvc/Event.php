@@ -24,7 +24,7 @@ class Event
     /**
      * @return array
      */
-    protected function args()
+    protected function params()
     {
         return [
             ArgsInterface::EVENT      => $this,
@@ -43,7 +43,7 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        $response = $this->signal($listener, $this->args());
+        $response = $this->signal($listener, $this->params());
 
         if ($response instanceof Route) {
             $this->setRoute($response);

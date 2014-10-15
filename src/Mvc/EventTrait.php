@@ -3,7 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Event\EventTrait as Event;
-use Framework\Event\Signal\SignalTrait as Signal;
+use Framework\Service\Resolver\SignalTrait as Signal;
 use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;

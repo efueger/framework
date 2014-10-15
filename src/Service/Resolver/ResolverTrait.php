@@ -16,12 +16,15 @@ use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
-use ReflectionFunction;
-use ReflectionMethod;
 use RuntimeException;
 
 trait ResolverTrait
 {
+    /**
+     *
+     */
+    use SignalTrait;
+
     /**
      * @param $args
      * @return mixed
@@ -161,48 +164,9 @@ trait ResolverTrait
             return call_user_func_array($this->args($config), $this->args($args));
         }
 
-        $method = '__invoke';
-
-        if (is_array($config)) {
-            if (is_string($config[0])) {
-                return call_user_func($config, $args);
-            }
-
-            $method = isset($config[1]) ? $config[1] : $method;
-            $config = $this->args($config[0]);
-        }
-
-        $callable = null;
-        $matched  = [];
-        $params   = null;
-
-        if (is_string($config) && !class_exists($config)) {
-            $static = explode(ResolverInterface::CALLABLE_STRING, $config);
-            if ($static && isset($static[1])) {
-                list($config, $method) = $static;
-            } else {
-                $params   = (new ReflectionFunction($config))->getParameters();
-                $callable = $config;
-            }
-        }
-
-        !$callable && $params = (new ReflectionMethod($config, $method))->getParameters();
-
-        foreach($params as $param) {
-            if (isset($args[$param->name])) {
-                $matched[] = $args[$param->name];
-                continue;
-            }
-
-            if (ResolverInterface::ARGS === $param->name && !isset($args[$param->name])) {
-                $matched[] = $args;
-                continue;
-            }
-
-            $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : $param->isArray() ? [] : null;
-        }
-
-        return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
+        return $this->signal($config, $args, function($arg) {
+            return $this->resolve($arg);
+        });
     }
 
     /**

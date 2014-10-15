@@ -4,7 +4,7 @@ namespace Framework\Route\Match;
 
 use Framework\Event\EventInterface as Base;
 use Framework\Event\EventTrait;
-use Framework\Event\Signal\SignalTrait;
+use Framework\Service\Resolver\SignalTrait;
 use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Route\RouteInterface as Route;
 

@@ -4,7 +4,7 @@ namespace Framework\Response;
 
 use Framework\Event\EventInterface as Base;
 use Framework\Event\EventTrait;
-use Framework\Event\Signal\SignalTrait;
+use Framework\Service\Resolver\SignalTrait;
 
 class Event
     implements Base, EventInterface

@@ -6,7 +6,6 @@ use Framework\Controller\Dispatch\EventInterface as Dispatch;
 use Framework\Controller\Exception\EventInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Event\Signal\SignalTrait as Signal;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Manager
@@ -16,7 +15,6 @@ class Manager
      *
      */
     use Events;
-    use Signal;
 
     /**
      * @param callable $listener

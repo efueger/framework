@@ -2,14 +2,11 @@
 
 namespace Framework\Event\Manager;
 
-use Closure;
 use Framework\Event\EventInterface as Event;
 use Framework\Event\Generator\GeneratorTrait as EventGenerator;
 use Framework\Event\Manager\EventManagerTrait as EventManager;
-use Framework\Event\Signal\SignalInterface as Signal;
 use Framework\Service\Manager\ManagerInterface;
 use Framework\Service\Manager\ManagerTrait as ServiceManager;
-use ReflectionMethod;
 
 trait EventsTrait
 {
