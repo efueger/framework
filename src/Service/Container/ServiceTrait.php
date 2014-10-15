@@ -26,12 +26,12 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @param array|callable|object|string $factory
+     * @param array|callable|object|string $config
      * @return void
      */
-    public function assign($name, $factory)
+    public function assign($name, $config)
     {
-        $this->services->assign($name, $factory);
+        $this->services->assign($name, $config);
     }
 
     /**

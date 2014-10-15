@@ -9,10 +9,10 @@ interface ContainerInterface
 {
     /**
      * @param string $name
-     * @param array|callable|object|string $factory
+     * @param array|callable|object|string $config
      * @return void
      */
-    function assign($name, $factory);
+    function assign($name, $config);
 
     /**
      * @param string $name

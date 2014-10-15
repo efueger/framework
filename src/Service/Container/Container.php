@@ -30,12 +30,12 @@ class Container
 
     /**
      * @param string $name
-     * @param array|callable|object|string $factory
+     * @param array|callable|object|string $config
      * @return void
      */
-    public function assign($name, $factory)
+    public function assign($name, $config)
     {
-        $this->assigned[$name] = $factory;
+        $this->assigned[$name] = $config;
     }
 
     /**
