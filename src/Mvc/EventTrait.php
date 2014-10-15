@@ -33,6 +33,14 @@ trait EventTrait
     }
 
     /**
+     * @param $name
+     * @return callable|null|object
+     */
+    protected function get($name)
+    {
+        return $this->sm->get(ucfirst($name), [], function() {});
+    }
+    /**
      * @return Request
      */
     public function request()
