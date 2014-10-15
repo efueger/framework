@@ -10,10 +10,10 @@ trait SignalTrait
     /**
      * @param callable $config
      * @param array $args
-     * @param callable $callback
+     * @param callable $resolver
      * @return mixed
      */
-    protected function signal(callable $config, array $args = [], callable $callback = null)
+    protected function signal(callable $config, array $args = [], callable $resolver = null)
     {
         if (!$args) {
             return $config();
@@ -27,7 +27,7 @@ trait SignalTrait
             }
 
             $method = isset($config[1]) ? $config[1] : $method;
-            $config = $callback ? $callback($config[0]) : $config[0];
+            $config = $resolver ? $resolver($config[0]) : $config[0];
         }
 
         $callable = null;
