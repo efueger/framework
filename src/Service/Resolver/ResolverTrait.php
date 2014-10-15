@@ -196,9 +196,9 @@ trait ResolverTrait
 
             } else {
 
-                $params   = (new ReflectionFunction($config))->getParameters();
-                $callable = $config;
+                $params = (new ReflectionFunction($config))->getParameters();
 
+                $callable = $config;
             }
         }
 
