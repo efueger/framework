@@ -26,8 +26,6 @@ trait SignalTrait
 
             $method = isset($config[1]) ? $config[1] : $method;
             $config = $resolver ? $resolver($config[0]) : $config[0];
-
-
         }
 
         $callable = null;
