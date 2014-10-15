@@ -4,6 +4,7 @@ namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventInterface as Base;
 use Framework\Event\EventTrait;
+use Framework\Service\Manager\ManagerInterface as ServiceManager;
 use Framework\Service\Resolver\SignalTrait;
 
 class Event
@@ -26,11 +27,18 @@ class Event
     protected $controller;
 
     /**
+     * @var ServiceManager
+     */
+    protected $sm;
+
+    /**
+     * @param ServiceManager $sm
      * @param callable $controller
      */
-    public function __construct(callable $controller)
+    public function __construct(ServiceManager $sm, callable $controller)
     {
         $this->controller = $controller;
+        $this->sm         = $sm;
     }
 
     /**
@@ -40,7 +48,7 @@ class Event
     {
         return [
             ArgsInterface::EVENT      => $this,
-            ArgsInterface::CONTROLLER => $this->controller
+            ArgsInterface::CONTROLLER => $this->controller,
         ];
     }
 
@@ -51,6 +59,8 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $this->args() + $args);
+        return $this->signal($listener, $this->args() + $args, null, function($name) {
+            return $this->sm->get(ucfirst($name), [], function() {});
+        });
     }
 }

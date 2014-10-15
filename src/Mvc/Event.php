@@ -29,8 +29,8 @@ class Event
         return [
             ArgsInterface::EVENT      => $this,
             ArgsInterface::REQUEST    => $this->request(),
-            ArgsInterface::RESPONSE   => $this->response(),
-            ArgsInterface::ROUTE      => $this->route(),
+            //ArgsInterface::RESPONSE   => $this->response(),
+            //ArgsInterface::ROUTE      => $this->route(),
             ArgsInterface::VIEW_MODEL => $this->viewModel(),
             ArgsInterface::CONTROLLER => $this->route()->controller()
         ];
@@ -43,7 +43,9 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        $response = $this->signal($listener, $this->params());
+        $response = $this->signal($listener, $this->params(), null, function($name) {
+            return $this->sm->get(ucfirst($name), [], function() {});
+        });
 
         if ($response instanceof Route) {
             $this->setRoute($response);

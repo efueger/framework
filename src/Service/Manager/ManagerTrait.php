@@ -108,7 +108,10 @@ trait ManagerTrait
             return function($args = []) use ($config) {
                 return $this->call(
                     substr($config, 1),
-                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args
+                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
+                    function($name) {
+                        return $this->get(ucfirst($name), [], function() {});
+                    }
                 );
             };
         }

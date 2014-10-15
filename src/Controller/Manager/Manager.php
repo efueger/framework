@@ -23,7 +23,9 @@ class Manager
      */
     public function action(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $args);
+        return $this->signal($listener, $args, null, function($name) {
+            return $this->get(ucfirst($name), [], function() {});
+        });
     }
 
     /**
@@ -42,7 +44,7 @@ class Manager
      */
     public function dispatch(callable $controller, array $args = [])
     {
-        return $this->trigger([Dispatch::DISPATCH, $controller], $args);
+        return $this->trigger([Dispatch::DISPATCH, $this, $controller], $args);
     }
 
     /**

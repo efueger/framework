@@ -49,29 +49,30 @@ trait ResolverTrait
     /**
      * @param array|object|string $config
      * @param array $args
+     * @param callable $callback
      * @return callable|mixed|null|object
      * @throws RuntimeException
      */
-    protected function call($config, array $args = [])
+    protected function call($config, array $args = [], callable $callback = null)
     {
         /** @var ManagerInterface|self $this */
 
         if (!is_string($config)) {
-            return $this->invoke($config, $args);
+            return $this->invoke($config, $args, $callback);
         }
 
         $config   = explode(ResolverInterface::CALL_SEPARATOR, $config);
         $call     = $args ? array_pop($config) : null;
         $callable = false;
         $name     = $config ? array_shift($config) : $call;
-        $value    = $this->get($name, [], function($name) use(&$callable, $args) {
+        $value    = $this->get($name, [], function($name) use(&$callable, $args, $callback) {
             $callable = true;
 
             if (!is_callable($name)) {
                 throw new RuntimeException('Callable not found: ' . $name);
             }
 
-            return $this->invoke($name, $args);
+            return $this->invoke($name, $args, $callback);
         });
 
         if ($callable) {
@@ -82,7 +83,7 @@ trait ResolverTrait
             $value = $value->$method();
         }
 
-        return $args ? $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args) : $value;
+        return $args ? $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args, $callback) : $value;
     }
 
     /**
@@ -152,21 +153,16 @@ trait ResolverTrait
     /**
      * @param array|object|string $config
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    protected function invoke($config, array $args = [])
+    protected function invoke($config, array $args = [], callable $callback = null)
     {
-        if (!$args) {
-            return call_user_func($this->args($config));
-        }
-
         if (!is_string(key($args))) {
             return call_user_func_array($this->args($config), $this->args($args));
         }
 
-        return $this->signal($config, $args, function($arg) {
-            return $this->resolve($arg);
-        });
+        return $this->signal($this->args($config), $args, function($arg) { return $this->resolve($arg); }, $callback);
     }
 
     /**
@@ -271,7 +267,10 @@ trait ResolverTrait
         }
 
         if ($config instanceof Factory) {
-            return $this->invoke($this->child($config, $args));
+            return $this->invoke($this->child($config, $args), ['args' => []], function($name) {
+                /** @var ManagerInterface $this */
+                return $this->get(ucfirst($name), [], function() {});
+            });
         }
 
         if ($config instanceof Child) {
@@ -312,7 +311,10 @@ trait ResolverTrait
 
         if ($config instanceof Invoke) {
             return function(array $args = []) use ($config) {
-                return $this->invoke($config->config(), $config->args() + $args);
+                return $this->invoke($config->config(), $config->args() + $args, function($name) {
+                    /** @var ManagerInterface $this */
+                    return $this->get(ucfirst($name), [], function() {});
+                });
             };
         }
 
