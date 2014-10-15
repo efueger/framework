@@ -57,8 +57,7 @@ trait EventsTrait
         }
 
         if ($listener instanceof Closure
-                && is_string(key($args))
-                    && !(new ReflectionMethod($listener, Signal::INVOKE))->getParameters()) {
+                && is_string(key($args)) && !(new ReflectionMethod($listener, Signal::INVOKE))->getParameters()) {
             return call_user_func_array($listener, [[Signal::ARGS => $args]]);
         }
 
