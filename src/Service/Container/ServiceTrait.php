@@ -3,19 +3,26 @@
 namespace Framework\Service\Container;
 
 use Framework\Config\ConfigInterface as Config;
-use Framework\Config\ConfigTrait;
 
 trait ServiceTrait
 {
     /**
-     *
+     * @var array
      */
-    use ConfigTrait;
+    protected $config = [];
 
     /**
      * @var ContainerInterface
      */
     protected $services;
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        $this->config = $config;
+    }
 
     /**
      * @param string $name
