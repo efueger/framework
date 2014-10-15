@@ -2,7 +2,6 @@
 
 namespace Framework\Event\Signal;
 
-use Closure;
 use ReflectionMethod;
 
 trait SignalTrait
@@ -25,7 +24,8 @@ trait SignalTrait
                 return call_user_func($listener, $args);
             }
 
-            $method   = isset($listener[1]) ? $listener[1] : $method;
+            $method = isset($listener[1]) ? $listener[1] : $method;
+
             $listener = $listener[0];
         }
 
@@ -44,10 +44,6 @@ trait SignalTrait
             }
 
             $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : $param->isArray() ? [] : null;
-        }
-
-        if ($listener instanceof Closure && is_string(key($args))) {
-            $args = [[SignalInterface::ARGS => $args]];
         }
 
         return call_user_func_array($listener, $params ? $matched : $args);

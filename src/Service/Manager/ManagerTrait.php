@@ -106,13 +106,21 @@ trait ManagerTrait
         }
 
         if (is_string($config) && '@' === $config[0]) {
-            return function(array $args = []) use ($config) {
+            return function($args = []) use ($config) {
+                if (!is_array($args) || !is_string(key($args))) {
+                   return $this->call(substr($config, 1), func_get_args());
+                }
+
                 return $this->call(substr($config, 1), $args);
             };
         }
 
-        if (is_array($config) && is_string($config[0])) {
-            return $config;
+        if (is_array($config)) {
+            if (is_string($config[0])) {
+                return $config;
+            }
+
+            return [$this->create($config[0]), $config[1]];
         }
 
         return $this->create($config);
