@@ -6,8 +6,8 @@ interface GeneratorInterface
 {
     /**
      * @param string $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    function url($name, array $params = []);
+    function url($name, array $args = []);
 }

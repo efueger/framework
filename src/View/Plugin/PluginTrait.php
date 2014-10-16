@@ -18,6 +18,6 @@ trait PluginTrait
      */
     public function __call($name, array $args = [])
     {
-        return call_user_func_array($this->plugin($name), $args);
+        return $this->call($name, $args);
     }
 }

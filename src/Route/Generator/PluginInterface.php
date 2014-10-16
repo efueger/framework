@@ -6,8 +6,8 @@ interface PluginInterface
 {
     /**
      * @param null $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    function url($name = null, array $params = []);
+    function url($name = null, array $args = []);
 }

@@ -30,12 +30,12 @@ class Generator
 
     /**
      * @param $name
-     * @param array $params
+     * @param array $args
      * @param Definition $definition
      * @return string|void
      * @throws Exception
      */
-    protected function build($name, array $params = [], Definition $definition = null)
+    protected function build($name, array $args = [], Definition $definition = null)
     {
         $names = explode('/', $name, 2);
 
@@ -45,14 +45,14 @@ class Generator
             throw new Exception('Route generator definition not found: ' . $names[0]);
         }
 
-        $url = $this->compile($definition->tokens(), $params, $definition->defaults());
+        $url = $this->compile($definition->tokens(), $args, $definition->defaults());
 
         if (isset($names[1])) {
-            $url .= $this->build($names[1], $params, $definition);
+            $url .= $this->build($names[1], $args, $definition);
         }
 
-        if ($params && $definition->wildcard()) {
-            foreach(array_diff_key($params, $definition->constraints()) as $key => $value) {
+        if ($args && $definition->wildcard()) {
+            foreach(array_diff_key($args, $definition->constraints()) as $key => $value) {
                 $url .= '/' . $key . '/' . $value;
             }
         }
@@ -62,12 +62,12 @@ class Generator
 
     /**
      * @param $tokens
-     * @param $params
+     * @param $args
      * @param $defaults
      * @return mixed
      * @throws InvalidArgumentException
      */
-    protected function compile($tokens, $params, $defaults)
+    protected function compile($tokens, $args, $defaults)
     {
         $stack = [];
 
@@ -90,7 +90,7 @@ class Generator
 
                     $current['skippable'] = true;
 
-                    if (!isset($params[$part[Route::NAME]])) {
+                    if (!isset($args[$part[Route::NAME]])) {
 
                         if (!$current['is_optional']) {
                             throw new InvalidArgumentException(sprintf('Missing parameter "%s"', $part[Route::NAME]));
@@ -102,7 +102,7 @@ class Generator
 
                         !$current['is_optional']
                                 || !isset($defaults[$part[Route::NAME]])
-                                    || $defaults[$part[Route::NAME]] !== $params[$part[Route::NAME]]
+                                    || $defaults[$part[Route::NAME]] !== $args[$part[Route::NAME]]
 
                     ) {
 
@@ -110,7 +110,7 @@ class Generator
 
                     }
 
-                    $current['path'] .= $params[$part[Route::NAME]];
+                    $current['path'] .= $args[$part[Route::NAME]];
 
                     break;
 
@@ -160,11 +160,11 @@ class Generator
 
     /**
      * @param string $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    public function url($name, array $params = [])
+    public function url($name, array $args = [])
     {
-        return rtrim($this->build($name, $params), '/') ?: '/';
+        return rtrim($this->build($name, $args), '/') ?: '/';
     }
 }

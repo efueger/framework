@@ -15,24 +15,21 @@ class Plugin
 
     /**
      * @param null $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    public function url($name = null, array $params = [])
+    public function url($name = null, array $args = [])
     {
-        $params  = $name ? $params : $params + $this->route()->params();
-        $route   = $name ?: $this->route()->name();
-
-        return $this->generate($route, $params);
+        return $this->generate($name ?: $this->route()->name(), $name ? $args : $args + $this->route()->params());
     }
 
     /**
      * @param null|string $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    public function __invoke($name = null, array $params = [])
+    public function __invoke($name = null, array $args = [])
     {
-        return $this->url($name, $params);
+        return $this->url($name, $args);
     }
 }

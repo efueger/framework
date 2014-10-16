@@ -53,7 +53,7 @@ trait ResolverTrait
      * @return callable|mixed|null|object
      * @throws RuntimeException
      */
-    protected function call($config, array $args = [], callable $callback = null)
+    public function call($config, array $args = [], callable $callback = null)
     {
         /** @var ManagerInterface|self $this */
 
@@ -61,29 +61,23 @@ trait ResolverTrait
             return $this->invoke($config, $args, $callback);
         }
 
-        $config   = explode(ResolverInterface::CALL_SEPARATOR, $config);
-        $call     = $args ? array_pop($config) : null;
-        $callable = false;
-        $name     = $config ? array_shift($config) : $call;
-        $value    = $this->get($name, [], function($name) use(&$callable, $args, $callback) {
-            $callable = true;
+        $config = explode(ResolverInterface::CALL_SEPARATOR, $config);
+        $plugin = array_shift($config);
+        $method = $config ? array_pop($config) : '__invoke';
 
-            if (!is_callable($name)) {
-                throw new RuntimeException('Callable not found: ' . $name);
+        is_string($plugin) && $plugin = $this->plugin($plugin, function($plugin) {
+            if (!is_callable($plugin)) {
+                throw new RuntimeException('Plugin not found or is not callable: ' . $plugin);
             }
 
-            return $this->invoke($name, $args, $callback);
+            return $plugin;
         });
 
-        if ($callable) {
-            return $value;
+        foreach($config as $name) {
+            $plugin = $plugin->$name();
         }
 
-        foreach($config as $method) {
-            $value = $value->$method();
-        }
-
-        return $args ? $this->invoke(!$config && $name == $call ? $value : [$value, $call], $args, $callback) : $value;
+        return $this->invoke($method ? [$plugin, $method] : $plugin, $args);
     }
 
     /**

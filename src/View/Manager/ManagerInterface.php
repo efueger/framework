@@ -8,6 +8,14 @@ use Framework\View\Model\ModelInterface as ViewModel;
 interface ManagerInterface
 {
     /**
+     * @param string $name
+     * @param array $args
+     * @param callable $callback
+     * @return null|callable|object
+     */
+    function call($name, array $args = [], callable $callback = null);
+
+    /**
      * @param Exception $exception
      * @return mixed
      */
@@ -15,10 +23,10 @@ interface ManagerInterface
 
     /**
      * @param string $name
-     * @param array $args
+     * @param callable $callback
      * @return null|callable|object
      */
-    function plugin($name, array $args = []);
+    function plugin($name, callable $callback = null);
 
     /**
      * @param ViewModel $viewModel

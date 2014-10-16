@@ -122,10 +122,11 @@ trait ManagerTrait
 
     /**
      * @param $name
+     * @param callable $callback
      * @return callable|null|object
      */
-    public function plugin($name)
+    public function plugin($name, callable $callback = null)
     {
-        return $this->get(ucfirst($name), [], function() {});
+        return $this->get(ucfirst($name), [], $callback ?: function() {});
     }
 }

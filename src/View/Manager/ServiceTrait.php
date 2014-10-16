@@ -13,6 +13,16 @@ trait ServiceTrait
     protected $vm;
 
     /**
+     * @param string $name
+     * @param array $args
+     * @return callable|mixed|null|object
+     */
+    public function call($name, array $args = [])
+    {
+        return $this->vm->call($name, $args);
+    }
+
+    /**
      * @param Exception $exception
      * @return mixed
      */
@@ -23,12 +33,12 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @param array $args
+     * @param callable $callback
      * @return null|callable|object
      */
-    public function plugin($name, array $args = [])
+    public function plugin($name, callable $callback = null)
     {
-        return $this->vm->plugin($name, $args);
+        return $this->vm->plugin($name, $callback);
     }
 
     /**

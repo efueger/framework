@@ -19,11 +19,11 @@ trait ServiceTrait
 
     /**
      * @param string $name
-     * @param array $params
+     * @param array $args
      * @return string
      */
-    public function generate($name, array $params = [])
+    public function generate($name, array $args = [])
     {
-        return $this->generator->url($name, $params);
+        return $this->generator->url($name, $args);
     }
 }
