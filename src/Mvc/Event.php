@@ -43,7 +43,7 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        $response = $this->signal($listener, $this->params(), function($name) { return $this->get($name); });
+        $response = $this->signal($listener, $this->params(), function($name) { return $this->plugin($name); });
 
         if ($response instanceof Route) {
             $this->setRoute($response);
