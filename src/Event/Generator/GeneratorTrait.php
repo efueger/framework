@@ -36,12 +36,12 @@ trait GeneratorTrait
      * @param $listener
      * @return callable
      */
-    abstract protected function listener($listener);
+    protected abstract function listener($listener);
 
     /**
      * @return ConfigInterface
      */
-    abstract protected function listeners();
+    protected abstract function listeners();
 
     /**
      * @param string $event
