@@ -84,6 +84,15 @@ trait FactoryTrait
     }
 
     /**
+     * @param string $name
+     * @return mixed
+     */
+    public function param($name)
+    {
+        return $this->sm->param($name);
+    }
+
+    /**
      * @param $name
      * @return object
      */

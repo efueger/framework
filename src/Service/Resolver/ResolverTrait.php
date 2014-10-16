@@ -205,7 +205,7 @@ trait ResolverTrait
      * @param $name
      * @return mixed
      */
-    protected function param($name)
+    public function param($name)
     {
         /** @var ManagerInterface|self $this */
 

@@ -25,6 +25,12 @@ interface ManagerInterface
 
     /**
      * @param $name
+     * @return mixed
+     */
+    function param($name);
+
+    /**
+     * @param $name
      * @return callable|null|object
      */
     function plugin($name);
