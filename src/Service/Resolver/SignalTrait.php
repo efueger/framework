@@ -20,20 +20,15 @@ trait SignalTrait
             return call_user_func_array($config, $args);
         }
 
-        $method = '__invoke';
-
-        if (is_array($config)) {
-            if (is_string($config[0])) {
-                return call_user_func($config, $args);
-            }
-
-            $method = isset($config[1]) ? $config[1] : $method;
-            $config = $config[0];
-        }
-
         $callable = null;
         $matched  = [];
+        $method   = '__invoke';
         $params   = null;
+
+        if (is_array($config)) {
+            isset($config[1]) && $method = $config[1];
+            $config = $config[0];
+        }
 
         if (is_string($config) && !class_exists($config)) {
             $static = explode(ResolverInterface::CALLABLE_STRING, $config);
@@ -45,7 +40,7 @@ trait SignalTrait
             }
         }
 
-        !$callable && $params = (new ReflectionMethod($config, $method))->getParameters();
+        !$params && $params = (new ReflectionMethod($config, $method))->getParameters();
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
