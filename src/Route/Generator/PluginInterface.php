@@ -9,5 +9,5 @@ interface PluginInterface
      * @param array $args
      * @return string
      */
-    function url($name = null, array $args = []);
+    function __invoke($name = null, array $args = []);
 }
