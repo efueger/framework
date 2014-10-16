@@ -23,7 +23,7 @@ class Manager
      */
     public function action(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $args, null, function($name) {
+        return $this->signal($listener, $args, function($name) {
             return $this->get(ucfirst($name), [], function() {});
         });
     }

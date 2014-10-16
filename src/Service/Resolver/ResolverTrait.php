@@ -158,11 +158,7 @@ trait ResolverTrait
      */
     protected function invoke($config, array $args = [], callable $callback = null)
     {
-        if (!is_string(key($args))) {
-            return call_user_func_array($this->args($config), $this->args($args));
-        }
-
-        return $this->signal($this->args($config), $args, function($arg) { return $this->resolve($arg); }, $callback);
+        return $this->signal($this->args($config), $this->args($args), $callback);
     }
 
     /**

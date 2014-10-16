@@ -11,12 +11,15 @@ trait SignalTrait
     /**
      * @param callable $config
      * @param array $args
-     * @param callable $resolver
      * @param callable $callback
      * @return mixed
      */
-    protected function signal(callable $config, array $args = [], callable $resolver = null, callable $callback = null)
+    protected function signal(callable $config, array $args = [], callable $callback = null)
     {
+        if (!is_string(key($args))) {
+            return call_user_func_array($config, $args);
+        }
+
         $method = '__invoke';
 
         if (is_array($config)) {
@@ -25,7 +28,7 @@ trait SignalTrait
             }
 
             $method = isset($config[1]) ? $config[1] : $method;
-            $config = $resolver ? $resolver($config[0]) : $config[0];
+            $config = $config[0];
         }
 
         $callable = null;
@@ -50,7 +53,7 @@ trait SignalTrait
                 continue;
             }
 
-            if (ResolverInterface::ARGS === $param->name && !isset($args[$param->name])) {
+            if (ResolverInterface::ARGS === $param->name) {
                 $matched[] = $args;
                 continue;
             }
