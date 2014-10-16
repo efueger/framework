@@ -263,7 +263,7 @@ trait ResolverTrait
         }
 
         if ($config instanceof Factory) {
-            return $this->invoke($this->child($config, $args), ['args' => []], function($name) {
+            return $this->invoke($this->child($config, $args), [ResolverInterface::ARGS => []], function($name) {
                 /** @var ManagerInterface $this */
                 return $this->get(ucfirst($name), [], function() {});
             });
