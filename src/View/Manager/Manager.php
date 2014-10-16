@@ -37,7 +37,7 @@ class Manager
      */
     public function plugin($name, callable $callback = null)
     {
-        return $this->get($this->alias(strtolower($name)), [], $callback);
+        return $this->get($this->alias(strtolower($name)), [], $callback ?: function() {});
     }
 
     /**
