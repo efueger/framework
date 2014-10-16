@@ -21,6 +21,7 @@ class Application
      */
     public function __construct(Config $config)
     {
+        $this->alias    = $config->get(self::ALIAS);
         $this->config   = $config;
         $this->events   = $config->get(self::EVENTS);
         $this->services = $config->get(self::SERVICES);

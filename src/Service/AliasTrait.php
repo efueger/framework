@@ -15,7 +15,7 @@ trait AliasTrait
      */
     public function alias($alias)
     {
-        return isset($this->alias[$alias]) ? $this->alias[$alias] : $alias;
+        return isset($this->alias[$alias]) ? $this->alias[$alias] : null;
     }
 
     /**

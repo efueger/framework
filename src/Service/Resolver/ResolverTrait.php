@@ -63,7 +63,7 @@ trait ResolverTrait
 
         $config = explode(ResolverInterface::CALL_SEPARATOR, $config);
         $plugin = array_shift($config);
-        $method = $config ? array_pop($config) : '__invoke';
+        $method = $config ? array_pop($config) : null;
 
         is_string($plugin) && $plugin = $this->plugin($plugin, function($plugin) {
             if (!is_callable($plugin)) {

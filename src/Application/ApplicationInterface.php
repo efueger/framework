@@ -7,6 +7,11 @@ interface ApplicationInterface
     /**
      *
      */
+    const ALIAS = 'alias';
+
+    /**
+     *
+     */
     const EVENTS = 'events';
 
     /**

@@ -59,8 +59,6 @@ class Event
      */
     public function __invoke(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $this->args() + $args, function($name) {
-            return $this->sm->plugin($name);
-        });
+        return $this->signal($listener, $this->args() + $args, function($name) { return $this->sm->plugin($name); });
     }
 }

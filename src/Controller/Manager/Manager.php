@@ -23,9 +23,7 @@ class Manager
      */
     public function action(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $args, function($name) {
-            return $this->plugin($name);
-        });
+        return $this->signal($listener, $args, function($name) { return $this->plugin($name); });
     }
 
     /**

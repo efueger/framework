@@ -5,6 +5,7 @@ namespace Framework\Service\Manager;
 use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
+use Framework\Service\AliasTrait as Alias;
 use RuntimeException;
 
 trait ManagerTrait
@@ -12,6 +13,7 @@ trait ManagerTrait
     /**
      *
      */
+    use Alias;
     use Container;
     use Resolver;
 
@@ -127,6 +129,6 @@ trait ManagerTrait
      */
     public function plugin($name, callable $callback = null)
     {
-        return $this->get(ucfirst($name), [], $callback ?: function() {});
+        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
     }
 }
