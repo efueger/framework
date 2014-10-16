@@ -226,6 +226,12 @@ trait ResolverTrait
     }
 
     /**
+     * @param $name
+     * @return callable|null|object
+     */
+    public abstract function plugin($name);
+
+    /**
      * @param Config $config
      * @param array $args
      * @return null|object
@@ -265,7 +271,7 @@ trait ResolverTrait
         if ($config instanceof Factory) {
             return $this->invoke($this->child($config, $args), [], function($name) {
                 /** @var ManagerInterface $this */
-                return $this->get(ucfirst($name), [], function() {});
+                return $this->plugin($name);
             });
         }
 

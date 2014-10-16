@@ -119,4 +119,13 @@ trait ManagerTrait
 
         return $this->create($config);
     }
+
+    /**
+     * @param $name
+     * @return callable|null|object
+     */
+    public function plugin($name)
+    {
+        return $this->get(ucfirst($name), [], function() {});
+    }
 }

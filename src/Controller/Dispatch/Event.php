@@ -60,7 +60,7 @@ class Event
     public function __invoke(callable $listener, array $args = [])
     {
         return $this->signal($listener, $this->args() + $args, function($name) {
-            return $this->sm->get(ucfirst($name), [], function() {});
+            return $this->sm->plugin($name);
         });
     }
 }

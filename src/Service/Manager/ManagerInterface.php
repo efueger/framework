@@ -22,4 +22,10 @@ interface ManagerInterface
      * @return callable|null|object
      */
     function get($name, array $args = [], callable $callback = null);
+
+    /**
+     * @param $name
+     * @return callable|null|object
+     */
+    function plugin($name);
 }

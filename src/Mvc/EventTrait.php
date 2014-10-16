@@ -36,10 +36,11 @@ trait EventTrait
      * @param $name
      * @return callable|null|object
      */
-    protected function get($name)
+    protected function plugin($name)
     {
-        return $this->sm->get(ucfirst($name), [], function() {});
+        return $this->sm->plugin($name);
     }
+
     /**
      * @return Request
      */
