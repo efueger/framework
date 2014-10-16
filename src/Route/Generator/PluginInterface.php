@@ -5,7 +5,7 @@ namespace Framework\Route\Generator;
 interface PluginInterface
 {
     /**
-     * @param null $name
+     * @param null|string $name
      * @param array $args
      * @return string
      */
