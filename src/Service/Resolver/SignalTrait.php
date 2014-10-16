@@ -16,14 +16,14 @@ trait SignalTrait
      */
     protected function signal(callable $config, array $args = [], callable $callback = null)
     {
-        if (!is_string(key($args))) {
-            return call_user_func_array($config, $args);
-        }
-
         $callable = null;
         $matched  = [];
         $method   = '__invoke';
         $params   = null;
+
+        if ($args && !is_string(key($args))) {
+            return call_user_func_array($config, $args);
+        }
 
         if (is_array($config)) {
             isset($config[1]) && $method = $config[1];
