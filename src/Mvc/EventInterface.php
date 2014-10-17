@@ -3,7 +3,6 @@
 namespace Framework\Mvc;
 
 use Framework\Route\Route\RouteInterface as Route;
-use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
 use Framework\View\Model\ModelInterface as ViewModel;
 
@@ -13,11 +12,6 @@ interface EventInterface
      *
      */
     const MVC = 'Mvc\Event';
-
-    /**
-     *
-     */
-    const REQUEST = 'Request';
 
     /**
      *
@@ -33,11 +27,6 @@ interface EventInterface
      *
      */
     const VIEW_MODEL = 'ViewModel';
-
-    /**
-     * @return Request
-     */
-    function request();
 
     /**
      * @return Response

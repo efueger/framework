@@ -4,7 +4,6 @@ namespace Framework\Mvc;
 
 use Framework\Event\EventTrait as Event;
 use Framework\Service\Resolver\SignalTrait as Signal;
-use Framework\Request\RequestInterface as Request;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
@@ -42,14 +41,6 @@ trait EventTrait
     }
 
     /**
-     * @return Request
-     */
-    public function request()
-    {
-        return $this->sm->get(EventInterface::REQUEST);
-    }
-
-    /**
      * @return Response
      */
     public function response()
@@ -63,14 +54,6 @@ trait EventTrait
     public function route()
     {
         return $this->sm->get(EventInterface::ROUTE);
-    }
-
-    /**
-     * @param Request $request
-     */
-    protected function setRequest(Request $request)
-    {
-        $this->sm->set(EventInterface::REQUEST, $request);
     }
 
     /**
