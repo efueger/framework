@@ -14,6 +14,7 @@ use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
+use Framework\Service\Config\Plugins\PluginsInterface as Plugins;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
@@ -94,6 +95,14 @@ trait ResolverTrait
          */
         return $this->provide($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
+
+    /**
+     * @param array|object|string $config
+     * @param array $args
+     * @param callable $callback
+     * @return callable|null|object
+     */
+    protected abstract function create($config, array $args = [], callable $callback = null);
 
     /**
      * @param $arg
@@ -324,6 +333,10 @@ trait ResolverTrait
 
         if ($config instanceof ConfigLink) {
             return $this->config();
+        }
+
+        if ($config instanceof Plugins) {
+            return function($plugin) { return $this->plugin($plugin); };
         }
 
         if ($config instanceof ServiceManagerLink) {

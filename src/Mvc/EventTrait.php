@@ -32,15 +32,6 @@ trait EventTrait
     }
 
     /**
-     * @param $name
-     * @return callable|null|object
-     */
-    protected function plugin($name)
-    {
-        return $this->sm->plugin($name);
-    }
-
-    /**
      * @return Response
      */
     public function response()

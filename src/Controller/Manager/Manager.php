@@ -19,30 +19,33 @@ class Manager
     /**
      * @param callable $listener
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function action(callable $listener, array $args = [])
+    public function action(callable $listener, array $args = [], callable $callback = null)
     {
-        return $this->signal($listener, $args, function($name) { return $this->plugin($name); });
+        return $this->signal($listener, $args, $callback);
     }
 
     /**
      * @param callable|string $config
+     * @param callable $callback
      * @return callable|null|object
      */
-    public function controller($config)
+    public function controller($config, callable $callback = null)
     {
-        return $this->invokable($config, function($name) { return $this->plugin($name); });
+        return $this->invokable($config, $callback);
     }
 
     /**
      * @param callable $controller
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function dispatch(callable $controller, array $args = [])
+    public function dispatch(callable $controller, array $args = [], callable $callback = null)
     {
-        return $this->trigger([Dispatch::DISPATCH, $this, $controller], $args);
+        return $this->trigger([Dispatch::DISPATCH, $controller], $args, $callback);
     }
 
     /**

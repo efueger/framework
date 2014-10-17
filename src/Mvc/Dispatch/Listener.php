@@ -16,13 +16,14 @@ class Listener
     /**
      * @param $controller
      * @param array $args
+     * @param callable $plugins
      * @return mixed
      */
-    public function __invoke($controller, array $args = [])
+    public function __invoke($controller, array $args = [], callable $plugins = null)
     {
         try {
 
-            return $this->dispatch($this->controller($controller), $args);
+            return $this->dispatch($this->controller($controller, $plugins), $args, $plugins);
 
         } catch (Exception $exception) {
 

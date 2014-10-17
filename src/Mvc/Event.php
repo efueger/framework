@@ -38,11 +38,12 @@ class Event
     /**
      * @param callable $listener
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function __invoke(callable $listener, array $args = [])
+    public function __invoke(callable $listener, array $args = [], callable $callback = null)
     {
-        $response = $this->signal($listener, $this->args(), function($name) { return $this->plugin($name); });
+        $response = $this->signal($listener, $this->args(), $callback);
 
         if ($response instanceof Route) {
             $this->setRoute($response);

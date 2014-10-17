@@ -43,16 +43,13 @@ trait EventsTrait
      * @param Event|string $event
      * @param callable $listener
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    protected function emit($event, callable $listener, array $args = [])
+    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
     {
         /** @var callable $event */
 
-        if ($event instanceof Event) {
-            return is_callable($event) ? $event($listener, $args) : $listener($event, $args);
-        }
-
-        return $this->invoke($listener, $args);
+        return is_callable($event) ? $event($listener, $args, $callback) : $this->invoke($listener, $args, $callback);
     }
 }

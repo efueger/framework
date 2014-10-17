@@ -14,20 +14,22 @@ trait ServiceTrait
     /**
      * @param $controller
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function action($controller, array $args = [])
+    public function action($controller, array $args = [], callable $callback = null)
     {
-        return $this->cm->action($controller, $args);
+        return $this->cm->action($controller, $args, $callback);
     }
 
     /**
      * @param callable|string $controller
+     * @param callable $callback
      * @return callable|null|object
      */
-    public function controller($controller)
+    public function controller($controller, callable $callback = null)
     {
-        return $this->cm->controller($controller);
+        return $this->cm->controller($controller, $callback);
     }
 
     /**
@@ -51,11 +53,12 @@ trait ServiceTrait
     /**
      * @param callable $controller
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function dispatch(callable $controller, array $args = [])
+    public function dispatch(callable $controller, array $args = [], callable $callback = null)
     {
-        return $this->cm->dispatch($controller, $args);
+        return $this->cm->dispatch($controller, $args, $callback);
     }
 
     /**

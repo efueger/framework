@@ -33,6 +33,6 @@ class Application
      */
     public function __invoke(array $args = [])
     {
-        return $this->trigger(Event::MVC, $args);
+        return $this->trigger(Event::MVC, $args, function($plugin) { return $this->plugin($plugin); });
     }
 }

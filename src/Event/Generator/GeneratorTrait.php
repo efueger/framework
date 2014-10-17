@@ -20,9 +20,7 @@ trait GeneratorTrait
 
         foreach($this->queue(is_string($event) ? $event : $event->event()) as $listener) {
 
-            $result = $this->emit($event, $listener, $args);
-
-            $callback && $callback($event, $listener, $args, $result);
+            $result = $this->emit($event, $listener, $args, $callback);
 
             if ($event instanceof Event && $event->stopped()) {
                 break;
@@ -60,11 +58,20 @@ trait GeneratorTrait
      * @param Event|string $event
      * @param callable $listener
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    protected function emit($event, callable $listener, array $args = [])
+    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
     {
         /** @var callable $event */
-        return $event instanceof Event && is_callable($event) ? $event($listener, $args) : $listener($event, $args);
+        return is_callable($event) ? $event($listener, $args, $callback) : $this->signal($listener, $args, $callback);
     }
+
+    /**
+     * @param callable $config
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected abstract function signal(callable $config, array $args = [], callable $callback = null);
 }
