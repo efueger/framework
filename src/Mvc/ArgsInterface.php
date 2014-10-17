@@ -14,11 +14,6 @@ interface ArgsInterface
      */
     const EVENT = 'event';
 
-    /**
-     *
-     */
-    const REQUEST = 'request';
-
     /*
      *
      */
