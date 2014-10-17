@@ -156,7 +156,7 @@ trait ResolverTrait
             return $config::bind($config, $this);
         }
 
-        if (is_string($config) && '@' === $config[0]) {
+        if (is_string($config) && ResolverInterface::CALL === $config[0]) {
             return function($args = []) use ($config, $callback) {
                 return $this->call(
                     substr($config, 1),

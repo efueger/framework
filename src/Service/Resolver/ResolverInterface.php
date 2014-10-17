@@ -17,6 +17,11 @@ interface ResolverInterface
     /**
      *
      */
+    const CALL = '@';
+
+    /**
+     *
+     */
     const CALL_SEPARATOR = '.';
 
     /**
