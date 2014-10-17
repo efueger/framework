@@ -2,7 +2,6 @@
 
 namespace Framework\Service\Manager;
 
-use Closure;
 use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use Framework\Service\AliasTrait as Alias;
@@ -94,32 +93,6 @@ trait ManagerTrait
         }
 
         $this->pending[$name] = true;
-    }
-
-    /**
-     * @param callable|string $config
-     * @return callable|null
-     */
-    protected function invokable($config)
-    {
-        if ($config instanceof Closure) {
-            return $config::bind($config, $this);
-        }
-
-        if (is_string($config) && '@' === $config[0]) {
-            return function($args = []) use ($config) {
-                return $this->call(
-                    substr($config, 1),
-                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args
-                );
-            };
-        }
-
-        if (is_array($config)) {
-            return is_string($config[0]) ? $config : [$this->create($config[0]), $config[1]];
-        }
-
-        return $this->create($config);
     }
 
     /**

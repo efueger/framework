@@ -2,6 +2,7 @@
 
 namespace Framework\Service\Resolver;
 
+use Closure;
 use Framework\Config\ConfigInterface;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
@@ -77,7 +78,7 @@ trait ResolverTrait
             $plugin = $plugin->$name();
         }
 
-        return $this->invoke($method ? [$plugin, $method] : $plugin, $args);
+        return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback);
     }
 
     /**
@@ -142,6 +143,34 @@ trait ResolverTrait
         }
 
         return $service;
+    }
+
+    /**
+     * @param callable|string $config
+     * @param callable $callback
+     * @return callable|null
+     */
+    protected function invokable($config, callable $callback = null)
+    {
+        if ($config instanceof Closure) {
+            return $config::bind($config, $this);
+        }
+
+        if (is_string($config) && '@' === $config[0]) {
+            return function($args = []) use ($config, $callback) {
+                return $this->call(
+                    substr($config, 1),
+                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
+                    $callback
+                );
+            };
+        }
+
+        if (is_array($config)) {
+            return is_string($config[0]) ? $config : [$this->create($config[0]), $config[1]];
+        }
+
+        return $this->create($config);
     }
 
     /**

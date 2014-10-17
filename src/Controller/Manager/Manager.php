@@ -32,7 +32,7 @@ class Manager
      */
     public function controller($config)
     {
-        return $this->invokable($config);
+        return $this->invokable($config, function($name) { return $this->plugin($name); });
     }
 
     /**

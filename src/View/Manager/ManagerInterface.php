@@ -22,6 +22,12 @@ interface ManagerInterface
     function exception(Exception $exception);
 
     /**
+     * @param $name
+     * @return mixed
+     */
+    function param($name);
+
+    /**
      * @param string $name
      * @param callable $callback
      * @return null|callable|object
