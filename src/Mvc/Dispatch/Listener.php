@@ -27,7 +27,7 @@ class Listener
 
         } catch (Exception $exception) {
 
-            return $this->exception($exception, $args);
+            return $this->exception($exception, $args, $plugins);
 
         }
     }

@@ -57,11 +57,12 @@ class Event
     /**
      * @param callable $listener
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function __invoke(callable $listener, array $args = [])
+    public function __invoke(callable $listener, array $args = [], callable $callback = null)
     {
-        $result = $this->signal($listener, $this->args() + $args);
+        $result = $this->signal($listener, $this->args() + $args, $callback);
 
         if (!$result) {
             $this->stop();

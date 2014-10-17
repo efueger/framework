@@ -51,10 +51,11 @@ class Manager
     /**
      * @param \Exception $exception
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function exception(\Exception $exception, array $args = [])
+    public function exception(\Exception $exception, array $args = [], callable $callback = null)
     {
-        return $this->trigger([Exception::EXCEPTION, $exception], $args);
+        return $this->trigger([Exception::EXCEPTION, $exception], $args, $callback);
     }
 }

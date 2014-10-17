@@ -32,7 +32,8 @@ interface ManagerInterface
     /**
      * @param Exception $exception
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    function exception(Exception $exception, array $args = []);
+    function exception(Exception $exception, array $args = [], callable $callback = null);
 }

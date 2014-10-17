@@ -21,20 +21,22 @@ class Manager
     /**
      * @param Route $route
      * @param array $args
+     * @param callable $callback
      * @return Route
      */
-    public function dispatch(Route $route, array $args = [])
+    public function dispatch(Route $route, array $args = [], callable $callback = null)
     {
-       return $this->trigger([Dispatch::DISPATCH, $route], $args);
+       return $this->trigger([Dispatch::DISPATCH, $route], $args, $callback);
     }
 
     /**
      * @param Definition $definition
      * @param Route $route
+     * @param callable $callback
      * @return Route
      */
-    public function match(Definition $definition, Route $route)
+    public function match(Definition $definition, Route $route, callable $callback = null)
     {
-        return $this->trigger([Match::MATCH, $definition, $route]);
+        return $this->trigger([Match::MATCH, $definition, $route], [], $callback);
     }
 }

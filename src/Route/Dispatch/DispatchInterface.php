@@ -10,7 +10,8 @@ interface DispatchInterface
     /**
      * @param Route $route
      * @param Definition $definition
+     * @param callable $callback
      * @return Route|null
      */
-    function __invoke(Route $route, Definition $definition = null);
+    function __invoke(Route $route, Definition $definition = null, callable $callback = null);
 }

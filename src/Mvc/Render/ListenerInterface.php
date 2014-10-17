@@ -8,7 +8,8 @@ interface ListenerInterface
 {
     /**
      * @param View $viewModel
+     * @param callable $callback
      * @return mixed
      */
-    function __invoke(View $viewModel = null);
+    function __invoke(View $viewModel = null, callable $callback = null);
 }

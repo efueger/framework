@@ -15,21 +15,23 @@ trait ServiceTrait
     /**
      * @param Route $route
      * @param array $args
+     * @param callable $callback
      * @return Route
      */
-    public function dispatch(Route $route, array $args = [])
+    public function dispatch(Route $route, array $args = [], callable $callback = null)
     {
-        return $this->rm->dispatch($route, $args);
+        return $this->rm->dispatch($route, $args, $callback);
     }
 
     /**
      * @param Definition $definition
      * @param Route $route
+     * @param callable $callback
      * @return Route
      */
-    public function match(Definition $definition, Route $route)
+    public function match(Definition $definition, Route $route, callable $callback = null)
     {
-        return $this->rm->match($definition, $route);
+        return $this->rm->match($definition, $route, $callback);
     }
 
     /**

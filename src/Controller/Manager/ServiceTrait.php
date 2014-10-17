@@ -43,11 +43,12 @@ trait ServiceTrait
     /**
      * @param Exception $exception
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function exception(Exception $exception, array $args = [])
+    public function exception(Exception $exception, array $args = [], callable $callback = null)
     {
-        return $this->cm->exception($exception, $args);
+        return $this->cm->exception($exception, $args, $callback);
     }
 
     /**

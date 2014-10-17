@@ -24,11 +24,12 @@ trait ServiceTrait
 
     /**
      * @param Exception $exception
+     * @param callable $callback
      * @return mixed
      */
-    public function exception(Exception $exception)
+    public function exception(Exception $exception, callable $callback = null)
     {
-        return $this->vm->exception($exception);
+        return $this->vm->exception($exception, $callback);
     }
 
     /**
@@ -44,11 +45,12 @@ trait ServiceTrait
     /**
      * @param ViewModel $viewModel
      * @param array $args
+     * @param callable $callback
      * @return mixed
      */
-    public function render(ViewModel $viewModel, array $args = [])
+    public function render(ViewModel $viewModel, array $args = [], callable $callback = null)
     {
-        return $this->vm->render($viewModel, $args);
+        return $this->vm->render($viewModel, $args, $callback);
     }
 
     /**

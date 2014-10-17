@@ -18,10 +18,11 @@ class Manager
 
     /**
      * @param ResponseInterface $response
+     * @param callable $callback
      * @return mixed
      */
-    public function response(ResponseInterface $response)
+    public function response(ResponseInterface $response, callable $callback = null)
     {
-        return $this->trigger([Response::RESPONSE, $response]);
+        return $this->trigger([Response::RESPONSE, $response], [], $callback);
     }
 }
