@@ -20,6 +20,6 @@ class Plugin
      */
     public function __invoke($name = null, array $args = [])
     {
-        return $this->url($name ?: $this->route()->name(), $name ? $args : $args + $this->route()->params());
+        return $this->generate($name ?: $this->route()->name(), $name ? $args : $args + $this->route()->params());
     }
 }

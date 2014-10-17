@@ -22,7 +22,7 @@ trait ServiceTrait
      * @param array $args
      * @return string
      */
-    public function url($name, array $args = [])
+    public function generate($name, array $args = [])
     {
         return $this->generator->url($name, $args);
     }
