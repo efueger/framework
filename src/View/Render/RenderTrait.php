@@ -17,7 +17,7 @@ trait RenderTrait
     {
         foreach($viewModel as $k => $v) {
             if ($v instanceof ViewModel) {
-                $viewModel->$k = $this($v);
+                $viewModel->$k = $this($v, $plugins);
             }
         }
 
