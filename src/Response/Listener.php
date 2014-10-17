@@ -11,6 +11,6 @@ class Listener
      */
     public function __invoke(ResponseInterface $response)
     {
-        return $response;
+        $response->send();
     }
 }
