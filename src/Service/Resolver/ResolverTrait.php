@@ -4,6 +4,7 @@ namespace Framework\Service\Resolver;
 
 use Closure;
 use Framework\Config\ConfigInterface;
+use Framework\Event\EventInterface as Event;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
 use Framework\Service\Config\Child\ChildInterface as Child;
@@ -73,6 +74,10 @@ trait ResolverTrait
 
             return $plugin;
         });
+
+        if ($plugin instanceof Event) {
+            return $this->trigger($plugin, $args, $callback ?: $this);
+        }
 
         foreach($config as $name) {
             $plugin = $plugin->$name();
@@ -342,4 +347,12 @@ trait ResolverTrait
 
         return $config;
     }
+
+    /**
+     * @param string $event
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected abstract function trigger($event, array $args = [], callable $callback = null);
 }
