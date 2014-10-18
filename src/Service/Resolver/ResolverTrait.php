@@ -165,11 +165,11 @@ trait ResolverTrait
         }
 
         if (is_string($config) && ResolverInterface::CALL === $config[0]) {
-            return function($args = [], $plugin = null) use ($config) {
+            return function($args = []) use ($config) {
                 return $this->call(
                     substr($config, 1),
                     !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
-                    $plugin
+                    function($plugin) { return $this->plugin($plugin); }
                 );
             };
         }
