@@ -8,7 +8,6 @@ interface FilterInterface
 {
     /**
      * @param Route $route
-     * @param callable $callback
      */
-    function __invoke(Route $route, callable $callback);
+    function __invoke(Route $route);
 }

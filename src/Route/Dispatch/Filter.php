@@ -9,9 +9,8 @@ class Filter
 {
     /**
      * @param Route $route
-     * @param callable $plugins
      */
-    public function __invoke(Route $route, callable $plugins)
+    public function __invoke(Route $route)
     {
         $route->set(Route::PATH, urldecode(rtrim($route->path(), '/')) ?: '/');
     }

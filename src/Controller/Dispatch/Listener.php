@@ -15,11 +15,11 @@ class Listener
     /**
      * @param $controller
      * @param array $args
-     * @param callable $plugins
+     * @param callable $plugin
      * @return mixed
      */
-    public function __invoke($controller, array $args = [], callable $plugins = null)
+    public function __invoke($controller, array $args = [], callable $plugin = null)
     {
-        return $this->action($controller, $args, $plugins);
+        return $this->action($controller, $args, $plugin);
     }
 }

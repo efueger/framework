@@ -30,21 +30,21 @@ class Dispatch
     /**
      * @param Route $route
      * @param Definition $definition
-     * @param callable $plugins
+     * @param callable $plugin
      * @return Route|null
      */
-    public function __invoke(Route $route, Definition $definition = null, callable $plugins = null)
+    public function __invoke(Route $route, Definition $definition = null, callable $plugin = null)
     {
         $definition = $definition ?: $this->definition;
 
-        $route = $this->match($definition, clone $route, $plugins);
+        $route = $this->match($definition, clone $route, $plugin);
 
         if (!$route || $route->matched()) {
             return $route;
         }
 
         foreach($definition->children() as $definition) {
-            $match = $this($route, $definition, $plugins);
+            $match = $this($route, $definition, $plugin);
 
             if ($match) {
                 return $match;

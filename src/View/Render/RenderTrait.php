@@ -10,14 +10,14 @@ trait RenderTrait
 {
     /**
      * @param ViewModel $viewModel
-     * @param callable $plugins
+     * @param callable $plugin
      * @return string
      */
-    public function __invoke(ViewModel $viewModel, callable $plugins = null)
+    public function __invoke(ViewModel $viewModel, callable $plugin = null)
     {
         foreach($viewModel as $k => $v) {
             if ($v instanceof ViewModel) {
-                $viewModel->$k = $this($v, $plugins);
+                $viewModel->$k = $this($v, $plugin);
             }
         }
 

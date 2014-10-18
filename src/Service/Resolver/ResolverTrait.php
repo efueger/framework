@@ -14,7 +14,7 @@ use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
-use Framework\Service\Config\Plugins\PluginsInterface as Plugins;
+use Framework\Service\Config\Plugin\PluginInterface as Plugin;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
@@ -330,7 +330,7 @@ trait ResolverTrait
             return $this->config();
         }
 
-        if ($config instanceof Plugins) {
+        if ($config instanceof Plugin) {
             return function($plugin) { return $this->plugin($plugin); };
         }
 

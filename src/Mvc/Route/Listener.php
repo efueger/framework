@@ -28,11 +28,11 @@ class Listener
 
     /**
      * @param Route $route
-     * @param callable $plugins
+     * @param callable $plugin
      * @return Route|mixed
      */
-    public function __invoke(Route $route, callable $plugins = null)
+    public function __invoke(Route $route, callable $plugin = null)
     {
-        return $this->dispatch($route, [], $plugins) ?: $this->route;
+        return $this->dispatch($route, [], $plugin) ?: $this->route;
     }
 }
