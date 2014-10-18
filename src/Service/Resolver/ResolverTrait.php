@@ -10,7 +10,6 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
-use Framework\Service\Config\Event\EventInterface as Event;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
@@ -329,10 +328,6 @@ trait ResolverTrait
 
         if ($config instanceof ServiceManagerLink) {
             return $this;
-        }
-
-        if ($config instanceof Event) {
-            return $this->trigger($config->name(), [], $this);
         }
 
         if ($config instanceof Filter) {

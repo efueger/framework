@@ -8,8 +8,7 @@ interface RenderInterface
 {
     /**
      * @param ViewModel $viewModel
-     * @param callable $callback
      * @return mixed
      */
-    function __invoke(ViewModel $viewModel, callable $callback = null);
+    function __invoke(ViewModel $viewModel);
 }

@@ -9,10 +9,9 @@ interface ManagerInterface
     /**
      * @param callable $listener
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    function action(callable $listener, array $args = [], callable $callback = null);
+    function action(callable $listener, array $args = []);
 
     /**
      * @param callable|string $config
@@ -23,16 +22,14 @@ interface ManagerInterface
     /**
      * @param callable $controller
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    function dispatch(callable $controller, array $args = [], callable $callback = null);
+    function dispatch(callable $controller, array $args = []);
 
     /**
      * @param Exception $exception
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    function exception(Exception $exception, array $args = [], callable $callback = null);
+    function exception(Exception $exception, array $args = []);
 }

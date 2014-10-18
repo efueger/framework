@@ -39,7 +39,7 @@ trait ManagerTrait
             }
 
             if ($callback && !class_exists($config)) {
-                return $callback($config, $args);
+                return $callback($config);
             }
 
             return $this->newInstanceArgs($config, $args);
@@ -103,16 +103,15 @@ trait ManagerTrait
     public function plugin($name, callable $callback = null)
     {
         /** @var callable|self $this */
-        return $this->get($this->alias($name) ?: $name, [], $callback ?: $this);
+        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
     }
 
     /**
      * @param string $plugin
-     * @param callable $callback
      * @return mixed
      */
-    public function __invoke($plugin, callable $callback = null)
+    public function __invoke($plugin)
     {
-        return $this->plugin($plugin, $callback ?: function() {});
+        return $this->plugin($plugin);
     }
 }

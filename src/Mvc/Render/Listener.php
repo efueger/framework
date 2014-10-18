@@ -16,10 +16,9 @@ class Listener
 
     /**
      * @param View $viewModel
-     * @param callable $plugin
      * @return mixed
      */
-    public function __invoke(View $viewModel = null, callable $plugin = null)
+    public function __invoke(View $viewModel = null)
     {
         if (!$viewModel) {
             return null;
@@ -27,11 +26,11 @@ class Listener
 
         try {
 
-            return $this->render($viewModel, [], $plugin);
+            return $this->render($viewModel);
 
         } catch(Exception $exception) {
 
-            return $this->exception($exception, $plugin);
+            return $this->exception($exception);
 
         }
     }

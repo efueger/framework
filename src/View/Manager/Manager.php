@@ -19,22 +19,20 @@ class Manager
 
     /**
      * @param \Exception $exception
-     * @param callable $callback
      * @return mixed
      */
-    public function exception(\Exception $exception, callable $callback = null)
+    public function exception(\Exception $exception)
     {
-        return $this->trigger([Exception::EXCEPTION, $exception], [], $callback);
+        return $this->trigger([Exception::EXCEPTION, $exception], [], $this);
     }
 
     /**
      * @param ViewModel $viewModel
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    public function render(ViewModel $viewModel, array $args = [], callable $callback = null)
+    public function render(ViewModel $viewModel, array $args = [])
     {
-        return $this->trigger([Render::RENDER, $viewModel], $args, $callback);
+        return $this->trigger([Render::RENDER, $viewModel], $args, $this);
     }
 }

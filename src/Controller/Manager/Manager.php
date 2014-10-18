@@ -19,12 +19,11 @@ class Manager
     /**
      * @param callable $listener
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    public function action(callable $listener, array $args = [], callable $callback = null)
+    public function action(callable $listener, array $args = [])
     {
-        return $this->signal($listener, $args, $callback);
+        return $this->signal($listener, $args, $this);
     }
 
     /**
@@ -39,22 +38,20 @@ class Manager
     /**
      * @param callable $controller
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    public function dispatch(callable $controller, array $args = [], callable $callback = null)
+    public function dispatch(callable $controller, array $args = [])
     {
-        return $this->trigger([Dispatch::DISPATCH, $controller], $args, $callback);
+        return $this->trigger([Dispatch::DISPATCH, $controller], $args, $this);
     }
 
     /**
      * @param \Exception $exception
      * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    public function exception(\Exception $exception, array $args = [], callable $callback = null)
+    public function exception(\Exception $exception, array $args = [])
     {
-        return $this->trigger([Exception::EXCEPTION, $exception], $args, $callback);
+        return $this->trigger([Exception::EXCEPTION, $exception], $args, $this);
     }
 }

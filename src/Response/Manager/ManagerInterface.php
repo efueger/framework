@@ -8,8 +8,7 @@ interface ManagerInterface
 {
     /**
      * @param ResponseInterface $response
-     * @param callable $callback
      * @return mixed
      */
-    function response(ResponseInterface $response, callable $callback = null);
+    function response(ResponseInterface $response);
 }

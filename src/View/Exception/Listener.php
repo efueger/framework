@@ -17,10 +17,9 @@ class Listener
 
     /**
      * @param Exception $exception
-     * @param callable $plugin
      * @return mixed
      */
-    public function __invoke(Exception $exception, callable $plugin = null)
+    public function __invoke(Exception $exception)
     {
         /** @var ViewModelInterface $viewModel */
 
@@ -28,6 +27,6 @@ class Listener
 
         $viewModel->setException($exception);
 
-        return $this->render($viewModel, [], $plugin);
+        return $this->render($viewModel);
     }
 }

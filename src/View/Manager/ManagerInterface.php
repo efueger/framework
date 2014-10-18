@@ -17,10 +17,9 @@ interface ManagerInterface
 
     /**
      * @param Exception $exception
-     * @param callable $callback
      * @return mixed
      */
-    function exception(Exception $exception, callable $callback = null);
+    function exception(Exception $exception);
 
     /**
      * @param $name
@@ -37,9 +36,7 @@ interface ManagerInterface
 
     /**
      * @param ViewModel $viewModel
-     * @param array $args
-     * @param callable $callback
      * @return mixed
      */
-    function render(ViewModel $viewModel, array $args = [], callable $callback = null);
+    function render(ViewModel $viewModel);
 }

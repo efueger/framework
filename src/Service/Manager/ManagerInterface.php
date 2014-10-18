@@ -48,8 +48,7 @@ interface ManagerInterface
 
     /**
      * @param string $plugin
-     * @param callable $callback
      * @return mixed
      */
-    function __invoke($plugin, callable $callback = null);
+    function __invoke($plugin);
 }

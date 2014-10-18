@@ -13,12 +13,11 @@ trait ServiceTrait
 
     /**
      * @param ResponseInterface $response
-     * @param callable $callback
      * @return mixed
      */
-    public function response(ResponseInterface $response, callable $callback = null)
+    public function response(ResponseInterface $response)
     {
-        return $this->rm->response($response, $callback);
+        return $this->rm->response($response);
     }
 
     /**

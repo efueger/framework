@@ -15,11 +15,10 @@ class Listener
 
     /**
      * @param Response $response
-     * @param callable $plugin
      * @return mixed
      */
-    public function __invoke(Response $response, callable $plugin = null)
+    public function __invoke(Response $response)
     {
-        return $this->response($response, $plugin);
+        return $this->response($response);
     }
 }

@@ -10,16 +10,14 @@ interface ManagerInterface
     /**
      * @param Route $route
      * @param array $args
-     * @param callable $callback
      * @return Route
      */
-    function dispatch(Route $route, array $args = [], callable $callback = null);
+    function dispatch(Route $route, array $args = []);
 
     /**
      * @param Definition $definition
      * @param Route $route
-     * @param callable $callback
      * @return Route
      */
-    function match(Definition $definition, Route $route, callable $callback = null);
+    function match(Definition $definition, Route $route);
 }
