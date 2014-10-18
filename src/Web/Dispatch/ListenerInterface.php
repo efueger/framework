@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc\Dispatch;
+namespace Framework\Web\Dispatch;
 
 interface ListenerInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc\Response;
+namespace Framework\Web\Response;
 
 use Framework\Response\ResponseInterface as Response;
 use Framework\Response\Manager\ServiceTrait as ResponseManager;

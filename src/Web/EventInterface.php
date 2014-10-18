@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc;
+namespace Framework\Web;
 
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\Response\ResponseInterface as Response;
@@ -11,7 +11,7 @@ interface EventInterface
     /**
      *
      */
-    const MVC = 'Mvc\Event';
+    const MVC = 'web';
 
     /**
      *

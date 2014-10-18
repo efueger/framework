@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc;
+namespace Framework\Web;
 
 interface ArgsInterface
 {

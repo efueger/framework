@@ -1,9 +1,9 @@
 <?php
 
-namespace Framework\Mvc;
+namespace Framework\Web;
 
 use Framework\Event\EventInterface as Base;
-use Framework\Mvc\Render\ListenerInterface as Render;
+use Framework\Web\Render\ListenerInterface as Render;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\View\Model\ModelInterface as ViewModel;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc\Render;
+namespace Framework\Web\Render;
 
 use Exception;
 use Framework\View\Model\ModelInterface as View;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc\Layout;
+namespace Framework\Web\Layout;
 
 use Framework\View\Model\ModelInterface as ViewModel;
 

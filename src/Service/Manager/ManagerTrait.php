@@ -107,6 +107,16 @@ trait ManagerTrait
     }
 
     /**
+     * @param $name
+     * @param array $args
+     * @return callable|mixed|null|object
+     */
+    public function __call($name, array $args = [])
+    {
+        return $this->call($name, $args ? array_shift($args) : []);
+    }
+
+    /**
      * @param string $plugin
      * @return mixed
      */
