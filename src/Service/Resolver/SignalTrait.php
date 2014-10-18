@@ -32,7 +32,7 @@ trait SignalTrait
 
         if (is_string($config) && !class_exists($config)) {
             $static = explode(ResolverInterface::CALLABLE_STRING, $config);
-            if ($static && isset($static[1])) {
+            if (isset($static[1])) {
                 list($config, $method) = $static;
             } else {
                 $params   = (new ReflectionFunction($config))->getParameters();
