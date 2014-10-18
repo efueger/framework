@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web\Route;
+namespace Framework\Mvc\Route;
 
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\Route\Manager\ServiceTrait as RouteManager;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web\Response;
+namespace Framework\Mvc\Response;
 
 use Framework\Response\ResponseInterface as Response;
 

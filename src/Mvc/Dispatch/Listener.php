@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web\Dispatch;
+namespace Framework\Mvc\Dispatch;
 
 use Exception;
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;

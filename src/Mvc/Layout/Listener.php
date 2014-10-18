@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web\Layout;
+namespace Framework\Mvc\Layout;
 
 use Framework\View\Layout\LayoutInterface as LayoutModel;
 use Framework\View\Model\ServiceTrait as ViewModelTrait;

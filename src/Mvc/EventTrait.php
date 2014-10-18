@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web;
+namespace Framework\Mvc;
 
 use Framework\Event\EventTrait as Event;
 use Framework\Service\Resolver\SignalTrait as Signal;
