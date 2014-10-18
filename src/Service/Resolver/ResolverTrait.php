@@ -246,12 +246,7 @@ trait ResolverTrait
         $value = $this->config()->get(array_shift($name));
 
         foreach($name as $n) {
-            if ($value instanceof ConfigInterface) {
-                $value = $value->get($n);
-                continue;
-            }
-
-            $value = $value[$n];
+            $value = $value instanceof ConfigInterface ? $value->get($n) : $value[$n];
         }
 
         return $value;
