@@ -21,7 +21,7 @@ $config = new Config([
 ]);
 ```
 ```php
-call_user_func(new Application($config))->send();
+(new Application($config))->call('web');
 ```
 ##Benchmark
 *Current*
