@@ -102,6 +102,17 @@ trait ManagerTrait
      */
     public function plugin($name, callable $callback = null)
     {
-        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
+        /** @var callable|self $this */
+        return $this->get($this->alias($name) ?: $name, [], $callback ?: $this);
+    }
+
+    /**
+     * @param string $plugin
+     * @param callable $callback
+     * @return mixed
+     */
+    public function __invoke($plugin, callable $callback = null)
+    {
+        return $this->plugin($plugin, $callback ?: function() {});
     }
 }

@@ -10,11 +10,11 @@ use Framework\Service\Config\Child\ChildInterface as Child;
 use Framework\Service\Config\ConfigInterface as Config;
 use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
 use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
+use Framework\Service\Config\Event\EventInterface as Event;
 use Framework\Service\Config\Factory\FactoryInterface as Factory;
 use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
-use Framework\Service\Config\Plugin\PluginInterface as Plugin;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
 use Framework\Service\Manager\ManagerInterface;
 use ReflectionClass;
@@ -166,10 +166,11 @@ trait ResolverTrait
 
         if (is_string($config) && ResolverInterface::CALL === $config[0]) {
             return function($args = []) use ($config) {
+                /** @var callable|self $this */
                 return $this->call(
                     substr($config, 1),
                     !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
-                    function($plugin) { return $this->plugin($plugin); }
+                    $this
                 );
             };
         }
@@ -287,7 +288,7 @@ trait ResolverTrait
     {
         /**
          * @var Config|Child|Filter $config
-         * @var ManagerInterface|self $this
+         * @var ManagerInterface|self|callable $this
          */
 
         if (!is_object($config)) {
@@ -295,10 +296,7 @@ trait ResolverTrait
         }
 
         if ($config instanceof Factory) {
-            return $this->invoke($this->child($config, $args), [], function($name) {
-                /** @var ManagerInterface $this */
-                return $this->plugin($name);
-            });
+            return $this->invoke($this->child($config, $args), [], $this);
         }
 
         if ($config instanceof Child) {
@@ -329,12 +327,12 @@ trait ResolverTrait
             return $this->config();
         }
 
-        if ($config instanceof Plugin) {
-            return function($plugin) { return $this->plugin($plugin); };
-        }
-
         if ($config instanceof ServiceManagerLink) {
             return $this;
+        }
+
+        if ($config instanceof Event) {
+            return $this->trigger($config->name(), [], $this);
         }
 
         if ($config instanceof Filter) {
@@ -349,4 +347,12 @@ trait ResolverTrait
 
         return $config;
     }
+
+    /**
+     * @param array|object|string $event
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected abstract function trigger($event, array $args = [], callable $callback = null);
 }

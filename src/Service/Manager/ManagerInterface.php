@@ -40,9 +40,16 @@ interface ManagerInterface
     function param($name);
 
     /**
-     * @param $name
+     * @param string $name
      * @param callable $callback
      * @return callable|null|object
      */
     function plugin($name, callable $callback = null);
+
+    /**
+     * @param string $plugin
+     * @param callable $callback
+     * @return mixed
+     */
+    function __invoke($plugin, callable $callback = null);
 }
