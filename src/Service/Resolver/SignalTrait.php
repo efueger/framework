@@ -53,7 +53,7 @@ trait SignalTrait
                 continue;
             }
 
-            if ($callback && $match = $callback($param->name)) {
+            if ($callback && !$param->isOptional() && $match = $callback($param->name)) {
                 $matched[] = $match;
                 continue;
             }
