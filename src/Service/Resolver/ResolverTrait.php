@@ -342,12 +342,4 @@ trait ResolverTrait
 
         return $config;
     }
-
-    /**
-     * @param array|object|string $event
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    protected abstract function trigger($event, array $args = [], callable $callback = null);
 }
