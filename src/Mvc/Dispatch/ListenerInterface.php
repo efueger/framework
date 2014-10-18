@@ -7,8 +7,8 @@ interface ListenerInterface
     /**
      * @param $controller
      * @param array $args
-     * @param callable $plugins
+     * @param callable $callback
      * @return mixed
      */
-    function __invoke($controller, array $args = [], callable $plugins = null);
+    function __invoke($controller, array $args = [], callable $callback = null);
 }
