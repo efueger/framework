@@ -69,7 +69,7 @@ trait ResolverTrait
 
         is_string($plugin) && $plugin = $this->plugin($plugin, function($plugin) {
             if (!is_callable($plugin)) {
-                throw new RuntimeException('Plugin not found or is not callable: ' . $plugin);
+                throw new RuntimeException('Plugin is not callable: ' . $plugin);
             }
 
             return $plugin;
