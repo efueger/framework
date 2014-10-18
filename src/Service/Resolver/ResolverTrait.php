@@ -67,7 +67,7 @@ trait ResolverTrait
         $plugin = array_shift($config);
         $method = $config ? array_pop($config) : null;
 
-        is_string($plugin) && $plugin = $this->plugin($plugin, function($plugin) {
+        $plugin = $this->plugin($plugin, function($plugin) {
             if (!is_callable($plugin)) {
                 throw new RuntimeException('Plugin is not callable: ' . $plugin);
             }
@@ -156,21 +156,20 @@ trait ResolverTrait
 
     /**
      * @param callable|string $config
-     * @param callable $callback
      * @return callable|null
      */
-    protected function invokable($config, callable $callback = null)
+    protected function invokable($config)
     {
         if ($config instanceof Closure) {
             return $config::bind($config, $this);
         }
 
         if (is_string($config) && ResolverInterface::CALL === $config[0]) {
-            return function($args = []) use ($config, $callback) {
+            return function($args = [], $plugin = null) use ($config) {
                 return $this->call(
                     substr($config, 1),
                     !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
-                    $callback
+                    $plugin
                 );
             };
         }

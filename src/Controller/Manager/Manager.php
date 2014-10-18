@@ -29,12 +29,11 @@ class Manager
 
     /**
      * @param callable|string $config
-     * @param callable $callback
      * @return callable|null|object
      */
-    public function controller($config, callable $callback = null)
+    public function controller($config)
     {
-        return $this->invokable($config, $callback);
+        return $this->invokable($config);
     }
 
     /**

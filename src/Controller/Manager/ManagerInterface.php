@@ -16,10 +16,9 @@ interface ManagerInterface
 
     /**
      * @param callable|string $config
-     * @param callable $callback
      * @return callable|null|object
      */
-    function controller($config, callable $callback = null);
+    function controller($config);
 
     /**
      * @param callable $controller

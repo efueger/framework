@@ -23,7 +23,7 @@ class Listener
     {
         try {
 
-            return $this->dispatch($this->controller($controller, $plugin), $args, $plugin);
+            return $this->dispatch($this->controller($controller), $args, $plugin);
 
         } catch (Exception $exception) {
 

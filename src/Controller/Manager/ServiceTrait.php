@@ -24,12 +24,11 @@ trait ServiceTrait
 
     /**
      * @param callable|string $controller
-     * @param callable $callback
      * @return callable|null|object
      */
-    public function controller($controller, callable $callback = null)
+    public function controller($controller)
     {
-        return $this->cm->controller($controller, $callback);
+        return $this->cm->controller($controller);
     }
 
     /**
