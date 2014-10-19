@@ -7,7 +7,7 @@ interface ActionInterface
     /**
      *
      */
-    const CONTROLLER = 'Controller\Action';
+    const ACTION = 'Controller\Action';
 
     /**
      *

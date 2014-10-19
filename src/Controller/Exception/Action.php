@@ -7,13 +7,13 @@ use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
-class Dispatch
-    implements DispatchInterface, EventInterface
+class Action
+    implements ActionInterface, EventInterface
 {
     /**
      *
      */
-    const EVENT = self::DISPATCH;
+    const EVENT = self::ACTION;
 
     /**
      *

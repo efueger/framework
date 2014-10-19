@@ -18,7 +18,7 @@ class Action
     /**
      *
      */
-    const EVENT = self::CONTROLLER;
+    const EVENT = self::ACTION;
 
     /**
      * @var callable

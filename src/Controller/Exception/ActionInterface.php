@@ -2,12 +2,12 @@
 
 namespace Framework\Controller\Exception;
 
-interface DispatchInterface
+interface ActionInterface
 {
     /**
      *
      */
-    const DISPATCH = 'Exception\Dispatch';
+    const ACTION = 'Exception\Action';
 
     /**
      *
