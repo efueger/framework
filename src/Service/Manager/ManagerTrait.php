@@ -3,7 +3,6 @@
 namespace Framework\Service\Manager;
 
 use Framework\Service\Resolver\ResolverTrait as Resolver;
-use Framework\Service\AliasTrait as Alias;
 use RuntimeException;
 
 trait ManagerTrait
@@ -11,7 +10,6 @@ trait ManagerTrait
     /**
      *
      */
-    use Alias;
     use Resolver;
 
     /**
@@ -95,17 +93,6 @@ trait ManagerTrait
 
     /**
      * @param $name
-     * @param callable $callback
-     * @return callable|null|object
-     */
-    public function plugin($name, callable $callback = null)
-    {
-        /** @var callable|self $this */
-        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
-    }
-
-    /**
-     * @param $name
      * @param array $args
      * @return callable|mixed|null|object
      */
@@ -116,10 +103,11 @@ trait ManagerTrait
 
     /**
      * @param string $plugin
+     * @param callable $callback
      * @return mixed
      */
-    public function __invoke($plugin)
+    public function __invoke($plugin, callable $callback = null)
     {
-        return $this->plugin($plugin);
+        return $this->plugin($plugin, $callback);
     }
 }

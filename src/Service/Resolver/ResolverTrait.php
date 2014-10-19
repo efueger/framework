@@ -5,6 +5,7 @@ namespace Framework\Service\Resolver;
 use Closure;
 use Framework\Config\ConfigInterface;
 use Framework\Event\EventInterface as Event;
+use Framework\Service\AliasTrait as Alias;
 use Framework\Service\Config\Args\ArgsInterface as Args;
 use Framework\Service\Config\Call\CallInterface as Call;
 use Framework\Service\Config\Child\ChildInterface as Child;
@@ -25,6 +26,7 @@ trait ResolverTrait
     /**
      *
      */
+    use Alias;
     use Container;
     use SignalTrait;
 
@@ -257,7 +259,11 @@ trait ResolverTrait
      * @param callable $callback
      * @return callable|null|object
      */
-    public abstract function plugin($name, callable $callback = null);
+    public function plugin($name, callable $callback = null)
+    {
+        /** @var callable|self $this */
+        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
+    }
 
     /**
      * @param Config $config
