@@ -12,11 +12,11 @@ trait ServiceTrait
     protected $cm;
 
     /**
-     * @param $controller
+     * @param callable $controller
      * @param array $args
      * @return mixed
      */
-    public function action($controller, array $args = [])
+    public function action(callable $controller, array $args = [])
     {
         return $this->cm->action($controller, $args);
     }

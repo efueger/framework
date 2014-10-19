@@ -31,7 +31,8 @@ trait SignalTrait
         }
 
         if (is_string($config) && !class_exists($config)) {
-            if ($static = explode('::', $config) && isset($static[1])) {
+            $static = explode('::', $config);
+            if (isset($static[1])) {
                 list($config, $method) = $static;
             } else {
                 $params   = (new ReflectionFunction($config))->getParameters();

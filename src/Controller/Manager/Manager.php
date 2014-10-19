@@ -17,13 +17,13 @@ class Manager
     use Events;
 
     /**
-     * @param callable $listener
+     * @param callable $controller
      * @param array $args
      * @return mixed
      */
-    public function action(callable $listener, array $args = [])
+    public function action(callable $controller, array $args = [])
     {
-        return $this->signal($listener, $args, $this);
+        return $this->signal($controller, $args, $this);
     }
 
     /**

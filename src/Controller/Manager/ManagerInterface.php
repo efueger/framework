@@ -17,11 +17,11 @@ interface ManagerInterface
     const EXCEPTION = 'Controller\Dispatch\Exception';
 
     /**
-     * @param callable $listener
+     * @param callable $controller
      * @param array $args
      * @return mixed
      */
-    function action(callable $listener, array $args = []);
+    function action(callable $controller, array $args = []);
 
     /**
      * @param callable|string $config
