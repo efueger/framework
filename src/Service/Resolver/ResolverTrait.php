@@ -254,9 +254,10 @@ trait ResolverTrait
 
     /**
      * @param $name
+     * @param callable $callback
      * @return callable|null|object
      */
-    public abstract function plugin($name);
+    public abstract function plugin($name, callable $callback = null);
 
     /**
      * @param Config $config
