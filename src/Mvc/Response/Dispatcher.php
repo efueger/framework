@@ -19,6 +19,6 @@ class Dispatcher
      */
     public function __invoke(Response $response)
     {
-        return $this->response($response);
+        return $this->send($response);
     }
 }

@@ -6,8 +6,8 @@ use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
-class Dispatch
-    implements DispatchInterface, EventInterface
+class Send
+    implements SendInterface, EventInterface
 {
     /**
      *
@@ -18,7 +18,7 @@ class Dispatch
     /**
      *
      */
-    const EVENT = self::DISPATCH;
+    const EVENT = self::SEND;
 
     /**
      * @var ResponseInterface
