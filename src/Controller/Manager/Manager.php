@@ -3,7 +3,7 @@
 namespace Framework\Controller\Manager;
 
 use Framework\Controller\Action\ActionInterface as Controller;
-use Framework\Controller\Exception\ActionInterface as Exception;
+use Framework\Controller\Exception\ExceptionInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
@@ -52,6 +52,6 @@ class Manager
      */
     public function exception(\Exception $exception, array $args = [])
     {
-        return $this->trigger([Exception::ACTION, $exception], $args, $this);
+        return $this->trigger([Exception::EXCEPTION, $exception], $args, $this);
     }
 }
