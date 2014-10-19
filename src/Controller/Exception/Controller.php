@@ -7,8 +7,8 @@ use Framework\Response\ResponseInterface as Response;
 use Framework\View\Exception\ViewModelInterface;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
-class Dispatcher
-    implements DispatcherInterface
+class Controller
+    implements ControllerInterface
 {
     /**
      *
