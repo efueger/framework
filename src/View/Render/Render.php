@@ -19,7 +19,7 @@ class Render
     /**
      *
      */
-    const EVENT = self::RENDER;
+    const EVENT = self::VIEW;
 
     /**
      * @var ViewModel

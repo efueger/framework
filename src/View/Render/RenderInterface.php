@@ -7,7 +7,7 @@ interface RenderInterface
     /**
      *
      */
-    const RENDER = 'View\Render';
+    const VIEW = 'View\Render';
 
     /**
      * @param callable $listener

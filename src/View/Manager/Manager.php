@@ -33,6 +33,6 @@ class Manager
      */
     public function render(ViewModel $viewModel, array $args = [])
     {
-        return $this->trigger([Render::RENDER, $viewModel], $args, $this);
+        return $this->trigger([Render::VIEW, $viewModel], $args, $this);
     }
 }
