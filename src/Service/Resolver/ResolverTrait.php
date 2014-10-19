@@ -152,7 +152,7 @@ trait ResolverTrait
                 continue;
             }
 
-            $this->invoke($value);
+            $this->resolve($value);
         }
 
         return $service;
