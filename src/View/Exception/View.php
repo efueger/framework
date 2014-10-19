@@ -6,20 +6,22 @@ use Exception;
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
+use Framework\View\Model\ServiceTrait as ViewModelTrait;
 
-class Render
-    implements EventInterface, RenderInterface
+class View
+    implements EventInterface, ViewInterface
 {
     /**
      *
      */
     use EventTrait;
     use SignalTrait;
+    use ViewModelTrait;
 
     /**
      *
      */
-    const EVENT = self::RENDER;
+    const EVENT = self::VIEW;
 
     /**
      * @var Exception
@@ -40,8 +42,9 @@ class Render
     protected function args()
     {
         return [
-            Args::EVENT     => $this,
-            Args::EXCEPTION => $this->exception
+            Args::EVENT      => $this,
+            Args::EXCEPTION  => $this->exception,
+            Args::VIEW_MODEL => $this->viewModel()
         ];
     }
 

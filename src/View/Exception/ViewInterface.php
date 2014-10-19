@@ -2,12 +2,12 @@
 
 namespace Framework\View\Exception;
 
-interface RenderInterface
+interface ViewInterface
 {
     /**
      *
      */
-    const RENDER = 'Exception\Render';
+    const VIEW = 'Exception\View';
 
     /**
      * @param callable $listener

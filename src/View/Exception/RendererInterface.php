@@ -8,7 +8,8 @@ interface RendererInterface
 {
     /**
      * @param Exception $exception
+     * @param ViewModelInterface $viewModel
      * @return mixed
      */
-    function __invoke(Exception $exception);
+    function __invoke(Exception $exception, ViewModelInterface $viewModel);
 }

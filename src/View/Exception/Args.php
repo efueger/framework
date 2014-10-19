@@ -13,4 +13,9 @@ interface Args
      *
      */
     const EXCEPTION = 'exception';
+
+    /**
+     *
+     */
+    const VIEW_MODEL = 'viewModel';
 }
