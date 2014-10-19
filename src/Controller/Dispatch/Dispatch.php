@@ -1,37 +1,36 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\Controller\Dispatch;
 
 use Framework\Event\EventInterface;
-use Framework\Event\EventTrait;
-use Framework\Service\Resolver\SignalTrait;
-use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\Event\EventTrait as Event;
+use Framework\Service\Resolver\SignalTrait as Signal;
 
-class Render
-    implements EventInterface, RenderInterface
+class Dispatch
+    implements EventInterface, DispatchInterface
 {
     /**
      *
      */
-    use EventTrait;
-    use SignalTrait;
+    use Event;
+    use Signal;
 
     /**
      *
      */
-    const EVENT = self::RENDER;
+    const EVENT = self::DISPATCH;
 
     /**
-     * @var ViewModel
+     * @var callable
      */
-    protected $viewModel;
+    protected $controller;
 
     /**
-     * @param ViewModel $viewModel
+     * @param callable $controller
      */
-    public function __construct(ViewModel $viewModel)
+    public function __construct(callable $controller)
     {
-        $this->viewModel = $viewModel;
+        $this->controller = $controller;
     }
 
     /**
@@ -41,7 +40,7 @@ class Render
     {
         return [
             Args::EVENT      => $this,
-            Args::VIEW_MODEL => $this->viewModel
+            Args::CONTROLLER => $this->controller,
         ];
     }
 

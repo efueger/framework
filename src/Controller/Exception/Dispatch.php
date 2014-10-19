@@ -1,15 +1,20 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\Controller\Exception;
 
+use Exception;
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\View\Model\ModelInterface as ViewModel;
 
-class Render
-    implements EventInterface, RenderInterface
+class Dispatch
+    implements DispatchInterface, EventInterface
 {
+    /**
+     *
+     */
+    const EVENT = self::DISPATCH;
+
     /**
      *
      */
@@ -17,21 +22,16 @@ class Render
     use SignalTrait;
 
     /**
-     *
+     * @var Exception
      */
-    const EVENT = self::RENDER;
+    protected $exception;
 
     /**
-     * @var ViewModel
+     * @param Exception $exception
      */
-    protected $viewModel;
-
-    /**
-     * @param ViewModel $viewModel
-     */
-    public function __construct(ViewModel $viewModel)
+    public function __construct(Exception $exception)
     {
-        $this->viewModel = $viewModel;
+        $this->exception = $exception;
     }
 
     /**
@@ -40,8 +40,8 @@ class Render
     protected function args()
     {
         return [
-            Args::EVENT      => $this,
-            Args::VIEW_MODEL => $this->viewModel
+            Args::EVENT     => $this,
+            Args::EXCEPTION => $this->exception
         ];
     }
 

@@ -5,9 +5,9 @@ namespace Framework\View\Manager;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
-use Framework\View\Exception\EventInterface as Exception;
+use Framework\View\Exception\RenderInterface as Exception;
 use Framework\View\Model\ModelInterface as ViewModel;
-use Framework\View\Render\EventInterface as Render;
+use Framework\View\Render\RenderInterface as Render;
 
 class Manager
     implements EventManagerInterface, ManagerInterface, ServiceManagerInterface
@@ -23,7 +23,7 @@ class Manager
      */
     public function exception(\Exception $exception)
     {
-        return $this->trigger([Exception::EXCEPTION, $exception], [], $this);
+        return $this->trigger([Exception::RENDER, $exception], [], $this);
     }
 
     /**

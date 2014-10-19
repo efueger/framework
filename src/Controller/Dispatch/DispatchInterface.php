@@ -1,13 +1,23 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\Controller\Dispatch;
 
-interface RenderInterface
+interface DispatchInterface
 {
     /**
      *
      */
-    const RENDER = 'View\Render';
+    const DISPATCH = 'Controller\Dispatch';
+
+    /**
+     *
+     */
+    const REQUEST = 'Request';
+
+    /**
+     *
+     */
+    const RESPONSE = 'Response';
 
     /**
      * @param callable $listener

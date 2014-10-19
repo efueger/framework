@@ -1,13 +1,23 @@
 <?php
 
-namespace Framework\Route\Dispatch;
+namespace Framework\Controller\Exception;
 
 interface DispatchInterface
 {
     /**
      *
      */
-    const ROUTE = 'Route\Dispatch';
+    const DISPATCH = 'Exception\Dispatch';
+
+    /**
+     *
+     */
+    const REQUEST = 'request';
+
+    /**
+     *
+     */
+    const RESPONSE = 'response';
 
     /**
      * @param callable $listener

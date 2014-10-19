@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Route\Dispatch;
+namespace Framework\View\Exception;
 
-interface DispatchInterface
+interface RenderInterface
 {
     /**
      *
      */
-    const ROUTE = 'Route\Dispatch';
+    const RENDER = 'Exception\Render';
 
     /**
      * @param callable $listener
