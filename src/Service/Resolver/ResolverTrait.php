@@ -66,7 +66,7 @@ trait ResolverTrait
             return $this->invoke($config, $args, $callback);
         }
 
-        $config = explode(ResolverInterface::CALL_SEPARATOR, $config);
+        $config = explode(ResolverArgs::CALL_SEPARATOR, $config);
         $plugin = array_shift($config);
         $method = $config ? array_pop($config) : null;
 
@@ -131,7 +131,7 @@ trait ResolverTrait
     {
         foreach($config->calls() as $method => $value) {
             if (is_string($method)) {
-                if (ResolverInterface::PROPERTY == $method[0]) {
+                if (ResolverArgs::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
                     continue;
                 }
@@ -168,7 +168,7 @@ trait ResolverTrait
             return $config->bindTo($this);
         }
 
-        if (is_string($config) && ResolverInterface::CALL === $config[0]) {
+        if (is_string($config) && ResolverArgs::CALL === $config[0]) {
             return function($args = []) use ($config) {
                 /** @var callable|self $this */
                 return $this->call(
@@ -243,7 +243,7 @@ trait ResolverTrait
      */
     public function param($name)
     {
-        $name = explode(ResolverInterface::CALL_SEPARATOR, $name);
+        $name = explode(ResolverArgs::CALL_SEPARATOR, $name);
 
         $value = $this->config()->get(array_shift($name));
 

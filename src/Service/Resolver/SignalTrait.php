@@ -48,7 +48,7 @@ trait SignalTrait
                 continue;
             }
 
-            if (ResolverInterface::ARGS === $param->name) {
+            if (ResolverArgs::ARGS === $param->name) {
                 $matched[] = $args;
                 continue;
             }
