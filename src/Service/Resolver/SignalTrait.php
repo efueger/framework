@@ -31,8 +31,7 @@ trait SignalTrait
         }
 
         if (is_string($config) && !class_exists($config)) {
-            $static = explode(ResolverInterface::CALLABLE_STRING, $config);
-            if (isset($static[1])) {
+            if ($static = explode('::', $config) && isset($static[1])) {
                 list($config, $method) = $static;
             } else {
                 $params   = (new ReflectionFunction($config))->getParameters();
@@ -53,7 +52,7 @@ trait SignalTrait
                 continue;
             }
 
-            if ($callback && !$param->isOptional() && $match = $callback($param->name)) {
+            if ($callback && $match = $callback($param->name)) {
                 $matched[] = $match;
                 continue;
             }

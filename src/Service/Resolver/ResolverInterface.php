@@ -23,9 +23,4 @@ interface ResolverInterface
      *
      */
     const CALL_SEPARATOR = '.';
-
-    /**
-     *
-     */
-    const CALLABLE_STRING = '::';
 }
