@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\View\Renderer;
 
 class Renderer
     implements RendererInterface
@@ -8,5 +8,5 @@ class Renderer
     /**
      *
      */
-    use RendererTrait;
+    use ServiceTrait;
 }

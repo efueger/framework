@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\View\Renderer;
 
 use Closure;
 use Exception;
 use Framework\View\Model\ModelInterface as ViewModel;
 
-trait RendererTrait
+trait ServiceTrait
 {
     /**
      * @param ViewModel $viewModel

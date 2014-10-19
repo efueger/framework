@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\View\Render;
+namespace Framework\View\Renderer;
 
 use Framework\View\Model\ModelInterface as ViewModel;
 
