@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\View\Plugin;
+namespace Framework\View;
 
 use Framework\View\Manager\ServiceTrait as ViewManager;
 

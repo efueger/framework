@@ -3,7 +3,7 @@
 namespace Framework\Controller\Error;
 
 use Framework\View\Model\ModelTrait;
-use Framework\View\Plugin\PluginTrait;
+use Framework\View\PluginTrait;
 
 class ViewModel
     implements ViewModelInterface
