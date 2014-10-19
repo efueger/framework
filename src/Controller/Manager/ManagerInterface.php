@@ -7,16 +7,6 @@ use Exception;
 interface ManagerInterface
 {
     /**
-     *
-     */
-    const DISPATCH = 'Controller\Dispatch';
-
-    /**
-     *
-     */
-    const EXCEPTION = 'Controller\Dispatch\Exception';
-
-    /**
      * @param callable $controller
      * @param array $args
      * @return mixed

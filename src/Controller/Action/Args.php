@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Dispatch;
+namespace Framework\Controller\Action;
 
 interface Args
 {

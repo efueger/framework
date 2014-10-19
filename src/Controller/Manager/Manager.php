@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Manager;
 
-use Framework\Controller\Dispatch\DispatchInterface as Controller;
+use Framework\Controller\Action\ActionInterface as Action;
 use Framework\Controller\Exception\DispatchInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
@@ -42,7 +42,7 @@ class Manager
      */
     public function dispatch(callable $controller, array $args = [])
     {
-        return $this->trigger([Controller::DISPATCH, $controller], $args, $this);
+        return $this->trigger([Action::CONTROLLER, $controller], $args, $this);
     }
 
     /**

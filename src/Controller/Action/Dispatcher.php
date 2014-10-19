@@ -1,8 +1,7 @@
 <?php
 
-namespace Framework\Mvc\Dispatch;
+namespace Framework\Controller\Action;
 
-use Exception;
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;
 
 class Dispatcher
@@ -20,14 +19,6 @@ class Dispatcher
      */
     public function __invoke($controller, array $args = [])
     {
-        try {
-
-            return $this->dispatch($this->controller($controller), $args);
-
-        } catch (Exception $exception) {
-
-            return $this->exception($exception, $args);
-
-        }
+        return $this->action($controller, $args);
     }
 }

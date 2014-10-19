@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Controller\Dispatch;
+namespace Framework\Controller\Action;
 
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait as Event;
 use Framework\Service\Resolver\SignalTrait as Signal;
 
-class Dispatch
-    implements EventInterface, DispatchInterface
+class Action
+    implements EventInterface, ActionInterface
 {
     /**
      *
@@ -18,7 +18,7 @@ class Dispatch
     /**
      *
      */
-    const EVENT = self::DISPATCH;
+    const EVENT = self::CONTROLLER;
 
     /**
      * @var callable

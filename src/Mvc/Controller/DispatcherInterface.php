@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Dispatch;
+namespace Framework\Mvc\Controller;
 
 interface DispatcherInterface
 {
