@@ -8,16 +8,16 @@ class Web
     implements WebInterface
 {
     /**
-     * @var ApplicationInterface
+     * @var Config
      */
-    protected $application;
+    protected $config;
 
     /**
      * @param Config $config
      */
     public function __construct(Config $config)
     {
-        $this->application = new Application($config);
+        $this->config = $config;
     }
 
     /**
@@ -27,6 +27,6 @@ class Web
      */
     public function __invoke(array $args = [], callable $callback = null)
     {
-        return $this->application->call(self::WEB, $args, $callback);
+        return (new Application($this->config))->call(self::WEB, $args, $callback);
     }
 }
