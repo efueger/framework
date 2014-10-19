@@ -5,8 +5,8 @@ namespace Framework\Mvc\Response;
 use Framework\Response\ResponseInterface as Response;
 use Framework\Response\Manager\ServiceTrait as ResponseManager;
 
-class Responder
-    implements ResponderInterface
+class Dispatcher
+    implements DispatcherInterface
 {
     /**
      *
