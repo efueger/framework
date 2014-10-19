@@ -16,7 +16,7 @@ use Framework\Service\Config\Filter\FilterInterface as Filter;
 use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
 use Framework\Service\Config\Param\ParamInterface as Param;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
-use Framework\Service\Manager\ManagerInterface;
+use Framework\Service\Container\ServiceTrait as Container;
 use ReflectionClass;
 use RuntimeException;
 
@@ -25,6 +25,7 @@ trait ResolverTrait
     /**
      *
      */
+    use Container;
     use SignalTrait;
 
     /**
@@ -57,7 +58,7 @@ trait ResolverTrait
      */
     public function call($config, array $args = [], callable $callback = null)
     {
-        /** @var ManagerInterface|self $this */
+        /** @var callable|self $this */
 
         if (!is_string($config)) {
             return $this->invoke($config, $args, $callback);
@@ -93,10 +94,7 @@ trait ResolverTrait
      */
     protected function child(Child $config, array $args = [])
     {
-        /**
-         * @var ManagerInterface|self $this
-         * @var Child|Config $config
-         */
+        /** @var Child|Config $config */
         return $this->provide($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
 
@@ -165,7 +163,7 @@ trait ResolverTrait
     protected function invokable($config)
     {
         if ($config instanceof Closure) {
-            return $config::bind($config, $this);
+            return $config->bindTo($this);
         }
 
         if (is_string($config) && ResolverInterface::CALL === $config[0]) {
@@ -243,8 +241,6 @@ trait ResolverTrait
      */
     public function param($name)
     {
-        /** @var ManagerInterface|self $this */
-
         $name = explode(ResolverInterface::CALL_SEPARATOR, $name);
 
         $value = $this->config()->get(array_shift($name));
@@ -269,8 +265,6 @@ trait ResolverTrait
      */
     protected function provide(Config $config, array $args = [])
     {
-        /** @var ManagerInterface|self $this */
-
         $args = $args ? : $config->args();
         $name = $config->name();
 
@@ -292,7 +286,7 @@ trait ResolverTrait
     {
         /**
          * @var Config|Child|Filter $config
-         * @var ManagerInterface|self|callable $this
+         * @var self|callable $this
          */
 
         if (!is_object($config)) {

@@ -2,7 +2,6 @@
 
 namespace Framework\Service\Manager;
 
-use Framework\Service\Container\ServiceTrait as Container;
 use Framework\Service\Resolver\ResolverTrait as Resolver;
 use Framework\Service\AliasTrait as Alias;
 use RuntimeException;
@@ -13,7 +12,6 @@ trait ManagerTrait
      *
      */
     use Alias;
-    use Container;
     use Resolver;
 
     /**
