@@ -13,16 +13,6 @@ trait ServiceTrait
     protected $rm;
 
     /**
-     * @param Route $route
-     * @param array $args
-     * @return Route
-     */
-    public function dispatch(Route $route, array $args = [])
-    {
-        return $this->rm->dispatch($route, $args);
-    }
-
-    /**
      * @param Definition $definition
      * @param Route $route
      * @return Route
@@ -30,6 +20,16 @@ trait ServiceTrait
     public function match(Definition $definition, Route $route)
     {
         return $this->rm->match($definition, $route);
+    }
+
+    /**
+     * @param Route $route
+     * @param array $args
+     * @return Route
+     */
+    public function route(Route $route, array $args = [])
+    {
+        return $this->rm->route($route, $args);
     }
 
     /**

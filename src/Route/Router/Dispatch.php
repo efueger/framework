@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Dispatch;
+namespace Framework\Route\Router;
 
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
@@ -19,7 +19,7 @@ class Dispatch
     /**
      *
      */
-    const EVENT = self::ROUTE;
+    const EVENT = self::DISPATCH;
 
     /**
      * @var Route $route

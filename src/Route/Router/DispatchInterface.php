@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Route\Dispatch;
+namespace Framework\Route\Router;
 
 interface DispatchInterface
 {
     /**
      *
      */
-    const ROUTE = 'Route\Dispatch';
+    const DISPATCH = 'Route\Dispatch';
 
     /**
      * @param callable $listener

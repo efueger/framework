@@ -4,7 +4,7 @@ namespace Framework\Mvc\Route;
 
 use Framework\Route\Route\RouteInterface as Route;
 
-interface DispatcherInterface
+interface RouterInterface
 {
     /**
      * @param Route $route

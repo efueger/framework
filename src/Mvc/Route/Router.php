@@ -5,8 +5,8 @@ namespace Framework\Mvc\Route;
 use Framework\Route\Route\RouteInterface as Route;
 use Framework\Route\Manager\ServiceTrait as RouteManager;
 
-class Dispatcher
-    implements DispatcherInterface
+class Router
+    implements RouterInterface
 {
     /**
      *
@@ -32,6 +32,6 @@ class Dispatcher
      */
     public function __invoke(Route $route)
     {
-        return $this->dispatch($route) ?: $this->route;
+        return $this->route($route) ?: $this->route;
     }
 }

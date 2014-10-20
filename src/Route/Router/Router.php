@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Dispatch;
+namespace Framework\Route\Router;
 
 use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Manager\ServiceTrait as RouteManager;
