@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Controller\Action;
+namespace Framework\Controller\Dispatch;
 
-interface ActionInterface
+interface DispatchInterface
 {
     /**
      *
      */
-    const ACTION = 'Controller\Action';
+    const CONTROLLER = 'Controller\Dispatch';
 
     /**
      *
