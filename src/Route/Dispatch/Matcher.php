@@ -43,9 +43,7 @@ class Matcher
         }
 
         foreach($definition->children() as $definition) {
-            $match = $this($route, $definition);
-
-            if ($match) {
+            if ($match = $this($route, $definition)) {
                 return $match;
             }
         }
