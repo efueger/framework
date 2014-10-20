@@ -6,8 +6,8 @@ use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Manager\ServiceTrait as RouteManager;
 use Framework\Route\Route\RouteInterface as Route;
 
-class Matcher
-    implements MatcherInterface
+class Router
+    implements RouterInterface
 {
     /**
      *
