@@ -90,24 +90,4 @@ trait ManagerTrait
 
         $this->pending[$name] = true;
     }
-
-    /**
-     * @param $name
-     * @param array $args
-     * @return callable|mixed|null|object
-     */
-    public function __call($name, array $args = [])
-    {
-        return $this->call($name, $args ? array_shift($args) : []);
-    }
-
-    /**
-     * @param string $plugin
-     * @param callable $callback
-     * @return mixed
-     */
-    public function __invoke($plugin, callable $callback = null)
-    {
-        return $this->plugin($plugin, $callback);
-    }
 }

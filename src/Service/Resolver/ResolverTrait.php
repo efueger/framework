@@ -60,8 +60,6 @@ trait ResolverTrait
      */
     public function call($config, array $args = [], callable $callback = null)
     {
-        /** @var callable|self $this */
-
         if (!is_string($config)) {
             return $this->invoke($config, $args, $callback);
         }
@@ -261,8 +259,15 @@ trait ResolverTrait
      */
     public function plugin($name, callable $callback = null)
     {
-        /** @var callable|self $this */
-        return $this->get($this->alias($name) ?: $name, [], $callback ?: function() {});
+        $alias = $this->alias($name);
+
+        if ($alias && ResolverArgs::CALL === $alias[0]) {
+            return function(array $args = []) use ($alias) {
+                return $this->call(substr($alias, 1), $args, $this);
+            };
+        }
+
+        return $this->get($alias ?: $name, [], $callback ?: function() {});
     }
 
     /**
@@ -291,10 +296,7 @@ trait ResolverTrait
      */
     protected function resolve($config, array $args = [])
     {
-        /**
-         * @var Config|Child|Filter $config
-         * @var self|callable $this
-         */
+        /** @var Config|Child|Filter $config */
 
         if (!is_object($config)) {
             return $config;
@@ -342,7 +344,6 @@ trait ResolverTrait
 
         if ($config instanceof Invoke) {
             return function(array $args = []) use ($config) {
-                /** @var self|callable $this */
                 return $this->invoke($config->config(), $config->args() + $args, $this);
             };
         }
@@ -357,4 +358,24 @@ trait ResolverTrait
      * @return mixed
      */
     protected abstract function trigger($event, array $args = [], callable $callback = null);
+
+    /**
+     * @param $name
+     * @param array $args
+     * @return callable|mixed|null|object
+     */
+    public function __call($name, array $args = [])
+    {
+        return $this->call($name, $args ? array_shift($args) : []);
+    }
+
+    /**
+     * @param string $plugin
+     * @param callable $callback
+     * @return mixed
+     */
+    public function __invoke($plugin, callable $callback = null)
+    {
+        return $this->plugin($plugin, $callback);
+    }
 }
