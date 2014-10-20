@@ -2,8 +2,8 @@
 
 namespace Framework\Response;
 
-class Dispatcher
-    implements DispatcherInterface
+class Sender
+    implements SenderInterface
 {
     /**
      * @param ResponseInterface $response

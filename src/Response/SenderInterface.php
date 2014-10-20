@@ -2,7 +2,7 @@
 
 namespace Framework\Response;
 
-interface DispatcherInterface
+interface SenderInterface
 {
     /**
      * @param ResponseInterface $response

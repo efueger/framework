@@ -2,12 +2,12 @@
 
 namespace Framework\Response;
 
-interface SendInterface
+interface DispatchInterface
 {
     /**
      *
      */
-    const SEND = 'Response\Send';
+    const RESPONSE = 'Response\Dispatch';
 
     /**
      * @param callable $listener
