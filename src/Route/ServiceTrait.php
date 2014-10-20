@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Route;
+namespace Framework\Route;
 
 trait ServiceTrait
 {

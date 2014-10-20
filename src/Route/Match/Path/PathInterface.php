@@ -3,7 +3,7 @@
 namespace Framework\Route\Match\Path;
 
 use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 interface PathInterface
 {

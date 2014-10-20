@@ -5,7 +5,7 @@ namespace Framework\Mvc;
 use Framework\Event\EventTrait as Event;
 use Framework\Service\Resolver\SignalTrait as Signal;
 use Framework\Response\ResponseInterface as Response;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManager;
 use Framework\View\Model\ServiceTrait as ViewModel;
 

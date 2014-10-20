@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc\Route;
 
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 interface RouterInterface
 {

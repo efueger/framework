@@ -3,7 +3,7 @@
 namespace Framework\Route\Router;
 
 use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 interface RouterInterface
 {

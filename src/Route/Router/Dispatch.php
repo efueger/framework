@@ -5,7 +5,7 @@ namespace Framework\Route\Router;
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 class Dispatch
     implements DispatchInterface, EventInterface

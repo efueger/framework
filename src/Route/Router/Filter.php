@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Router;
 
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 class Filter
     implements FilterInterface

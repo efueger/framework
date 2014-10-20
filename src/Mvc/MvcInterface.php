@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc;
 
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 use Framework\Response\ResponseInterface as Response;
 use Framework\View\Model\ModelInterface as ViewModel;
 

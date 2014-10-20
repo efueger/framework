@@ -6,7 +6,7 @@ use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 
 class Match
     implements EventInterface, MatchInterface

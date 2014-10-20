@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Route;
+namespace Framework\Route;
 
 use Framework\Config\ConfigInterface;
 

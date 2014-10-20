@@ -7,7 +7,7 @@ use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Route\Definition\DefinitionInterface as Definition;
 use Framework\Route\Router\DispatchInterface as Router;
 use Framework\Route\Match\MatchInterface as Match;
-use Framework\Route\Route\RouteInterface as Route;
+use Framework\Route\RouteInterface as Route;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
 
 class Manager

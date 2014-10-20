@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Generator;
 
-use Framework\Route\Route\ServiceTrait as RouteTrait;
+use Framework\Route\ServiceTrait as RouteTrait;
 
 class Plugin
     implements PluginInterface
