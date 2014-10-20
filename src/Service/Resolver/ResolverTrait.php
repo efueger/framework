@@ -342,7 +342,8 @@ trait ResolverTrait
 
         if ($config instanceof Invoke) {
             return function(array $args = []) use ($config) {
-                return $this->invoke($config->config(), $config->args() + $args);
+                /** @var self|callable $this */
+                return $this->invoke($config->config(), $config->args() + $args, $this);
             };
         }
 
