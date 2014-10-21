@@ -8,7 +8,7 @@ use Framework\Response\ResponseInterface as Response;
 interface ControllerInterface
 {
     /**
-     * @param Exception $exception
+     * @param \Exception $exception
      * @param Response $response
      * @return mixed
      */
