@@ -3,7 +3,7 @@
 namespace Framework\Controller\Manager;
 
 use Framework\Controller\Dispatch\DispatchInterface as Dispatch;
-use Framework\Controller\Exception\ExceptionInterface as Exception;
+use Framework\Controller\Exception\DispatchInterface as Exception;
 use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
 use Framework\Event\Manager\EventsTrait as Events;
 use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;

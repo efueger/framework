@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Exception;
 
-interface ExceptionInterface
+interface DispatchInterface
 {
     /**
      *

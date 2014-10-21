@@ -2,12 +2,13 @@
 
 namespace Framework\Controller\Exception;
 
+use Exception;
 use Framework\Event\EventInterface;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
-class Exception
-    implements ExceptionInterface, EventInterface
+class Dispatch
+    implements DispatchInterface, EventInterface
 {
     /**
      *
@@ -21,14 +22,14 @@ class Exception
     use SignalTrait;
 
     /**
-     * @var \Exception
+     * @var Exception
      */
     protected $exception;
 
     /**
-     * @param \Exception $exception
+     * @param Exception $exception
      */
-    public function __construct(\Exception $exception)
+    public function __construct(Exception $exception)
     {
         $this->exception = $exception;
     }
