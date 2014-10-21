@@ -1,5 +1,86 @@
-This framework is an event management system that implements an MVC model using events, listeners and dependency injection. It does not need to be boot strapped. Listeners closely follow the Single Responsibility Principle, they are SOLID and `callable`. Events manage their own state by signaling each listener and managing the response, this allows them to have different behaviors.
+This event management system supports named arguments and uses dependency injection to create its listeners and their depencies just in time before they are called. The system's configuration is an array object that can contain value objects, string names, callables and there are certain configuration objects that the service manager knows how to resolve.
 
+```php
+'Request'  => new Service(
+  Request\Request::class, 
+  [$_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER]
+),
+```
+The above will pass the array of arguments as constructor values in that set order. This goes in hand with the service manager's get method
+```php
+function get($name, array $args = [], callable $callback = null);
+```
+The above callback is used when a service cannot be created for a particular string name, this allows the calling service the opportunity to determine if it can provide the service instead. Otherwise the get method will try to instantiate the class even though it does not exist; and causes an error to occur. The plugin method is used when no error should occur and still supports a callback for when the string name cannot be found; in which case an empty function is used.
+
+Events can be strings or classes in which case they can manage the arguments used for the parameters of the methods being invoked for that event.
+```php
+class Event
+{
+  function args()
+  {
+    return [
+        Args::EVENT      => $this,
+        Args::RESPONSE   => $this->response(),
+        Args::ROUTE      => $this->route(),
+        Args::VIEW_MODEL => $this->viewModel(),
+        Args::CONTROLLER => $this->route()->controller()
+    ];
+  }
+  
+  function __invoke(callable $listener, array $args = [], callable $callback = null)
+  {
+      return $this->signal($listener, $this->args() + $args, $callback);
+  }
+}
+```
+The callback used to provide the additional parameters not in the args array is provided by the corresponding service manager as `$this`.
+```php
+$this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
+```
+These additional arguments can be aliases or service names, if an alias is not found then its name is used as the service name. Aliases map strings of varying characters to service names or service calls.
+```php
+return [
+    'blog:create' => 'Blog\Create',
+    'blog:valid'  => '@Blog\Controller.valid',
+    'config'      => 'Config',
+    'layout'      => 'Layout',
+    'request'     => 'Request',
+    'sm'          => 'Service\Manager',
+    'response'    => 'Response',
+    'web'         => 'Mvc',
+];
+
+```
+The plugin method is also used when calling an object
+```php
+//trigger create blog event
+$this->call('blog:create');
+
+//call the controller's valid method with supporting arguments
+$this->call('blog:valid');
+
+function valid(Request $request);
+```
+Which means
+```php
+$app = new Application($config);
+
+$app->call('web'); //invoke web application
+
+$app->call('request.getHost'); //get string hostname from the request object.
+
+```
+Named arguments are also supported
+```php
+$app->call('Blog\Controller.valid', ['request' => $request]);
+```
+To get all of the available arguments, excluding those from the callback, add `$args` to the method signature
+```php
+public function __invoke(Config $config, ViewManager $vm, array $args = [])
+{
+    var_dump($args);
+}
+```
 Usage
 --
 The <a href="https://github.com/mvc5/application">mvc5/application</a> demonstrates its usage as an MVC web application.
@@ -14,7 +95,7 @@ use Framework\Event\Config\Config as Events;
 
 $config = new Config([
     'alias' => [
-        'web' => 'Mvc\Event',
+        'web' => 'Mvc',
     ],
     'events'      => new Events(include __DIR__ . '/event.php'),
     'services'    => new Container(include __DIR__ . '/service.php'),
@@ -82,7 +163,7 @@ Routes are pre-compiled so that they can be immediately matched against the requ
 ##MVC
 The MVC event workflow is <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
 ```php
-'Mvc\Event' => [
+'Mvc' => [
     ['Mvc\Route'],
     ['Mvc\Dispatch'],
     ['Mvc\Layout'],
