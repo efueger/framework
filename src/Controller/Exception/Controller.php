@@ -16,11 +16,11 @@ class Controller
     use ViewModel;
 
     /**
-     * @param Exception $exception
+     * @param \Exception $exception
      * @param Response $response
      * @return mixed
      */
-    public function __invoke(Exception $exception, Response $response)
+    public function __invoke(\Exception $exception, Response $response)
     {
         $response->setStatus(500);
 

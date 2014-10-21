@@ -12,5 +12,5 @@ interface ControllerInterface
      * @param Response $response
      * @return mixed
      */
-    function __invoke(Exception $exception, Response $response);
+    function __invoke(\Exception $exception, Response $response);
 }
