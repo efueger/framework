@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Router;
 
-use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Definition\RouteDefinition;
 use Framework\Route\Manager\ServiceTrait as RouteManager;
 use Framework\Route\Route;
 
@@ -15,24 +15,24 @@ class Router
     use RouteManager;
 
     /**
-     * @var Definition
+     * @var RouteDefinition
      */
     protected $definition;
 
     /**
-     * @param Definition $definition
+     * @param RouteDefinition $definition
      */
-    public function __construct(Definition $definition)
+    public function __construct(RouteDefinition $definition)
     {
         $this->definition = $definition;
     }
 
     /**
      * @param Route $route
-     * @param Definition $definition
+     * @param RouteDefinition $definition
      * @return Route|null
      */
-    public function __invoke(Route $route, Definition $definition = null)
+    public function __invoke(Route $route, RouteDefinition $definition = null)
     {
         $definition = $definition ?: $this->definition;
 

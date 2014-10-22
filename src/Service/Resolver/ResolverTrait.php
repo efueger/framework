@@ -4,7 +4,7 @@ namespace Framework\Service\Resolver;
 
 use Closure;
 use Framework\Config\Configuration;
-use Framework\Event\Event as Event;
+use Framework\Event\Event;
 use Framework\Service\AliasTrait as Alias;
 use Framework\Service\Config\Args\Arguments as Args;
 use Framework\Service\Config\Call\ServiceCall as Call;

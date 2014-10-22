@@ -2,12 +2,13 @@
 
 namespace Framework\View\Manager;
 
+use Exception;
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
 use Framework\Service\Manager\ServiceManager;
-use Framework\View\Exception\ExceptionView as Exception;
+use Framework\View\Exception\ExceptionView;
 use Framework\View\Model\ViewModel;
-use Framework\View\Render\ViewRender as Render;
+use Framework\View\Render\ViewRender;
 
 class Manager
     implements EventManager, ViewManager, ServiceManager
@@ -18,12 +19,12 @@ class Manager
     use Events;
 
     /**
-     * @param \Exception $exception
+     * @param Exception $exception
      * @return mixed
      */
-    public function exception(\Exception $exception)
+    public function exception(Exception $exception)
     {
-        return $this->trigger([Exception::VIEW, $exception], [], $this);
+        return $this->trigger([ExceptionView::VIEW, $exception], [], $this);
     }
 
     /**
@@ -33,6 +34,6 @@ class Manager
      */
     public function render(ViewModel $viewModel, array $args = [])
     {
-        return $this->trigger([Render::VIEW, $viewModel], $args, $this);
+        return $this->trigger([ViewRender::VIEW, $viewModel], $args, $this);
     }
 }

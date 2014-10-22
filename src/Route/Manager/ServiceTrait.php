@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Manager;
 
-use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Definition\RouteDefinition;
 use Framework\Route\Route;
 
 trait ServiceTrait
@@ -13,11 +13,11 @@ trait ServiceTrait
     protected $rm;
 
     /**
-     * @param Definition $definition
+     * @param RouteDefinition $definition
      * @param Route $route
      * @return Route
      */
-    public function match(Definition $definition, Route $route)
+    public function match(RouteDefinition $definition, Route $route)
     {
         return $this->rm->match($definition, $route);
     }

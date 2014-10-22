@@ -3,7 +3,7 @@
 namespace Framework\Event\Generator;
 
 use Framework\Event\Config\Configuration;
-use Framework\Event\Event as Event;
+use Framework\Event\Event;
 use Generator;
 
 trait GeneratorTrait

@@ -4,9 +4,8 @@ namespace Framework\Route\Definition\Builder;
 
 use Framework\Config\Config as Config;
 use Framework\Config\Configuration;
-use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
-use Framework\Route\Definition\RouteDefinition as Definition;
-use Framework\Route\Definition\Definition as RouteDefinition;
+use Framework\Route\Definition\RouteDefinition;
+use Framework\Route\Definition\Definition;
 use RuntimeException;
 
 /**
@@ -23,7 +22,7 @@ class Builder
     public static function children(array $definitions)
     {
         foreach($definitions as $name => $definition) {
-            if (!$definition instanceof RouteDefinition) {
+            if (!$definition instanceof Definition) {
                 $definitions[$name] = static::definition($definition);
             }
         }
@@ -37,24 +36,24 @@ class Builder
      */
     public static function definition($definition)
     {
-        $tokens = static::tokens($definition[Definition::ROUTE]);
+        $tokens = static::tokens($definition[RouteDefinition::ROUTE]);
 
         $definition = array_merge(
             $definition,
             [
-                Definition::PARAM_MAP => static::paramMap($tokens),
-                Definition::REGEX     => static::regex($tokens),
-                Definition::TOKENS    => $tokens
+                RouteDefinition::PARAM_MAP => static::paramMap($tokens),
+                RouteDefinition::REGEX     => static::regex($tokens),
+                RouteDefinition::TOKENS    => $tokens
             ]
         );
 
-        if (empty($definition[Definition::CHILDREN])) {
-            return new RouteDefinition($definition);
+        if (empty($definition[RouteDefinition::CHILDREN])) {
+            return new Definition($definition);
         }
 
-        $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
+        $definition[RouteDefinition::CHILDREN] = static::children($definition[RouteDefinition::CHILDREN]);
 
-        return new RouteDefinition($definition);
+        return new Definition($definition);
     }
 
     /**
@@ -76,8 +75,8 @@ class Builder
         $map   = [];
 
         foreach($tokens as $token) {
-            if ('parameter' == $token[Route::TYPE]) {
-                $map['param' . $index++] = $token[Route::NAME];
+            if ('parameter' == $token[self::TYPE]) {
+                $map['param' . $index++] = $token[self::NAME];
             }
         }
 
@@ -96,10 +95,10 @@ class Builder
         $regex = '';
 
         foreach($tokens as $token) {
-            switch($token[Route::TYPE]) {
+            switch($token[self::TYPE]) {
                 case 'literal':
 
-                    $regex .= preg_quote($token[Route::LITERAL]);
+                    $regex .= preg_quote($token[self::LITERAL]);
 
                     break;
                 case 'parameter':
@@ -109,17 +108,17 @@ class Builder
                     switch(true) {
                         default:
 
-                            $regex .= '(' . $groupName . '[^' . $token[Route::DELIMITERS] . ']+)';
+                            $regex .= '(' . $groupName . '[^' . $token[self::DELIMITERS] . ']+)';
 
                             break;
 
-                        case isset($constraints[$token[Route::NAME]]):
+                        case isset($constraints[$token[self::NAME]]):
 
-                            $regex .= '(' . $groupName . $constraints[$token[Route::NAME]] . ')';
+                            $regex .= '(' . $groupName . $constraints[$token[self::NAME]] . ')';
 
                             break;
 
-                        case null === $token[Route::DELIMITERS]:
+                        case null === $token[self::DELIMITERS]:
 
                             $regex .= '(' . $groupName . '[^' . $quotedDelimiter . ']+)';
 

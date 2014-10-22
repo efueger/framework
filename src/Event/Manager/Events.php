@@ -2,7 +2,7 @@
 
 namespace Framework\Event\Manager;
 
-use Framework\Event\Event as Event;
+use Framework\Event\Event;
 use Framework\Event\Generator\GeneratorTrait;
 use Framework\Service\Manager\ServiceManager;
 use Framework\Service\Manager\ServiceManagerTrait;

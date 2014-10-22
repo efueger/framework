@@ -4,7 +4,7 @@ namespace Framework\Route\Manager;
 
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
-use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Definition\RouteDefinition;
 use Framework\Route\Router\RouterDispatch as Router;
 use Framework\Route\Match\RouteMatch as Match;
 use Framework\Route\Route;
@@ -19,11 +19,11 @@ class Manager
     use Events;
 
     /**
-     * @param Definition $definition
+     * @param RouteDefinition $definition
      * @param Route $route
      * @return Route
      */
-    public function match(Definition $definition, Route $route)
+    public function match(RouteDefinition $definition, Route $route)
     {
         return $this->trigger([Match::ROUTE, $definition, $route], [], $this);
     }

@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Container;
 
-use Framework\Config\Configuration as Config;
+use Framework\Config\Configuration;
 
 trait ServiceTrait
 {
@@ -44,7 +44,7 @@ trait ServiceTrait
     }
 
     /**
-     * @return Config
+     * @return Configuration
      */
     public function config()
     {
@@ -52,9 +52,9 @@ trait ServiceTrait
     }
 
     /**
-     * @param Config $config
+     * @param Configuration $config
      */
-    public function configuration(Config $config)
+    public function configuration(Configuration $config)
     {
         $this->config = $config;
     }

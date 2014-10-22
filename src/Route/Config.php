@@ -2,7 +2,7 @@
 
 namespace Framework\Route;
 
-use Framework\Config\ConfigTrait as ConfigTrait;
+use Framework\Config\ConfigTrait;
 
 class Config
     implements Route

@@ -18,7 +18,7 @@ class Dispatch
     /**
      *
      */
-    const EVENT = self::RESPONSE;
+    const EVENT = self::DISPATCH;
 
     /**
      * @var Response

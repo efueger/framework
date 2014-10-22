@@ -7,7 +7,7 @@ interface ResponseDispatch
     /**
      *
      */
-    const RESPONSE = 'Response\Dispatch';
+    const DISPATCH = 'Response\Dispatch';
 
     /**
      * @param callable $listener

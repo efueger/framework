@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Match\Method;
 
-use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Definition\RouteDefinition;
 use Framework\Route\Route;
 
 class Method
@@ -10,10 +10,10 @@ class Method
 {
     /**
      * @param Route $route
-     * @param Definition $definition
+     * @param RouteDefinition $definition
      * @return Route
      */
-    public function __invoke(Route $route, Definition $definition)
+    public function __invoke(Route $route, RouteDefinition $definition)
     {
         return !$definition->method() || in_array($route->method(), (array) $definition->method()) ? $route : null;
     }
