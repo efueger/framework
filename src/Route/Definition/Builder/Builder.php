@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Definition\Builder;
 
-use Framework\Config\Config as Config;
+use Framework\Config\Config;
 use Framework\Config\Configuration;
 use Framework\Route\Definition\RouteDefinition;
 use Framework\Route\Definition\Definition;
