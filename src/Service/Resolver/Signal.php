@@ -40,7 +40,7 @@ trait Signal
             }
         }
 
-        !$params && $params = (new ReflectionMethod($config, $method))->getParameters();
+        !$callable && $params = (new ReflectionMethod($config, $method))->getParameters();
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
