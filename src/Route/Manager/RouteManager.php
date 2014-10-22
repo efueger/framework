@@ -2,17 +2,17 @@
 
 namespace Framework\Route\Manager;
 
-use Framework\Route\Definition\RouteDefinition;
+use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
 interface RouteManager
 {
     /**
-     * @param RouteDefinition $definition
+     * @param Definition $definition
      * @param Route $route
      * @return Route
      */
-    function match(RouteDefinition $definition, Route $route);
+    function match(Definition $definition, Route $route);
 
     /**
      * @param Route $route

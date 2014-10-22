@@ -2,144 +2,126 @@
 
 namespace Framework\Route\Definition;
 
-use Framework\Config\Configuration;
+use Framework\Config\ConfigTrait;
 
-interface RouteDefinition
-    extends Configuration
+class RouteDefinition
+    implements Definition
 {
     /**
      *
      */
-    const CHILDREN = 'children';
-
-    /**
-     *
-     */
-    const CONSTRAINTS = 'constraints';
-
-    /**
-     *
-     */
-    const CONTROLLER = 'controller';
-
-    /**
-     *
-     */
-    const DEFAULTS = 'defaults';
-
-    /**
-     *
-     */
-    const HOSTNAME = 'hostname';
-
-    /**
-     *
-     */
-    const METHOD = 'method';
-
-    /**
-     *
-     */
-    const NAME = 'name';
-
-    /**
-     *
-     */
-    const PARAM_MAP = 'paramMap';
-
-    /**
-     *
-     */
-    const REGEX = 'regex';
-
-    /**
-     *
-     */
-    const ROUTE = 'route';
-
-    /**
-     *
-     */
-    const SCHEME = 'scheme';
-
-    /**
-     *
-     */
-    const TOKENS = 'tokens';
-
-    /**
-     *
-     */
-    const WILDCARD = 'wildcard';
+    use ConfigTrait;
 
     /**
      * @param string $name
      * @return self
      */
-    function child($name);
+    public function child($name)
+    {
+        return isset($this->config[self::CHILDREN][$name]) ? $this->config[self::CHILDREN][$name] : null;
+    }
 
     /**
      * @return self[]
      */
-    function children();
+    public function children()
+    {
+        return $this->get(self::CHILDREN) ?: [];
+    }
 
     /**
      * @return array
      */
-    function constraints();
+    public function constraints()
+    {
+        return $this->get(self::CONSTRAINTS) ?: [];
+    }
 
     /**
      * @return string
      */
-    function controller();
+    public function controller()
+    {
+        return $this->get(self::CONTROLLER);
+    }
 
     /**
      * @return array
      */
-    function defaults();
+    public function defaults()
+    {
+        return $this->get(self::DEFAULTS) ?: [];
+    }
 
     /**
-     * @return array|string
+     * @return null|string
      */
-    function hostname();
-
-    /**
-     * @return string
-     */
-    function method();
-
-    /**
-     * @return string
-     */
-    function name();
+    public function hostname()
+    {
+        return $this->get(self::HOSTNAME) ?: null;
+    }
 
     /**
      * @return string
      */
-    function paramMap();
+    public function name()
+    {
+        return $this->get(self::NAME);
+    }
 
     /**
-     * @return string
+     * @return null|string
      */
-    function regex();
-
-    /**
-     * @return string
-     */
-    function route();
-
-    /**
-     * @return string
-     */
-    function scheme();
+    public function method()
+    {
+        return $this->get(self::METHOD) ?: null;
+    }
 
     /**
      * @return array
      */
-    function tokens();
+    public function paramMap()
+    {
+        return $this->get(self::PARAM_MAP) ?: [];
+    }
 
     /**
-     * @return true
+     * @return string
      */
-    function wildcard();
+    public function regex()
+    {
+        return $this->get(self::REGEX);
+    }
+
+    /**
+     * @return string
+     */
+    public function route()
+    {
+        return $this->get(self::ROUTE);
+    }
+
+    /**
+     * @return string
+     */
+    public function scheme()
+    {
+        return $this->get(self::SCHEME);
+    }
+
+    /**
+     * @return array
+     */
+    public function tokens()
+    {
+        return $this->get(self::TOKENS) ?: [];
+    }
+
+    /**
+     * @return array
+     */
+    public function wildcard()
+    {
+        return $this->get(self::WILDCARD) ?: false;
+    }
 }

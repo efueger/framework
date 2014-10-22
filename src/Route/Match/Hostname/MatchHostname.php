@@ -2,15 +2,15 @@
 
 namespace Framework\Route\Match\Hostname;
 
-use Framework\Route\Definition\RouteDefinition;
+use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
 interface MatchHostname
 {
     /**
      * @param Route $route
-     * @param RouteDefinition $definition
+     * @param Definition $definition
      * @return Route
      */
-    function __invoke(Route $route, RouteDefinition $definition);
+    function __invoke(Route $route, Definition $definition);
 }

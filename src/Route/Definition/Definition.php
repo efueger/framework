@@ -2,126 +2,144 @@
 
 namespace Framework\Route\Definition;
 
-use Framework\Config\ConfigTrait;
+use Framework\Config\Configuration;
 
-class Definition
-    implements RouteDefinition
+interface Definition
+    extends Configuration
 {
     /**
      *
      */
-    use ConfigTrait;
+    const CHILDREN = 'children';
+
+    /**
+     *
+     */
+    const CONSTRAINTS = 'constraints';
+
+    /**
+     *
+     */
+    const CONTROLLER = 'controller';
+
+    /**
+     *
+     */
+    const DEFAULTS = 'defaults';
+
+    /**
+     *
+     */
+    const HOSTNAME = 'hostname';
+
+    /**
+     *
+     */
+    const METHOD = 'method';
+
+    /**
+     *
+     */
+    const NAME = 'name';
+
+    /**
+     *
+     */
+    const PARAM_MAP = 'paramMap';
+
+    /**
+     *
+     */
+    const REGEX = 'regex';
+
+    /**
+     *
+     */
+    const ROUTE = 'route';
+
+    /**
+     *
+     */
+    const SCHEME = 'scheme';
+
+    /**
+     *
+     */
+    const TOKENS = 'tokens';
+
+    /**
+     *
+     */
+    const WILDCARD = 'wildcard';
 
     /**
      * @param string $name
      * @return self
      */
-    public function child($name)
-    {
-        return isset($this->config[self::CHILDREN][$name]) ? $this->config[self::CHILDREN][$name] : null;
-    }
+    function child($name);
 
     /**
      * @return self[]
      */
-    public function children()
-    {
-        return $this->get(self::CHILDREN) ?: [];
-    }
+    function children();
 
     /**
      * @return array
      */
-    public function constraints()
-    {
-        return $this->get(self::CONSTRAINTS) ?: [];
-    }
+    function constraints();
 
     /**
      * @return string
      */
-    public function controller()
-    {
-        return $this->get(self::CONTROLLER);
-    }
+    function controller();
 
     /**
      * @return array
      */
-    public function defaults()
-    {
-        return $this->get(self::DEFAULTS) ?: [];
-    }
+    function defaults();
 
     /**
-     * @return null|string
+     * @return array|string
      */
-    public function hostname()
-    {
-        return $this->get(self::HOSTNAME) ?: null;
-    }
+    function hostname();
 
     /**
      * @return string
      */
-    public function name()
-    {
-        return $this->get(self::NAME);
-    }
+    function method();
 
     /**
-     * @return null|string
+     * @return string
      */
-    public function method()
-    {
-        return $this->get(self::METHOD) ?: null;
-    }
+    function name();
+
+    /**
+     * @return string
+     */
+    function paramMap();
+
+    /**
+     * @return string
+     */
+    function regex();
+
+    /**
+     * @return string
+     */
+    function route();
+
+    /**
+     * @return string
+     */
+    function scheme();
 
     /**
      * @return array
      */
-    public function paramMap()
-    {
-        return $this->get(self::PARAM_MAP) ?: [];
-    }
+    function tokens();
 
     /**
-     * @return string
+     * @return true
      */
-    public function regex()
-    {
-        return $this->get(self::REGEX);
-    }
-
-    /**
-     * @return string
-     */
-    public function route()
-    {
-        return $this->get(self::ROUTE);
-    }
-
-    /**
-     * @return string
-     */
-    public function scheme()
-    {
-        return $this->get(self::SCHEME);
-    }
-
-    /**
-     * @return array
-     */
-    public function tokens()
-    {
-        return $this->get(self::TOKENS) ?: [];
-    }
-
-    /**
-     * @return array
-     */
-    public function wildcard()
-    {
-        return $this->get(self::WILDCARD) ?: false;
-    }
+    function wildcard();
 }

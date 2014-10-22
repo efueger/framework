@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Match\Wildcard;
 
-use Framework\Route\Definition\RouteDefinition;
+use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
 class Wildcard
@@ -10,10 +10,10 @@ class Wildcard
 {
    /**
      * @param Route $route
-     * @param RouteDefinition $definition
+     * @param Definition $definition
      * @return Route
      */
-    public function __invoke(Route $route, RouteDefinition $definition)
+    public function __invoke(Route $route, Definition $definition)
     {
         if (!$definition->wildcard()) {
             return $route;

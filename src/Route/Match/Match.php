@@ -5,7 +5,7 @@ namespace Framework\Route\Match;
 use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\Route\Definition\RouteDefinition;
+use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
 class Match
@@ -23,7 +23,7 @@ class Match
     const EVENT = self::ROUTE;
 
     /**
-     * @var RouteDefinition
+     * @var Definition
      */
     protected $definition;
 
@@ -33,10 +33,10 @@ class Match
     protected $route;
 
     /***
-     * @param RouteDefinition $definition
+     * @param Definition $definition
      * @param Route $route
      */
-    public function __construct(RouteDefinition $definition, Route $route)
+    public function __construct(Definition $definition, Route $route)
     {
         $this->definition = $definition;
         $this->route      = $route;
