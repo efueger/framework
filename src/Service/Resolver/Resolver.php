@@ -60,7 +60,7 @@ trait Resolver
     public function call($config, array $args = [], callable $callback = null)
     {
         if (!is_string($config)) {
-            return $this->invoke($config, $args, $callback);
+            return $this->invoke($config, $args, $callback ?: $this);
         }
 
         $config = explode(Args::CALL_SEPARATOR, $config);
@@ -83,7 +83,7 @@ trait Resolver
             $plugin = $plugin->$name();
         }
 
-        return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback);
+        return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback ?: $this);
     }
 
     /**
