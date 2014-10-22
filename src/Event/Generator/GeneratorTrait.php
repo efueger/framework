@@ -18,7 +18,7 @@ trait GeneratorTrait
     {
         $result = null;
 
-        foreach($this->queue(is_string($event) ? $event : $event->event()) as $listener) {
+        foreach($this->queue($event) as $listener) {
 
             $result = $this->emit($event, $listener, $args, $callback);
 
@@ -47,7 +47,7 @@ trait GeneratorTrait
      */
     protected function queue($event)
     {
-        foreach($this->listeners()->queue($event) as $listeners) {
+        foreach($this->listeners()->queue($event instanceof Event ? $event->event() : (string) $event) as $listeners) {
             foreach($listeners as $listener) {
                 yield $this->listener($listener);
             }
