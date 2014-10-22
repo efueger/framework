@@ -1,14 +1,14 @@
 <?php
 
-namespace Framework\Mvc\Response;
+namespace Framework\Response\Manager;
 
 use Framework\Response\Response;
 
-interface ResponseDispatcher
+interface ResponseManager
 {
     /**
      * @param Response $response
      * @return mixed
      */
-    function __invoke(Response $response);
+    function send(Response $response);
 }

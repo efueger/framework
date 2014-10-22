@@ -3,13 +3,13 @@
 namespace Framework\Response;
 
 class Sender
-    implements SenderInterface
+    implements ResponseSender
 {
     /**
-     * @param ResponseInterface $response
+     * @param Response $response
      * @return mixed
      */
-    public function __invoke(ResponseInterface $response)
+    public function __invoke(Response $response)
     {
         $response->send();
     }

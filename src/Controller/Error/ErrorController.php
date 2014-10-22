@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Error;
 
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\Response;
 
 interface ErrorController
 {

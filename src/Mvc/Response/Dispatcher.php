@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc\Response;
 
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\Response;
 use Framework\Response\Manager\ServiceTrait as ResponseManager;
 
 class Dispatcher

@@ -7,7 +7,7 @@ use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
 class Dispatch
-    implements DispatchInterface, Event
+    implements Event, ResponseDispatch
 {
     /**
      *
@@ -21,14 +21,14 @@ class Dispatch
     const EVENT = self::RESPONSE;
 
     /**
-     * @var ResponseInterface
+     * @var Response
      */
     protected $response;
 
     /**
-     * @param ResponseInterface $response
+     * @param Response $response
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(Response $response)
     {
         $this->response = $response;
     }

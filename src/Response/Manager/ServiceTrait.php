@@ -2,34 +2,34 @@
 
 namespace Framework\Response\Manager;
 
-use Framework\Response\ResponseInterface;
+use Framework\Response\Response;
 
 trait ServiceTrait
 {
     /**
-     * @var ManagerInterface
+     * @var ResponseManager
      */
     protected $rm;
 
     /**
-     * @param ResponseInterface $response
+     * @param Response $response
      * @return mixed
      */
-    public function send(ResponseInterface $response)
+    public function send(Response $response)
     {
         return $this->rm->send($response);
     }
 
     /**
-     * @param  ManagerInterface $rm
+     * @param  ResponseManager $rm
      */
-    public function setResponseManager(ManagerInterface $rm)
+    public function setResponseManager(ResponseManager $rm)
     {
         $this->rm = $rm;
     }
 
     /**
-     * @return ManagerInterface
+     * @return ResponseManager
      */
     public function responseManager()
     {

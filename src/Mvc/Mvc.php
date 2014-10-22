@@ -3,7 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Route\Route;
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\Response;
 use Framework\View\Model\ViewModel;
 
 interface Mvc

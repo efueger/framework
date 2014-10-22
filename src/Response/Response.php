@@ -2,7 +2,7 @@
 
 namespace Framework\Response;
 
-interface ResponseInterface
+interface Response
 {
     /**
      * @return void

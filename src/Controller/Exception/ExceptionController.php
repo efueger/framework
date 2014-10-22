@@ -3,7 +3,7 @@
 namespace Framework\Controller\Exception;
 
 use Exception;
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\Response;
 
 interface ExceptionController
 {

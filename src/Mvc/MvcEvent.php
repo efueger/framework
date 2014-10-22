@@ -4,7 +4,7 @@ namespace Framework\Mvc;
 
 use Framework\Event\Event;
 use Framework\Mvc\View\ViewRenderer;
-use Framework\Response\ResponseInterface as Response;
+use Framework\Response\Response;
 use Framework\Route\Route;
 use Framework\View\Model\ViewModel;
 

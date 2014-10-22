@@ -5,12 +5,12 @@ namespace Framework\Response;
 trait ServiceTrait
 {
     /**
-     * @var ResponseInterface
+     * @var Response
      */
     protected $response;
 
     /**
-     * @return ResponseInterface
+     * @return Response
      */
     public function response()
     {
@@ -18,9 +18,9 @@ trait ServiceTrait
     }
 
     /**
-     * @param  ResponseInterface $response
+     * @param  Response $response
      */
-    public function setResponse(ResponseInterface $response)
+    public function setResponse(Response $response)
     {
         $this->response = $response;
     }

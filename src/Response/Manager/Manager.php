@@ -4,12 +4,12 @@ namespace Framework\Response\Manager;
 
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
-use Framework\Response\DispatchInterface as Dispatch;
-use Framework\Response\ResponseInterface;
+use Framework\Response\ResponseDispatch as Dispatch;
+use Framework\Response\Response;
 use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements ManagerInterface, EventManager, ServiceManager
+    implements EventManager, ServiceManager, ResponseManager
 {
     /**
      *
@@ -17,10 +17,10 @@ class Manager
     use Events;
 
     /**
-     * @param ResponseInterface $response
+     * @param Response $response
      * @return mixed
      */
-    public function send(ResponseInterface $response)
+    public function send(Response $response)
     {
         return $this->trigger([Dispatch::RESPONSE, $response], [], $this);
     }

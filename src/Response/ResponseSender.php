@@ -1,10 +1,8 @@
 <?php
 
-namespace Framework\Mvc\Response;
+namespace Framework\Response;
 
-use Framework\Response\Response;
-
-interface ResponseDispatcher
+interface ResponseSender
 {
     /**
      * @param Response $response

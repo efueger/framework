@@ -2,7 +2,7 @@
 
 namespace Framework\Response;
 
-interface DispatchInterface
+interface ResponseDispatch
 {
     /**
      *
