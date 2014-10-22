@@ -67,7 +67,7 @@ trait Resolver
         $plugin = array_shift($config);
         $method = $config ? array_pop($config) : null;
 
-        $plugin = $this($plugin, function($plugin) {
+        $plugin = $this->plugin($plugin, function($plugin) {
             if (!is_callable($plugin)) {
                 throw new RuntimeException('Plugin is not callable: ' . $plugin);
             }
