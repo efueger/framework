@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Call;
 
 class Call
-    implements CallInterface
+    implements ServiceCall
 {
     /**
      * @var array

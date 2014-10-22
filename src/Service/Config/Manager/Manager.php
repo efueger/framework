@@ -2,13 +2,13 @@
 
 namespace Framework\Service\Config\Manager;
 
-use Framework\Service\Config\Child\ChildInterface;
+use Framework\Service\Config\Child\Config;
 use Framework\Service\Config\Child\ChildTrait;
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Manager
-    implements ChildInterface, ConfigInterface, ManagerInterface
+    implements Config, Configuration, ServiceManager
 {
     /**
      *

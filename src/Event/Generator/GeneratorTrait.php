@@ -2,8 +2,8 @@
 
 namespace Framework\Event\Generator;
 
-use Framework\Event\Config\ConfigInterface;
-use Framework\Event\EventInterface as Event;
+use Framework\Event\Config\Configuration;
+use Framework\Event\Event as Event;
 use Generator;
 
 trait GeneratorTrait
@@ -37,7 +37,7 @@ trait GeneratorTrait
     protected abstract function listener($listener);
 
     /**
-     * @return ConfigInterface
+     * @return Configuration
      */
     protected abstract function listeners();
 

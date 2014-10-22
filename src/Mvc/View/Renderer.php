@@ -3,11 +3,11 @@
 namespace Framework\Mvc\View;
 
 use Exception;
-use Framework\View\Model\ModelInterface as View;
+use Framework\View\Model\ViewModel;
 use Framework\View\Manager\ServiceTrait as ViewManager;
 
 class Renderer
-    implements RendererInterface
+    implements ViewRenderer
 {
     /**
      *
@@ -15,10 +15,10 @@ class Renderer
     use ViewManager;
 
     /**
-     * @param View $viewModel
+     * @param ViewModel $viewModel
      * @return mixed
      */
-    public function __invoke(View $viewModel = null)
+    public function __invoke(ViewModel $viewModel = null)
     {
         if (!$viewModel) {
             return null;

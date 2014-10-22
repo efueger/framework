@@ -2,11 +2,11 @@
 
 namespace Framework\Service\Config\Child;
 
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Child
-    implements ConfigInterface, ChildInterface
+    implements Config, Configuration
 {
     /**
      *

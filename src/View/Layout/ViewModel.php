@@ -6,7 +6,7 @@ use Framework\View\Model\ModelTrait;
 use Framework\View\PluginTrait;
 
 class ViewModel
-    implements LayoutInterface, ViewModelInterface
+    implements Layout, LayoutViewModel
 {
     /**
      *

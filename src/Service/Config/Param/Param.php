@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Param;
 
 class Param
-    implements ParamInterface
+    implements ServiceParam
 {
     /**
      * @var string

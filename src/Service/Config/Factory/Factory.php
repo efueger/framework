@@ -2,13 +2,13 @@
 
 namespace Framework\Service\Config\Factory;
 
-use Framework\Service\Config\Child\ChildInterface;
+use Framework\Service\Config\Child\Config;
 use Framework\Service\Config\Child\ChildTrait;
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Factory
-    implements ChildInterface, ConfigInterface, FactoryInterface
+    implements Config, Configuration, ServiceFactory
 {
     /**
      *

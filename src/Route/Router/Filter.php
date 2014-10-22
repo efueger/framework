@@ -2,10 +2,10 @@
 
 namespace Framework\Route\Router;
 
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Route;
 
 class Filter
-    implements FilterInterface
+    implements RouterFilter
 {
     /**
      * @param Route $route

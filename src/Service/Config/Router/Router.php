@@ -2,11 +2,11 @@
 
 namespace Framework\Service\Config\Router;
 
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Router
-    implements ConfigInterface, RouterInterface
+    implements Configuration, RouterService
 {
     /**
      *

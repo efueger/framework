@@ -3,13 +3,13 @@
 namespace Framework\View\Exception;
 
 use Exception;
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 use Framework\View\Model\ServiceTrait as ViewModelTrait;
 
 class View
-    implements EventInterface, ViewInterface
+    implements Event, ExceptionView
 {
     /**
      *

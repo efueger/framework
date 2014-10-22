@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Config\Child;
 
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 
 trait ChildTrait
 {
@@ -11,7 +11,7 @@ trait ChildTrait
      */
     public function parent()
     {
-        /** @var ConfigInterface $this */
-        return $this->get(ChildInterface::PARENT);
+        /** @var Configuration $this */
+        return $this->get(Config::PARENT);
     }
 }

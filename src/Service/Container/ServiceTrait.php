@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Container;
 
-use Framework\Config\ConfigInterface as Config;
+use Framework\Config\Configuration as Config;
 
 trait ServiceTrait
 {
@@ -12,7 +12,7 @@ trait ServiceTrait
     protected $config = [];
 
     /**
-     * @var ContainerInterface
+     * @var ServiceContainer
      */
     protected $services;
 
@@ -115,9 +115,9 @@ trait ServiceTrait
     }
 
     /**
-     * @param ContainerInterface $services
+     * @param ServiceContainer $services
      */
-    public function services(ContainerInterface $services)
+    public function services(ServiceContainer $services)
     {
         $this->services = $services;
     }

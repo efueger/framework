@@ -5,14 +5,14 @@ namespace Framework\Route\Generator;
 trait ServiceTrait
 {
     /**
-     * @var GeneratorInterface
+     * @var RouteGenerator
      */
     protected $generator;
 
     /**
-     * @param GeneratorInterface $generator
+     * @param RouteGenerator $generator
      */
-    public function setRouteGenerator(GeneratorInterface $generator)
+    public function setRouteGenerator(RouteGenerator $generator)
     {
         $this->generator = $generator;
     }

@@ -3,9 +3,9 @@
 namespace Framework\Route\Generator;
 
 use Exception;
-use Framework\Config\ConfigInterface as Config;
-use Framework\Route\Definition\Builder\BuilderInterface as Route;
-use Framework\Route\Definition\DefinitionInterface as Definition;
+use Framework\Config\Configuration as Config;
+use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
 use InvalidArgumentException;
 
 /**
@@ -13,7 +13,7 @@ use InvalidArgumentException;
  * under the Simplified BSD License (http://opensource.org/licenses/BSD-2-Clause).
  */
 class Generator
-    implements GeneratorInterface
+    implements RouteGenerator
 {
     /**
      * @var Config

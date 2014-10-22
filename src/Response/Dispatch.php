@@ -2,12 +2,12 @@
 
 namespace Framework\Response;
 
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
 class Dispatch
-    implements DispatchInterface, EventInterface
+    implements DispatchInterface, Event
 {
     /**
      *

@@ -2,11 +2,11 @@
 
 namespace Framework\Service\Config\Hydrator;
 
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Hydrator
-    implements ConfigInterface, HydratorInterface
+    implements Configuration, ServiceHydrator
 {
     /**
      *

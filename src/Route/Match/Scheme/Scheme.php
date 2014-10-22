@@ -2,11 +2,11 @@
 
 namespace Framework\Route\Match\Scheme;
 
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Route;
 
 class Scheme
-    implements SchemeInterface
+    implements MatchScheme
 {
     /**
      * @param Route $route

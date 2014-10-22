@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Container;
 
+use Framework\Config\Configuration;
+
 class Container
-    implements ContainerInterface
+    implements ServiceContainer
 {
     /**
      * @var array
@@ -48,7 +50,7 @@ class Container
     }
 
     /**
-     * @return array
+     * @return Configuration
      */
     public function config()
     {

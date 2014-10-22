@@ -5,7 +5,7 @@ namespace Framework\Route\Definition;
 use Framework\Config\ConfigTrait;
 
 class Definition
-    implements DefinitionInterface
+    implements RouteDefinition
 {
     /**
      *

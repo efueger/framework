@@ -2,8 +2,8 @@
 
 namespace Framework\Event\Manager;
 
-use Framework\Event\Config\ConfigInterface as Events;
-use Framework\Event\EventInterface;
+use Framework\Event\Config\Configuration;
+use Framework\Event\Event;
 
 trait EventManagerTrait
 {
@@ -13,21 +13,21 @@ trait EventManagerTrait
     protected $events;
 
     /**
-     * @param array|EventInterface|string $event
-     * @return EventInterface|string
+     * @param array|Event|string $event
+     * @return Event|string
      */
     protected abstract function event($event);
 
     /**
-     * @param Events $events
+     * @param Configuration $events
      */
-    public function events(Events $events)
+    public function events(Configuration $events)
     {
         $this->events = $events;
     }
 
     /**
-     * @param EventInterface|string $event
+     * @param Event|string $event
      * @param array $args
      * @param callable $callback
      * @return mixed|null
@@ -43,7 +43,7 @@ trait EventManagerTrait
     }
 
     /**
-     * @param array|EventInterface|string $event
+     * @param array|Event|string $event
      * @param array $args
      * @param callable $callback
      * @return mixed

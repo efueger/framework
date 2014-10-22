@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Invoke;
 
 class Invoke
-    implements InvokeInterface
+    implements ServiceInvoke
 {
     /**
      * @var array

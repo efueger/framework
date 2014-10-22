@@ -3,11 +3,11 @@
 namespace Framework\View\Exception;
 
 use Exception;
-use Framework\View\Layout\LayoutInterface;
+use Framework\View\Layout\Layout;
 use Framework\View\Model\ModelTrait;
 
 class ViewModel
-    implements LayoutInterface, ViewModelInterface
+    implements Layout, ExceptionViewModel
 {
     /**
      *

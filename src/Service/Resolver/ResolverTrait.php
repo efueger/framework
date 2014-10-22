@@ -3,20 +3,20 @@
 namespace Framework\Service\Resolver;
 
 use Closure;
-use Framework\Config\ConfigInterface;
-use Framework\Event\EventInterface as Event;
+use Framework\Config\Configuration;
+use Framework\Event\Event as Event;
 use Framework\Service\AliasTrait as Alias;
-use Framework\Service\Config\Args\ArgsInterface as Args;
-use Framework\Service\Config\Call\CallInterface as Call;
-use Framework\Service\Config\Child\ChildInterface as Child;
-use Framework\Service\Config\ConfigInterface as Config;
-use Framework\Service\Config\ConfigLink\ConfigLinkInterface as ConfigLink;
-use Framework\Service\Config\Dependency\DependencyInterface as Dependency;
-use Framework\Service\Config\Factory\FactoryInterface as Factory;
-use Framework\Service\Config\Filter\FilterInterface as Filter;
-use Framework\Service\Config\Invoke\InvokeInterface as Invoke;
-use Framework\Service\Config\Param\ParamInterface as Param;
-use Framework\Service\Config\ServiceManagerLink\ServiceManagerLinkInterface as ServiceManagerLink;
+use Framework\Service\Config\Args\Arguments as Args;
+use Framework\Service\Config\Call\ServiceCall as Call;
+use Framework\Service\Config\Child\Config as Child;
+use Framework\Service\Config\Configuration as Config;
+use Framework\Service\Config\ConfigLink\ConfigServiceLink as ConfigLink;
+use Framework\Service\Config\Dependency\ServiceDependency as Dependency;
+use Framework\Service\Config\Factory\ServiceFactory as Factory;
+use Framework\Service\Config\Filter\ServiceFilter as Filter;
+use Framework\Service\Config\Invoke\ServiceInvoke as Invoke;
+use Framework\Service\Config\Param\ServiceParam as Param;
+use Framework\Service\Config\ServiceManagerLink\ManagerLink as ServiceManagerLink;
 use Framework\Service\Container\ServiceTrait as Container;
 use ReflectionClass;
 use RuntimeException;
@@ -246,7 +246,7 @@ trait ResolverTrait
         $value = $this->config()->get(array_shift($name));
 
         foreach($name as $n) {
-            $value = $value instanceof ConfigInterface ? $value->get($n) : $value[$n];
+            $value = $value instanceof Configuration ? $value->get($n) : $value[$n];
         }
 
         return $value;
@@ -311,7 +311,7 @@ trait ResolverTrait
         }
 
         if ($config instanceof Config) {
-            return $this->provide($config);
+            return $this->provide($config, $args);
         }
 
         if ($config instanceof Dependency) {

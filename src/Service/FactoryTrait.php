@@ -2,21 +2,21 @@
 
 namespace Framework\Service;
 
-use Framework\Config\ConfigInterface;
-use Framework\Service\Manager\ManagerInterface;
+use Framework\Config\Configuration;
+use Framework\Service\Manager\ServiceManager;
 use ReflectionClass;
 
 trait FactoryTrait
 {
     /**
-     * @var ManagerInterface
+     * @var ServiceManager
      */
     protected $sm;
 
     /**
-     * @param ManagerInterface $sm
+     * @param ServiceManager $sm
      */
-    public function __construct(ManagerInterface $sm)
+    public function __construct(ServiceManager $sm)
     {
         $this->sm = $sm;
     }
@@ -31,7 +31,7 @@ trait FactoryTrait
     }
 
     /**
-     * @return ConfigInterface
+     * @return Configuration
      */
     public function config()
     {

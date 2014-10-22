@@ -2,12 +2,12 @@
 
 namespace Framework\Mvc\Layout;
 
-use Framework\View\Layout\LayoutInterface as LayoutModel;
+use Framework\View\Layout\Layout;
 use Framework\View\Model\ServiceTrait as ViewModelTrait;
-use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\View\Model\ViewModel;
 
 class Renderer
-    implements RendererInterface
+    implements LayoutRenderer
 {
     /**
      *
@@ -26,7 +26,7 @@ class Renderer
             return null;
         }
 
-        if ($viewModel instanceof LayoutModel) {
+        if ($viewModel instanceof Layout) {
             return $viewModel;
         }
 

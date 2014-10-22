@@ -2,14 +2,14 @@
 
 namespace Framework\Controller\Manager;
 
-use Framework\Controller\Dispatch\DispatchInterface as Dispatch;
-use Framework\Controller\Exception\DispatchInterface as Exception;
-use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
-use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
+use Framework\Controller\Dispatch\ControllerDispatch as Dispatch;
+use Framework\Controller\Exception\ExceptionDispatch as Exception;
+use Framework\Event\Manager\EventManager;
+use Framework\Event\Manager\Events;
+use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements EventManagerInterface, ManagerInterface, ServiceManagerInterface
+    implements EventManager, ControllerManager, ServiceManager
 {
     /**
      *

@@ -2,11 +2,11 @@
 
 namespace Framework\Route\Match\Method;
 
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Route;
 
 class Method
-    implements MethodInterface
+    implements MatchMethod
 {
     /**
      * @param Route $route

@@ -16,7 +16,7 @@ trait ConfigTrait
      */
     public function args()
     {
-        return $this->get(ConfigInterface::ARGS) ? : [];
+        return $this->get(Configuration::ARGS) ? : [];
     }
 
     /**
@@ -24,7 +24,7 @@ trait ConfigTrait
      */
     public function calls()
     {
-        return $this->get(ConfigInterface::CALLS) ? : [];
+        return $this->get(Configuration::CALLS) ? : [];
     }
 
     /**
@@ -32,7 +32,7 @@ trait ConfigTrait
      */
     public function merge()
     {
-        return $this->get(ConfigInterface::MERGE) ? : false;
+        return $this->get(Configuration::MERGE) ? : false;
     }
 
     /**
@@ -40,6 +40,6 @@ trait ConfigTrait
      */
     public function name()
     {
-        return $this->get(ConfigInterface::NAME);
+        return $this->get(Configuration::NAME);
     }
 }

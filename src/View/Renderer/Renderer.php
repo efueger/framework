@@ -3,7 +3,7 @@
 namespace Framework\View\Renderer;
 
 class Renderer
-    implements RendererInterface
+    implements ViewRenderer
 {
     /**
      *

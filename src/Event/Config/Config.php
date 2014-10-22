@@ -3,7 +3,7 @@
 namespace Framework\Event\Config;
 
 class Config
-    implements ConfigInterface
+    implements Configuration
 {
     /**
      *

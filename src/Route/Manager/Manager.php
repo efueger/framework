@@ -2,16 +2,16 @@
 
 namespace Framework\Route\Manager;
 
-use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
-use Framework\Event\Manager\EventsTrait as Events;
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\Router\DispatchInterface as Router;
-use Framework\Route\Match\MatchInterface as Match;
-use Framework\Route\RouteInterface as Route;
-use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
+use Framework\Event\Manager\EventManager;
+use Framework\Event\Manager\Events;
+use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Router\RouterDispatch as Router;
+use Framework\Route\Match\RouteMatch as Match;
+use Framework\Route\Route;
+use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements EventManagerInterface, ManagerInterface, ServiceManagerInterface
+    implements EventManager, RouteManager, ServiceManager
 {
     /**
      *

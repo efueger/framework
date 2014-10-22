@@ -7,7 +7,7 @@ use Exception;
 trait ServiceTrait
 {
     /**
-     * @var ManagerInterface
+     * @var ControllerManager
      */
     protected $cm;
 
@@ -31,7 +31,7 @@ trait ServiceTrait
     }
 
     /**
-     * @return ManagerInterface
+     * @return ControllerManager
      */
     public function controllerManager()
     {
@@ -59,9 +59,9 @@ trait ServiceTrait
     }
 
     /**
-     * @param ManagerInterface $cm
+     * @param ControllerManager $cm
      */
-    public function setControllerManager(ManagerInterface $cm)
+    public function setControllerManager(ControllerManager $cm)
     {
         $this->cm = $cm;
     }

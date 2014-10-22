@@ -4,11 +4,11 @@ namespace Framework\Controller\Exception;
 
 use Exception;
 use Framework\Response\ResponseInterface as Response;
-use Framework\View\Exception\ViewModelInterface;
+use Framework\View\Exception\ExceptionViewModel;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
 class Controller
-    implements ControllerInterface
+    implements ExceptionController
 {
     /**
      *
@@ -24,7 +24,7 @@ class Controller
     {
         $response->setStatus(500);
 
-        /** @var ViewModelInterface $viewModel */
+        /** @var ExceptionViewModel $viewModel */
         $viewModel = $this->viewModel();
 
         $viewModel->setException($exception);

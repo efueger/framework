@@ -5,12 +5,12 @@ namespace Framework\Route;
 trait ServiceTrait
 {
     /**
-     * @var RouteInterface
+     * @var Route
      */
     protected $route;
 
     /**
-     * @return null|RouteInterface
+     * @return null|Route
      */
     public function route()
     {
@@ -18,10 +18,10 @@ trait ServiceTrait
     }
 
     /**
-     * @param RouteInterface $route
+     * @param Route $route
      * @return self
      */
-    public function setRoute(RouteInterface $route)
+    public function setRoute(Route $route)
     {
         $this->route = $route;
     }

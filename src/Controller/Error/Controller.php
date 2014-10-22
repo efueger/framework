@@ -6,7 +6,7 @@ use Framework\Response\ResponseInterface as Response;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
 class Controller
-    implements ControllerInterface
+    implements ErrorController
 {
     /**
      *
@@ -15,7 +15,7 @@ class Controller
 
     /**
      * @param Response $response
-     * @return ViewModel
+     * @return ErrorViewModel
      */
     public function __invoke(Response $response)
     {

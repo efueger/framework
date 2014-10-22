@@ -2,12 +2,12 @@
 
 namespace Framework\Route\Router;
 
-use Framework\Route\Definition\DefinitionInterface as Definition;
+use Framework\Route\Definition\RouteDefinition as Definition;
 use Framework\Route\Manager\ServiceTrait as RouteManager;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Route;
 
 class Router
-    implements RouterInterface
+    implements RouteRouter
 {
     /**
      *

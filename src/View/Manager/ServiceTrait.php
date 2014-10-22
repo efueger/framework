@@ -3,12 +3,12 @@
 namespace Framework\View\Manager;
 
 use Exception;
-use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\View\Model\ViewModel;
 
 trait ServiceTrait
 {
     /**
-     * @var ManagerInterface
+     * @var ViewManager
      */
     protected $vm;
 
@@ -51,15 +51,15 @@ trait ServiceTrait
     }
 
     /**
-     * @param ManagerInterface $vm
+     * @param ViewManager $vm
      */
-    public function setViewManager(ManagerInterface $vm)
+    public function setViewManager(ViewManager $vm)
     {
         $this->vm = $vm;
     }
 
     /**
-     * @return ManagerInterface
+     * @return ViewManager
      */
     public function viewManager()
     {

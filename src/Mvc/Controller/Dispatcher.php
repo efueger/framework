@@ -6,7 +6,7 @@ use Exception;
 use Framework\Controller\Manager\ServiceTrait as ControllerManager;
 
 class Dispatcher
-    implements DispatcherInterface
+    implements ControllerDispatcher
 {
     /**
      *

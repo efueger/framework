@@ -6,7 +6,7 @@ use Framework\Response\ResponseInterface as Response;
 use Framework\Response\Manager\ServiceTrait as ResponseManager;
 
 class Dispatcher
-    implements DispatcherInterface
+    implements ResponseDispatcher
 {
     /**
      *

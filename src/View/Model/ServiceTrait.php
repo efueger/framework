@@ -2,8 +2,6 @@
 
 namespace Framework\View\Model;
 
-use Framework\View\Model\ModelInterface as ViewModel;
-
 trait ServiceTrait
 {
     /**

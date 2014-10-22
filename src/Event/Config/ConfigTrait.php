@@ -17,7 +17,7 @@ trait ConfigTrait
      * @param $priority
      * @return void
      */
-    public function add($name, $listener, $priority = ConfigInterface::PRIORITY)
+    public function add($name, $listener, $priority = Configuration::PRIORITY)
     {
         if (!isset($this->config[$name])) {
             $this->config[$name] = [];

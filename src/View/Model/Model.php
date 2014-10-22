@@ -3,7 +3,7 @@
 namespace Framework\View\Model;
 
 class Model
-    implements ModelInterface
+    implements ViewModel
 {
     /**
      *

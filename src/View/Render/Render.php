@@ -2,13 +2,13 @@
 
 namespace Framework\View\Render;
 
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\View\Model\ViewModel;
 
 class Render
-    implements EventInterface, RenderInterface
+    implements Event, ViewRender
 {
     /**
      *

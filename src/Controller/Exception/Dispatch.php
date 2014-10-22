@@ -3,12 +3,12 @@
 namespace Framework\Controller\Exception;
 
 use Exception;
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
 
 class Dispatch
-    implements DispatchInterface, EventInterface
+    implements ExceptionDispatch, Event
 {
     /**
      *

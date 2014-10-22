@@ -2,14 +2,14 @@
 
 namespace Framework\Response\Manager;
 
-use Framework\Event\Manager\EventManagerInterface as EventManagerInterface;
-use Framework\Event\Manager\EventsTrait as Events;
+use Framework\Event\Manager\EventManager;
+use Framework\Event\Manager\Events;
 use Framework\Response\DispatchInterface as Dispatch;
 use Framework\Response\ResponseInterface;
-use Framework\Service\Manager\ManagerInterface as ServiceManagerInterface;
+use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements ManagerInterface, EventManagerInterface, ServiceManagerInterface
+    implements ManagerInterface, EventManager, ServiceManager
 {
     /**
      *

@@ -2,13 +2,13 @@
 
 namespace Framework\Route\Router;
 
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Route;
 
 class Dispatch
-    implements DispatchInterface, EventInterface
+    implements RouterDispatch, Event
 {
     /**
      *

@@ -4,7 +4,7 @@ namespace Framework\View\Renderer;
 
 use Closure;
 use Exception;
-use Framework\View\Model\ModelInterface as ViewModel;
+use Framework\View\Model\ViewModel;
 
 trait ServiceTrait
 {

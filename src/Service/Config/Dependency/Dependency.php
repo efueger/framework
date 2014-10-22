@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Dependency;
 
 class Dependency
-    implements DependencyInterface
+    implements ServiceDependency
 {
     /**
      * @var string

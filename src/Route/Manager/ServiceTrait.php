@@ -2,13 +2,13 @@
 
 namespace Framework\Route\Manager;
 
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Route;
 
 trait ServiceTrait
 {
     /**
-     * @var ManagerInterface
+     * @var RouteManager
      */
     protected $rm;
 
@@ -33,9 +33,9 @@ trait ServiceTrait
     }
 
     /**
-     * @param  ManagerInterface $rm
+     * @param  RouteManager $rm
      */
-    public function setRouteManager(ManagerInterface $rm)
+    public function setRouteManager(RouteManager $rm)
     {
         $this->rm = $rm;
     }

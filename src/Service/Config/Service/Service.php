@@ -2,11 +2,11 @@
 
 namespace Framework\Service\Config\Service;
 
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\ConfigTrait;
 
 class Service
-    implements ConfigInterface, ServiceInterface
+    implements Config, Configuration
 {
     /**
      *

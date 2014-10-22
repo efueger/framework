@@ -6,7 +6,7 @@ use Exception;
 use Framework\View\Manager\ServiceTrait as ViewManager;
 
 class Renderer
-    implements RendererInterface
+    implements ViewRenderer
 {
     /**
      *
@@ -15,10 +15,10 @@ class Renderer
 
     /**
      * @param Exception $exception
-     * @param ViewModelInterface $viewModel
+     * @param ExceptionViewModel $viewModel
      * @return mixed
      */
-    public function __invoke(Exception $exception, ViewModelInterface $viewModel)
+    public function __invoke(Exception $exception, ExceptionViewModel $viewModel)
     {
         $viewModel->setException($exception);
         return $this->render($viewModel);

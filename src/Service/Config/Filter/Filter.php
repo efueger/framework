@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Filter;
 
 class Filter
-    implements FilterInterface
+    implements ServiceFilter
 {
     /**
      * @var string

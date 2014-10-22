@@ -2,14 +2,14 @@
 
 namespace Framework\Route\Match;
 
-use Framework\Event\EventInterface;
+use Framework\Event\Event;
 use Framework\Event\EventTrait;
 use Framework\Service\Resolver\SignalTrait;
-use Framework\Route\Definition\DefinitionInterface as Definition;
-use Framework\Route\RouteInterface as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
+use Framework\Route\Route;
 
 class Match
-    implements EventInterface, MatchInterface
+    implements Event, RouteMatch
 {
     /**
      *

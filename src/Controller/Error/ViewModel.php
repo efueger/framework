@@ -6,7 +6,7 @@ use Framework\View\Model\ModelTrait;
 use Framework\View\PluginTrait;
 
 class ViewModel
-    implements ViewModelInterface
+    implements ErrorViewModel
 {
     /**
      *

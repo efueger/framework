@@ -5,8 +5,8 @@ namespace Framework\Mvc;
 use Framework\Event\EventTrait as Event;
 use Framework\Service\Resolver\SignalTrait as Signal;
 use Framework\Response\ResponseInterface as Response;
-use Framework\Route\RouteInterface as Route;
-use Framework\Service\Manager\ManagerInterface as ServiceManager;
+use Framework\Route\Route;
+use Framework\Service\Manager\ServiceManager;
 use Framework\View\Model\ServiceTrait as ViewModel;
 
 trait ServiceTrait
@@ -36,7 +36,7 @@ trait ServiceTrait
      */
     public function response()
     {
-        return $this->sm->get(MvcInterface::RESPONSE);
+        return $this->sm->get(MvcEvent::RESPONSE);
     }
 
     /**
@@ -44,7 +44,7 @@ trait ServiceTrait
      */
     public function route()
     {
-        return $this->sm->get(MvcInterface::ROUTE);
+        return $this->sm->get(MvcEvent::ROUTE);
     }
 
     /**
@@ -52,7 +52,7 @@ trait ServiceTrait
      */
     protected function setResponse(Response $response)
     {
-        $this->sm->set(MvcInterface::RESPONSE, $response);
+        $this->sm->set(MvcEvent::RESPONSE, $response);
     }
 
     /**
@@ -69,6 +69,6 @@ trait ServiceTrait
      */
     protected function setRoute(Route $route)
     {
-        $this->sm->set(MvcInterface::ROUTE, $route);
+        $this->sm->set(MvcEvent::ROUTE, $route);
     }
 }

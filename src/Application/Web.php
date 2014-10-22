@@ -2,10 +2,10 @@
 
 namespace Framework\Application;
 
-use Framework\Config\ConfigInterface as Config;
+use Framework\Config\Configuration as Config;
 
 class Web
-    implements WebInterface
+    implements WebApplication
 {
     /**
      * @var Config
@@ -27,6 +27,6 @@ class Web
      */
     public function __invoke(array $args = [], callable $callback = null)
     {
-        return (new Application($this->config))->call(self::WEB, $args, $callback);
+        return (new App($this->config))->call(self::WEB, $args, $callback);
     }
 }

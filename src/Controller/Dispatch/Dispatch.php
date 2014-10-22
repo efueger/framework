@@ -2,18 +2,18 @@
 
 namespace Framework\Controller\Dispatch;
 
-use Framework\Event\EventInterface;
-use Framework\Event\EventTrait as Event;
-use Framework\Service\Resolver\SignalTrait as Signal;
+use Framework\Event\Event;
+use Framework\Event\EventTrait;
+use Framework\Service\Resolver\SignalTrait;
 
 class Dispatch
-    implements EventInterface, DispatchInterface
+    implements Event, ControllerDispatch
 {
     /**
      *
      */
-    use Event;
-    use Signal;
+    use EventTrait;
+    use SignalTrait;
 
     /**
      *

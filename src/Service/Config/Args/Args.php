@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Args;
 
 class Args
-    implements ArgsInterface
+    implements Arguments
 {
     /**
      * @var array

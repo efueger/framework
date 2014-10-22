@@ -3,9 +3,9 @@
 namespace Framework\Route\Definition\Builder;
 
 use Framework\Config\Config as Config;
-use Framework\Config\ConfigInterface;
-use Framework\Route\Definition\Builder\BuilderInterface as Route;
-use Framework\Route\Definition\DefinitionInterface as Definition;
+use Framework\Config\Configuration;
+use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
+use Framework\Route\Definition\RouteDefinition as Definition;
 use Framework\Route\Definition\Definition as RouteDefinition;
 use RuntimeException;
 
@@ -14,7 +14,7 @@ use RuntimeException;
  * under the Simplified BSD License (http://opensource.org/licenses/BSD-2-Clause).
  */
 class Builder
-    implements BuilderInterface
+    implements DefinitionBuilder
 {
     /**
      * @param array $definitions
@@ -59,7 +59,7 @@ class Builder
 
     /**
      * @param array $definitions
-     * @return ConfigInterface
+     * @return Configuration
      */
     public static function definitions(array $definitions)
     {

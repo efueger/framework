@@ -2,13 +2,13 @@
 
 namespace Framework\Service\Config\Form;
 
-use Framework\Service\Config\Child\ChildInterface;
-use Framework\Service\Config\ConfigInterface;
+use Framework\Service\Config\Child\Config;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Config\Child\ChildTrait;
 use Framework\Service\Config\ConfigTrait;
 
 class Form
-    implements ChildInterface, ConfigInterface, FormInterface
+    implements Config, Configuration, FormService
 {
     /**
      *
