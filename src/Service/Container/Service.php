@@ -4,7 +4,7 @@ namespace Framework\Service\Container;
 
 use Framework\Config\Configuration;
 
-trait Services
+trait Service
 {
     /**
      * @var array

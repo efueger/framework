@@ -16,7 +16,7 @@ use Framework\Service\Config\Filter\ServiceFilter;
 use Framework\Service\Config\Invoke\ServiceInvoke;
 use Framework\Service\Config\Param\ServiceParam;
 use Framework\Service\Config\ServiceManagerLink\ServiceManager;
-use Framework\Service\Container\Services;
+use Framework\Service\Container\Service;
 use ReflectionClass;
 use RuntimeException;
 
@@ -26,7 +26,7 @@ trait Resolver
      *
      */
     use Alias;
-    use Services;
+    use Service;
     use Signal;
 
     /**
