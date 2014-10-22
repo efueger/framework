@@ -4,7 +4,7 @@ namespace Framework\View\Exception;
 
 use Exception;
 use Framework\View\Layout\Layout;
-use Framework\View\Model\ModelTrait;
+use Framework\View\Model\BaseModel;
 
 class ViewModel
     implements Layout, ExceptionViewModel
@@ -12,7 +12,7 @@ class ViewModel
     /**
      *
      */
-    use ModelTrait;
+    use BaseModel;
 
     /**
      * @var Exception

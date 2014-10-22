@@ -6,7 +6,7 @@ use Closure;
 use Exception;
 use Framework\View\Model\ViewModel;
 
-trait ServiceTrait
+trait RenderView
 {
     /**
      * @param ViewModel $viewModel

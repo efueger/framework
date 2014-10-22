@@ -6,7 +6,7 @@ use ReflectionFunction;
 use ReflectionMethod;
 use RuntimeException;
 
-trait SignalTrait
+trait Signal
 {
     /**
      * @param callable $config
@@ -48,7 +48,7 @@ trait SignalTrait
                 continue;
             }
 
-            if (ResolverArgs::ARGS === $param->name) {
+            if (Args::ARGS === $param->name) {
                 $matched[] = $args;
                 continue;
             }

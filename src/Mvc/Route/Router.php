@@ -3,7 +3,7 @@
 namespace Framework\Mvc\Route;
 
 use Framework\Route\Route;
-use Framework\Route\Manager\ServiceTrait as RouteManager;
+use Framework\Route\Manager\ManageRoute;
 
 class Router
     implements RouteRouter
@@ -11,7 +11,7 @@ class Router
     /**
      *
      */
-    use RouteManager;
+    use ManageRoute;
 
     /**
      * @var Route

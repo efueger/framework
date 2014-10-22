@@ -8,5 +8,5 @@ class Renderer
     /**
      *
      */
-    use ServiceTrait;
+    use RenderView;
 }

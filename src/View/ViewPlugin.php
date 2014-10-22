@@ -2,14 +2,14 @@
 
 namespace Framework\View;
 
-use Framework\View\Manager\ServiceTrait as ViewManager;
+use Framework\View\Manager\ManageView;
 
-trait PluginTrait
+trait ViewPlugin
 {
     /**
      *
      */
-    use ViewManager;
+    use ManageView;
 
     /**
      * @param string $name

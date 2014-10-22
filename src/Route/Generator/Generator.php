@@ -5,7 +5,7 @@ namespace Framework\Route\Generator;
 use Exception;
 use Framework\Config\Configuration;
 use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
-use Framework\Route\Definition\Definition as Definition;
+use Framework\Route\Definition\Definition;
 use InvalidArgumentException;
 
 /**

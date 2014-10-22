@@ -4,7 +4,7 @@ namespace Framework\Response\Manager;
 
 use Framework\Response\Response;
 
-trait ServiceTrait
+trait ManageResponse
 {
     /**
      * @var ResponseManager

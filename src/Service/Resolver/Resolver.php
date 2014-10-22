@@ -5,30 +5,29 @@ namespace Framework\Service\Resolver;
 use Closure;
 use Framework\Config\Configuration;
 use Framework\Event\Event;
-use Framework\Service\AliasTrait as Alias;
-use Framework\Service\Config\Args\Arguments as Args;
-use Framework\Service\Config\Call\ServiceCall as Call;
-use Framework\Service\Config\Child\Config as Child;
+use Framework\Service\Config\Args\Arguments;
+use Framework\Service\Config\Call\ServiceCall;
+use Framework\Service\Config\Child\ChildService;
 use Framework\Service\Config\Configuration as Config;
-use Framework\Service\Config\ConfigLink\ConfigServiceLink as ConfigLink;
-use Framework\Service\Config\Dependency\ServiceDependency as Dependency;
-use Framework\Service\Config\Factory\ServiceFactory as Factory;
-use Framework\Service\Config\Filter\ServiceFilter as Filter;
-use Framework\Service\Config\Invoke\ServiceInvoke as Invoke;
-use Framework\Service\Config\Param\ServiceParam as Param;
-use Framework\Service\Config\ServiceManagerLink\ManagerLink as ServiceManagerLink;
-use Framework\Service\Container\ServiceTrait as Container;
+use Framework\Service\Config\ConfigLink\ConfigServiceLink;
+use Framework\Service\Config\Dependency\ServiceDependency;
+use Framework\Service\Config\Factory\ServiceFactory;
+use Framework\Service\Config\Filter\ServiceFilter;
+use Framework\Service\Config\Invoke\ServiceInvoke;
+use Framework\Service\Config\Param\ServiceParam;
+use Framework\Service\Config\ServiceManagerLink\ServiceManager;
+use Framework\Service\Container\Services;
 use ReflectionClass;
 use RuntimeException;
 
-trait ResolverTrait
+trait Resolver
 {
     /**
      *
      */
     use Alias;
-    use Container;
-    use SignalTrait;
+    use Services;
+    use Signal;
 
     /**
      * @param $args
@@ -64,7 +63,7 @@ trait ResolverTrait
             return $this->invoke($config, $args, $callback);
         }
 
-        $config = explode(ResolverArgs::CALL_SEPARATOR, $config);
+        $config = explode(Args::CALL_SEPARATOR, $config);
         $plugin = array_shift($config);
         $method = $config ? array_pop($config) : null;
 
@@ -88,13 +87,13 @@ trait ResolverTrait
     }
 
     /**
-     * @param Child $config
+     * @param ChildService $config
      * @param array $args
      * @return null|object
      */
-    protected function child(Child $config, array $args = [])
+    protected function child(ChildService $config, array $args = [])
     {
-        /** @var Child|Config $config */
+        /** @var ChildService|Config $config */
         return $this->provide($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
 
@@ -129,7 +128,7 @@ trait ResolverTrait
     {
         foreach($config->calls() as $method => $value) {
             if (is_string($method)) {
-                if (ResolverArgs::PROPERTY == $method[0]) {
+                if (Args::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
                     continue;
                 }
@@ -166,7 +165,7 @@ trait ResolverTrait
             return $config->bindTo($this);
         }
 
-        if (is_string($config) && ResolverArgs::CALL === $config[0]) {
+        if (is_string($config) && Args::CALL === $config[0]) {
             return function($args = []) use ($config) {
                 /** @var callable|self $this */
                 return $this->call(
@@ -202,7 +201,7 @@ trait ResolverTrait
      */
     protected function merge(Config $parent, Config $config)
     {
-        /** @var Child|Config $config */
+        /** @var ChildService|Config $config */
 
         $parent->set(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
@@ -241,7 +240,7 @@ trait ResolverTrait
      */
     public function param($name)
     {
-        $name = explode(ResolverArgs::CALL_SEPARATOR, $name);
+        $name = explode(Args::CALL_SEPARATOR, $name);
 
         $value = $this->config()->get(array_shift($name));
 
@@ -261,7 +260,7 @@ trait ResolverTrait
     {
         $alias = $this->alias($name);
 
-        if ($alias && ResolverArgs::CALL === $alias[0]) {
+        if ($alias && Args::CALL === $alias[0]) {
             return function(array $args = []) use ($alias) {
                 return $this->call(substr($alias, 1), $args, $this);
             };
@@ -296,17 +295,17 @@ trait ResolverTrait
      */
     protected function resolve($config, array $args = [])
     {
-        /** @var Config|Child|Filter $config */
+        /** @var Config|ChildService|ServiceFilter $config */
 
         if (!is_object($config)) {
             return $config;
         }
 
-        if ($config instanceof Factory) {
+        if ($config instanceof ServiceFactory) {
             return $this->invoke($this->child($config, $args), [], $this);
         }
 
-        if ($config instanceof Child) {
+        if ($config instanceof ChildService) {
             return $this->child($config, $args);
         }
 
@@ -314,35 +313,35 @@ trait ResolverTrait
             return $this->provide($config, $args);
         }
 
-        if ($config instanceof Dependency) {
+        if ($config instanceof ServiceDependency) {
             return $this->get($config->name());
         }
 
-        if ($config instanceof Param) {
+        if ($config instanceof ServiceParam) {
             return $this->resolve($this->param($config->name()));
         }
 
-        if ($config instanceof Call) {
+        if ($config instanceof ServiceCall) {
             return $this->call($config->config(), $config->args());
         }
 
-        if ($config instanceof Args) {
+        if ($config instanceof Arguments) {
             return $this->args($config->config());
         }
 
-        if ($config instanceof ConfigLink) {
+        if ($config instanceof ConfigServiceLink) {
             return $this->config();
         }
 
-        if ($config instanceof ServiceManagerLink) {
+        if ($config instanceof ServiceManager) {
             return $this;
         }
 
-        if ($config instanceof Filter) {
+        if ($config instanceof ServiceFilter) {
             return $this->filter($this->resolve($config->config()), $config->filter());
         }
 
-        if ($config instanceof Invoke) {
+        if ($config instanceof ServiceInvoke) {
             return function(array $args = []) use ($config) {
                 return $this->invoke($config->config(), $config->args() + $args, $this);
             };

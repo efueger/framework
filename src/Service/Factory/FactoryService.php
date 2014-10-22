@@ -1,12 +1,12 @@
 <?php
 
-namespace Framework\Service;
+namespace Framework\Service\Factory;
 
 use Framework\Config\Configuration;
 use Framework\Service\Manager\ServiceManager;
 use ReflectionClass;
 
-trait FactoryTrait
+trait FactoryService
 {
     /**
      * @var ServiceManager

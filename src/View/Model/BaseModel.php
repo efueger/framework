@@ -2,7 +2,7 @@
 
 namespace Framework\View\Model;
 
-trait ModelTrait
+trait BaseModel
 {
     /**
      * @var string

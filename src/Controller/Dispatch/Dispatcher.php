@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Dispatch;
 
-use Framework\Controller\Manager\ServiceTrait as ControllerManager;
+use Framework\Controller\Manager\ManageController;
 
 class Dispatcher
     implements ControllerDispatcher
@@ -10,7 +10,7 @@ class Dispatcher
     /**
      *
      */
-    use ControllerManager;
+    use ManageController;
 
     /**
      * @param $controller

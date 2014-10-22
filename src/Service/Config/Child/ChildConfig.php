@@ -4,7 +4,7 @@ namespace Framework\Service\Config\Child;
 
 use Framework\Service\Config\Configuration;
 
-trait ChildTrait
+trait ChildConfig
 {
     /**
      * @return string
@@ -12,6 +12,6 @@ trait ChildTrait
     public function parent()
     {
         /** @var Configuration $this */
-        return $this->get(Config::PARENT);
+        return $this->get(ChildService::PARENT);
     }
 }

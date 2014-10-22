@@ -5,7 +5,7 @@ namespace Framework\Event\Manager;
 use Framework\Event\Config\Configuration;
 use Framework\Event\Event;
 
-trait EventManagerTrait
+trait ManageEvent
 {
     /**
      * @var Events

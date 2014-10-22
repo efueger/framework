@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Config\Child;
 
-interface Config
+interface ChildService
 {
     /**
      *

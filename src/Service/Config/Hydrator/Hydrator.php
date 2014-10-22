@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Hydrator;
 
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Hydrator
     implements Configuration, ServiceHydrator
@@ -11,7 +11,7 @@ class Hydrator
     /**
      *
      */
-    use ConfigTrait;
+    use ServiceConfig;
 
     /**
      * @param string $name

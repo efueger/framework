@@ -2,19 +2,19 @@
 
 namespace Framework\Service\Config\Controller;
 
-use Framework\Service\Config\Child\Config;
-use Framework\Service\Config\Child\ChildTrait;
+use Framework\Service\Config\Child\ChildService;
+use Framework\Service\Config\Child\ChildConfig;
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Controller
-    implements Config, Configuration, ControllerService
+    implements ChildService, Configuration, ControllerService
 {
     /**
      *
      */
-    use ChildTrait;
-    use ConfigTrait;
+    use ChildConfig;
+    use ServiceConfig;
 
     /**
      * @param string $name

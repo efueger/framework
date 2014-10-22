@@ -2,8 +2,8 @@
 
 namespace Framework\Controller\Error;
 
-use Framework\View\Model\ModelTrait;
-use Framework\View\PluginTrait;
+use Framework\View\Model\BaseModel;
+use Framework\View\ViewPlugin;
 
 class ViewModel
     implements ErrorViewModel
@@ -11,8 +11,8 @@ class ViewModel
     /**
      *
      */
-    use ModelTrait;
-    use PluginTrait;
+    use BaseModel;
+    use ViewPlugin;
 
     /**
      * @var string

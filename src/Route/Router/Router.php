@@ -3,7 +3,7 @@
 namespace Framework\Route\Router;
 
 use Framework\Route\Definition\Definition;
-use Framework\Route\Manager\ServiceTrait as RouteManager;
+use Framework\Route\Manager\ManageRoute;
 use Framework\Route\Route;
 
 class Router
@@ -12,7 +12,7 @@ class Router
     /**
      *
      */
-    use RouteManager;
+    use ManageRoute;
 
     /**
      * @var Definition

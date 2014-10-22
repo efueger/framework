@@ -4,7 +4,7 @@ namespace Framework\Mvc\View;
 
 use Exception;
 use Framework\View\Model\ViewModel;
-use Framework\View\Manager\ServiceTrait as ViewManager;
+use Framework\View\Manager\ManageView;
 
 class Renderer
     implements ViewRenderer
@@ -12,7 +12,7 @@ class Renderer
     /**
      *
      */
-    use ViewManager;
+    use ManageView;
 
     /**
      * @param ViewModel $viewModel

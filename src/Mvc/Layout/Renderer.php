@@ -3,7 +3,7 @@
 namespace Framework\Mvc\Layout;
 
 use Framework\View\Layout\Layout;
-use Framework\View\Model\ServiceTrait as ViewModelTrait;
+use Framework\View\Model\Service\ViewModel as Model;
 use Framework\View\Model\ViewModel;
 
 class Renderer
@@ -12,7 +12,7 @@ class Renderer
     /**
      *
      */
-    use ViewModelTrait;
+    use Model;
 
     /**
      * @param ViewModel $viewModel

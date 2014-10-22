@@ -8,5 +8,5 @@ class Model
     /**
      *
      */
-    use ModelTrait;
+    use BaseModel;
 }

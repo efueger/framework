@@ -2,20 +2,20 @@
 
 namespace Framework\Application;
 
-use Framework\Config\Configuration as Config;
+use Framework\Config\Configuration;
 
 class Web
     implements WebApplication
 {
     /**
-     * @var Config
+     * @var Configuration
      */
     protected $config;
 
     /**
-     * @param Config $config
+     * @param Configuration $config
      */
-    public function __construct(Config $config)
+    public function __construct(Configuration $config)
     {
         $this->config = $config;
     }

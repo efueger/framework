@@ -5,7 +5,7 @@ namespace Framework\View\Manager;
 use Exception;
 use Framework\View\Model\ViewModel;
 
-trait ServiceTrait
+trait ManageView
 {
     /**
      * @var ViewManager

@@ -3,8 +3,8 @@
 namespace Framework\Route\Router;
 
 use Framework\Event\Event;
-use Framework\Event\EventTrait;
-use Framework\Service\Resolver\SignalTrait;
+use Framework\Event\BaseEvent;
+use Framework\Service\Resolver\Signal;
 use Framework\Route\Route;
 
 class Dispatch
@@ -13,8 +13,8 @@ class Dispatch
     /**
      *
      */
-    use EventTrait;
-    use SignalTrait;
+    use BaseEvent;
+    use Signal;
 
     /**
      *

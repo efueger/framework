@@ -14,7 +14,7 @@ class MvcEvent
     /**
      *
      */
-    use ServiceTrait;
+    use MvcService;
 
     /**
      *

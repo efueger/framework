@@ -3,7 +3,7 @@
 namespace Framework\Controller\Error;
 
 use Framework\Response\Response;
-use Framework\View\Model\ServiceTrait as ViewModel;
+use Framework\View\Model\Service\ViewModel;
 
 class Controller
     implements ErrorController

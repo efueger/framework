@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Router;
 
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Router
     implements Configuration, RouterService
@@ -11,7 +11,7 @@ class Router
     /**
      *
      */
-    use ConfigTrait;
+    use ServiceConfig;
 
     /**
      * @param $definition

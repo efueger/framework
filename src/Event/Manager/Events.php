@@ -3,18 +3,18 @@
 namespace Framework\Event\Manager;
 
 use Framework\Event\Event;
-use Framework\Event\Generator\GeneratorTrait;
+use Framework\Event\Generator\EventGenerator;
 use Framework\Service\Manager\ServiceManager;
-use Framework\Service\Manager\ServiceManagerTrait;
+use Framework\Service\Manager\ManageService;
 
 trait Events
 {
     /**
      *
      */
-    use GeneratorTrait;
-    use EventManagerTrait;
-    use ServiceManagerTrait;
+    use EventGenerator;
+    use ManageEvent;
+    use ManageService;
 
     /**
      * @param array|Event|string $event

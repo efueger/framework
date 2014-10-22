@@ -1,25 +1,27 @@
 <?php
 
-namespace Framework\View\Model;
+namespace Framework\View\Model\Service;
 
-trait ServiceTrait
+use Framework\View\Model\ViewModel as Model;
+
+trait ViewModel
 {
     /**
-     * @var ViewModel
+     * @var Model
      */
     protected $viewModel;
 
     /**
-     * @param ViewModel $viewModel
+     * @param Model $viewModel
      * @return self
      */
-    public function setViewModel(ViewModel $viewModel)
+    public function setViewModel(Model $viewModel)
     {
         $this->viewModel = $viewModel;
     }
 
     /**
-     * @return ViewModel
+     * @return Model
      */
     public function viewModel()
     {

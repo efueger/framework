@@ -3,8 +3,8 @@
 namespace Framework\View\Render;
 
 use Framework\Event\Event;
-use Framework\Event\EventTrait;
-use Framework\Service\Resolver\SignalTrait;
+use Framework\Event\BaseEvent;
+use Framework\Service\Resolver\Signal;
 use Framework\View\Model\ViewModel;
 
 class Render
@@ -13,8 +13,8 @@ class Render
     /**
      *
      */
-    use EventTrait;
-    use SignalTrait;
+    use BaseEvent;
+    use Signal;
 
     /**
      *

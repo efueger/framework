@@ -2,7 +2,7 @@
 
 namespace Framework\Config;
 
-trait ConfigTrait
+trait Base
 {
     /**
      * @var array

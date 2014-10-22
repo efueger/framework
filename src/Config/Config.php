@@ -8,5 +8,5 @@ class Config
     /**
      *
      */
-    use ConfigTrait;
+    use Base;
 }

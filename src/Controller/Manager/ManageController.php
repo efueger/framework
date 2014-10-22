@@ -4,7 +4,7 @@ namespace Framework\Controller\Manager;
 
 use Exception;
 
-trait ServiceTrait
+trait ManageController
 {
     /**
      * @var ControllerManager

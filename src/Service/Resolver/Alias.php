@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\Service;
+namespace Framework\Service\Resolver;
 
-trait AliasTrait
+trait Alias
 {
     /**
      * @var array

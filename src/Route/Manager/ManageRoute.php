@@ -5,7 +5,7 @@ namespace Framework\Route\Manager;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
-trait ServiceTrait
+trait ManageRoute
 {
     /**
      * @var RouteManager

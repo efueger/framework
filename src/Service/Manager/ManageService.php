@@ -2,10 +2,10 @@
 
 namespace Framework\Service\Manager;
 
-use Framework\Service\Resolver\ResolverTrait as Resolver;
+use Framework\Service\Resolver\Resolver;
 use RuntimeException;
 
-trait ServiceManagerTrait
+trait ManageService
 {
     /**
      *

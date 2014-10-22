@@ -3,16 +3,16 @@
 namespace Framework\Service\Config\Child;
 
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Child
-    implements Config, Configuration
+    implements ChildService, Configuration
 {
     /**
      *
      */
-    use ChildTrait;
-    use ConfigTrait;
+    use ChildConfig;
+    use ServiceConfig;
 
     /**
      * @param string $name

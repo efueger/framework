@@ -2,9 +2,9 @@
 
 namespace Framework\Event\Config;
 
-use Framework\Config\ConfigTrait as Base;
+use Framework\Config\Base;
 
-trait ConfigTrait
+trait Events
 {
     /**
      *

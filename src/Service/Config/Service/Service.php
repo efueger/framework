@@ -3,7 +3,7 @@
 namespace Framework\Service\Config\Service;
 
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Service
     implements Config, Configuration
@@ -11,7 +11,7 @@ class Service
     /**
      *
      */
-    use ConfigTrait;
+    use ServiceConfig;
 
     /**
      * @param string $name

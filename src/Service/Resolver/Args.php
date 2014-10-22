@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Resolver;
 
-interface ResolverArgs
+interface Args
 {
     /**
      *

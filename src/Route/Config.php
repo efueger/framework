@@ -2,7 +2,7 @@
 
 namespace Framework\Route;
 
-use Framework\Config\ConfigTrait;
+use Framework\Config\Base;
 
 class Config
     implements Route
@@ -10,7 +10,7 @@ class Config
     /**
      *
      */
-    use ConfigTrait;
+    use Base;
 
     /**
      * @return int

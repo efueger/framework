@@ -3,8 +3,8 @@
 namespace Framework\Route\Match;
 
 use Framework\Event\Event;
-use Framework\Event\EventTrait;
-use Framework\Service\Resolver\SignalTrait;
+use Framework\Event\BaseEvent;
+use Framework\Service\Resolver\Signal;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
@@ -14,8 +14,8 @@ class Match
     /**
      *
      */
-    use EventTrait;
-    use SignalTrait;
+    use BaseEvent;
+    use Signal;
 
     /**
      *

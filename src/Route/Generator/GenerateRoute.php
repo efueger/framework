@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Generator;
 
-trait ServiceTrait
+trait GenerateRoute
 {
     /**
      * @var RouteGenerator

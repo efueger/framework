@@ -6,7 +6,7 @@ use Framework\Event\Config\Configuration;
 use Framework\Event\Event;
 use Generator;
 
-trait GeneratorTrait
+trait EventGenerator
 {
     /**
      * @param Event|string $event

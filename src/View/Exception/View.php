@@ -4,9 +4,9 @@ namespace Framework\View\Exception;
 
 use Exception;
 use Framework\Event\Event;
-use Framework\Event\EventTrait;
-use Framework\Service\Resolver\SignalTrait;
-use Framework\View\Model\ServiceTrait as ViewModelTrait;
+use Framework\Event\BaseEvent;
+use Framework\Service\Resolver\Signal;
+use Framework\View\Model\Service\ViewModel;
 
 class View
     implements Event, ExceptionView
@@ -14,9 +14,9 @@ class View
     /**
      *
      */
-    use EventTrait;
-    use SignalTrait;
-    use ViewModelTrait;
+    use BaseEvent;
+    use Signal;
+    use ViewModel;
 
     /**
      *

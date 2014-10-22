@@ -2,19 +2,19 @@
 
 namespace Framework\Service\Config\Factory;
 
-use Framework\Service\Config\Child\Config;
-use Framework\Service\Config\Child\ChildTrait;
+use Framework\Service\Config\Child\ChildService;
+use Framework\Service\Config\Child\ChildConfig;
 use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ConfigTrait;
+use Framework\Service\Config\ServiceConfig;
 
 class Factory
-    implements Config, Configuration, ServiceFactory
+    implements ChildService, Configuration, ServiceFactory
 {
     /**
      *
      */
-    use ChildTrait;
-    use ConfigTrait;
+    use ChildConfig;
+    use ServiceConfig;
 
     /**
      * @param string $name

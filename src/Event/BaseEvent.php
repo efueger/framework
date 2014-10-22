@@ -2,7 +2,7 @@
 
 namespace Framework\Event;
 
-trait EventTrait
+trait BaseEvent
 {
     /**
      * @var string

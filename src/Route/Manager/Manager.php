@@ -5,8 +5,8 @@ namespace Framework\Route\Manager;
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
 use Framework\Route\Definition\Definition;
-use Framework\Route\Router\RouterDispatch as Router;
-use Framework\Route\Match\RouteMatch as Match;
+use Framework\Route\Router\RouterDispatch;
+use Framework\Route\Match\RouteMatch;
 use Framework\Route\Route;
 use Framework\Service\Manager\ServiceManager;
 
@@ -25,7 +25,7 @@ class Manager
      */
     public function match(Definition $definition, Route $route)
     {
-        return $this->trigger([Match::ROUTE, $definition, $route], [], $this);
+        return $this->trigger([RouteMatch::ROUTE, $definition, $route], [], $this);
     }
 
     /**
@@ -35,6 +35,6 @@ class Manager
      */
     public function route(Route $route, array $args = [])
     {
-        return $this->trigger([Router::DISPATCH, $route], $args, $this);
+        return $this->trigger([RouterDispatch::DISPATCH, $route], $args, $this);
     }
 }

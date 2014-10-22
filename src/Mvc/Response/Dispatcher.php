@@ -3,7 +3,7 @@
 namespace Framework\Mvc\Response;
 
 use Framework\Response\Response;
-use Framework\Response\Manager\ServiceTrait as ResponseManager;
+use Framework\Response\Manager\ManageResponse;
 
 class Dispatcher
     implements ResponseDispatcher
@@ -11,7 +11,7 @@ class Dispatcher
     /**
      *
      */
-    use ResponseManager;
+    use ManageResponse;
 
     /**
      * @param Response $response

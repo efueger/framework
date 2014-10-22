@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Definition;
 
-use Framework\Config\ConfigTrait;
+use Framework\Config\Base;
 
 class RouteDefinition
     implements Definition
@@ -10,7 +10,7 @@ class RouteDefinition
     /**
      *
      */
-    use ConfigTrait;
+    use Base;
 
     /**
      * @param string $name

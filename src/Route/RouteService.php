@@ -2,7 +2,7 @@
 
 namespace Framework\Route;
 
-trait ServiceTrait
+trait RouteService
 {
     /**
      * @var Route
