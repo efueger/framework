@@ -21,7 +21,7 @@ interface ServiceContainer
     function assigned($name);
 
     /**
-     * @return Configuration
+     * @return array
      */
     function config();
 
