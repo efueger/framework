@@ -54,7 +54,7 @@ interface Route
 
 
     /**
-     * @return string
+     * @return array|callable|string
      */
     function controller();
 

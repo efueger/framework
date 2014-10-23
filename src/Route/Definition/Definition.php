@@ -89,7 +89,7 @@ interface Definition
     function constraints();
 
     /**
-     * @return string
+     * @return array|callable|string
      */
     function controller();
 

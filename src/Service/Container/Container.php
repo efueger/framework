@@ -50,7 +50,7 @@ class Container
     }
 
     /**
-     * @return Configuration
+     * @return array
      */
     public function config()
     {

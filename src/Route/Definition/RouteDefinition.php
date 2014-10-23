@@ -38,7 +38,7 @@ class RouteDefinition
     }
 
     /**
-     * @return string
+     * @return array|callable|string
      */
     public function controller()
     {

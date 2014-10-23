@@ -13,7 +13,7 @@ class Config
     use Base;
 
     /**
-     * @return int
+     * @return array|callable|string
      */
     public function controller()
     {
