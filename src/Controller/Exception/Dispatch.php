@@ -4,7 +4,7 @@ namespace Framework\Controller\Exception;
 
 use Exception;
 use Framework\Event\Event;
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 
 class Dispatch
@@ -18,7 +18,7 @@ class Dispatch
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
 
     /**

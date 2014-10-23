@@ -4,7 +4,7 @@ namespace Framework\View\Exception;
 
 use Exception;
 use Framework\Event\Event;
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 use Framework\View\Model\Service\ViewModel;
 
@@ -14,7 +14,7 @@ class View
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
     use ViewModel;
 

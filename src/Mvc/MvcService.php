@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc;
 
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 use Framework\Response\Response;
 use Framework\Route\Route;
@@ -14,7 +14,7 @@ trait MvcService
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
     use ViewModel;
 

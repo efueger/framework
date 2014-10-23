@@ -3,7 +3,7 @@
 namespace Framework\Response;
 
 use Framework\Event\Event;
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 
 class Dispatch
@@ -12,7 +12,7 @@ class Dispatch
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
 
     /**

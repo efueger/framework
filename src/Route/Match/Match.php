@@ -3,7 +3,7 @@
 namespace Framework\Route\Match;
 
 use Framework\Event\Event;
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
@@ -14,7 +14,7 @@ class Match
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
 
     /**

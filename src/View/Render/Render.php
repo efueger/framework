@@ -3,7 +3,7 @@
 namespace Framework\View\Render;
 
 use Framework\Event\Event;
-use Framework\Event\BaseEvent;
+use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 use Framework\View\Model\ViewModel;
 
@@ -13,7 +13,7 @@ class Render
     /**
      *
      */
-    use BaseEvent;
+    use Base;
     use Signal;
 
     /**
