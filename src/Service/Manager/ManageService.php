@@ -2,6 +2,7 @@
 
 namespace Framework\Service\Manager;
 
+use Closure;
 use Framework\Service\Resolver\Resolver;
 use RuntimeException;
 
@@ -27,10 +28,18 @@ trait ManageService
     {
         if (is_string($config)) {
             if ($assigned = $this->assigned($config)) {
+                if ($assigned instanceof Closure) {
+                    return $this->call($assigned, $args, $callback);
+                }
+
                 return $this->create($assigned, $args);
             }
 
             if ($configured = $this->configured($config)) {
+                if ($configured instanceof Closure) {
+                    return $this->call($configured, $args, $callback);
+                }
+
                 return $this->create($configured, $args);
             }
 
