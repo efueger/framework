@@ -2,13 +2,13 @@
 
 namespace Framework\Controller\Exception;
 
-use Exception;
+use Exception as ExceptionInterface;
 use Framework\Response\Response;
-use Framework\View\Exception\ExceptionViewModel;
+use Framework\View\Exception\ExceptionModel;
 use Framework\View\Model\Service\ViewModel;
 
 class Controller
-    implements ControllerException
+    implements Exception
 {
     /**
      *
@@ -16,19 +16,19 @@ class Controller
     use ViewModel;
 
     /**
-     * @param Exception $exception
+     * @param ExceptionInterface $exception
      * @param Response $response
      * @return mixed
      */
-    public function __invoke(Exception $exception, Response $response)
+    public function __invoke(ExceptionInterface $exception, Response $response)
     {
         $response->setStatus(500);
 
-        /** @var ExceptionViewModel $viewModel */
-        $viewModel = $this->viewModel();
+        /** @var ExceptionModel $model */
+        $model = $this->viewModel();
 
-        $viewModel->setException($exception);
+        $model->setException($exception);
 
-        return $viewModel;
+        return $model;
     }
 }

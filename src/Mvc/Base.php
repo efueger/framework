@@ -2,19 +2,19 @@
 
 namespace Framework\Mvc;
 
-use Framework\Event\Base;
+use Framework\Event\Base as Event;
 use Framework\Service\Resolver\Signal;
 use Framework\Response\Response;
 use Framework\Route\Route;
 use Framework\Service\Manager\ServiceManager;
 use Framework\View\Model\Service\ViewModel;
 
-trait MvcService
+trait Base
 {
     /**
      *
      */
-    use Base;
+    use Event;
     use Signal;
     use ViewModel;
 

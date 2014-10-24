@@ -4,11 +4,11 @@ namespace Framework\Controller\Error;
 
 use Framework\Response\Response;
 
-interface ErrorController
+interface Error
 {
     /**
      * @param Response $response
-     * @return ErrorViewModel
+     * @return ErrorModel
      */
     function __invoke(Response $response);
 }

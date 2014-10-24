@@ -4,7 +4,7 @@ namespace Framework\Controller\Error;
 
 use Framework\View\Model\ViewModel;
 
-interface ErrorViewModel
+interface ErrorModel
     extends ViewModel
 {
     /**

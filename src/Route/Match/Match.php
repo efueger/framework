@@ -55,14 +55,14 @@ class Match
     }
 
     /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    public function __invoke(callable $listener, array $args = [], callable $callback = null)
+    public function __invoke(callable $callable, array $args = [], callable $callback = null)
     {
-        $result = $this->signal($listener, $this->args() + $args, $callback);
+        $result = $this->signal($callable, $this->args() + $args, $callback);
 
         if (!$result) {
             $this->stop();

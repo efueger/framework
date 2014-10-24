@@ -20,9 +20,9 @@ interface DispatchException
     const RESPONSE = 'response';
 
     /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @return mixed
      */
-    function __invoke(callable $listener, array $args = []);
+    function __invoke(callable $callable, array $args = []);
 }

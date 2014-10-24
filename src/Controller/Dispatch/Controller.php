@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Dispatch;
 
-interface ControllerDispatch
+interface Controller
 {
     /**
      *
@@ -20,10 +20,10 @@ interface ControllerDispatch
     const RESPONSE = 'Response';
 
     /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    function __invoke(callable $listener, array $args = [], callable $callback = null);
+    function __invoke(callable $callable, array $args = [], callable $callback = null);
 }

@@ -6,7 +6,7 @@ use Framework\Response\Response;
 use Framework\View\Model\Service\ViewModel;
 
 class Controller
-    implements ErrorController
+    implements Error
 {
     /**
      *
@@ -15,7 +15,7 @@ class Controller
 
     /**
      * @param Response $response
-     * @return ErrorViewModel
+     * @return ErrorModel
      */
     public function __invoke(Response $response)
     {

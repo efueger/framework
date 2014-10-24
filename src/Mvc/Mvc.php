@@ -2,52 +2,69 @@
 
 namespace Framework\Mvc;
 
-use Framework\Route\Route;
+use Framework\Event\Event;
+use Framework\Mvc\View\Render;
 use Framework\Response\Response;
+use Framework\Route\Route;
 use Framework\View\Model\ViewModel;
 
-interface Mvc
+class MvcEvent
+    implements Event, Dispatch
 {
     /**
      *
      */
-    const MVC = 'Mvc';
+    use Base;
 
     /**
      *
      */
-    const RESPONSE = 'Response';
+    const EVENT = self::MVC;
 
     /**
-     *
+     * @return array
      */
-    const ROUTE = 'Route';
+    protected function args()
+    {
+        return [
+            Args::EVENT      => $this,
+            Args::RESPONSE   => $this->response(),
+            Args::ROUTE      => $this->route(),
+            Args::VIEW_MODEL => $this->viewModel(),
+            Args::CONTROLLER => $this->route()->controller()
+        ];
+    }
 
     /**
-     *
-     */
-    const VIEW_MODEL = 'ViewModel';
-
-    /**
-     * @return Response
-     */
-    function response();
-
-    /**
-     * @return Route
-     */
-    function route();
-
-    /**
-     * @return ViewModel
-     */
-    function viewModel();
-
-    /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    function __invoke(callable $listener, array $args = [], callable $callback = null);
+    public function __invoke(callable $callable, array $args = [], callable $callback = null)
+    {
+        $response = $this->signal($callable, $this->args() + $args, $callback);
+
+        if ($response instanceof Route) {
+            $this->setRoute($response);
+            return $response;
+        }
+
+        if ($response instanceof Response) {
+            $this->setResponse($response);
+            return $response;
+        }
+
+        if ($response instanceof ViewModel) {
+            $this->setViewModel($response);
+            return $response;
+        }
+
+        if ($callable instanceof Render) {
+            $this->setResponseContent($response);
+            return $response;
+        }
+
+        return $response;
+    }
 }

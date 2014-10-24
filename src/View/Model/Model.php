@@ -8,5 +8,5 @@ class Model
     /**
      *
      */
-    use BaseModel;
+    use Base;
 }

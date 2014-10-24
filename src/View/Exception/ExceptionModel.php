@@ -5,7 +5,7 @@ namespace Framework\View\Exception;
 use Exception;
 use Framework\View\Model\ViewModel;
 
-interface ExceptionViewModel
+interface ExceptionModel
     extends ViewModel
 {
     /**

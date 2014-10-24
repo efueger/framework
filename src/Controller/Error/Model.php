@@ -2,16 +2,16 @@
 
 namespace Framework\Controller\Error;
 
-use Framework\View\Model\BaseModel;
+use Framework\View\Model\Base;
 use Framework\View\ViewPlugin;
 
-class ViewModel
-    implements ErrorViewModel
+class Model
+    implements ErrorModel
 {
     /**
      *
      */
-    use BaseModel;
+    use Base;
     use ViewPlugin;
 
     /**

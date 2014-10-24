@@ -4,7 +4,7 @@ namespace Framework\Route\Generator;
 
 use Framework\Route\RouteService;
 
-class RoutePlugin
+class GeneratorPlugin
     implements Plugin
 {
     /**

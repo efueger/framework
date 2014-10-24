@@ -44,18 +44,18 @@ class View
         return [
             Args::EVENT      => $this,
             Args::EXCEPTION  => $this->exception,
-            Args::VIEW_MODEL => $this->viewModel()
+            Args::MODEL      => $this->viewModel()
         ];
     }
 
     /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    public function __invoke(callable $listener, array $args = [], callable $callback = null)
+    public function __invoke(callable $callable, array $args = [], callable $callback = null)
     {
-        return $this->signal($listener, $this->args() + $args, $callback);
+        return $this->signal($callable, $this->args() + $args, $callback);
     }
 }

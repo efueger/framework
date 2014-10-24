@@ -2,15 +2,15 @@
 
 namespace Framework\View\Layout;
 
-use Framework\View\Model\BaseModel;
+use Framework\View\Model\Base;
 use Framework\View\ViewPlugin;
 
-class ViewModel
-    implements Layout, LayoutViewModel
+class Model
+    implements Layout, LayoutModel
 {
     /**
      *
      */
-    use BaseModel;
+    use Base;
     use ViewPlugin;
 }

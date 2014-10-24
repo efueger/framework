@@ -4,7 +4,7 @@ namespace Framework\View\Layout;
 
 use Framework\View\Model\ViewModel;
 
-interface LayoutViewModel
+interface LayoutModel
     extends ViewModel
 {
 }

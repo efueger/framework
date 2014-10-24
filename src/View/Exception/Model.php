@@ -4,15 +4,15 @@ namespace Framework\View\Exception;
 
 use Exception;
 use Framework\View\Layout\Layout;
-use Framework\View\Model\BaseModel;
+use Framework\View\Model\Base;
 
-class ViewModel
-    implements Layout, ExceptionViewModel
+class Model
+    implements Layout, ExceptionModel
 {
     /**
      *
      */
-    use BaseModel;
+    use Base;
 
     /**
      * @var Exception

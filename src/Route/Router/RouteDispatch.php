@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Router;
 
-interface DispatchRouter
+interface RouteDispatch
 {
     /**
      *
@@ -10,9 +10,9 @@ interface DispatchRouter
     const DISPATCH = 'Route\Dispatch';
 
     /**
-     * @param callable $listener
+     * @param callable $callable
      * @param array $args
      * @return mixed
      */
-    function __invoke(callable $listener, array $args = []);
+    function __invoke(callable $callable, array $args = []);
 }

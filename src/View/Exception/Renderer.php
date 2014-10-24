@@ -15,12 +15,12 @@ class Renderer
 
     /**
      * @param Exception $exception
-     * @param ExceptionViewModel $viewModel
+     * @param ExceptionModel $model
      * @return mixed
      */
-    public function __invoke(Exception $exception, ExceptionViewModel $viewModel)
+    public function __invoke(Exception $exception, ExceptionModel $model)
     {
-        $viewModel->setException($exception);
-        return $this->render($viewModel);
+        $model->setException($exception);
+        return $this->render($model);
     }
 }
