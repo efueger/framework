@@ -6,7 +6,7 @@ use Framework\Config\Configuration;
 use Framework\Service\Manager\ServiceManager;
 use ReflectionClass;
 
-trait FactoryService
+trait Base
 {
     /**
      * @var ServiceManager
