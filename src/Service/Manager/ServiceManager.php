@@ -47,13 +47,6 @@ interface ServiceManager
     function plugin($name, callable $callback = null);
 
     /**
-     * @param $name
-     * @param array $args
-     * @return callable|mixed|null|object
-     */
-    function __call($name, array $args = []);
-
-    /**
      * @param string $plugin
      * @param callable $callback
      * @return mixed

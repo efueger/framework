@@ -359,16 +359,6 @@ trait Resolver
     protected abstract function trigger($event, array $args = [], callable $callback = null);
 
     /**
-     * @param $name
-     * @param array $args
-     * @return callable|mixed|null|object
-     */
-    public function __call($name, array $args = [])
-    {
-        return $this->call($name, $args ? array_shift($args) : []);
-    }
-
-    /**
      * @param string $plugin
      * @param callable $callback
      * @return mixed
