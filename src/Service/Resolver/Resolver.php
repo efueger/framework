@@ -252,7 +252,7 @@ trait Resolver
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @param callable $callback
      * @return callable|null|object
      */
@@ -359,12 +359,12 @@ trait Resolver
     protected abstract function trigger($event, array $args = [], callable $callback = null);
 
     /**
-     * @param string $plugin
+     * @param string $name
      * @param callable $callback
      * @return mixed
      */
-    public function __invoke($plugin, callable $callback = null)
+    public function __invoke($name, callable $callback = null)
     {
-        return $this->plugin($plugin, $callback);
+        return $this->plugin($name, $callback);
     }
 }

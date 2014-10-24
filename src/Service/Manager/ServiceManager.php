@@ -47,9 +47,9 @@ interface ServiceManager
     function plugin($name, callable $callback = null);
 
     /**
-     * @param string $plugin
+     * @param string $name
      * @param callable $callback
      * @return mixed
      */
-    function __invoke($plugin, callable $callback = null);
+    function __invoke($name, callable $callback = null);
 }
