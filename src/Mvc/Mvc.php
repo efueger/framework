@@ -8,7 +8,7 @@ use Framework\Response\Response;
 use Framework\Route\Route;
 use Framework\View\Model\ViewModel;
 
-class MvcEvent
+class Mvc
     implements Event, Dispatch
 {
     /**

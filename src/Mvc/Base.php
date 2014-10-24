@@ -36,7 +36,7 @@ trait Base
      */
     public function response()
     {
-        return $this->sm->get(MvcEvent::RESPONSE);
+        return $this->sm->get(Mvc::RESPONSE);
     }
 
     /**
@@ -44,7 +44,7 @@ trait Base
      */
     public function route()
     {
-        return $this->sm->get(MvcEvent::ROUTE);
+        return $this->sm->get(Mvc::ROUTE);
     }
 
     /**
@@ -52,7 +52,7 @@ trait Base
      */
     protected function setResponse(Response $response)
     {
-        $this->sm->set(MvcEvent::RESPONSE, $response);
+        $this->sm->set(Mvc::RESPONSE, $response);
     }
 
     /**
@@ -69,6 +69,6 @@ trait Base
      */
     protected function setRoute(Route $route)
     {
-        $this->sm->set(MvcEvent::ROUTE, $route);
+        $this->sm->set(Mvc::ROUTE, $route);
     }
 }
