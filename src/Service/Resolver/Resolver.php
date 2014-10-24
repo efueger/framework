@@ -60,7 +60,7 @@ trait Resolver
     public function call($config, array $args = [], callable $callback = null)
     {
         if (!is_string($config)) {
-            return $this->invoke($config, $args, $callback ?: $this);
+            return $this->invoke($config, $args, $callback);
         }
 
         $config = explode(Args::CALL_SEPARATOR, $config);
@@ -83,7 +83,7 @@ trait Resolver
             $plugin = $plugin->$name();
         }
 
-        return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback ?: $this);
+        return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback);
     }
 
     /**
@@ -191,7 +191,7 @@ trait Resolver
      */
     protected function invoke($config, array $args = [], callable $callback = null)
     {
-        return $this->signal($this->args($config), $this->args($args), $callback);
+        return $this->signal($this->args($config), $this->args($args), $callback ?: $this);
     }
 
     /**
@@ -302,7 +302,7 @@ trait Resolver
         }
 
         if ($config instanceof ServiceFactory) {
-            return $this->invoke($this->child($config, $args), [], $this);
+            return $this->invoke($this->child($config, $args));
         }
 
         if ($config instanceof ChildService) {
@@ -343,7 +343,7 @@ trait Resolver
 
         if ($config instanceof ServiceInvoke) {
             return function(array $args = []) use ($config) {
-                return $this->invoke($config->config(), $config->args() + $args, $this);
+                return $this->invoke($config->config(), $config->args() + $args);
             };
         }
 
