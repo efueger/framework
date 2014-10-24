@@ -8,7 +8,7 @@ use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 
 class Dispatch
-    implements ExceptionDispatch, Event
+    implements DispatchException, Event
 {
     /**
      *

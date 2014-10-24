@@ -1,14 +1,13 @@
 <?php
 
-namespace Framework\Mvc\Route;
+namespace Framework\Route\Router;
 
 use Framework\Route\Route;
 
-interface RouteRouter
+interface FilterRoute
 {
     /**
      * @param Route $route
-     * @return Route|mixed
      */
     function __invoke(Route $route);
 }

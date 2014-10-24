@@ -7,7 +7,7 @@ interface ControllerDispatch
     /**
      *
      */
-    const CONTROLLER = 'Controller\Dispatch';
+    const DISPATCH = 'Controller\Dispatch';
 
     /**
      *

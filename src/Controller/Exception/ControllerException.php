@@ -5,7 +5,7 @@ namespace Framework\Controller\Exception;
 use Exception;
 use Framework\Response\Response;
 
-interface ExceptionController
+interface ControllerException
 {
     /**
      * @param Exception $exception

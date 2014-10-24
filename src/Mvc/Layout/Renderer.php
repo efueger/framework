@@ -7,7 +7,7 @@ use Framework\View\Model\Service\ViewModel as Model;
 use Framework\View\Model\ViewModel;
 
 class Renderer
-    implements LayoutRenderer
+    implements Dispatch
 {
     /**
      *

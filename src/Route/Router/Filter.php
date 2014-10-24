@@ -5,7 +5,7 @@ namespace Framework\Route\Router;
 use Framework\Route\Route;
 
 class Filter
-    implements RouterFilter
+    implements FilterRoute
 {
     /**
      * @param Route $route

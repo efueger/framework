@@ -18,7 +18,7 @@ class Dispatch
     /**
      *
      */
-    const EVENT = self::CONTROLLER;
+    const EVENT = self::DISPATCH;
 
     /**
      * @var callable

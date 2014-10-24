@@ -7,7 +7,7 @@ use Framework\Route\Manager\ManageRoute;
 use Framework\Route\Route;
 
 class Router
-    implements RouteRouter
+    implements MatchRoute
 {
     /**
      *

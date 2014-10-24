@@ -6,7 +6,7 @@ use Exception;
 use Framework\View\Manager\ManageView;
 
 class Renderer
-    implements ViewRenderer
+    implements Render
 {
     /**
      *

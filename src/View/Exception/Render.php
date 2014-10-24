@@ -4,7 +4,7 @@ namespace Framework\View\Exception;
 
 use Exception;
 
-interface ViewRenderer
+interface Render
 {
     /**
      * @param Exception $exception

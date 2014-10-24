@@ -8,7 +8,7 @@ use Framework\Service\Resolver\Signal;
 use Framework\View\Model\ViewModel;
 
 class Render
-    implements Event, ViewRender
+    implements Event, RenderView
 {
     /**
      *

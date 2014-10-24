@@ -6,7 +6,7 @@ use Framework\Response\Response;
 use Framework\Response\Manager\ManageResponse;
 
 class Dispatcher
-    implements ResponseDispatcher
+    implements Dispatch
 {
     /**
      *

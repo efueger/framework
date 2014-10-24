@@ -3,7 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Event\Event;
-use Framework\Mvc\View\ViewRenderer;
+use Framework\Mvc\View\Render;
 use Framework\Response\Response;
 use Framework\Route\Route;
 use Framework\View\Model\ViewModel;
@@ -60,7 +60,7 @@ class MvcEvent
             return $response;
         }
 
-        if ($listener instanceof ViewRenderer) {
+        if ($listener instanceof Render) {
             $this->setResponseContent($response);
             return $response;
         }

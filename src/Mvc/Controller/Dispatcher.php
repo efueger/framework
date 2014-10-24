@@ -6,7 +6,7 @@ use Exception;
 use Framework\Controller\Manager\ManageController;
 
 class Dispatcher
-    implements ControllerDispatcher
+    implements Dispatch
 {
     /**
      *

@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc\Controller;
 
-interface ControllerDispatcher
+interface Dispatch
 {
     /**
      * @param $controller

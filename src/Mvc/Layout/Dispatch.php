@@ -1,14 +1,14 @@
 <?php
 
-namespace Framework\Mvc\View;
+namespace Framework\Mvc\Layout;
 
 use Framework\View\Model\ViewModel;
 
-interface ViewRenderer
+interface Dispatch
 {
     /**
      * @param ViewModel $viewModel
-     * @return mixed
+     * @return ViewModel
      */
     function __invoke(ViewModel $viewModel = null);
 }

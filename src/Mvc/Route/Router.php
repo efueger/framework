@@ -6,7 +6,7 @@ use Framework\Route\Route;
 use Framework\Route\Manager\ManageRoute;
 
 class Router
-    implements RouteRouter
+    implements Dispatch
 {
     /**
      *

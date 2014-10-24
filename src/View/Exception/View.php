@@ -9,7 +9,7 @@ use Framework\Service\Resolver\Signal;
 use Framework\View\Model\Service\ViewModel;
 
 class View
-    implements Event, ExceptionView
+    implements Event, ViewException
 {
     /**
      *

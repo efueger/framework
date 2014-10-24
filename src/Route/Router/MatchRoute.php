@@ -5,7 +5,7 @@ namespace Framework\Route\Router;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Route;
 
-interface RouteRouter
+interface MatchRoute
 {
     /**
      * @param Route $route

@@ -2,7 +2,7 @@
 
 namespace Framework\Controller\Dispatch;
 
-interface ControllerDispatcher
+interface Action
 {
     /**
      * @param $controller

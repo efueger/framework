@@ -2,7 +2,7 @@
 
 namespace Framework\View\Exception;
 
-interface ExceptionView
+interface ViewException
 {
     /**
      *

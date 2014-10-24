@@ -4,7 +4,7 @@ namespace Framework\Controller\Manager;
 
 use Exception;
 use Framework\Controller\Dispatch\ControllerDispatch;
-use Framework\Controller\Exception\ExceptionDispatch;
+use Framework\Controller\Exception\DispatchException;
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
 use Framework\Service\Manager\ServiceManager;
@@ -43,7 +43,7 @@ class Manager
      */
     public function dispatch(callable $controller, array $args = [])
     {
-        return $this->trigger([ControllerDispatch::CONTROLLER, $controller], $args, $this);
+        return $this->trigger([ControllerDispatch::DISPATCH, $controller], $args, $this);
     }
 
     /**
@@ -53,6 +53,6 @@ class Manager
      */
     public function exception(Exception $exception, array $args = [])
     {
-        return $this->trigger([ExceptionDispatch::EXCEPTION, $exception], $args, $this);
+        return $this->trigger([DispatchException::EXCEPTION, $exception], $args, $this);
     }
 }

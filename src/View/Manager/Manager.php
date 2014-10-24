@@ -6,9 +6,9 @@ use Exception;
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
 use Framework\Service\Manager\ServiceManager;
-use Framework\View\Exception\ExceptionView;
+use Framework\View\Exception\ViewException;
 use Framework\View\Model\ViewModel;
-use Framework\View\Render\ViewRender;
+use Framework\View\Render\Render;
 
 class Manager
     implements EventManager, ViewManager, ServiceManager
@@ -24,7 +24,7 @@ class Manager
      */
     public function exception(Exception $exception)
     {
-        return $this->trigger([ExceptionView::VIEW, $exception], [], $this);
+        return $this->trigger([ViewException::VIEW, $exception], [], $this);
     }
 
     /**
@@ -34,6 +34,6 @@ class Manager
      */
     public function render(ViewModel $viewModel, array $args = [])
     {
-        return $this->trigger([ViewRender::VIEW, $viewModel], $args, $this);
+        return $this->trigger([Render::VIEW, $viewModel], $args, $this);
     }
 }

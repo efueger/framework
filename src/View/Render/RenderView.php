@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Response;
+namespace Framework\View\Render;
 
-interface ResponseDispatch
+interface RenderView
 {
     /**
      *
      */
-    const DISPATCH = 'Response\Dispatch';
+    const VIEW = 'View\Render';
 
     /**
      * @param callable $listener

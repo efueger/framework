@@ -2,7 +2,7 @@
 
 namespace Framework\Route\Router;
 
-interface RouterDispatch
+interface DispatchRouter
 {
     /**
      *

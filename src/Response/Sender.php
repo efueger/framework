@@ -3,7 +3,7 @@
 namespace Framework\Response;
 
 class Sender
-    implements ResponseSender
+    implements Send
 {
     /**
      * @param Response $response

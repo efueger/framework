@@ -8,7 +8,7 @@ use Framework\View\Exception\ExceptionViewModel;
 use Framework\View\Model\Service\ViewModel;
 
 class Controller
-    implements ExceptionController
+    implements ControllerException
 {
     /**
      *

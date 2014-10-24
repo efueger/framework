@@ -2,8 +2,6 @@
 
 namespace Framework\Service\Container;
 
-use Framework\Config\Configuration;
-
 class Container
     implements ServiceContainer
 {

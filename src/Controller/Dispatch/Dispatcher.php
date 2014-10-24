@@ -5,7 +5,7 @@ namespace Framework\Controller\Dispatch;
 use Framework\Controller\Manager\ManageController;
 
 class Dispatcher
-    implements ControllerDispatcher
+    implements Action
 {
     /**
      *

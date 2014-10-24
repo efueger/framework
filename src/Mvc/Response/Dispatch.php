@@ -4,7 +4,7 @@ namespace Framework\Mvc\Response;
 
 use Framework\Response\Response;
 
-interface ResponseDispatcher
+interface Dispatch
 {
     /**
      * @param Response $response
