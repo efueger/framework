@@ -170,8 +170,7 @@ trait Resolver
                 /** @var callable|self $this */
                 return $this->call(
                     substr($config, 1),
-                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args,
-                    $this
+                    !is_array($args) || !is_string(key($args)) ? func_get_args() : $args
                 );
             };
         }
@@ -262,7 +261,7 @@ trait Resolver
 
         if ($alias && Args::CALL === $alias[0]) {
             return function(array $args = []) use ($alias) {
-                return $this->call(substr($alias, 1), $args, $this);
+                return $this->call(substr($alias, 1), $args);
             };
         }
 
