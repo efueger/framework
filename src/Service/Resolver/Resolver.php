@@ -167,7 +167,6 @@ trait Resolver
 
         if (is_string($config) && Args::CALL === $config[0]) {
             return function($args = []) use ($config) {
-                /** @var callable|self $this */
                 return $this->call(
                     substr($config, 1),
                     !is_array($args) || !is_string(key($args)) ? func_get_args() : $args
