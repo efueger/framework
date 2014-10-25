@@ -3,6 +3,7 @@
 namespace Framework\Service\Manager;
 
 use Closure;
+use Framework\Service\Resolver\Args;
 use Framework\Service\Resolver\Resolver;
 use RuntimeException;
 
@@ -92,5 +93,23 @@ trait ManageService
         }
 
         $this->pending[$name] = true;
+    }
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     * @return callable|null|object
+     */
+    public function plugin($name, callable $callback = null)
+    {
+        $alias = $this->alias($name);
+
+        if ($alias && Args::CALL === $alias[0]) {
+            return function(array $args = []) use ($alias) {
+                return $this->call(substr($alias, 1), $args);
+            };
+        }
+
+        return $this->get($alias ?: $name, [], $callback ?: function() {});
     }
 }

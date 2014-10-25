@@ -254,18 +254,7 @@ trait Resolver
      * @param callable $callback
      * @return callable|null|object
      */
-    public function plugin($name, callable $callback = null)
-    {
-        $alias = $this->alias($name);
-
-        if ($alias && Args::CALL === $alias[0]) {
-            return function(array $args = []) use ($alias) {
-                return $this->call(substr($alias, 1), $args);
-            };
-        }
-
-        return $this->get($alias ?: $name, [], $callback ?: function() {});
-    }
+    protected abstract function plugin($name, callable $callback = null);
 
     /**
      * @param Config $config
