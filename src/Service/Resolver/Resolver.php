@@ -16,7 +16,6 @@ use Framework\Service\Config\Filter\ServiceFilter;
 use Framework\Service\Config\Invoke\ServiceInvoke;
 use Framework\Service\Config\Param\ServiceParam;
 use Framework\Service\Config\ServiceManagerLink\ServiceManager;
-use Framework\Service\Container\Service;
 use ReflectionClass;
 use RuntimeException;
 
@@ -25,8 +24,6 @@ trait Resolver
     /**
      *
      */
-    use Alias;
-    use Service;
     use Signal;
 
     /**
@@ -98,6 +95,17 @@ trait Resolver
     }
 
     /**
+     * @return Configuration
+     */
+    public abstract function config();
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public abstract function configured($name);
+
+    /**
      * @param array|object|string $config
      * @param array $args
      * @param callable $callback
@@ -118,6 +126,12 @@ trait Resolver
 
         return $arg;
     }
+
+    /**
+     * @param string $name
+     * @return null|object|callable
+     */
+    public abstract function get($name);
 
     /**
      * @param Config $config

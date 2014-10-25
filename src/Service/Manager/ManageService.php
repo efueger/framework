@@ -3,6 +3,7 @@
 namespace Framework\Service\Manager;
 
 use Closure;
+use Framework\Service\Container\Service;
 use Framework\Service\Resolver\Args;
 use Framework\Service\Resolver\Resolver;
 use RuntimeException;
@@ -12,7 +13,9 @@ trait ManageService
     /**
      *
      */
+    use Alias;
     use Resolver;
+    use Service;
 
     /**
      * @var array

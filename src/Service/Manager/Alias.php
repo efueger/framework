@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Service\Resolver;
+namespace Framework\Service\Manager;
 
 trait Alias
 {
