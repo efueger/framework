@@ -65,7 +65,7 @@ trait Resolver
 
         $config = explode(Args::CALL_SEPARATOR, $config);
         $plugin = array_shift($config);
-        $method = $config ? array_pop($config) : null;
+        $method = array_pop($config);
 
         $plugin = $this->plugin($plugin, function($plugin) {
             if (!is_callable($plugin)) {
