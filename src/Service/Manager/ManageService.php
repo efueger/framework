@@ -29,12 +29,12 @@ trait ManageService
         if (is_string($config)) {
             if ($assigned = $this->assigned($config)) {
                 return $assigned instanceof Closure
-                        ? $this->call($assigned, $args, $callback) : $this->create($assigned, $args);
+                        ? $this->call($assigned->bindTo($this), $args, $callback) : $this->create($assigned, $args);
             }
 
             if ($configured = $this->configured($config)) {
                 return $configured instanceof Closure
-                        ? $this->call($configured, $args, $callback) : $this->create($configured, $args);
+                        ? $this->call($configured->bindTo($this), $args, $callback) : $this->create($configured, $args);
             }
 
             if ($callback && !class_exists($config)) {
