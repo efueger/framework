@@ -16,7 +16,6 @@ trait Base
      */
     public function parent()
     {
-        /** @var ChildService $this */
         return $this->get(ChildService::PARENT);
     }
 }
