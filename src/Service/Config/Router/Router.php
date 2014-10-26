@@ -18,8 +18,8 @@ class Router
     public function __construct($definition)
     {
         $this->config = [
-            self::NAME => self::ROUTER,
-            self::ARGS => [$definition]
+            self::ARGS => [$definition],
+            self::NAME => self::ROUTER
         ];
     }
 }
