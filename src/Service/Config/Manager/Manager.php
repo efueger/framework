@@ -2,19 +2,15 @@
 
 namespace Framework\Service\Config\Manager;
 
-use Framework\Service\Config\Child\ChildService;
-use Framework\Service\Config\Child\ChildConfig;
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ServiceConfig;
+use Framework\Service\Config\Child\Base;
 
 class Manager
-    implements ChildService, Configuration, ServiceManager
+    implements ServiceManager
 {
     /**
      *
      */
-    use ChildConfig;
-    use ServiceConfig;
+    use Base;
 
     /**
      * @param string $name

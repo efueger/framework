@@ -2,14 +2,14 @@
 
 namespace Framework\Service\Config;
 
-use Framework\Config\Base;
+use Framework\Config\Base as BaseConfig;
 
-trait ServiceConfig
+trait Base
 {
     /**
      *
      */
-    use Base;
+    use BaseConfig;
 
     /**
      * @return array

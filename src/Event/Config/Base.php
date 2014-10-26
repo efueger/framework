@@ -27,7 +27,7 @@ trait Base
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return array
      */
     public function queue($name)

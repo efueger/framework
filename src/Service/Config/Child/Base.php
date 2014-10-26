@@ -2,16 +2,21 @@
 
 namespace Framework\Service\Config\Child;
 
-use Framework\Service\Config\Configuration;
+use Framework\Service\Config\Base as BaseConfig;
 
-trait ChildConfig
+trait Base
 {
+    /**
+     *
+     */
+    use BaseConfig;
+
     /**
      * @return string
      */
     public function parent()
     {
-        /** @var Configuration $this */
+        /** @var ChildService $this */
         return $this->get(ChildService::PARENT);
     }
 }

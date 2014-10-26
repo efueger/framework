@@ -2,19 +2,15 @@
 
 namespace Framework\Service\Config\Form;
 
-use Framework\Service\Config\Child\ChildService;
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\Child\ChildConfig;
-use Framework\Service\Config\ServiceConfig;
+use Framework\Service\Config\Child\Base;
 
 class Form
-    implements ChildService, Configuration, FormService
+    implements FormService
 {
     /**
      *
      */
-    use ChildConfig,
-        ServiceConfig;
+    use Base;
 
     /**
      * @param string $name

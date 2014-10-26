@@ -2,16 +2,15 @@
 
 namespace Framework\Service\Config\Router;
 
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ServiceConfig;
+use Framework\Service\Config\Base;
 
 class Router
-    implements Configuration, RouterService
+    implements RouterService
 {
     /**
      *
      */
-    use ServiceConfig;
+    use Base;
 
     /**
      * @param $definition

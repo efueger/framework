@@ -2,16 +2,15 @@
 
 namespace Framework\Service\Config\Hydrator;
 
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ServiceConfig;
+use Framework\Service\Config\Base;
 
 class Hydrator
-    implements Configuration, ServiceHydrator
+    implements ServiceHydrator
 {
     /**
      *
      */
-    use ServiceConfig;
+    use Base;
 
     /**
      * @param string $name

@@ -8,5 +8,5 @@ class Config
     /**
      *
      */
-    use ServiceConfig;
+    use Base;
 }

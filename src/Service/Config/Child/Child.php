@@ -2,17 +2,13 @@
 
 namespace Framework\Service\Config\Child;
 
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ServiceConfig;
-
 class Child
-    implements ChildService, Configuration
+    implements ChildService
 {
     /**
      *
      */
-    use ChildConfig;
-    use ServiceConfig;
+    use Base;
 
     /**
      * @param string $name

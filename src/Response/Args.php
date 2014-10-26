@@ -9,7 +9,7 @@ interface Args
      */
     const EVENT = 'event';
 
-    /*
+    /**
      *
      */
     const RESPONSE = 'response';

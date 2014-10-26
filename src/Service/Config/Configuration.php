@@ -2,10 +2,10 @@
 
 namespace Framework\Service\Config;
 
-use Framework\Config\Configuration as Base;
+use Framework\Config\Configuration as BaseConfiguration;
 
 interface Configuration
-    extends Base
+    extends BaseConfiguration
 {
     /**
      *

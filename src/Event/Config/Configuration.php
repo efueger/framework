@@ -8,7 +8,6 @@ interface Configuration
     extends Base
 {
     /**
-     * Default priority
      *
      */
     const PRIORITY = 0;

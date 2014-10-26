@@ -2,16 +2,15 @@
 
 namespace Framework\Service\Config\Service;
 
-use Framework\Service\Config\Configuration;
-use Framework\Service\Config\ServiceConfig;
+use Framework\Service\Config\Base;
 
 class Service
-    implements Config, Configuration
+    implements Config
 {
     /**
      *
      */
-    use ServiceConfig;
+    use Base;
 
     /**
      * @param string $name

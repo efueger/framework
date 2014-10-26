@@ -90,7 +90,6 @@ trait Resolver
      */
     protected function child(ChildService $config, array $args = [])
     {
-        /** @var ChildService|Config $config */
         return $this->provide($this->merge(clone $this->configured($this->resolve($config->parent())), $config), $args);
     }
 
@@ -213,8 +212,6 @@ trait Resolver
      */
     protected function merge(Config $parent, Config $config)
     {
-        /** @var ChildService|Config $config */
-
         $parent->set(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
 
         $config->args() && $parent->set(Config::ARGS, $config->args());
@@ -296,8 +293,6 @@ trait Resolver
      */
     protected function resolve($config, array $args = [])
     {
-        /** @var Config|ChildService|ServiceFilter $config */
-
         if (!is_object($config)) {
             return $config;
         }

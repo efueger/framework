@@ -2,7 +2,10 @@
 
 namespace Framework\Service\Config\Child;
 
+use Framework\Service\Config\Configuration;
+
 interface ChildService
+    extends Configuration
 {
     /**
      *
