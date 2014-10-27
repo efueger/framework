@@ -8,7 +8,7 @@ use Framework\Service\Resolver\Signal;
 use Framework\Route\Route;
 
 class Dispatch
-    implements RouteDispatch, Event
+    implements Event, RouteDispatch
 {
     /**
      *

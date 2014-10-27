@@ -7,7 +7,7 @@ use Framework\Event\Base;
 use Framework\Service\Resolver\Signal;
 
 class Dispatch
-    implements Event, DispatchResponse
+    implements DispatchResponse, Event
 {
     /**
      *

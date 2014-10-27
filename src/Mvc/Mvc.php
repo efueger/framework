@@ -9,7 +9,7 @@ use Framework\Route\Route;
 use Framework\View\Model\ViewModel;
 
 class Mvc
-    implements Event, Dispatch
+    implements Dispatch, Event
 {
     /**
      *
