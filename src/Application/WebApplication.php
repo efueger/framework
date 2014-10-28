@@ -14,5 +14,5 @@ interface WebApplication
      * @param callable $callback
      * @return callable|mixed|null|object
      */
-    public function __invoke(array $args = [], callable $callback = null);
+    function __invoke(array $args = [], callable $callback = null);
 }

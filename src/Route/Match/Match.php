@@ -2,8 +2,8 @@
 
 namespace Framework\Route\Match;
 
-use Framework\Event\Event;
 use Framework\Event\Base;
+use Framework\Event\Event;
 use Framework\Service\Resolver\Signal;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Route;

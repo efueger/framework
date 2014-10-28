@@ -2,8 +2,8 @@
 
 namespace Framework\View\Render;
 
-use Framework\Event\Event;
 use Framework\Event\Base;
+use Framework\Event\Event;
 use Framework\Service\Resolver\Signal;
 use Framework\View\Model\ViewModel;
 
