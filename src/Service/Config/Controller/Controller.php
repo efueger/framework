@@ -14,10 +14,12 @@ class Controller
 
     /**
      * @param string $name
+     * @param array $args
      */
-    public function __construct($name)
+    public function __construct($name, array $args = [])
     {
         $this->config = [
+            self::ARGS   => $args,
             self::NAME   => $name,
             self::PARENT => self::CONTROLLER
         ];
