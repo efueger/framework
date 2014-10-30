@@ -8,11 +8,6 @@ class Container
     /**
      * @var array
      */
-    protected $assigned = [];
-
-    /**
-     * @var array
-     */
     protected $config = [];
 
     /**
@@ -26,25 +21,6 @@ class Container
     public function __construct(array $config = [])
     {
         $this->config = $config;
-    }
-
-    /**
-     * @param string $name
-     * @param array|callable|object|string $config
-     * @return void
-     */
-    public function assign($name, $config)
-    {
-        $this->assigned[$name] = $config;
-    }
-
-    /**
-     * @param string $name
-     * @return array|callable|null|object|string
-     */
-    public function assigned($name)
-    {
-        return isset($this->assigned[$name]) ? $this->assigned[$name] : null;
     }
 
     /**

@@ -31,11 +31,6 @@ trait ManageService
     public function create($config, array $args = [], callable $callback = null)
     {
         if (is_string($config)) {
-            if ($assigned = $this->assigned($config)) {
-                return $assigned instanceof Closure
-                        ? $this->call($assigned->bindTo($this), $args) : $this->create($assigned, $args);
-            }
-
             if ($configured = $this->configured($config)) {
                 return $configured instanceof Closure
                         ? $this->call($configured->bindTo($this), $args) : $this->create($configured, $args);

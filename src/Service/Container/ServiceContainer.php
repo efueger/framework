@@ -8,19 +8,6 @@ interface ServiceContainer
     extends Configuration
 {
     /**
-     * @param string $name
-     * @param array|callable|object|string $config
-     * @return void
-     */
-    function assign($name, $config);
-
-    /**
-     * @param string $name
-     * @return array|callable|null|object|string
-     */
-    function assigned($name);
-
-    /**
      * @return array
      */
     function config();

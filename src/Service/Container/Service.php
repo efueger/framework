@@ -25,25 +25,6 @@ trait Service
     }
 
     /**
-     * @param string $name
-     * @param array|callable|object|string $config
-     * @return void
-     */
-    public function assign($name, $config)
-    {
-        $this->services->assign($name, $config);
-    }
-
-    /**
-     * @param string $name
-     * @return array|callable|null|object|string
-     */
-    public function assigned($name)
-    {
-        return $this->services->assigned($name);
-    }
-
-    /**
      * @return Configuration
      */
     public function config()
