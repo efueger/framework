@@ -17,14 +17,6 @@ trait Service
     protected $services;
 
     /**
-     * @param array $config
-     */
-    public function __construct(array $config = [])
-    {
-        $this->config = $config;
-    }
-
-    /**
      * @return Configuration
      */
     public function config()
