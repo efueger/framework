@@ -216,13 +216,10 @@ trait Resolver
 
         $config->args() && $parent->set(Config::ARGS, $config->args());
 
-        $calls = $config->calls();
-
-        if (!$calls) {
-            return $parent;
-        }
-
-        $parent->set(Config::CALLS, $config->merge() ? array_merge($parent->calls(), $calls) : $calls);
+        $config->calls() && $parent->set(
+            Config::CALLS,
+            $config->merge() ? array_merge($parent->calls(), $config->calls()) : $config->calls()
+        );
 
         return $parent;
     }

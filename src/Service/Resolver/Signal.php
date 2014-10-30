@@ -16,14 +16,14 @@ trait Signal
      */
     protected function signal(callable $config, array $args = [], callable $callback = null)
     {
-        $callable = null;
-        $matched  = [];
-        $method   = '__invoke';
-        $params   = null;
-
         if ($args && !is_string(key($args))) {
             return call_user_func_array($config, $args);
         }
+
+        $function = null;
+        $matched  = [];
+        $method   = '__invoke';
+        $params   = null;
 
         if (is_array($config)) {
             isset($config[1]) && $method = $config[1];
@@ -36,11 +36,11 @@ trait Signal
                 list($config, $method) = $static;
             } else {
                 $params   = (new ReflectionFunction($config))->getParameters();
-                $callable = $config;
+                $function = $config;
             }
         }
 
-        !$callable && $params = (new ReflectionMethod($config, $method))->getParameters();
+        !$function && $params = (new ReflectionMethod($config, $method))->getParameters();
 
         foreach($params as $param) {
             if (isset($args[$param->name])) {
@@ -75,6 +75,6 @@ trait Signal
             $matched[] = null;
         }
 
-        return call_user_func_array($callable ?: [$config, $method], $params ? $matched : $args);
+        return call_user_func_array($function ?: [$config, $method], $params ? $matched : $args);
     }
 }
