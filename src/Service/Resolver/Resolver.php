@@ -77,7 +77,7 @@ trait Resolver
         }
 
         foreach($config as $name) {
-            $plugin = $plugin->$name();
+            $plugin = $this->invoke([$plugin, $name], $args, $callback);
         }
 
         return $this->invoke($method ? [$plugin, $method] : $plugin, $args, $callback);
