@@ -32,19 +32,27 @@ trait Base
     }
 
     /**
+     * @return callable|object|null|string
+     */
+    protected function controller()
+    {
+        return $this->route()->controller();
+    }
+
+    /**
      * @return Response
      */
-    public function response()
+    protected function response()
     {
-        return $this->sm->get(Mvc::RESPONSE);
+        return $this->sm->get(Dispatch::RESPONSE);
     }
 
     /**
      * @return Route
      */
-    public function route()
+    protected function route()
     {
-        return $this->sm->get(Mvc::ROUTE);
+        return $this->sm->get(Dispatch::ROUTE);
     }
 
     /**
@@ -52,7 +60,7 @@ trait Base
      */
     protected function setResponse(Response $response)
     {
-        $this->sm->set(Mvc::RESPONSE, $response);
+        $this->sm->set(Dispatch::RESPONSE, $response);
     }
 
     /**
@@ -69,6 +77,6 @@ trait Base
      */
     protected function setRoute(Route $route)
     {
-        $this->sm->set(Mvc::ROUTE, $route);
+        $this->sm->set(Dispatch::ROUTE, $route);
     }
 }

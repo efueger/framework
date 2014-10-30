@@ -31,7 +31,7 @@ class Mvc
             Args::RESPONSE   => $this->response(),
             Args::ROUTE      => $this->route(),
             Args::VIEW_MODEL => $this->viewModel(),
-            Args::CONTROLLER => $this->route()->controller()
+            Args::CONTROLLER => $this->controller()
         ];
     }
 

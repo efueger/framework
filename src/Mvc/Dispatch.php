@@ -2,10 +2,6 @@
 
 namespace Framework\Mvc;
 
-use Framework\Route\Route;
-use Framework\Response\Response;
-use Framework\View\Model\ViewModel;
-
 interface Dispatch
 {
     /**
@@ -22,26 +18,6 @@ interface Dispatch
      *
      */
     const ROUTE = 'Route';
-
-    /**
-     *
-     */
-    const VIEW_MODEL = 'ViewModel';
-
-    /**
-     * @return Response
-     */
-    function response();
-
-    /**
-     * @return Route
-     */
-    function route();
-
-    /**
-     * @return ViewModel
-     */
-    function viewModel();
 
     /**
      * @param callable $callable
