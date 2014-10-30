@@ -47,9 +47,7 @@ class Generator
 
         $url = $this->compile($definition->tokens(), $args, $definition->defaults());
 
-        if (isset($names[1])) {
-            $url .= $this->build($names[1], $args, $definition);
-        }
+        isset($names[1]) && $url .= $this->build($names[1], $args, $definition);
 
         if ($args && $definition->wildcard()) {
             foreach(array_diff_key($args, $definition->constraints()) as $key => $value) {
