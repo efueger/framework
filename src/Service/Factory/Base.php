@@ -22,15 +22,6 @@ trait Base
     }
 
     /**
-     * @param $name
-     * @return mixed
-     */
-    public function assigned($name)
-    {
-        return $this->sm->assigned($name);
-    }
-
-    /**
      * @return Configuration
      */
     public function config()
