@@ -9,7 +9,7 @@ use Framework\Response\Response;
 use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements EventManager, ServiceManager, ResponseManager
+    implements EventManager, ResponseManager, ServiceManager
 {
     /**
      *

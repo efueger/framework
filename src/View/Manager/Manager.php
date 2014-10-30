@@ -11,7 +11,7 @@ use Framework\View\Model\ViewModel;
 use Framework\View\Render\Render;
 
 class Manager
-    implements EventManager, ViewManager, ServiceManager
+    implements EventManager, ServiceManager, ViewManager
 {
     /**
      *

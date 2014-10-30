@@ -10,7 +10,7 @@ use Framework\Event\Manager\Events;
 use Framework\Service\Manager\ServiceManager;
 
 class Manager
-    implements EventManager, ControllerManager, ServiceManager
+    implements ControllerManager, EventManager, ServiceManager
 {
     /**
      *
