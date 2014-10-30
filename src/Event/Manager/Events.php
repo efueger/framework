@@ -34,7 +34,7 @@ trait Events
     }
 
     /**
-     * @param Event|string $event
+     * @param callable|Event|string $event
      * @param callable $listener
      * @param array $args
      * @param callable $callback
@@ -42,8 +42,6 @@ trait Events
      */
     protected function emit($event, callable $listener, array $args = [], callable $callback = null)
     {
-        /** @var callable $event */
-
         return is_callable($event) ? $event($listener, $args, $callback) : $this->invoke($listener, $args, $callback);
     }
 }
