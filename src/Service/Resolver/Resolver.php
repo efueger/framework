@@ -15,6 +15,7 @@ use Framework\Service\Config\Factory\ServiceFactory;
 use Framework\Service\Config\Filter\ServiceFilter;
 use Framework\Service\Config\Invoke\ServiceInvoke;
 use Framework\Service\Config\Param\ServiceParam;
+use Framework\Service\Config\ServiceConfig\ServiceConfiguration;
 use Framework\Service\Config\ServiceManagerLink\ServiceManager;
 use ReflectionClass;
 use RuntimeException;
@@ -133,13 +134,13 @@ trait Resolver
     public abstract function get($name);
 
     /**
-     * @param Config $config
+     * @param array $calls
      * @param $service
      * @return mixed
      */
-    protected function hydrate(Config $config, $service)
+    protected function hydrate(array $calls, $service)
     {
-        foreach($config->calls() as $method => $value) {
+        foreach($calls as $method => $value) {
             if (is_string($method)) {
                 if (Args::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
@@ -274,10 +275,18 @@ trait Resolver
         $args = $args ? : $config->args();
         $name = $config->name();
 
+        while(!is_string($name)) {
+            $name = $this->resolve($name);
+        }
+
         $parent = $this->configured($name);
 
-        if (!$parent || $config->name() == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $this->args($args)));
+        if ($parent && !$parent instanceof Config) {
+            return $this->hydrate($config->calls(), $this->newInstanceArgs($this->resolve($parent), $this->args($args)));
+        }
+
+        if (!$parent || $name == $parent->name()) {
+            return $this->hydrate($config->calls(), $this->newInstanceArgs($this->resolve($name), $this->args($args)));
         }
 
         return $this->provide($this->merge(clone $parent, $config), $args);
@@ -332,6 +341,10 @@ trait Resolver
 
         if ($config instanceof ServiceFilter) {
             return $this->filter($this->resolve($config->config()), $config->filter());
+        }
+
+        if ($config instanceof ServiceConfiguration) {
+            return $this->configured($config->name());
         }
 
         if ($config instanceof ServiceInvoke) {
