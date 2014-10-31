@@ -52,6 +52,7 @@ array (size=2)
 
 boolean true
 ```
+`$args` is a special parameter that can be added to the method being called by the call function and it provides an array of the named arguments provided to the call function.
 ##Events
 Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event. For a string event it would resort to using the service manager's plugin callback for all of the arguments used.
 ```php
@@ -78,7 +79,7 @@ The callback used to provide the additional parameters not in the args array is 
 ```php
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
-##Plugins and aliases
+##Plugins and Aliases
 The parameter names of these additional arguments can be aliases or service names, and if an alias is not found then it is used as the service name. Aliases map strings of varying characters, excluding the call separator `.`, to service names or service calls. A service call is prefixed by the call symbol '@' and if the plugin object is an event, it is triggered and its value is returned instead.
 ```php
 return [
@@ -209,8 +210,8 @@ Routes are pre-compiled so that they can be immediately matched against the requ
   'constraints' => []
 ])
 ```
-##MVC
-The MVC event workflow is <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a>.
+##Event Configuration
+Events and listeners are <a href="https://github.com/mvc5/application/blob/master/config/event.php">configurable</a> and support various types of configuration that must resolve to being a callable listener.
 ```php
 'Mvc' => [
     ['Mvc\Route'],
