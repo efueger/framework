@@ -8,7 +8,7 @@ $response = $web->call('Controller.valid.add.response', ['date_created' => time(
 
 var_dump($response instanceof Response);
 ```
-The application is initialized and a call is made to `Controller.valid` with it parameters resolved either from the array of arguments that is explicitly passed to the call method or since there is optional third callable argument provided the application will try to find a service plugin with the same name as the parameter needed by the method being called i.e `Controller.valid`. Methods can be chained together and each will have their parameters resolved from the provided named arguments and plugins.
+The application is instatiated and a call is made to the `valid` method of the `Controller` class with it parameters resolved either from the array of arguments explicitly passed to the call method or by the call function retrieving a plugin with the same name as the parameter. Methods can be chained together and each will have their parameters resolved similarly.
 
 ```php
 class Controller
@@ -53,6 +53,11 @@ array (size=2)
 boolean true
 ```
 `$args` is a special parameter that can be added to the method being called by the call function and it provides an array of the named arguments provided to the call function.
+
+To manage all of the parameters an optional callback can be added to call method, e.g
+```php
+$response = $web->call('Controller.valid.add.response', [], function($name) { return new $name; });
+```
 ##Events
 Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event. For a string event it would resort to using the service manager's plugin callback for all of the arguments used.
 ```php
