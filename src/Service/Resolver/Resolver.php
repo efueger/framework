@@ -134,13 +134,13 @@ trait Resolver
     public abstract function get($name);
 
     /**
-     * @param array $calls
+     * @param Config $config
      * @param $service
      * @return mixed
      */
-    protected function hydrate(array $calls, $service)
+    protected function hydrate(Config $config, $service)
     {
-        foreach($calls as $method => $value) {
+        foreach($config->calls() as $method => $value) {
             if (is_string($method)) {
                 if (Args::PROPERTY == $method[0]) {
                     $service->{substr($method, 1)} = $this->resolve($value);
@@ -282,11 +282,11 @@ trait Resolver
         $parent = $this->configured($name);
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config->calls(), $this->newInstanceArgs($this->resolve($parent), $this->args($args)));
+            return $this->hydrate($config, $this->newInstanceArgs($this->resolve($parent), $this->args($args)));
         }
 
         if (!$parent || $name == $parent->name()) {
-            return $this->hydrate($config->calls(), $this->newInstanceArgs($this->resolve($name), $this->args($args)));
+            return $this->hydrate($config, $this->newInstanceArgs($this->resolve($name), $this->args($args)));
         }
 
         return $this->provide($this->merge(clone $parent, $config), $args);
