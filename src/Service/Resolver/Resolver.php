@@ -238,7 +238,7 @@ trait Resolver
 
         $class = new ReflectionClass($name);
 
-        return $class->hasMethod('__construct') ? $class->newInstanceArgs($args) : $class->newInstance();
+        return $class->hasMethod('__construct') ? $class->newInstanceArgs($this->args($args)) : $class->newInstance();
     }
 
     /**
@@ -273,20 +273,16 @@ trait Resolver
     protected function provide(Config $config, array $args = [])
     {
         $args = $args ? : $config->args();
-        $name = $config->name();
-
-        while(!is_string($name)) {
-            $name = $this->resolve($name);
-        }
+        $name = $this->string($config->name());
 
         $parent = $this->configured($name);
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->newInstanceArgs($this->resolve($parent), $this->args($args)));
+            return $this->hydrate($config, $this->newInstanceArgs($this->string($parent), $args));
         }
 
         if (!$parent || $name == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($this->resolve($name), $this->args($args)));
+            return $this->hydrate($config, $this->newInstanceArgs($name, $args));
         }
 
         return $this->provide($this->merge(clone $parent, $config), $args);
@@ -351,6 +347,20 @@ trait Resolver
             return function(array $args = []) use ($config) {
                 return $this->invoke($config->config(), $config->args() + $args);
             };
+        }
+
+        return $config;
+    }
+
+    /**
+     * @param $config
+     * @return string
+     */
+    protected function string($config)
+    {
+        while(!is_string($config))
+        {
+            $config = $this->resolve($config);
         }
 
         return $config;
