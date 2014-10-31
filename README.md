@@ -1,19 +1,58 @@
-This event management system supports named arguments and uses dependency injection to create its listeners and their depencies just in time before they are called. The system's configuration is an array that contains values, string names, callables and certain configuration objects that the service manager knows how to resolve.
+This php framework provides an enhanced programming environment that uses events with named arguments and has an  optional configuration language that further inverts the control of the application. The configuration array can contain values, string names, callables and configuration objects that are resolved by the service manager.
+
+This contrived example demonstrates the functionality of using named arguments
+```php
+$web = new App(include __DIR__ . '/../config/web.php');
+
+$response = $web->call('Controller.valid.add.response', ['date_created' => time(), 'strict' => true]);
+
+var_dump($response instanceof Response);
+```
+The application is initialized and a call is made to `Controller.valid` with it parameters resolved either from the array of arguments that is explicitly passed to the call method or since there is optional third callable argument provided the application will try to find a service plugin with the same name as the parameter needed by the method being called i.e `Controller.valid`. Methods can be chained together and each will have their parameters resolved from the provided named arguments and plugins.
 
 ```php
-'Request'  => new Service(
-  Request\Request::class, 
-  [$_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER]
-),
+class Controller
+{
+    protected $blog;
+
+    function valid(Request $request, $strict)
+    {
+        var_dump($strict);
+
+        return $this;
+    }
+
+    function add(Response $response, $date_created)
+    {
+        var_dump($date_created);
+
+        $this->blog = new Blog;
+
+        return $this;
+    }
+
+    function response(ViewManager $vm, Response $response, $args)
+    {
+        var_dump($this->blog, $args);
+        return $response;
+    }
+}
 ```
-The above will pass the array of arguments as constructor values in that set order. This goes in hand with the service manager's get and create methods
+The output of the above is
 ```php
-function get($name, array $args = [], callable $callback = null);
+boolean true
 
-function create($config, array $args = [], callable $callback = null);
+int 1414690433
+
+object(Blog\Blog)[100]
+
+array (size=2)
+  'date_created' => int 1414690433
+  'strict' => boolean true
+
+boolean true
 ```
-The callback is used when a service cannot be created for a particular string name, allowing the calling service the opportunity to provide the service or to handle the impending error. Otherwise the get/create methods will still try to instantiate the class even though it does not exist; causing an error to occur. The plugin method is used when an error is not wanted while still supporting the callback for when the string name cannot be found; in which case an empty function is used.
-
+##Events
 Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event. For a string event it would resort to using the service manager's plugin callback for all of the arguments used.
 ```php
 class Event
@@ -39,6 +78,7 @@ The callback used to provide the additional parameters not in the args array is 
 ```php
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
+##Plugins and aliases
 The parameter names of these additional arguments can be aliases or service names, and if an alias is not found then it is used as the service name. Aliases map strings of varying characters, excluding the call separator `.`, to service names or service calls. A service call is prefixed by the call symbol '@' and if the plugin object is an event, it is triggered and its value is returned instead.
 ```php
 return [
