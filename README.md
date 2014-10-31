@@ -1,4 +1,4 @@
-This php framework provides an enhanced programming environment that uses events with named arguments and has an  optional configuration language that further inverts the control of the application. The configuration array can contain values, string names, callables and configuration objects that are resolved by the service manager.
+This php framework provides an enhanced programming environment that uses events with named arguments and has an  optional configuration language that provides further inversion of control of the application. The configuration array can contain values, string names, callables and configuration objects that are resolved by the service manager.
 
 This contrived example demonstrates the functionality of using named arguments
 ```php
