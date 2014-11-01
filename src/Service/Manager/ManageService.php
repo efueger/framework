@@ -103,8 +103,14 @@ trait ManageService
         $alias = $this->alias($name);
 
         if ($alias && Args::CALL === $alias[0]) {
+            $alias = substr($alias, 1);
+
+            if (Args::CALL === $alias[0]) {
+                return $this->call(substr($alias, 1));
+            }
+
             return function(array $args = []) use ($alias) {
-                return $this->call(substr($alias, 1), $args);
+                return $this->call($alias, $args);
             };
         }
 
