@@ -31,7 +31,7 @@ trait ManageService
 
         if ($configured = $this->configured($config)) {
             return $configured instanceof Closure
-                ? $this->call($configured->bindTo($this), $args) : $this->create($configured, $args);
+                ? $this->call($configured->bindTo($this), $args, $callback) : $this->create($configured, $args);
         }
 
         return $callback && !class_exists($config) ? $callback($config) : $this->newInstanceArgs($config, $args);
