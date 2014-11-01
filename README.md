@@ -4,11 +4,14 @@ This contrived example demonstrates the functionality of using named arguments
 ```php
 $web = new App(include __DIR__ . '/../config/web.php');
 
-$response = $web->call('Controller.valid.add.response', ['date_created' => time(), 'strict' => true]);
+$response = $web->call(
+    'Controller.valid.add.response', 
+    ['date_created' => time(), 'strict' => true]
+);
 
 var_dump($response instanceof Response);
 ```
-The application is instatiated and a call is made to the `valid` method of the `Controller` class with it parameters resolved either from the array of arguments explicitly passed to the call method or by the call function retrieving a plugin with the same name as the parameter. Methods can be chained together and each will have their parameters resolved similarly.
+The application is instantiated and a call is made to the `valid` method of the `Controller` class with its parameters resolved either from the array of arguments explicitly passed to the call method or by the call function retrieving a plugin with the same name as the parameter. Methods can be chained together and each will have their parameters resolved similarly.
 
 ```php
 class Controller
@@ -52,14 +55,18 @@ array (size=2)
 
 boolean true
 ```
-`$args` is a special parameter that can be added to the method being called by the call function and it provides an array of the named arguments provided to the call function.
+`$args` is a special parameter that can be added to the method being called by the call function which provides an array of the named arguments.
 
 To manage all of the parameters an optional callback can be added to call method, e.g
 ```php
-$response = $web->call('Controller.valid.add.response', [], function($name) { return new $name; });
+$response = $web->call(
+    'Controller.valid.add.response', 
+    [], 
+    function($name) { return new $name; }
+);
 ```
 ##Events
-Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event. For a string event it would resort to using the service manager's plugin callback for all of the arguments used.
+Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event.
 ```php
 class Event
 {
@@ -80,12 +87,14 @@ class Event
   }
 }
 ```
-The callback used to provide the additional parameters not in the args array is provided by the service manager as `$this` or alternatively any callable type.
+The callback is used to provide the additional parameters not in the args array and is provided by the service manager as `$this` or any callable type.
 ```php
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
 ##Plugins and Aliases
-The parameter names of these additional arguments can be aliases or service names, and if an alias is not found then it is used as the service name. Aliases map strings of varying characters, excluding the call separator `.`, to service names or service calls. A service call is prefixed by the call symbol '@' and if the plugin object is an event, it is triggered and its value is returned instead.
+The parameter names of these additional arguments can be aliases or service names. If an alias is not found, the parameter name is then assumed to be the name of a service.
+
+An alias maps a string of varying characters excluding the call separator `.` to a service name or call. A service call is prefixed by the symbol '@' and if the plugin is an event, it is triggered and its value is returned instead.
 ```php
 return [
     'blog:create' => 'Blog\Create',
@@ -99,7 +108,7 @@ return [
 ];
 
 ```
-The plugin method is also used when calling an object
+The plugin method is also used when calling an object and since the [`get`](/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L59) method is used, these objects become shared services.
 ```php
 //trigger create blog event
 $this->call('blog:create');
@@ -223,6 +232,9 @@ Events and listeners are <a href="https://github.com/mvc5/application/blob/maste
     ['Mvc\Dispatch'],
     ['Mvc\Layout'],
     ['Mvc\Render'],
+    [function($event, $vm) {
+        var_dump(__FILE__, $event, $vm);
+    }],
     ['Mvc\Response']
 ]
 ```
