@@ -247,8 +247,7 @@ trait Resolver
      */
     public function param($name)
     {
-        $name = explode(Args::CALL_SEPARATOR, $name);
-
+        $name  = explode(Args::CALL_SEPARATOR, $name);
         $value = $this->config()->get(array_shift($name));
 
         foreach($name as $n) {
@@ -272,9 +271,8 @@ trait Resolver
      */
     protected function provide(Config $config, array $args = [])
     {
-        $args = $args ? : $config->args();
-        $name = $this->string($config->name());
-
+        $args   = $args ? : $config->args();
+        $name   = $this->string($config->name());
         $parent = $this->configured($name);
 
         if ($parent && !$parent instanceof Config) {
