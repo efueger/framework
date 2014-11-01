@@ -66,7 +66,7 @@ $response = $web->call(
 );
 ```
 ##Events
-Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event. For a string event it would resort to using the service manager's plugin callback for all of the arguments used.
+Events can be strings or classes which can manage the arguments used for the parameters of the methods being invoked for that event.
 ```php
 class Event
 {
@@ -87,12 +87,14 @@ class Event
   }
 }
 ```
-The callback used to provide the additional parameters not in the args array is provided by the service manager as `$this` or alternatively any callable type.
+The callback is used to provide the additional parameters not in the args array and is provided by the service manager as `$this` or any callable type.
 ```php
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
 ##Plugins and Aliases
-The parameter names of these additional arguments can be aliases or service names, and if an alias is not found then it is used as the service name. Aliases map strings of varying characters, excluding the call separator `.`, to service names or service calls. A service call is prefixed by the call symbol '@' and if the plugin object is an event, it is triggered and its value is returned instead.
+The parameter names of these additional arguments can be aliases or service names. If an alias is not found, the parameter name is then assumed to be the name of a service.
+
+An alias maps a string of varying characters excluding the call separator `.` to a service name or call. A service call is prefixed by the symbol '@' and if the plugin is an event, it is triggered and its value is returned instead.
 ```php
 return [
     'blog:create' => 'Blog\Create',
@@ -106,7 +108,7 @@ return [
 ];
 
 ```
-The plugin method is also used when calling an object
+The plugin method is also used when calling an object and since the [`get`](/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L59) method is used, these objects become shared services.
 ```php
 //trigger create blog event
 $this->call('blog:create');
