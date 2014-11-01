@@ -6,7 +6,6 @@ use Closure;
 use Framework\Service\Container\Service;
 use Framework\Service\Resolver\Args;
 use Framework\Service\Resolver\Resolver;
-use RuntimeException;
 
 trait ManageService
 {
@@ -16,11 +15,7 @@ trait ManageService
     use Alias;
     use Resolver;
     use Service;
-
-    /**
-     * @var array
-     */
-    protected $pending = [];
+    use Initializer;
 
     /**
      * @param array|object|string $config
@@ -30,24 +25,16 @@ trait ManageService
      */
     public function create($config, array $args = [], callable $callback = null)
     {
-        if (is_string($config)) {
-            if ($configured = $this->configured($config)) {
-                return $configured instanceof Closure
-                        ? $this->call($configured->bindTo($this), $args) : $this->create($configured, $args);
-            }
-
-            if ($callback && !class_exists($config)) {
-                return $callback($config);
-            }
-
-            return $this->newInstanceArgs($config, $args);
+        if (!is_string($config)) {
+            return is_array($config) ? $this->create(array_shift($config), $config) : $this->resolve($config, $args);
         }
 
-        if (is_array($config)) {
-            return $this->create(array_shift($config), $config);
+        if ($configured = $this->configured($config)) {
+            return $configured instanceof Closure
+                ? $this->call($configured->bindTo($this), $args) : $this->create($configured, $args);
         }
 
-        return $this->resolve($config, $args);
+        return $callback && !class_exists($config) ? $callback($config) : $this->newInstanceArgs($config, $args);
     }
 
     /**
@@ -58,39 +45,7 @@ trait ManageService
      */
     public function get($name, array $args = [], callable $callback = null)
     {
-        if ($service = $this->service($name)) {
-            return $service;
-        }
-
-        $this->initializing($name);
-
-        $service = $this->create($name, $args, $callback);
-
-        $this->initialized($name);
-
-        $service && $this->set($name, $service);
-
-        return $service;
-    }
-
-    /**
-     * @param $name
-     */
-    protected function initialized($name)
-    {
-        $this->pending[$name] = false;
-    }
-
-    /**
-     * @param $name
-     */
-    protected function initializing($name)
-    {
-        if (!empty($this->pending[$name])) {
-            throw new RuntimeException('Circular dependency: ' . $name);
-        }
-
-        $this->pending[$name] = true;
+        return $this->service($name) ?: $this->initialize($name, $args, $callback);
     }
 
     /**
