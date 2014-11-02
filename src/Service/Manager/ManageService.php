@@ -31,7 +31,7 @@ trait ManageService
         }
 
         if ($configured = $this->configured($config)) {
-            return $configured instanceof Closure ? $this->call($this->invokable($configured), $args, $callback)
+            return $configured instanceof Closure ? $this->call($configured->bindTo($this), $args, $callback)
                             : $this->create($configured, $args, $callback);
         }
 
