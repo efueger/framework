@@ -25,17 +25,24 @@ trait ManageService
      */
     public function create($config, array $args = [], callable $callback = null)
     {
-        if (!is_string($config)) {
-            return is_array($config) ? $this->create(array_shift($config), $config, $callback)
-                        : $this->resolve($config, $args);
+        if (!$config) {
+            return $config;
         }
 
-        if ($configured = $this->configured($config)) {
-            return $configured instanceof Closure ? $this->call($configured->bindTo($this), $args, $callback)
-                            : $this->create($configured, $args, $callback);
+        if (is_string($config)) {
+            return $this->create($this->configured($config), $args) ?:
+                ($callback && !class_exists($config) ? $callback($config) : $this->newInstanceArgs($config, $args));
         }
 
-        return $callback && !class_exists($config) ? $callback($config) : $this->newInstanceArgs($config, $args);
+        if (is_array($config)) {
+            return $this->create(array_shift($config), $config, $callback);
+        }
+
+        if ($config instanceof Closure) {
+            return $this->call($config->bindTo($this), $args, $callback);
+        }
+
+        return $this->resolve($config, $args);
     }
 
     /**
