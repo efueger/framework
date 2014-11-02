@@ -30,7 +30,7 @@ trait Events
      */
     protected function listener($listener)
     {
-        return is_callable($listener) ? $listener : $this->invokable($listener);
+        return $this->invokable($listener);
     }
 
     /**
