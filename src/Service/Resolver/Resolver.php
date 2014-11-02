@@ -271,9 +271,10 @@ trait Resolver
      */
     protected function provide(Config $config, array $args = [])
     {
-        $args   = $args ? : $config->args();
         $name   = $this->string($config->name());
         $parent = $this->configured($name);
+
+        !$args && $args = $config->args();
 
         if ($parent && !$parent instanceof Config) {
             return $this->hydrate($config, $this->newInstanceArgs($this->string($parent), $args));
