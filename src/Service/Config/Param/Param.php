@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Param;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Param
-    implements ServiceParam
+    implements Resolvable, ServiceParam
 {
     /**
      * @var string

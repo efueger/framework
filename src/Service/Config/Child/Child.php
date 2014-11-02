@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Child;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Child
-    implements ChildService
+    implements ChildService, Resolvable
 {
     /**
      *

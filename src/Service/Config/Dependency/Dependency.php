@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Dependency;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Dependency
-    implements ServiceDependency
+    implements Resolvable, ServiceDependency
 {
     /**
      * @var string

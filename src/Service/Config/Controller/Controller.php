@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Controller;
 
 use Framework\Service\Config\Child\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Controller
-    implements ControllerService
+    implements ControllerService, Resolvable
 {
     /**
      *

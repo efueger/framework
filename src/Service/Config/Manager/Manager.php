@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Manager;
 
 use Framework\Service\Config\Child\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Manager
-    implements ServiceManager
+    implements Resolvable, ServiceManager
 {
     /**
      *

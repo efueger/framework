@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Form;
 
 use Framework\Service\Config\Child\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Form
-    implements FormService
+    implements FormService, Resolvable
 {
     /**
      *

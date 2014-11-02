@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Factory;
 
 use Framework\Service\Config\Child\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Factory
-    implements ServiceFactory
+    implements Resolvable, ServiceFactory
 {
     /**
      *

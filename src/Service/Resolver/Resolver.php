@@ -294,7 +294,7 @@ trait Resolver
      */
     protected function resolve($config, array $args = [])
     {
-        if (!is_object($config)) {
+        if (!$config instanceof Resolvable) {
             return $config;
         }
 

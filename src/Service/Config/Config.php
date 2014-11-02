@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Config
-    implements Configuration
+    implements Configuration, Resolvable
 {
     /**
      *

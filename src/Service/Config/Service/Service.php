@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Service;
 
 use Framework\Service\Config\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Service
-    implements Config
+    implements Config, Resolvable
 {
     /**
      *

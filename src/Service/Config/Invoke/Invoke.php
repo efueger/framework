@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Invoke;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Invoke
-    implements ServiceInvoke
+    implements Resolvable, ServiceInvoke
 {
     /**
      * @var array

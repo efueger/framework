@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Call;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Call
-    implements ServiceCall
+    implements Resolvable, ServiceCall
 {
     /**
      * @var array

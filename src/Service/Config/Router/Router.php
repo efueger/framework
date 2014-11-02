@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Router;
 
 use Framework\Service\Config\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Router
-    implements RouterService
+    implements Resolvable, RouterService
 {
     /**
      *

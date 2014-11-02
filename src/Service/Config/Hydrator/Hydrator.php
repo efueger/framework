@@ -3,9 +3,10 @@
 namespace Framework\Service\Config\Hydrator;
 
 use Framework\Service\Config\Base;
+use Framework\Service\Resolver\Resolvable;
 
 class Hydrator
-    implements ServiceHydrator
+    implements Resolvable, ServiceHydrator
 {
     /**
      *

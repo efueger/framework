@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\ServiceConfig;
 
+use Framework\Service\Resolver\Resolvable;
+
 class ServiceConfig
-    implements ServiceConfiguration
+    implements Resolvable, ServiceConfiguration
 {
     /**
      * @var string
