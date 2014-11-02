@@ -213,7 +213,7 @@ trait Resolver
      */
     protected function merge(Config $parent, Config $config)
     {
-        $parent->set(Config::NAME, $parent->name() ? : $this->resolve($config->name()));
+        !$parent->name() && $parent->set(Config::NAME, $this->resolve($config->name()));
 
         $config->args() && $parent->set(Config::ARGS, $config->args());
 
