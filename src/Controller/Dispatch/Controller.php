@@ -10,16 +10,6 @@ interface Controller
     const DISPATCH = 'Controller\Dispatch';
 
     /**
-     *
-     */
-    const REQUEST = 'Request';
-
-    /**
-     *
-     */
-    const RESPONSE = 'Response';
-
-    /**
      * @param callable $callable
      * @param array $args
      * @param callable $callback
