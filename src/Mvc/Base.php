@@ -6,7 +6,7 @@ use Framework\Event\Base as Event;
 use Framework\Service\Resolver\Signal;
 use Framework\Response\Response;
 use Framework\Route\Route;
-use Framework\Service\Manager\ServiceManager;
+use Framework\Config\Configuration;
 use Framework\View\Model\Service\ViewModel;
 
 trait Base
@@ -19,16 +19,16 @@ trait Base
     use ViewModel;
 
     /**
-     * @var ServiceManager
+     * @var Configuration
      */
-    protected $sm;
+    protected $config;
 
     /**
-     * @param ServiceManager $sm
+     * @param Configuration $config
      */
-    public function __construct(ServiceManager $sm)
+    public function __construct(Configuration $config)
     {
-        $this->sm = $sm;
+        $this->config = $config;
     }
 
     /**
@@ -44,7 +44,7 @@ trait Base
      */
     protected function response()
     {
-        return $this->sm->get(Dispatch::RESPONSE);
+        return $this->config->get(Dispatch::RESPONSE);
     }
 
     /**
@@ -52,7 +52,7 @@ trait Base
      */
     protected function route()
     {
-        return $this->sm->get(Dispatch::ROUTE);
+        return $this->config->get(Dispatch::ROUTE);
     }
 
     /**
@@ -60,7 +60,7 @@ trait Base
      */
     protected function setResponse(Response $response)
     {
-        $this->sm->set(Dispatch::RESPONSE, $response);
+        $this->config->set(Dispatch::RESPONSE, $response);
     }
 
     /**
@@ -77,6 +77,6 @@ trait Base
      */
     protected function setRoute(Route $route)
     {
-        $this->sm->set(Dispatch::ROUTE, $route);
+        $this->config->set(Dispatch::ROUTE, $route);
     }
 }
