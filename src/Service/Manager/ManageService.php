@@ -4,7 +4,6 @@ namespace Framework\Service\Manager;
 
 use Closure;
 use Framework\Service\Container\Service;
-use Framework\Service\Resolver\Args;
 use Framework\Service\Resolver\Resolver;
 
 trait ManageService
@@ -63,20 +62,6 @@ trait ManageService
      */
     public function plugin($name, callable $callback = null)
     {
-        $alias = $this->alias($name);
-
-        if ($alias && Args::CALL === $alias[0]) {
-            $alias = substr($alias, 1);
-
-            if (Args::CALL === $alias[0]) {
-                return $this->call(substr($alias, 1));
-            }
-
-            return function(array $args = []) use ($alias) {
-                return $this->call($alias, $args);
-            };
-        }
-
-        return $this->get($alias ?: $name, [], $callback ?: function() {});
+        return $this->resolve($this->alias($name)) ?: $this->get($name, [], $callback ?: function () {});
     }
 }

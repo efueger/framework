@@ -344,7 +344,7 @@ trait Resolver
 
         if ($config instanceof ServiceInvoke) {
             return function(array $args = []) use ($config) {
-                return $this->invoke($config->config(), $config->args() + $args);
+                return $this->call($config->config(), $config->args() + $args);
             };
         }
 
