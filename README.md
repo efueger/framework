@@ -1,6 +1,6 @@
 This php framework provides an enhanced programming environment by using events with named arguments and an optional configuration language that provides further inversion of control of the application. The [configuration array](https://github.com/mvc5/application/blob/master/config/service.php) can contain values, string names, callables and configuration objects that are resolved by the service manager.
 
-This contrived example demonstrates the functionality of using named arguments
+This contrived example demonstrates named arguments and plugins.
 ```php
 $web = new App(include __DIR__ . '/../config/web.php');
 
@@ -92,21 +92,24 @@ The `$callback` is used to provide the additional parameters not in the `$args` 
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
 ##Plugins and Aliases
-The parameter names of these additional arguments can be aliases or service names. An alias maps a string of varying characters excluding the call separator `.` to a service name or call. A service call is prefixed by the symbol `@` and if the plugin is an event, it is triggered and its value is returned instead.
+The parameter names of these additional arguments can be aliases or service names. An alias maps a string of varying characters excluding the call separator `.` to any positive value. If the value is a configuration object then it will be resolved and its value returned.
+
+Plugins can be used in different ways, e.g to provide values, to trigger an event, or to call a service method. So each configuration is specific to their intended use.
 ```php
 return [
-    'blog:create' => 'Blog\Create',
-    'blog:valid'  => '@Blog\Controller.valid',
-    'config'      => 'Config',
-    'layout'      => 'Layout',
-    'request'     => 'Request',
-    'sm'          => 'Service\Manager',
-    'response'    => 'Response',
-    'web'         => 'Mvc',
+    'blog:create' => new Service('Blog\Create'),
+    'blog:valid'  => new Invoke('Blog\Controller.valid'),
+    'config'      => new Dependency('Config'),
+    'layout'      => new Dependency('Layout'),
+    'request'     => new Dependency('Request'),
+    'sm'          => new Dependency('Service\Manager'),
+    'response'    => new Dependency('Response'),
+    'pathinfo'    => new Call('request.getPathInfo'),
+    'url'         => new Dependency('Route\Generator\Plugin'),
+    'web'         => new Service('Mvc')
 ];
-
 ```
-The [`plugin`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L101) method is also used when calling an object and since the [`get`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L59) method is used, those objects become shared services.
+The [`plugin`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L63) method is also used when calling an object.
 ```php
 //trigger create blog event
 $this->call('blog:create');
@@ -116,7 +119,7 @@ $this->call('blog:valid');
 
 function valid(Config $config, Request $request);
 ```
-Which means
+Which means invoking a web application is no different to calling any other method, e.g 
 ```php
 $app = new Application($config);
 
@@ -172,6 +175,7 @@ call_user_func(new Web(include __DIR__ . '/../config/web.php'));
 // or 
 // (new App($config))->call('web');
 ```
+Microframeworks can be built similar to this [gist](https://gist.github.com/devosc/5b66b7080a6736d8d9d5).
 ##Benchmark
 *Current*
 ```
@@ -207,7 +211,7 @@ Time per request:       3.167 [ms] (mean, across all concurrent requests)
     ]
 ),
 ```
-The [configuration](https://github.com/mvc5/application/blob/master/config/service.php) of the [`Service Container`](https://github.com/mvc5/framework/blob/master/src/Service/Container/ServiceContainer.php) is an array containing the information about the services that it provides. Service configuration can contain values, string names, `callable` types and configuration objects.
+The [configuration](https://github.com/mvc5/application/blob/master/config/service.php) of the [`Service Container`](https://github.com/mvc5/framework/blob/master/src/Service/Container/ServiceContainer.php) is an array containing values, string names, `callable` types and configuration objects.
 ##Routes
 Routes are pre-compiled so that they can be immediately matched against the request's uri path. Other aspects of the request and route can also be matched, e.g. scheme, hostname, method, wildcard. See the <a href="https://github.com/mvc5/application/blob/master/config/route.php">route config</a> for example child routes.
 ```php
