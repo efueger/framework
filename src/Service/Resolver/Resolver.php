@@ -42,7 +42,9 @@ trait Resolver
         }
 
         foreach($args as $index => $value) {
-            $args[$index] = $this->resolve($value);
+            if ($value instanceof Resolvable) {
+                $args[$index] = $this->solve($value);
+            }
         }
 
         return $args;
@@ -294,10 +296,16 @@ trait Resolver
      */
     protected function resolve($config, array $args = [])
     {
-        if (!$config instanceof Resolvable) {
-            return $config;
-        }
+        return $config instanceof Resolvable ? $this->solve($config, $args) : $config;
+    }
 
+    /**
+     * @param $config
+     * @param array $args
+     * @return null|object
+     */
+    protected function solve($config, array $args = [])
+    {
         if ($config instanceof ServiceFactory) {
             return $this->invoke($this->child($config, $args));
         }
