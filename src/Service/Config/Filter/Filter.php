@@ -2,8 +2,10 @@
 
 namespace Framework\Service\Config\Filter;
 
+use Framework\Service\Resolver\Resolvable;
+
 class Filter
-    implements ServiceFilter
+    implements Resolvable, ServiceFilter
 {
     /**
      * @var string

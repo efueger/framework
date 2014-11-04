@@ -175,10 +175,6 @@ trait Resolver
      */
     protected function invokable($config)
     {
-        if ($config instanceof Closure) {
-            return $config->bindTo($this);
-        }
-
         if (is_string($config) && Args::CALL === $config[0]) {
             return function($args = []) use ($config) {
                 return $this->call(
@@ -190,6 +186,10 @@ trait Resolver
 
         if (is_array($config)) {
             return is_string($config[0]) ? $config : [$this->create($config[0]), $config[1]];
+        }
+
+        if ($config instanceof Closure) {
+            return $config->bindTo($this);
         }
 
         return $this->create($config);
