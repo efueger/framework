@@ -26,8 +26,7 @@ trait Signal
         $params   = null;
 
         if (is_array($config)) {
-            isset($config[1]) && $method = $config[1];
-            $config = $config[0];
+            list($config, $method) = $config;
         }
 
         if (is_string($config) && !class_exists($config)) {
