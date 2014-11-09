@@ -23,7 +23,7 @@ class Renderer
             return $model;
         }
 
-        $layout->setContent($model);
+        $layout->child($model);
 
         return $layout;
     }

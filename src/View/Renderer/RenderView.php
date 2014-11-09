@@ -14,22 +14,22 @@ trait RenderView
      */
     public function __invoke(ViewModel $model)
     {
-        foreach($model as $k => $v) {
+        foreach($model->config() as $k => $v) {
             if ($v instanceof ViewModel) {
-                $model->$k = $this($v);
+                $model->set($k, $this($v));
             }
         }
 
         $render = Closure::bind(function() {
                 /** @var ViewModel $this */
 
-                extract((array) $this);
+                extract((array) $this->config());
 
                 ob_start();
 
                 try {
 
-                    include $this->template();
+                    include $this->path();
 
                     return ob_get_clean();
 

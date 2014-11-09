@@ -2,27 +2,75 @@
 
 namespace Framework\View\Model;
 
+use Framework\Config\Configuration;
+
 interface ViewModel
+    extends Configuration
 {
     /**
-     * @return string
+     *
      */
-    function content();
+    const CHILD = '__child';
 
     /**
-     * @param $content
+     *
+     */
+    const TEMPLATE = '__template';
+
+    /**
+     * @return array
+     */
+    function config();
+
+    /**
+     * @param $model
      * @return void
      */
-    function setContent($content);
+    function child($model);
 
     /**
-     * @param $template
-     * @return void
+     * @return string|self
      */
-    function setTemplate($template);
+    function model();
 
     /**
      * @return string
      */
-    function template();
+    function path();
+
+    /**
+     * @param string $path
+     * @return void
+     */
+    function template($path);
+
+    /**
+     * @param array $config
+     * @return void
+     */
+    function vars(array $config = []);
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    function __get($name);
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    function __isset($name);
+    /**
+     * @param $name
+     * @param $value
+     * @return mixed
+     */
+    function __set($name, $value);
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    function __unset($name);
 }
