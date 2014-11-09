@@ -63,7 +63,6 @@ class Exception
         $response = $this->signal($callable, $this->args() + $args, $callback);
 
         if ($response instanceof Response) {
-
             $this->response = $response;
         }
 
