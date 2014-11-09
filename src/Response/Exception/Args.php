@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Controller\Exception;
+namespace Framework\Response\Exception;
 
 interface Args
 {
@@ -13,4 +13,9 @@ interface Args
      *
      */
     const EXCEPTION = 'exception';
+
+    /**
+     *
+     */
+    const RESPONSE = 'response';
 }

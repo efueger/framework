@@ -28,12 +28,12 @@ class Manager
     }
 
     /**
-     * @param ViewModel $viewModel
+     * @param ViewModel $model
      * @param array $args
      * @return mixed
      */
-    public function render(ViewModel $viewModel, array $args = [])
+    public function render(ViewModel $model, array $args = [])
     {
-        return $this->trigger([Render::VIEW, $viewModel], $args, $this);
+        return $this->trigger([Render::VIEW, $model], $args, $this);
     }
 }

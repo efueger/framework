@@ -9,7 +9,7 @@ use RuntimeException;
 trait Signal
 {
     /**
-     * @param callable $config
+     * @param callable|object $config
      * @param array $args
      * @param callable $callback
      * @return mixed
@@ -68,7 +68,10 @@ trait Signal
             }
 
             if (!$param->isOptional()) {
-                throw new RuntimeException('Missing required parameter ' . $param->name);
+                throw new RuntimeException(
+                    'Missing required parameter $' . $param->name
+                    . ' for ' . ($function ?: is_string($config) ? $config : get_class($config))
+                );
             }
 
             $matched[] = null;

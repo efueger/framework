@@ -3,10 +3,8 @@
 namespace Framework\Mvc;
 
 use Framework\Event\Event;
-use Framework\Mvc\View\Render;
 use Framework\Response\Response;
 use Framework\Route\Route;
-use Framework\View\Model\ViewModel;
 
 class Mvc
     implements Dispatch, Event
@@ -30,7 +28,7 @@ class Mvc
             Args::EVENT      => $this,
             Args::RESPONSE   => $this->response(),
             Args::ROUTE      => $this->route(),
-            Args::VIEW_MODEL => $this->viewModel(),
+            Args::MODEL      => $this->model() ?: null,
             Args::CONTROLLER => $this->controller()
         ];
     }
@@ -55,15 +53,7 @@ class Mvc
             return $response;
         }
 
-        if ($response instanceof ViewModel) {
-            $this->setViewModel($response);
-            return $response;
-        }
-
-        if ($callable instanceof Render) {
-            $this->setResponseContent($response);
-            return $response;
-        }
+        $response && $this->setResponseContent($response);
 
         return $response;
     }

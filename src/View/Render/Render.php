@@ -24,14 +24,14 @@ class Render
     /**
      * @var ViewModel
      */
-    protected $viewModel;
+    protected $model;
 
     /**
-     * @param ViewModel $viewModel
+     * @param ViewModel $model
      */
-    public function __construct(ViewModel $viewModel)
+    public function __construct($model = null)
     {
-        $this->viewModel = $viewModel;
+        $this->model = $model;
     }
 
     /**
@@ -40,8 +40,8 @@ class Render
     protected function args()
     {
         return [
-            Args::EVENT      => $this,
-            Args::VIEW_MODEL => $this->viewModel
+            Args::EVENT => $this,
+            Args::MODEL => $this->model
         ];
     }
 

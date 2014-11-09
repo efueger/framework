@@ -2,13 +2,14 @@
 
 namespace Framework\Mvc\View;
 
-use Framework\View\Model\ViewModel;
+use Framework\Response\Response;
 
 interface Render
 {
     /**
-     * @param ViewModel $viewModel
+     * @param Response $response
+     * @param $model
      * @return mixed
      */
-    function __invoke(ViewModel $viewModel = null);
+    function __invoke(Response $response, $model = null);
 }

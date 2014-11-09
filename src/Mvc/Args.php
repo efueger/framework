@@ -27,5 +27,5 @@ interface Args
     /**
      *
      */
-    const VIEW_MODEL = 'viewModel';
+    const MODEL = 'model';
 }

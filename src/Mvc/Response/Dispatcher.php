@@ -2,6 +2,7 @@
 
 namespace Framework\Mvc\Response;
 
+use Exception;
 use Framework\Response\Response;
 use Framework\Response\Manager\ManageResponse;
 
@@ -19,6 +20,14 @@ class Dispatcher
      */
     public function __invoke(Response $response)
     {
-        return $this->send($response);
+        try {
+
+            return $this->send($response);
+
+        } catch(Exception $exception) {
+
+            return $this->send($this->exception($exception));
+
+        }
     }
 }

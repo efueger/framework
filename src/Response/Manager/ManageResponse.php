@@ -2,6 +2,7 @@
 
 namespace Framework\Response\Manager;
 
+use Exception;
 use Framework\Response\Response;
 
 trait ManageResponse
@@ -10,6 +11,15 @@ trait ManageResponse
      * @var ResponseManager
      */
     protected $rm;
+
+    /**
+     * @param Exception $exception
+     * @return mixed
+     */
+    public function exception(Exception $exception)
+    {
+        return $this->rm->exception($exception);
+    }
 
     /**
      * @param Response $response

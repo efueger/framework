@@ -9,22 +9,22 @@ trait ViewModel
     /**
      * @var Model
      */
-    protected $viewModel;
+    protected $model;
 
     /**
-     * @param Model $viewModel
+     * @param Model $model
      * @return self
      */
-    public function setViewModel(Model $viewModel)
+    public function setModel(Model $model)
     {
-        $this->viewModel = $viewModel;
+        $this->model = $model;
     }
 
     /**
      * @return Model
      */
-    public function viewModel()
+    public function model()
     {
-        return $this->viewModel;
+        return $this->model;
     }
 }

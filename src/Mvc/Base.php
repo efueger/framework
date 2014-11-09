@@ -7,7 +7,6 @@ use Framework\Service\Resolver\Signal;
 use Framework\Response\Response;
 use Framework\Route\Route;
 use Framework\Config\Configuration;
-use Framework\View\Model\Service\ViewModel;
 
 trait Base
 {
@@ -16,7 +15,6 @@ trait Base
      */
     use Event;
     use Signal;
-    use ViewModel;
 
     /**
      * @var Configuration
@@ -78,5 +76,13 @@ trait Base
     protected function setRoute(Route $route)
     {
         $this->config->set(Dispatch::ROUTE, $route);
+    }
+
+    /**
+     * @return array|callable|null|object|string
+     */
+    public function model()
+    {
+        return $this->response()->content();
     }
 }

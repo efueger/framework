@@ -3,34 +3,27 @@
 namespace Framework\Mvc\Layout;
 
 use Framework\View\Layout\Layout;
-use Framework\View\Model\Service\ViewModel as Model;
 use Framework\View\Model\ViewModel;
 
 class Renderer
     implements Dispatch
 {
     /**
-     *
-     */
-    use Model;
-
-    /**
-     * @param ViewModel $viewModel
+     * @param $model
+     * @param ViewModel $layout
      * @return ViewModel
      */
-    public function __invoke(ViewModel $viewModel = null)
+    public function __invoke($model = null, ViewModel $layout = null)
     {
-        $layout = $this->viewModel();
-
-        if (!$viewModel) {
-            return null;
+        if (!$model || !$layout) {
+            return $model;
         }
 
-        if ($viewModel instanceof Layout) {
-            return $viewModel;
+        if (!$model instanceof ViewModel || $model instanceof Layout) {
+            return $model;
         }
 
-        $layout->setContent($viewModel);
+        $layout->setContent($model);
 
         return $layout;
     }

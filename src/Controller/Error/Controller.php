@@ -20,7 +20,7 @@ class Controller
     public function __invoke(Response $response)
     {
         $response->setStatus(404);
-
-        return $this->viewModel();
+        $response->setContent($this->model());
+        return $response;
     }
 }

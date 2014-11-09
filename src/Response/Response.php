@@ -5,6 +5,11 @@ namespace Framework\Response;
 interface Response
 {
     /**
+     * @return callable|mixed|null|string|object
+     */
+    function content();
+
+    /**
      * @return void
      */
     function send();

@@ -44,7 +44,7 @@ class View
         return [
             Args::EVENT      => $this,
             Args::EXCEPTION  => $this->exception,
-            Args::MODEL      => $this->viewModel()
+            Args::MODEL      => $this->model()
         ];
     }
 

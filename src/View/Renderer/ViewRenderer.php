@@ -7,8 +7,8 @@ use Framework\View\Model\ViewModel;
 interface ViewRenderer
 {
     /**
-     * @param ViewModel $viewModel
+     * @param ViewModel $model
      * @return mixed
      */
-    function __invoke(ViewModel $viewModel);
+    function __invoke(ViewModel $model);
 }

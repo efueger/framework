@@ -30,7 +30,7 @@ function buildParamList($params) {
                 $retval[] = $key . htmlspecialchars(var_export($param, true));
                 break;
             case 'array':
-                $retval[] = $key . '[' . buildParamList($param) . ']';
+                $retval[] = $key . 'array(' . buildParamList($param) . ')';
             break;
             case 'object':
                 $retval[] = $key . '[object <em>' . get_class($param) . '</em>]';

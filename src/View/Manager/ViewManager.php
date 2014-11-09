@@ -35,8 +35,8 @@ interface ViewManager
     function plugin($name, callable $callback = null);
 
     /**
-     * @param ViewModel $viewModel
+     * @param ViewModel $model
      * @return mixed
      */
-    function render(ViewModel $viewModel);
+    function render(ViewModel $model);
 }

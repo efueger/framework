@@ -3,6 +3,7 @@
 namespace Framework\Mvc\View;
 
 use Exception;
+use Framework\Response\Response;
 use Framework\View\Model\ViewModel;
 use Framework\View\Manager\ManageView;
 
@@ -15,22 +16,25 @@ class Renderer
     use ManageView;
 
     /**
-     * @param ViewModel $viewModel
+     * @param Response $response
+     * @param $model
      * @return mixed
      */
-    public function __invoke(ViewModel $viewModel = null)
+    public function __invoke(Response $response, $model = null)
     {
-        if (!$viewModel) {
-            return null;
+        $model = $model ?: $response->content();
+
+        if (!$model instanceof ViewModel) {
+            return $model;
         }
 
         try {
 
-            return $this->render($viewModel);
+            $response->setContent($this->render($model));
 
         } catch(Exception $exception) {
 
-            return $this->exception($exception);
+            $response->setContent($this->exception($exception));
 
         }
     }

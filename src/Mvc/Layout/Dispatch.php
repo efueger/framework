@@ -7,8 +7,9 @@ use Framework\View\Model\ViewModel;
 interface Dispatch
 {
     /**
-     * @param ViewModel $viewModel
+     * @param $model
+     * @param ViewModel $layout
      * @return ViewModel
      */
-    function __invoke(ViewModel $viewModel = null);
+    function __invoke($model, ViewModel $layout = null);
 }

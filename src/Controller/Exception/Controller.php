@@ -25,7 +25,7 @@ class Controller
         $response->setStatus(500);
 
         /** @var ExceptionModel $model */
-        $model = $this->viewModel();
+        $model = $this->model();
 
         $model->setException($exception);
 

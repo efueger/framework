@@ -42,12 +42,12 @@ trait ManageView
     }
 
     /**
-     * @param ViewModel $viewModel
+     * @param ViewModel $model
      * @return mixed
      */
-    public function render(ViewModel $viewModel)
+    public function render(ViewModel $model)
     {
-        return $this->vm->render($viewModel);
+        return $this->vm->render($model);
     }
 
     /**

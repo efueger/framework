@@ -1,13 +1,13 @@
 <?php
 
-namespace Framework\Controller\Exception;
+namespace Framework\Response\Exception;
 
-interface DispatchException
+interface ResponseException
 {
     /**
      *
      */
-    const EXCEPTION = 'Controller\Exception';
+    const EXCEPTION = 'Response\Exception';
 
     /**
      * @param callable $callable
