@@ -38,6 +38,14 @@ trait Base
     }
 
     /**
+     * @return array|callable|null|object|string
+     */
+    protected function model()
+    {
+        return $this->response()->content();
+    }
+
+    /**
      * @return Response
      */
     protected function response()
@@ -76,13 +84,5 @@ trait Base
     protected function setRoute(Route $route)
     {
         $this->config->set(Dispatch::ROUTE, $route);
-    }
-
-    /**
-     * @return array|callable|null|object|string
-     */
-    public function model()
-    {
-        return $this->response()->content();
     }
 }
