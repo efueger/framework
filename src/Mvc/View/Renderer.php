@@ -4,7 +4,6 @@ namespace Framework\Mvc\View;
 
 use Exception;
 use Framework\Response\Response;
-use Framework\View\Model\Plugin;
 use Framework\View\Model\ViewModel;
 use Framework\View\Manager\ManageView;
 
@@ -28,9 +27,6 @@ class Renderer
         if (!$model instanceof ViewModel) {
             return $model;
         }
-
-        $model instanceof Plugin
-            && !$model->viewManager() && $model->setViewManager($this->viewManager());
 
         try {
 

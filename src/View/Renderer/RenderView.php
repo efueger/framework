@@ -4,6 +4,7 @@ namespace Framework\View\Renderer;
 
 use Closure;
 use Exception;
+use Framework\View\Manager\ViewManager;
 use Framework\View\Model\Plugin;
 use Framework\View\Model\ViewModel;
 
@@ -16,25 +17,26 @@ trait RenderView
     protected abstract function template($template);
 
     /**
+     * @return ViewManager
+     */
+    protected abstract function viewManager();
+
+    /**
      * @param ViewModel $model
      * @return string
      */
     public function __invoke(ViewModel $model)
     {
         foreach($model->config() as $k => $v) {
-            if (!$v instanceof ViewModel) {
-                continue;
-            }
-
-            $model instanceof Plugin && $model->viewManager()
-                        && $v instanceof Plugin && !$v->viewManager() && $v->setViewManager($model->viewManager());
-
-            $model->set($k, $this($v));
+            $v instanceof ViewModel && $model->set($k, $this($v));
         }
 
         if ($template = $this->template($model->path())) {
             $model->template($template);
         }
+
+        $model instanceof Plugin
+            && !$model->viewManager() && $model->setViewManager($this->viewManager());
 
         $render = Closure::bind(function() {
                 /** @var ViewModel $this */

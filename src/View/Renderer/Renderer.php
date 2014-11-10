@@ -2,6 +2,7 @@
 
 namespace Framework\View\Renderer;
 
+use Framework\View\Manager\ManageView;
 use Framework\View\ViewTemplates;
 
 class Renderer
@@ -10,6 +11,7 @@ class Renderer
     /**
      *
      */
+    use ManageView;
     use RenderView;
     use ViewTemplates;
 }
