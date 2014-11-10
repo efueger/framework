@@ -18,9 +18,7 @@ class Path
         $matched = [];
 
         foreach($paramMap as $name => $param) {
-            if (!empty($matches[$name])) {
-                $matched[$param] = $matches[$name];
-            }
+            !empty($matches[$name]) && $matched[$param] = $matches[$name];
         }
 
         return $matched;
