@@ -2,6 +2,8 @@
 
 namespace Framework\View\Model;
 
+use Framework\View\ViewPlugin;
+
 class Model
     implements ViewModel
 {
@@ -9,4 +11,5 @@ class Model
      *
      */
     use Base;
+    use ViewPlugin;
 }

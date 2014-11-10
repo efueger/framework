@@ -22,10 +22,17 @@ trait ViewModel
     }
 
     /**
+     * @param array $vars
      * @return Model
      */
-    public function model()
+    public function model(array $vars = [])
     {
+        if (!$this->model) {
+            return $vars ? new Base(null, $vars) : new Base;
+        }
+
+        $vars && $this->model->vars($vars);
+
         return $this->model;
     }
 
@@ -34,15 +41,12 @@ trait ViewModel
      * @param array $vars
      * @return Model
      */
-    public function view($template = null, array $vars = [])
+    public function view($template, array $vars = [])
     {
-        if (!$this->model) {
-            return new Base($template, $vars);
-        }
+        $model = $this->model($vars);
 
-        $template && $this->model->template($template);
-        $vars     && $this->model->vars($vars);
+        $template && $model->template($template);
 
-        return $this->model;
+        return $model;
     }
 }

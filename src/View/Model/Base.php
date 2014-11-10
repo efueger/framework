@@ -71,4 +71,41 @@ trait Base
     {
         $this->config = $config + [ViewModel::TEMPLATE => $this->path(), ViewModel::CHILD => $this->model()];
     }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->get($name);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function __isset($name)
+    {
+        return $this->has($name);
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     * @return mixed
+     */
+    public function __set($name, $value)
+    {
+        $this->set($name, $value);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function __unset($name)
+    {
+        $this->remove($name);
+    }
 }
