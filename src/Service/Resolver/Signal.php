@@ -62,11 +62,6 @@ trait Signal
                 continue;
             }
 
-            if ($param->isArray()) {
-                $matched[] = [];
-                continue;
-            }
-
             if (!$param->isOptional()) {
                 throw new RuntimeException(
                     'Missing required parameter $' . $param->name
