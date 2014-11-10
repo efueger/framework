@@ -4,6 +4,7 @@ namespace Framework\View\Renderer;
 
 use Closure;
 use Exception;
+use Framework\View\Model\Plugin;
 use Framework\View\Model\ViewModel;
 
 trait RenderView
@@ -15,9 +16,14 @@ trait RenderView
     public function __invoke(ViewModel $model)
     {
         foreach($model->config() as $k => $v) {
-            if ($v instanceof ViewModel) {
-                $model->set($k, $this($v));
+            if (!$v instanceof ViewModel) {
+                continue;
             }
+
+            $model instanceof Plugin && $model->viewManager()
+                        && $v instanceof Plugin && !$v->viewManager() && $v->setViewManager($model->viewManager());
+
+            $model->set($k, $this($v));
         }
 
         $render = Closure::bind(function() {

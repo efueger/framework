@@ -3,10 +3,11 @@
 namespace Framework\View\Layout;
 
 use Framework\View\Model\Base;
+use Framework\View\Model\Plugin;
 use Framework\View\ViewPlugin;
 
 class Model
-    implements Layout, LayoutModel
+    implements Layout, LayoutModel, Plugin
 {
     /**
      *

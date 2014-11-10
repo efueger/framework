@@ -49,29 +49,4 @@ interface ViewModel
      * @return void
      */
     function vars(array $config = []);
-
-    /**
-     * @param $name
-     * @return mixed
-     */
-    function __get($name);
-
-    /**
-     * @param $name
-     * @return mixed
-     */
-    function __isset($name);
-
-    /**
-     * @param $name
-     * @param $value
-     * @return mixed
-     */
-    function __set($name, $value);
-
-    /**
-     * @param $name
-     * @return mixed
-     */
-    function __unset($name);
 }
