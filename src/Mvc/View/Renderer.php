@@ -37,5 +37,7 @@ class Renderer
             $response->setContent($this->exception($exception));
 
         }
+
+        return $response;
     }
 }
