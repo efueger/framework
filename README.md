@@ -243,3 +243,25 @@ Events and listeners are <a href="https://github.com/mvc5/application/blob/maste
     ['Mvc\Response']
 ]
 ```
+##Model View Controller
+Controllers can use a [configuration](https://github.com/mvc5/framework/blob/master/src/Config/Configuration.php) object as a [view model](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) object for the view to use that also includes the template file name and an optional child model which is used by the [layout model](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php). For convenience, controllers can use an existing [view model trait](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php) that has methods for setting the model and returning it. If no model is injected then a new instance of a standard model will be created and returned. When a controller is invoked and returns a model, it is stored as the content of the response object and will be rendered prior to sending the response.
+
+The [view model trait](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php) has two methods named [model](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php#L28) and [view](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php#L44). This allows the controller to choose the [view](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php#L44) method when a specific template is to be used, or alternatively the controller can use the [model](https://github.com/mvc5/framework/blob/master/src/View/Model/Service/ViewModel.php#L28) method and pass an array variables as its configuration.
+
+```php
+use Framework\View\Model\Service\ViewModel;
+
+class Controller
+{
+    use ViewModel;
+
+    public function __invoke()
+    {
+        $model = $this->model(['message' => 'Hello World']);
+
+        //$model = $this->view('../view/home/index.phtml', ['message' => 'Hello World']);
+
+        return $model
+    }
+}
+```
