@@ -42,7 +42,7 @@ trait EventGenerator
     protected abstract function listeners();
 
     /**
-     * @param string $event
+     * @param Event|string $event
      * @return Generator
      */
     protected function queue($event)
@@ -67,10 +67,10 @@ trait EventGenerator
     }
 
     /**
-     * @param callable $config
+     * @param callable $listener
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    protected abstract function signal(callable $config, array $args = [], callable $callback = null);
+    protected abstract function signal(callable $listener, array $args = [], callable $callback = null);
 }
