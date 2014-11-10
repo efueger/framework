@@ -10,6 +10,12 @@ use Framework\View\Model\ViewModel;
 trait RenderView
 {
     /**
+     * @param $template
+     * @return string
+     */
+    protected abstract function template($template);
+
+    /**
      * @param ViewModel $model
      * @return string
      */
@@ -24,6 +30,10 @@ trait RenderView
                         && $v instanceof Plugin && !$v->viewManager() && $v->setViewManager($model->viewManager());
 
             $model->set($k, $this($v));
+        }
+
+        if ($template = $this->template($model->path())) {
+            $model->template($template);
         }
 
         $render = Closure::bind(function() {
