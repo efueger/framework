@@ -27,9 +27,7 @@ trait ViewModel
      */
     public function model(array $vars = [])
     {
-        if (!$this->model) {
-            return $vars ? new Base(null, $vars) : new Base;
-        }
+        !$this->model && $this->model = new Base;
 
         $vars && $this->model->vars($vars);
 
