@@ -21,7 +21,7 @@ trait Events
      */
     protected function event($event)
     {
-        return $event instanceof Event ? $event : $this->create($event, [], function($name) { return $name; });
+        return $event instanceof Event ? $event : $this->create($event, [], function($event) { return $event; });
     }
 
     /**
