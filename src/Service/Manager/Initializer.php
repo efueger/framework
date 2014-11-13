@@ -27,11 +27,17 @@ trait Initializer
      */
     protected function initialize($name, array $args = [], callable $callback = null)
     {
-        $this->initializing($name);
+        return $this->initializing($name) ?: $this->initialized($name, $this->create($name, $args, $callback));
+    }
 
-        $service = $this->create($name, $args, $callback);
-
-        $this->initialized($name);
+    /**
+     * @param $name
+     * @param $service
+     * @return mixed
+     */
+    protected function initialized($name, $service = null)
+    {
+        $this->pending[$name] = false;
 
         $service && $this->set($name, $service);
 
@@ -40,14 +46,7 @@ trait Initializer
 
     /**
      * @param $name
-     */
-    protected function initialized($name)
-    {
-        $this->pending[$name] = false;
-    }
-
-    /**
-     * @param $name
+     * @return bool
      */
     protected function initializing($name)
     {
@@ -56,6 +55,8 @@ trait Initializer
         }
 
         $this->pending[$name] = true;
+
+        return false;
     }
 
     /**
