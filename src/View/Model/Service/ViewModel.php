@@ -14,7 +14,7 @@ trait ViewModel
 
     /**
      * @param Model $model
-     * @return self
+     * @return void
      */
     public function setModel(Model $model)
     {
@@ -43,7 +43,7 @@ trait ViewModel
     {
         $model = $this->model($vars);
 
-        $template && $model->template($template);
+        $model->template($template);
 
         return $model;
     }
