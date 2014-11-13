@@ -359,7 +359,7 @@ trait Resolver
      */
     protected function string($config)
     {
-        while(!is_string($config))
+        while($config instanceof Resolvable)
         {
             $config = $this->resolve($config);
         }
