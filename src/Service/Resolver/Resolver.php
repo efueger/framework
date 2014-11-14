@@ -13,6 +13,7 @@ use Framework\Service\Config\ConfigLink\ConfigServiceLink;
 use Framework\Service\Config\Dependency\ServiceDependency;
 use Framework\Service\Config\Factory\ServiceFactory;
 use Framework\Service\Config\Filter\ServiceFilter;
+use Framework\Service\Config\Calls\ServiceCalls;
 use Framework\Service\Config\Invoke\ServiceInvoke;
 use Framework\Service\Config\Param\ServiceParam;
 use Framework\Service\Config\ServiceConfig\ServiceConfiguration;
@@ -302,6 +303,10 @@ trait Resolver
 
         if ($config instanceof ServiceFactory) {
             return $this->invoke($this->child($config, $args));
+        }
+
+        if ($config instanceof ServiceCalls) {
+            return $this->hydrate($config, $this->resolve($config->name(), $args));
         }
 
         if ($config instanceof ChildService) {
