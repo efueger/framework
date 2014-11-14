@@ -33,7 +33,7 @@ trait Base
     /**
      * @return array
      */
-    public function config()
+    public function assigned()
     {
         return $this->config;
     }
@@ -104,7 +104,10 @@ trait Base
      */
     public function vars(array $config = [])
     {
-        $this->config = $config + [ViewModel::TEMPLATE => $this->path(), ViewModel::CHILD => $this->model()];
+        $this->config = $config + $this->config + [
+                ViewModel::TEMPLATE => $this->path(),
+                ViewModel::CHILD    => $this->model()
+            ];
     }
 
     /**

@@ -27,7 +27,7 @@ trait RenderView
      */
     public function __invoke(ViewModel $model)
     {
-        foreach($model->config() as $k => $v) {
+        foreach($model->assigned() as $k => $v) {
             $v instanceof ViewModel && $model->set($k, $this($v));
         }
 
@@ -41,7 +41,7 @@ trait RenderView
         $render = Closure::bind(function() {
                 /** @var ViewModel $this */
 
-                extract((array) $this->config());
+                extract((array) $this->assigned());
 
                 ob_start();
 

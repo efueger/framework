@@ -20,7 +20,7 @@ interface ViewModel
     /**
      * @return array
      */
-    function config();
+    function assigned();
 
     /**
      * @param $model
