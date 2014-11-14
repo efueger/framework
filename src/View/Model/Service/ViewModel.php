@@ -39,12 +39,12 @@ trait ViewModel
      * @param array $vars
      * @return Model
      */
-    public function view($template, array $vars = [])
+    public function view($template = null, array $vars = [])
     {
-        $model = $this->model($vars);
+        $this->model($vars);
 
-        $model->template($template);
+        $template && $this->model->template($template);
 
-        return $model;
+        return $this->model;
     }
 }
