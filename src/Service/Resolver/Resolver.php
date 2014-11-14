@@ -364,17 +364,7 @@ trait Resolver
      */
     protected function string($config)
     {
-        $count = 0;
-
-        while($config instanceof Resolvable) {
-            if (++$count > 100) {
-                throw new RuntimeException('Cannot resolve ' . get_class($config));
-            }
-
-            $config = $this->resolve($config);
-        }
-
-        return $config;
+        return $config instanceof Resolvable ? $this->string($this->resolve($config)) : $config;
     }
 
     /**
