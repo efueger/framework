@@ -52,9 +52,8 @@ interface Route
      */
     const SCHEME = 'scheme';
 
-
     /**
-     * @return array|callable|string
+     * @return array|callable|null|object|string
      */
     function controller();
 
