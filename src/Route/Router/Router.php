@@ -32,10 +32,8 @@ class Router
      * @param Definition $definition
      * @return Route|null
      */
-    public function __invoke(Route $route, Definition $definition = null)
+    public function dispatch(Route $route, Definition $definition)
     {
-        $definition = $definition ?: $this->definition;
-
         $route = $this->match($definition, clone $route);
 
         if (!$route || $route->matched()) {
@@ -43,11 +41,20 @@ class Router
         }
 
         foreach($definition->children() as $definition) {
-            if ($match = $this($route, $definition)) {
+            if ($match = $this->dispatch($route, $definition)) {
                 return $match;
             }
         }
 
         return null;
+    }
+
+    /**
+     * @param Route $route
+     * @return Route|null
+     */
+    public function __invoke(Route $route)
+    {
+        return $this->dispatch($route, $this->definition);
     }
 }
