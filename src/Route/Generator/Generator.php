@@ -3,7 +3,6 @@
 namespace Framework\Route\Generator;
 
 use Exception;
-use Framework\Config\Configuration;
 use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
 use Framework\Route\Definition\Definition;
 use InvalidArgumentException;
@@ -16,14 +15,14 @@ class Generator
     implements RouteGenerator
 {
     /**
-     * @var Configuration
+     * @var Definition
      */
     protected $config;
 
     /**
-     * @param Configuration $config
+     * @param Definition $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(Definition $config)
     {
         $this->config = $config;
     }
@@ -153,7 +152,7 @@ class Generator
      */
     protected function definition($name)
     {
-        return $this->config->get($name);
+        return $this->config->child($name);
     }
 
     /**
