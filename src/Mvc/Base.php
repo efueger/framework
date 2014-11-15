@@ -62,19 +62,19 @@ trait Base
     }
 
     /**
+     * @param $model
+     */
+    protected function setModel($model)
+    {
+        $this->response()->setContent($model);
+    }
+
+    /**
      * @param Response $response
      */
     protected function setResponse(Response $response)
     {
         $this->config->set(Dispatch::RESPONSE, $response);
-    }
-
-    /**
-     * @param $content
-     */
-    protected function setResponseContent($content)
-    {
-        $this->response()->setContent($content);
     }
 
     /**

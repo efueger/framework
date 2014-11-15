@@ -53,7 +53,7 @@ class Mvc
             return $response;
         }
 
-        $response && $this->setResponseContent($response);
+        $response && $this->setModel($response);
 
         return $response;
     }
