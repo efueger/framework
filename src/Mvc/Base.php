@@ -63,6 +63,7 @@ trait Base
 
     /**
      * @param $model
+     * @return void
      */
     protected function setModel($model)
     {
@@ -71,6 +72,7 @@ trait Base
 
     /**
      * @param Response $response
+     * @return void
      */
     protected function setResponse(Response $response)
     {
