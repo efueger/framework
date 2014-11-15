@@ -52,7 +52,7 @@ trait Resolver
     }
 
     /**
-     * @param array|object|string $config
+     * @param array|callable|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|mixed|null|object

@@ -13,7 +13,7 @@ trait ManageView
     protected $vm;
 
     /**
-     * @param string $name
+     * @param array|callable|object|string $name
      * @param array $args
      * @return callable|mixed|null|object
      */

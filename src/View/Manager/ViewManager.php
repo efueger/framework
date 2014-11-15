@@ -8,7 +8,7 @@ use Framework\View\Model\ViewModel;
 interface ViewManager
 {
     /**
-     * @param string $name
+     * @param array|callable|object|string $name
      * @param array $args
      * @param callable $callback
      * @return null|callable|object
