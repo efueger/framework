@@ -79,7 +79,7 @@ trait Base
 
     /**
      * @param Route $route
-     * @return self
+     * @return void
      */
     protected function setRoute(Route $route)
     {

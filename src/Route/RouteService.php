@@ -19,7 +19,7 @@ trait RouteService
 
     /**
      * @param Route $route
-     * @return self
+     * @return void
      */
     public function setRoute(Route $route)
     {
