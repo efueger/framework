@@ -2,11 +2,10 @@
 
 namespace Framework\View\Model;
 
-use ArrayAccess;
 use Framework\View\ViewPlugin;
 
 class Model
-    implements ArrayAccess, ViewModel, Plugin
+    implements ViewModel, Plugin
 {
     /**
      *

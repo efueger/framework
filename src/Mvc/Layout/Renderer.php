@@ -2,7 +2,7 @@
 
 namespace Framework\Mvc\Layout;
 
-use Framework\View\Layout\Layout;
+use Framework\View\Layout\LayoutModel;
 use Framework\View\Model\ViewModel;
 
 class Renderer
@@ -19,7 +19,7 @@ class Renderer
             return $model;
         }
 
-        if (!$model instanceof ViewModel || $model instanceof Layout) {
+        if (!$model instanceof ViewModel || $model instanceof LayoutModel) {
             return $model;
         }
 

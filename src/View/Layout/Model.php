@@ -7,7 +7,7 @@ use Framework\View\Model\Plugin;
 use Framework\View\ViewPlugin;
 
 class Model
-    implements Layout, LayoutModel, Plugin
+    implements LayoutModel, Plugin
 {
     /**
      *

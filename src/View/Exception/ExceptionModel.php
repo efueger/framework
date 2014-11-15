@@ -3,10 +3,10 @@
 namespace Framework\View\Exception;
 
 use Exception;
-use Framework\View\Model\ViewModel;
+use Framework\View\Layout\LayoutModel;
 
 interface ExceptionModel
-    extends ViewModel
+    extends LayoutModel
 {
     /**
      *
