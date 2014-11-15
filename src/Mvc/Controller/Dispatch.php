@@ -5,7 +5,7 @@ namespace Framework\Mvc\Controller;
 interface Dispatch
 {
     /**
-     * @param $controller
+     * @param array|callable|object|string $controller
      * @param array $args
      * @return mixed
      */

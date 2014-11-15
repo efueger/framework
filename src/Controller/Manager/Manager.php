@@ -28,8 +28,8 @@ class Manager
     }
 
     /**
-     * @param callable|string $config
-     * @return callable|null|object
+     * @param array|callable|object|string $config
+     * @return callable
      */
     public function controller($config)
     {

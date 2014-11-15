@@ -14,8 +14,8 @@ interface ControllerManager
     function action(callable $controller, array $args = []);
 
     /**
-     * @param callable|string $config
-     * @return callable|null|object
+     * @param array|callable|object|string $config
+     * @return callable
      */
     function controller($config);
 

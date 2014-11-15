@@ -14,7 +14,7 @@ class Dispatcher
     use ManageController;
 
     /**
-     * @param $controller
+     * @param array|callable|object|string $controller
      * @param array $args
      * @return mixed
      */

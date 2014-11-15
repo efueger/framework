@@ -22,8 +22,8 @@ trait ManageController
     }
 
     /**
-     * @param callable|string $controller
-     * @return callable|null|object
+     * @param array|callable|object|string $controller
+     * @return callable
      */
     public function controller($controller)
     {
