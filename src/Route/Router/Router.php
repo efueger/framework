@@ -32,7 +32,7 @@ class Router
      * @param Definition $definition
      * @return Route|null
      */
-    public function dispatch(Route $route, Definition $definition)
+    protected function dispatch(Route $route, Definition $definition)
     {
         $route = $this->match($definition, clone $route);
 
