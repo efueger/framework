@@ -13,6 +13,15 @@ class RouteDefinition
     use Base;
 
     /**
+     * @param $name
+     * @param Definition $definition
+     */
+    public function add($name, Definition $definition)
+    {
+        $this->config[self::CHILDREN][$name] = $definition;
+    }
+
+    /**
      * @param string $name
      * @return self
      */

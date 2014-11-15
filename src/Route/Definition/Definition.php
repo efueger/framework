@@ -73,6 +73,12 @@ interface Definition
     const WILDCARD = 'wildcard';
 
     /**
+     * @param $name
+     * @param Definition $definition
+     */
+    function add($name, Definition $definition);
+
+    /**
      * @param string $name
      * @return self
      */
