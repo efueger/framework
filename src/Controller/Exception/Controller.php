@@ -24,11 +24,6 @@ class Controller
     {
         $response->setStatus(500);
 
-        /** @var ExceptionModel $model */
-        $model = $this->model();
-
-        $model->setException($exception);
-
-        return $model;
+        return $this->model([ExceptionModel::EXCEPTION => $exception]);
     }
 }

@@ -8,7 +8,7 @@ interface ErrorModel
     extends ViewModel
 {
     /**
-     * @param $message
+     *
      */
-    function setMessage($message);
+    const MESSAGE = 'message';
 }

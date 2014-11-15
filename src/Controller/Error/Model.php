@@ -13,17 +13,4 @@ class Model
      */
     use Base;
     use ViewPlugin;
-
-    /**
-     * @var string
-     */
-    public $message = 'A 404 error occurred';
-
-    /**
-     * @param $message
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-    }
 }

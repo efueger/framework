@@ -20,7 +20,8 @@ class Renderer
      */
     public function __invoke(Exception $exception, ExceptionModel $model)
     {
-        $model->setException($exception);
+        $model->exception($exception);
+
         return $this->render($model);
     }
 }

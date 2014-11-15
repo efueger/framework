@@ -15,29 +15,11 @@ class Model
     use Base;
 
     /**
-     * @var Exception
-     */
-    public $exception;
-
-    /**
-     * @var string
-     */
-    public $message;
-
-    /**
      * @param Exception $exception
      * @return mixed
      */
-    public function setException(Exception $exception)
+    public function exception(Exception $exception)
     {
-        $this->exception = $exception;
-    }
-
-    /**
-     * @param $message
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
+        $this->set(self::EXCEPTION, $exception);
     }
 }

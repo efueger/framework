@@ -9,13 +9,13 @@ interface ExceptionModel
     extends ViewModel
 {
     /**
+     *
+     */
+    const EXCEPTION = 'exception';
+
+    /**
      * @param Exception $exception
      * @return mixed
      */
-    function setException(Exception $exception);
-
-    /**
-     * @param $message
-     */
-    function setMessage($message);
+    function exception(Exception $exception);
 }
