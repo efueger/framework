@@ -3,12 +3,10 @@
 namespace Framework\Application;
 
 use Framework\Config\Configuration;
-use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
-use Framework\Service\Manager\ServiceManager;
 
 class App
-    implements Application, EventManager, ServiceManager
+    implements Application
 {
     /**
      *
