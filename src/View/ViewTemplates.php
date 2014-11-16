@@ -2,6 +2,8 @@
 
 namespace Framework\View;
 
+use Framework\Config\Configuration;
+
 trait ViewTemplates
 {
     /**
@@ -19,9 +21,9 @@ trait ViewTemplates
     }
 
     /**
-     * @param array $templates
+     * @param array|Configuration $templates
      */
-    public function templates(array $templates)
+    public function templates($templates)
     {
         $this->templates = $templates;
     }

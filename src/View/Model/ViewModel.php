@@ -2,11 +2,10 @@
 
 namespace Framework\View\Model;
 
-use ArrayAccess;
 use Framework\Config\Configuration;
 
 interface ViewModel
-    extends Configuration, ArrayAccess
+    extends Configuration
 {
     /**
      *
