@@ -2,10 +2,16 @@
 
 namespace Framework\Service\Container;
 
+use Framework\Config\ArrayAccess;
 use Framework\Config\Configuration;
 
 trait Service
 {
+    /**
+     *
+     */
+    use ArrayAccess;
+
     /**
      * @var array
      */
@@ -67,41 +73,6 @@ trait Service
     public function has($name)
     {
         return $this->services->has($name);
-    }
-
-    /**
-     * @param mixed $config
-     * @return bool
-     */
-    public function offsetExists($config)
-    {
-        return $this->has($config);
-    }
-
-    /**
-     * @param mixed $config
-     * @return mixed
-     */
-    public function offsetGet($config)
-    {
-        return $this->get($config);
-    }
-
-    /**
-     * @param mixed $config
-     * @param mixed $value
-     */
-    public function offsetSet($config, $value)
-    {
-        $this->set($config, $value);
-    }
-
-    /**
-     * @param mixed $config
-     */
-    public function offsetUnset($config)
-    {
-        $this->remove($config);
     }
 
     /**
