@@ -240,7 +240,7 @@ class Builder
      * @param array $definition
      * @return Definition
      */
-    public static function __invoke(array $definition)
+    public function __invoke(array $definition)
     {
         return static::definition($definition);
     }
