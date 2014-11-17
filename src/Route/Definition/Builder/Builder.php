@@ -2,6 +2,7 @@
 
 namespace Framework\Route\Definition\Builder;
 
+use Exception;
 use Framework\Config\Config;
 use Framework\Config\Configuration;
 use Framework\Route\Definition\Definition;
@@ -15,6 +16,36 @@ use RuntimeException;
 class Builder
     implements DefinitionBuilder
 {
+    /**
+     * @param Definition $parent
+     * @param array $definition
+     * @param array $path
+     * @param callable $callback
+     * @param bool $start
+     * @return Definition
+     * @throws Exception
+     */
+    public static function addDefinition(
+        Definition $parent, array $definition, array $path, callable $callback = null, $start = false
+    ) {
+        $root = $parent->child($path[0]);
+
+        if (!$root) {
+            if (isset($path[1])) {
+                throw new Exception('Parent definition not found: ' . $definition[Definition::NAME]);
+            }
+
+            return $callback($parent, Builder::definition($definition), $path[0], $start);
+        }
+
+        array_shift($path);
+
+        !isset($path[1]) && $definition[Definition::ROUTE] = '/' . $path[0]
+            . (isset($definition[Definition::ROUTE]) ? $definition[Definition::ROUTE] : null);
+
+        return static::addDefinition($root, $definition, $path, $callback);
+    }
+
     /**
      * @param array $definitions
      * @return array

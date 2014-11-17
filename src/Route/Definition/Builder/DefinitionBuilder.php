@@ -2,6 +2,7 @@
 
 namespace Framework\Route\Definition\Builder;
 
+use Exception;
 use Framework\Config\Configuration;
 use Framework\Route\Definition\Definition;
 use RuntimeException;
@@ -27,6 +28,19 @@ interface DefinitionBuilder
      *
      */
     const DELIMITERS = 2;
+
+    /**
+     * @param Definition $parent
+     * @param array $definition
+     * @param array $path
+     * @param callable $callback
+     * @param bool $start
+     * @return Definition
+     * @throws Exception
+     */
+    static function addDefinition(
+        Definition $parent, array $definition, array $path, callable $callback = null, $start = false
+    );
 
     /**
      * @param array $definitions
