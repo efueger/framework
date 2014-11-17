@@ -48,7 +48,7 @@ class RouteDefinition
     }
 
     /**
-     * @return array|callable|string
+     * @return array|callable|object|string
      */
     public function controller()
     {
@@ -64,7 +64,7 @@ class RouteDefinition
     }
 
     /**
-     * @return null|string
+     * @return null|string|string[]
      */
     public function hostname()
     {
@@ -80,7 +80,7 @@ class RouteDefinition
     }
 
     /**
-     * @return null|string
+     * @return null|string|string[]
      */
     public function method()
     {
@@ -112,7 +112,7 @@ class RouteDefinition
     }
 
     /**
-     * @return string
+     * @return null|string|string[]
      */
     public function scheme()
     {
@@ -128,7 +128,7 @@ class RouteDefinition
     }
 
     /**
-     * @return array
+     * @return bool
      */
     public function wildcard()
     {

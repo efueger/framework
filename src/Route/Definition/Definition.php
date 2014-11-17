@@ -96,7 +96,7 @@ interface Definition
     function constraints();
 
     /**
-     * @return array|callable|string
+     * @return array|callable|object|string
      */
     function controller();
 
@@ -106,7 +106,7 @@ interface Definition
     function defaults();
 
     /**
-     * @return array|string
+     * @return null|string|string[]
      */
     function hostname();
 
@@ -121,7 +121,7 @@ interface Definition
     function name();
 
     /**
-     * @return string
+     * @return array
      */
     function paramMap();
 
@@ -136,7 +136,7 @@ interface Definition
     function route();
 
     /**
-     * @return string
+     * @return null|string|string[]
      */
     function scheme();
 
@@ -146,7 +146,7 @@ interface Definition
     function tokens();
 
     /**
-     * @return true
+     * @return bool
      */
     function wildcard();
 }
