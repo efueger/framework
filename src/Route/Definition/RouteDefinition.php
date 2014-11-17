@@ -14,10 +14,10 @@ class RouteDefinition
 
     /**
      * @param $name
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @return void
      */
-    public function add($name, Definition $definition)
+    public function add($name, $definition)
     {
         $this->config[self::CHILDREN][$name] = $definition;
     }

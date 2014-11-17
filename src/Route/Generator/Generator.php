@@ -35,7 +35,7 @@ class Generator
     }
 
     /**
-     * @param $name
+     * @param array|string $name
      * @param array $args
      * @param Definition $definition
      * @return string|void
@@ -43,17 +43,19 @@ class Generator
      */
     protected function build($name, array $args = [], Definition $definition = null)
     {
-        $names = explode('/', $name, 2);
+        $name = is_array($name) ? $name : explode('/', $name);
 
-        $definition = $definition ? $definition->child($names[0]) : $this->definition($names[0]);
+        $definition = $definition ? $this->create($definition->child($name[0])) : $this->create($this->child($name[0]));
 
         if (!$definition) {
-            throw new Exception('Route generator definition not found: ' . $names[0]);
+            throw new Exception('Route generator definition not found: ' . $name[0]);
         }
+
+        array_shift($name);
 
         $url = $this->compile($definition->tokens(), $args, $definition->defaults());
 
-        isset($names[1]) && $url .= $this->build($names[1], $args, $definition);
+        $name && $url .= $this->build($name, $args, $definition);
 
         if ($args && $definition->wildcard()) {
             foreach(array_diff_key($args, $definition->constraints()) as $key => $value) {
@@ -167,9 +169,9 @@ class Generator
      * @param $name
      * @return Definition
      */
-    protected function definition($name)
+    protected function child($name)
     {
-        return $this->create($this->config->child($name)) ?: $name;
+        return $this->config->child($name);
     }
 
     /**

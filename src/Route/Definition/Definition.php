@@ -74,10 +74,10 @@ interface Definition
 
     /**
      * @param $name
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @return void
      */
-    function add($name, Definition $definition);
+    function add($name, $definition);
 
     /**
      * @param string $name

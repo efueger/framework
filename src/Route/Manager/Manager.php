@@ -4,7 +4,6 @@ namespace Framework\Route\Manager;
 
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
-use Framework\Route\Create\RouteCreator;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Router\RouteDispatch;
 use Framework\Route\Match\RouteMatch;

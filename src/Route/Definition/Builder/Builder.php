@@ -19,13 +19,11 @@ class Builder
      * @param array $definition
      * @param array $path
      * @param callable $callback
-     * @param bool $start
      * @return Definition
      * @throws Exception
      */
-    public static function add(
-        Definition $parent, array $definition, array $path, callable $callback = null, $start = false
-    ) {
+    public static function add(Definition $parent, array $definition, array $path, callable $callback = null)
+    {
         $root = $parent->child($path[0]);
 
         if (!$root) {
@@ -33,15 +31,24 @@ class Builder
                 throw new Exception('Parent definition not found: ' . $definition[Definition::NAME]);
             }
 
-            return $callback($parent, static::definition($definition), $path[0], $start);
+            $definition = static::definition($definition);
+
+            $parent->add($path[0], $definition);
+
+            $callback && $callback($definition);
+
+            return $definition;
         }
 
         array_shift($path);
 
-        !isset($path[1]) && $definition[Definition::ROUTE] = '/' . $path[0]
-            . (isset($definition[Definition::ROUTE]) ? $definition[Definition::ROUTE] : null);
+        if (!isset($path[1])) {
+            $definition[Definition::NAME]  = $path[0];
+            $definition[Definition::ROUTE] = '/' . $path[0]
+                . (isset($definition[Definition::ROUTE]) ? $definition[Definition::ROUTE] : null);
+        }
 
-        return static::add($root, $definition, $path, $callback);
+        return static::add($root, $definition, $path);
     }
 
     /**
