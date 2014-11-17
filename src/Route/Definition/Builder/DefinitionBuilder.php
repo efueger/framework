@@ -35,10 +35,10 @@ interface DefinitionBuilder
     static function children(array $definitions);
 
     /**
-     * @param $definition
+     * @param array $definition
      * @return Definition
      */
-    static function definition($definition);
+    static function definition(array $definition);
 
     /**
      * @param array $definitions

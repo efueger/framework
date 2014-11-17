@@ -31,10 +31,10 @@ class Builder
     }
 
     /**
-     * @param $definition
+     * @param array $definition
      * @return Definition
      */
-    public static function definition($definition)
+    public static function definition(array $definition)
     {
         $tokens = static::tokens($definition[Definition::ROUTE]);
 
