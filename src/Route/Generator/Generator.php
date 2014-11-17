@@ -15,16 +15,23 @@ class Generator
     implements RouteGenerator
 {
     /**
+     * @var callable
+     */
+    protected $callback;
+
+    /**
      * @var Definition
      */
     protected $config;
 
     /**
      * @param Definition $config
+     * @param callable $callback
      */
-    public function __construct(Definition $config)
+    public function __construct(Definition $config, callable $callback = null)
     {
-        $this->config = $config;
+        $this->callback = $callback;
+        $this->config   = $config;
     }
 
     /**
@@ -147,12 +154,22 @@ class Generator
     }
 
     /**
+     * @param array|Definition $definition
+     * @return array|Definition
+     */
+    protected function create($definition)
+    {
+        return $definition instanceof Definition ? $definition
+            : ($this->callback ? call_user_func($this->callback, [$definition]) : null);
+    }
+
+    /**
      * @param $name
      * @return Definition
      */
     protected function definition($name)
     {
-        return $this->config->child($name);
+        return $this->create($this->config->child($name)) ?: $name;
     }
 
     /**

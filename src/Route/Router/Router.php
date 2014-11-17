@@ -15,14 +15,14 @@ class Router
     use ManageRoute;
 
     /**
-     * @var Definition
+     * @var array|Definition
      */
     protected $definition;
 
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      */
-    public function __construct(Definition $definition)
+    public function __construct($definition)
     {
         $this->definition = $definition;
     }
@@ -41,7 +41,7 @@ class Router
         }
 
         foreach($definition->children() as $definition) {
-            if ($match = $this->dispatch($route, $definition)) {
+            if ($match = $this->dispatch($route, $this->definition($definition))) {
                 return $match;
             }
         }
@@ -55,6 +55,6 @@ class Router
      */
     public function __invoke(Route $route)
     {
-        return $this->dispatch($route, $this->definition);
+        return $this->dispatch($route, $this->definition($this->definition));
     }
 }

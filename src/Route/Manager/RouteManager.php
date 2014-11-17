@@ -9,6 +9,12 @@ interface RouteManager
 {
     /**
      * @param Definition $definition
+     * @return Definition
+     */
+    public function definition($definition);
+
+    /**
+     * @param Definition $definition
      * @param Route $route
      * @return Route
      */

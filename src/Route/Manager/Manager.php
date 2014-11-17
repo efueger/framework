@@ -4,6 +4,7 @@ namespace Framework\Route\Manager;
 
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
+use Framework\Route\Create\RouteCreator;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Router\RouteDispatch;
 use Framework\Route\Match\RouteMatch;
@@ -17,6 +18,16 @@ class Manager
      *
      */
     use Events;
+
+    /**
+     * @param Definition $definition
+     * @return Definition
+     */
+    public function definition($definition)
+    {
+        return $definition instanceof Definition ? $definition
+                    : $this->call('route:create', [Args::DEFINITION => $definition]);
+    }
 
     /**
      * @param Definition $definition

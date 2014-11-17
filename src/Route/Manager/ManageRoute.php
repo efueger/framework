@@ -14,6 +14,15 @@ trait ManageRoute
 
     /**
      * @param Definition $definition
+     * @return Definition
+     */
+    public function definition($definition)
+    {
+        return $this->rm->definition($definition);
+    }
+
+    /**
+     * @param Definition $definition
      * @param Route $route
      * @return Route
      */

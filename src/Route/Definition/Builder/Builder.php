@@ -235,4 +235,13 @@ class Builder
 
         return $tokens;
     }
+
+    /**
+     * @param array $definition
+     * @return Definition
+     */
+    public static function __invoke(array $definition)
+    {
+        return static::definition($definition);
+    }
 }
