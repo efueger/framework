@@ -25,7 +25,7 @@ class Builder
      * @return Definition
      * @throws Exception
      */
-    public static function attach(
+    public static function add(
         Definition $parent, array $definition, array $path, callable $callback = null, $start = false
     ) {
         $root = $parent->child($path[0]);
@@ -43,7 +43,7 @@ class Builder
         !isset($path[1]) && $definition[Definition::ROUTE] = '/' . $path[0]
             . (isset($definition[Definition::ROUTE]) ? $definition[Definition::ROUTE] : null);
 
-        return static::attach($root, $definition, $path, $callback);
+        return static::add($root, $definition, $path, $callback);
     }
 
     /**
