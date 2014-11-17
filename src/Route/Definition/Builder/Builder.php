@@ -35,7 +35,7 @@ class Builder
                 throw new Exception('Parent definition not found: ' . $definition[Definition::NAME]);
             }
 
-            return $callback($parent, Builder::definition($definition), $path[0], $start);
+            return $callback($parent, static::definition($definition), $path[0], $start);
         }
 
         array_shift($path);
