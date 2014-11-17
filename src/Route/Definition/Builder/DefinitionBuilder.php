@@ -38,9 +38,7 @@ interface DefinitionBuilder
      * @return Definition
      * @throws Exception
      */
-    static function addDefinition(
-        Definition $parent, array $definition, array $path, callable $callback = null, $start = false
-    );
+    static function attach(Definition $parent, array $definition, array $path, callable $callback = null, $start = false);
 
     /**
      * @param array $definitions
