@@ -53,12 +53,6 @@ interface DefinitionBuilder
     static function definition(array $definition);
 
     /**
-     * @param array $definitions
-     * @return Configuration
-     */
-    static function definitions(array $definitions);
-
-    /**
      * @param array $tokens
      * @return array
      */

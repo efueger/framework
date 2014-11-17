@@ -3,8 +3,6 @@
 namespace Framework\Route\Definition\Builder;
 
 use Exception;
-use Framework\Config\Config;
-use Framework\Config\Configuration;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Definition\RouteDefinition;
 use RuntimeException;
@@ -67,7 +65,7 @@ class Builder
      */
     public static function definition(array $definition)
     {
-        $tokens = static::tokens($definition[Definition::ROUTE]);
+        $tokens = isset($definition[Definition::ROUTE]) ? static::tokens($definition[Definition::ROUTE]) : [];
 
         $definition = array_merge(
             $definition,
@@ -78,22 +76,10 @@ class Builder
             ]
         );
 
-        if (empty($definition[Definition::CHILDREN])) {
-            return new RouteDefinition($definition);
-        }
-
-        $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
+        !empty($definition[Definition::CHILDREN])
+            && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
 
         return new RouteDefinition($definition);
-    }
-
-    /**
-     * @param array $definitions
-     * @return Configuration
-     */
-    public static function definitions(array $definitions)
-    {
-        return new Config(static::children($definitions));
     }
 
     /**
