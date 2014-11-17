@@ -15,6 +15,7 @@ class RouteDefinition
     /**
      * @param $name
      * @param Definition $definition
+     * @return void
      */
     public function add($name, Definition $definition)
     {

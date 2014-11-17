@@ -75,6 +75,7 @@ interface Definition
     /**
      * @param $name
      * @param Definition $definition
+     * @return void
      */
     function add($name, Definition $definition);
 
