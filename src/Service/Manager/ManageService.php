@@ -17,7 +17,7 @@ trait ManageService
     use Initializer;
 
     /**
-     * @param array|object|string $config
+     * @param array|\Closure|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object
