@@ -254,7 +254,7 @@ trait Resolver
         $value = $this->config()->get(array_shift($name));
 
         foreach($name as $n) {
-            $value = $value instanceof Configuration ? $value->get($n) : $value[$n];
+            $value = $value[$n];
         }
 
         return $value;
