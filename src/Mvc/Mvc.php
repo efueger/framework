@@ -28,7 +28,7 @@ class Mvc
             Args::EVENT      => $this,
             Args::RESPONSE   => $this->response(),
             Args::ROUTE      => $this->route(),
-            Args::MODEL      => $this->model() ?: null,
+            Args::MODEL      => $this->model(),
             Args::CONTROLLER => $this->controller()
         ];
     }
