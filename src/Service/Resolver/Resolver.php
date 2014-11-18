@@ -274,13 +274,13 @@ trait Resolver
      */
     protected function provide(Config $config, array $args = [])
     {
-        $name   = $this->string($config->name());
+        $name   = $this->solve($config->name());
         $parent = $this->configured($name);
 
         !$args && $args = $config->args();
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->newInstanceArgs($this->string($parent), $args));
+            return $this->hydrate($config, $this->newInstanceArgs($this->solve($parent), $args));
         }
 
         if (!$parent || $name == $parent->name()) {
@@ -362,9 +362,9 @@ trait Resolver
      * @param $config
      * @return string
      */
-    protected function string($config)
+    protected function solve($config)
     {
-        return $config instanceof Resolvable ? $this->string($this->resolve($config)) : $config;
+        return $config instanceof Resolvable ? $this->solve($this->resolve($config)) : $config;
     }
 
     /**
