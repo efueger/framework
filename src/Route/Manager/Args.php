@@ -7,5 +7,10 @@ interface Args
     /**
      *
      */
+    const CREATE = 'route:create';
+
+    /**
+     *
+     */
     const DEFINITION = 'definition';
 }

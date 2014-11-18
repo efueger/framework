@@ -25,7 +25,7 @@ class Manager
     public function definition($definition)
     {
         return $definition instanceof Definition ? $definition
-                    : $this->call('route:create', [Args::DEFINITION => $definition]);
+            : $this->call(Args::CREATE, [Args::DEFINITION => $definition]);
     }
 
     /**
