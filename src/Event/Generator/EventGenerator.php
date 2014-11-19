@@ -5,6 +5,7 @@ namespace Framework\Event\Generator;
 use Framework\Event\Config\Configuration;
 use Framework\Event\Event;
 use Generator;
+use Traversable;
 
 trait EventGenerator
 {
@@ -47,11 +48,10 @@ trait EventGenerator
      */
     protected function queue($event)
     {
-        foreach($this->listeners()->queue($event instanceof Event ? $event->event() : (string) $event) as $listeners) {
-            foreach($listeners as $listener) {
-                yield $this->listener($listener);
-            }
-        }
+        return $this->traverse(
+            $event instanceof Traversable ? $event
+                : $this->listeners()->queue($event instanceof Event ? $event->event() : (string) $event)
+        );
     }
 
     /**
@@ -73,4 +73,17 @@ trait EventGenerator
      * @return mixed
      */
     protected abstract function signal(callable $listener, array $args = [], callable $callback = null);
+
+    /**
+     * @param array|Traversable $iterator
+     * @return Generator
+     */
+    protected function traverse($iterator)
+    {
+        foreach($iterator as $listeners) {
+            foreach($listeners as $listener) {
+                yield $this->listener($listener);
+            }
+        }
+    }
 }

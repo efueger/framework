@@ -2,8 +2,11 @@
 
 namespace Framework\Config;
 
+use Countable;
+use Iterator;
+
 class Config
-    implements Configuration
+    implements Configuration, Countable, Iterator
 {
     /**
      *

@@ -2,10 +2,12 @@
 
 namespace Framework\View\Model;
 
+use Countable;
+use Iterator;
 use Framework\Config\Configuration;
 
 interface ViewModel
-    extends Configuration
+    extends Configuration, Countable, Iterator
 {
     /**
      *

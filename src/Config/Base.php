@@ -23,6 +23,22 @@ trait Base
     }
 
     /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->config);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function current()
+    {
+        return current($this->config);
+    }
+
+    /**
      * @param string $name
      * @return mixed
      */
@@ -41,12 +57,36 @@ trait Base
     }
 
     /**
+     * @return mixed
+     */
+    public function key()
+    {
+        return key($this->config);
+    }
+
+    /**
+     * @return mixed|void
+     */
+    public function next()
+    {
+        return next($this->config);
+    }
+
+    /**
      * @param string $name
      * @return void
      */
     public function remove($name)
     {
         unset($this->config[$name]);
+    }
+
+    /**
+     *
+     */
+    public function rewind()
+    {
+        reset($this->config);
     }
 
     /**
@@ -57,5 +97,13 @@ trait Base
     public function set($name, $config)
     {
         $this->config[$name] = $config;
+    }
+
+    /**
+     * @return bool
+     */
+    public function valid()
+    {
+        return $this->current() !== false;
     }
 }

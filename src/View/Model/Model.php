@@ -5,7 +5,7 @@ namespace Framework\View\Model;
 use Framework\View\ViewPlugin;
 
 class Model
-    implements ViewModel, Plugin
+    implements Plugin, ViewModel
 {
     /**
      *

@@ -59,7 +59,7 @@ class Generator
 
         if ($args && $definition->wildcard()) {
             foreach(array_diff_key($args, $definition->constraints()) as $key => $value) {
-                $url .= '/' . $key . '/' . $value;
+                null !== $value && $url .= '/' . $key . '/' . $value;
             }
         }
 
