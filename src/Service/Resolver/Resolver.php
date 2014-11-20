@@ -61,7 +61,8 @@ trait Resolver
     public function call($config, array $args = [], callable $callback = null)
     {
         if (!is_string($config)) {
-            return $this->invoke($config, $args, $callback);
+            return $config instanceof Event ? $this->trigger($config, $args, $callback ?: $this)
+                : $this->invoke($config, $args, $callback);
         }
 
         $config = explode(Args::CALL_SEPARATOR, $config);

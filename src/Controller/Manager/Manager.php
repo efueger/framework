@@ -24,7 +24,7 @@ class Manager
      */
     public function action(callable $controller, array $args = [])
     {
-        return $this->signal($controller, $args, $this);
+        return $this->call($controller, $args, $this);
     }
 
     /**
