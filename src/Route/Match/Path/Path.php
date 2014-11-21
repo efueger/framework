@@ -14,7 +14,7 @@ class Path
      * @param array $constraints
      * @return array
      */
-    protected function constraints(array $paramMap, array $matches, array $constraints)
+    protected function params(array $paramMap, array $matches, array $constraints)
     {
         $matched = [];
 
@@ -32,23 +32,15 @@ class Path
             }
         }
 
-        return $matched;
-    }
-
-    /**
-     * @param array $paramMap
-     * @param array $matches
-     * @return array
-     */
-    protected function params(array $paramMap, array $matches)
-    {
-        $params = [];
-
-        foreach($paramMap as $name => $param) {
-            !empty($matches[$name]) && $params[$param] = $matches[$name];
+        if ($constraints && count($constraints) != count($matched)) {
+            return [];
         }
 
-        return $params;
+        foreach($paramMap as $name => $param) {
+            !isset($matched[$name]) && !empty($matches[$name]) && $matched[$name] = $matches[$name];
+        }
+
+        return $matched;
     }
 
     /**
@@ -62,7 +54,7 @@ class Path
             return null;
         }
 
-        $params = $this->constraints($definition->paramMap(), $matches, $definition->constraints());
+        $params = $this->params($definition->paramMap(), $matches, $definition->constraints());
 
         if ($definition->constraints() && !$params) {
             return null;
@@ -72,7 +64,7 @@ class Path
         $route->set(Route::LENGTH,     $route->length() + strlen($matches[0]));
         $route->set(Route::MATCHED,    $route->length() == strlen($route->path()));
         $route->set(Route::NAME,       (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
-        $route->set(Route::PARAMS,     $params + $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
+        $route->set(Route::PARAMS,     $params + $definition->defaults() + $route->params());
 
         return $route;
     }
