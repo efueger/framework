@@ -11,17 +11,44 @@ class Path
     /**
      * @param array $paramMap
      * @param array $matches
+     * @param array $constraints
+     * @return array
+     */
+    protected function constraints(array $paramMap, array $matches, array $constraints)
+    {
+        $matched = [];
+
+        foreach($constraints as $name => $constraint) {
+            foreach($paramMap as $param => $key) {
+                if ($key !== $name || !isset($matches[$param])) {
+                    continue;
+                }
+
+                if (!preg_match('(\G' . $constraint . ')', $matches[$param])) {
+                    return [];
+                }
+
+                $matched[$param] = $matches[$param];
+            }
+        }
+
+        return $matched;
+    }
+
+    /**
+     * @param array $paramMap
+     * @param array $matches
      * @return array
      */
     protected function params(array $paramMap, array $matches)
     {
-        $matched = [];
+        $params = [];
 
         foreach($paramMap as $name => $param) {
-            !empty($matches[$name]) && $matched[$param] = $matches[$name];
+            !empty($matches[$name]) && $params[$param] = $matches[$name];
         }
 
-        return $matched;
+        return $params;
     }
 
     /**
@@ -35,11 +62,17 @@ class Path
             return null;
         }
 
+        $params = $this->constraints($definition->paramMap(), $matches, $definition->constraints());
+
+        if ($definition->constraints() && !$params) {
+            return null;
+        }
+
         $route->set(Route::CONTROLLER, $definition->controller());
         $route->set(Route::LENGTH,     $route->length() + strlen($matches[0]));
         $route->set(Route::MATCHED,    $route->length() == strlen($route->path()));
         $route->set(Route::NAME,       (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
-        $route->set(Route::PARAMS,     $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
+        $route->set(Route::PARAMS,     $params + $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
 
         return $route;
     }
