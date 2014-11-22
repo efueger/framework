@@ -25,31 +25,29 @@ class Builder
     {
         $root = $parent->child($path[0]);
 
-        if (!$root) {
-            if (isset($path[1])) {
-                throw new RuntimeException('Parent definition not found: ' . $definition[Definition::NAME]);
-            }
-
-            $definition[Definition::NAME] = $path[0];
-
-            $callback && empty($definition[Definition::ROUTE])
-                && $definition[Definition::ROUTE] = '/'
-                    . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
-
-            !$callback && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
-
-            $definition = static::definition($definition);
-
-            $parent->add($path[0], $definition);
-
-            $callback && $callback($definition);
-
-            return $definition;
+        if ($root) {
+            return static::add($root, $definition, array_slice($path, 1));
         }
 
-        array_shift($path);
+        if (isset($path[1])) {
+            throw new RuntimeException('Parent definition not found: ' . $definition[Definition::NAME]);
+        }
 
-        return static::add($root, $definition, $path);
+        $definition[Definition::NAME] = $path[0];
+
+        $callback && empty($definition[Definition::ROUTE])
+            && $definition[Definition::ROUTE] = '/'
+                . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
+
+        !$callback && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
+
+        $definition = static::definition($definition);
+
+        $parent->add($path[0], $definition);
+
+        $callback && $callback($definition);
+
+        return $definition;
     }
 
     /**
