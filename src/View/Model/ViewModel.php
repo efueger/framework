@@ -3,8 +3,8 @@
 namespace Framework\View\Model;
 
 use Countable;
-use Iterator;
 use Framework\Config\Configuration;
+use Iterator;
 
 interface ViewModel
     extends Configuration, Countable, Iterator
