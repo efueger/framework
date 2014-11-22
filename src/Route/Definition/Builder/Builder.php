@@ -23,9 +23,7 @@ class Builder
      */
     public static function add(Definition $parent, array $definition, array $path, callable $callback = null)
     {
-        $root = $parent->child($path[0]);
-
-        if ($root) {
+        if ($root = $parent->child($path[0])) {
             return static::add($root, $definition, array_slice($path, 1));
         }
 
