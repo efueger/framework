@@ -2,11 +2,11 @@
 
 namespace Framework\Mvc;
 
+use Framework\Config\Configuration;
 use Framework\Event\Base as Event;
-use Framework\Service\Resolver\Signal;
 use Framework\Response\Response;
 use Framework\Route\Route;
-use Framework\Config\Configuration;
+use Framework\Service\Resolver\Signal;
 
 trait Base
 {
