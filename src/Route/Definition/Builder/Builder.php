@@ -58,9 +58,7 @@ class Builder
     public static function children(array $definitions)
     {
         foreach($definitions as $name => $definition) {
-            if (!$definition instanceof Definition) {
-                $definitions[$name] = static::definition($definition);
-            }
+            !$definition instanceof Definition && $definitions[$name] = static::definition($definition);
         }
 
         return $definitions;
@@ -79,7 +77,8 @@ class Builder
                 && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
 
         !isset($definition[Definition::REGEX])
-            && $definition[Definition::REGEX] = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
+            && $definition[Definition::REGEX]
+                = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
         !isset($definition[Definition::PARAM_MAP])
             && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
@@ -100,9 +99,7 @@ class Builder
         $map   = [];
 
         foreach($tokens as $token) {
-            if ('parameter' == $token[self::TYPE]) {
-                $map['param' . $index++] = $token[self::NAME];
-            }
+            'parameter' == $token[self::TYPE] && $map['param' . $index++] = $token[self::NAME];
         }
 
         return $map;
@@ -116,52 +113,42 @@ class Builder
      */
     public static function regex($tokens, $constraints, $delimiter = '/')
     {
+        $delimiter  = preg_quote($delimiter);
         $groupIndex = 1;
-        $quotedDelimiter = preg_quote($delimiter);
-        $regex = '';
+        $regex      = '';
 
         foreach($tokens as $token) {
-            switch($token[self::TYPE]) {
-                case 'literal':
+            if ('literal' === $token[self::TYPE]) {
+                $regex .= preg_quote($token[self::LITERAL]);
+                continue;
+            }
 
-                    $regex .= preg_quote($token[self::LITERAL]);
+            if ('parameter' === $token[self::TYPE]) {
+                $groupName = '?P<param' . $groupIndex++ . '>';
 
-                    break;
-                case 'parameter':
+                if (isset($constraints[$token[self::NAME]])) {
+                    $regex .= '(' . $groupName . $constraints[$token[self::NAME]] . ')';
+                    continue;
+                }
 
-                    $groupName = '?P<param' . $groupIndex++ . '>';
+                if (null === $token[self::DELIMITERS]) {
+                    $regex .= '(' . $groupName . '[^' . $delimiter . ']+)';
+                    continue;
+                }
 
-                    switch(true) {
-                        default:
+                $regex .= '(' . $groupName . '[^' . $token[self::DELIMITERS] . ']+)';
 
-                            $regex .= '(' . $groupName . '[^' . $token[self::DELIMITERS] . ']+)';
+                continue;
+            }
 
-                            break;
+            if ('optional-start' === $token[self::TYPE]) {
+                $regex .= '(?:';
+                continue;
+            }
 
-                        case isset($constraints[$token[self::NAME]]):
-
-                            $regex .= '(' . $groupName . $constraints[$token[self::NAME]] . ')';
-
-                            break;
-
-                        case null === $token[self::DELIMITERS]:
-
-                            $regex .= '(' . $groupName . '[^' . $quotedDelimiter . ']+)';
-
-                            break;
-                    }
-
-                    break;
-                case 'optional-start':
-
-                    $regex .= '(?:';
-
-                    break;
-                case 'optional-end':
-
-                    $regex .= ')?';
-
-                    break;
+            if ('optional-end' === $token[self::TYPE]) {
+                $regex .= ')?';
+                continue;
             }
         }
 
@@ -177,10 +164,10 @@ class Builder
     public static function tokens($subject, $delimiter = '/')
     {
         $currentPos = 0;
-        $length = strlen($subject);
-        $tokens = [];
-        $level = 0;
-        $quotedDelimiter = preg_quote($delimiter);
+        $delimiter  = preg_quote($delimiter);
+        $length     = strlen($subject);
+        $level      = 0;
+        $tokens     = [];
 
         while($currentPos < $length) {
 
@@ -188,53 +175,42 @@ class Builder
 
             $currentPos += strlen($matches[0]);
 
-            if (!empty($matches['literal'])) {
-                $tokens[] = ['literal', $matches['literal']];
+            !empty($matches['literal']) && $tokens[] = ['literal', $matches['literal']];
+
+            if (':' === $matches['token']) {
+                $pattern = '(\G(?P<name>[^:' . $delimiter . '{\[\]]+)(?:{(?P<delimiters>[^}]+)})?:?)';
+                $result  = preg_match($pattern, $subject, $matches, 0, $currentPos);
+
+                if (!$result) {
+                    throw new RuntimeException('Found empty parameter name');
+                }
+
+                $tokens[] = [
+                    'parameter',
+                    $matches['name'],
+                    isset($matches['delimiters']) ? $matches['delimiters'] : null
+                ];
+
+                $currentPos += strlen($matches[0]);
+
+                continue;
             }
 
-            switch(true) {
-                default:
-                    break 2;
+            if ('[' === $matches['token']) {
+                $tokens[] = array('optional-start');
+                $level++;
+                continue;
+            }
 
-                case $matches['token'] === ':':
+            if (']' === $matches['token']) {
+                $tokens[] = array('optional-end');
 
-                    $pattern = '(\G(?P<name>[^:' . $quotedDelimiter . '{\[\]]+)(?:{(?P<delimiters>[^}]+)})?:?)';
+                $level--;
 
-                    $result = preg_match($pattern, $subject, $matches, 0, $currentPos);
-
-                    if (!$result) {
-                        throw new RuntimeException('Found empty parameter name');
-                    }
-
-                    $tokens[] = [
-                        'parameter',
-                        $matches['name'],
-                        isset($matches['delimiters']) ? $matches['delimiters'] : null
-                    ];
-
-                    $currentPos += strlen($matches[0]);
-
-                    break;
-
-                case $matches['token'] === '[':
-
-                    $tokens[] = array('optional-start');
-
-                    $level++;
-
-                    break;
-
-                case $matches['token'] === ']':
-
-                    $tokens[] = array('optional-end');
-
-                    $level--;
-
-                    if ($level < 0) {
-                        throw new RuntimeException('Found closing bracket without matching opening bracket');
-                    }
-
-                    break;
+                if ($level < 0) {
+                    throw new RuntimeException('Found closing bracket without matching opening bracket');
+                }
+                continue;
             }
         }
 
