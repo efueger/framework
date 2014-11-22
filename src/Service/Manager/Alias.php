@@ -19,9 +19,9 @@ trait Alias
     }
 
     /**
-     * @param array $alias
+     * @param array|\ArrayAccess $alias
      */
-    public function aliases(array $alias)
+    public function aliases($alias)
     {
         $this->alias = $alias;
     }

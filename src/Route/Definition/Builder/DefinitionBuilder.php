@@ -29,6 +29,11 @@ interface DefinitionBuilder
     const DELIMITERS = 2;
 
     /**
+     * @param array $definition
+     */
+    function add(array $definition);
+
+    /**
      * @param Definition $parent
      * @param array $definition
      * @param array $path
@@ -36,7 +41,7 @@ interface DefinitionBuilder
      * @return Definition
      * @throws Exception
      */
-    static function add(Definition $parent, array $definition, array $path, callable $callback = null);
+    static function addChild(Definition $parent, array $definition, array $path, callable $callback = null);
 
     /**
      * @param array $definitions

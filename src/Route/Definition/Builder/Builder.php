@@ -2,8 +2,10 @@
 
 namespace Framework\Route\Definition\Builder;
 
+use Framework\Config\Configuration;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Definition\RouteDefinition;
+use Framework\Service\Config\Router\Router;
 use RuntimeException;
 
 /**
@@ -14,6 +16,31 @@ class Builder
     implements DefinitionBuilder
 {
     /**
+     * @var Configuration
+     */
+    protected $routes;
+
+    /**
+     * @param Configuration $routes
+     */
+    public function __construct(Configuration $routes)
+    {
+        $this->routes = $routes;
+    }
+
+    public function add(array $definition)
+    {
+        return $this->addChild(
+            $this->routes[Args::DEFINITIONS],
+            $definition,
+            explode('/', $definition[Definition::NAME]),
+            function($definition) {
+                $this->routes[Args::EVENTS]->add(Args::ROUTE_DISPATCH, new Router($definition));
+            }
+        );
+    }
+
+    /**
      * @param Definition $parent
      * @param array $definition
      * @param array $path
@@ -21,10 +48,10 @@ class Builder
      * @return Definition
      * @throws RuntimeException
      */
-    public static function add(Definition $parent, array $definition, array $path, callable $callback = null)
+    public static function addChild(Definition $parent, array $definition, array $path, callable $callback = null)
     {
         if ($root = $parent->child($path[0])) {
-            return static::add($root, $definition, array_slice($path, 1));
+            return static::addChild($root, $definition, array_slice($path, 1));
         }
 
         if (isset($path[1])) {
