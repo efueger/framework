@@ -4,8 +4,8 @@ namespace Framework\Mvc\View;
 
 use Exception;
 use Framework\Response\Response;
-use Framework\View\Model\ViewModel;
 use Framework\View\Manager\ManageView;
+use Framework\View\Model\ViewModel;
 
 class Renderer
     implements Render

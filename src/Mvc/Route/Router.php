@@ -2,8 +2,8 @@
 
 namespace Framework\Mvc\Route;
 
-use Framework\Route\Route;
 use Framework\Route\Manager\ManageRoute;
+use Framework\Route\Route;
 
 class Router
     implements Dispatch

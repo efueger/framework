@@ -3,8 +3,8 @@
 namespace Framework\Mvc\Response;
 
 use Exception;
-use Framework\Response\Response;
 use Framework\Response\Manager\ManageResponse;
+use Framework\Response\Response;
 
 class Dispatcher
     implements Dispatch
