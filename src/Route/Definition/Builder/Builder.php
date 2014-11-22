@@ -2,7 +2,6 @@
 
 namespace Framework\Route\Definition\Builder;
 
-use Exception;
 use Framework\Route\Definition\Definition;
 use Framework\Route\Definition\RouteDefinition;
 use RuntimeException;
@@ -20,7 +19,7 @@ class Builder
      * @param array $path
      * @param callable $callback
      * @return Definition
-     * @throws Exception
+     * @throws RuntimeException
      */
     public static function add(Definition $parent, array $definition, array $path, callable $callback = null)
     {
@@ -28,8 +27,16 @@ class Builder
 
         if (!$root) {
             if (isset($path[1])) {
-                throw new Exception('Parent definition not found: ' . $definition[Definition::NAME]);
+                throw new RuntimeException('Parent definition not found: ' . $definition[Definition::NAME]);
             }
+
+            $definition[Definition::NAME] = $path[0];
+
+            $callback && empty($definition[Definition::ROUTE])
+                && $definition[Definition::ROUTE] = '/'
+                    . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
+
+            !$callback && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
 
             $definition = static::definition($definition);
 
@@ -41,12 +48,6 @@ class Builder
         }
 
         array_shift($path);
-
-        if (!isset($path[1])) {
-            $definition[Definition::NAME]  = $path[0];
-            $definition[Definition::ROUTE] = '/' . $path[0]
-                . (isset($definition[Definition::ROUTE]) ? $definition[Definition::ROUTE] : null);
-        }
 
         return static::add($root, $definition, $path);
     }
@@ -70,10 +71,13 @@ class Builder
      */
     public static function definition(array $definition)
     {
+        if (!isset($definition[Definition::ROUTE])) {
+            throw new RuntimeException('Route not specified');
+        }
+
         !isset($definition[Definition::CONSTRAINTS]) && $definition[Definition::CONSTRAINTS] = [];
 
         !isset($definition[Definition::TOKENS])
-            && isset($definition[Definition::ROUTE])
                 && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
 
         !isset($definition[Definition::REGEX])
