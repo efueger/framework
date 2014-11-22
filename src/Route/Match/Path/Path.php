@@ -28,7 +28,7 @@ class Path
                     return [];
                 }
 
-                $matched[$param] = $matches[$param];
+                $matched[$name] = $matches[$param];
             }
         }
 
@@ -37,7 +37,7 @@ class Path
         }
 
         foreach($paramMap as $name => $param) {
-            !isset($matched[$name]) && !empty($matches[$name]) && $matched[$name] = $matches[$name];
+            !isset($matched[$name]) && !empty($matches[$name]) && $matched[$param] = $matches[$name];
         }
 
         return $matched;
