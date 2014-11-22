@@ -72,16 +72,17 @@ class Builder
      */
     public static function definition(array $definition)
     {
-        $tokens = isset($definition[Definition::ROUTE]) ? static::tokens($definition[Definition::ROUTE]) : [];
+        !isset($definition[Definition::CONSTRAINTS]) && $definition[Definition::CONSTRAINTS] = [];
 
-        $definition = array_merge(
-            $definition,
-            [
-                Definition::PARAM_MAP => static::paramMap($tokens),
-                Definition::REGEX     => static::regex($tokens),
-                Definition::TOKENS    => $tokens
-            ]
-        );
+        !isset($definition[Definition::TOKENS])
+            && isset($definition[Definition::ROUTE])
+                && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
+
+        !isset($definition[Definition::REGEX])
+            && $definition[Definition::REGEX] = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
+
+        !isset($definition[Definition::PARAM_MAP])
+            && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
 
         !empty($definition[Definition::CHILDREN])
             && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
@@ -109,10 +110,11 @@ class Builder
 
     /**
      * @param array $tokens
+     * @param array $constraints
      * @param string $delimiter
      * @return array
      */
-    public static function regex($tokens, $delimiter = '/')
+    public static function regex($tokens, $constraints, $delimiter = '/')
     {
         $groupIndex = 1;
         $quotedDelimiter = preg_quote($delimiter);

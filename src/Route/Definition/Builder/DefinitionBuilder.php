@@ -58,10 +58,11 @@ interface DefinitionBuilder
 
     /**
      * @param array $tokens
+     * @param array $constraints
      * @param string $delimiter
      * @return array
      */
-    static function regex($tokens, $delimiter = '/');
+    static function regex($tokens, $constraints, $delimiter = '/');
 
     /**
      * @param $pattern
