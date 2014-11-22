@@ -115,7 +115,7 @@ class Builder
      * @param string $delimiter
      * @return array
      */
-    public static function regex($tokens, $constraints, $delimiter = '/')
+    public static function regex(array $tokens, array $constraints = [], $delimiter = '/')
     {
         $delimiter  = preg_quote($delimiter);
         $groupIndex = 1;
