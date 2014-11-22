@@ -2,8 +2,8 @@
 
 namespace Framework\Controller\Action;
 
-use Framework\Config\Configuration;
 use Framework\Config\Base as Config;
+use Framework\Config\Configuration;
 use Framework\Event\Base;
 use Framework\Event\Event;
 use Framework\Response\Response;
