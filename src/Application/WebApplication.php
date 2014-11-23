@@ -23,11 +23,11 @@ interface WebApplication
     function param($name);
 
     /**
-     * @param array|string $name
+     * @param array|string $route
      * @param array|string|callable|object $controller
      * @return Definition
      */
-    function route($name, $controller = null);
+    function route($route, $controller = null);
 
     /**
      * @param array $args

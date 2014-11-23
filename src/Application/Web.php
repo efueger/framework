@@ -89,22 +89,21 @@ class Web
     }
 
     /**
-     * @param array|string $name
+     * @param array|string $route
      * @param array|string|callable|object $controller
      * @return Definition
      */
-    public function route($name, $controller = null)
+    public function route($route, $controller = null)
     {
-        if (is_string($name)) {
-            $name = explode(':', $name, 2);
-            $name = [
-                'name'       => $name[0],
-                'route'      => isset($name[1]) ? $name[1] : null,
-                'controller' => $controller
-            ];
-        }
+        is_string($route) && $route = [$route];
 
-        return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => $name]);
+        return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [
+                'name'        => $route[0],
+                'route'       => isset($route[1]) ? $route[1] : null,
+                'constraints' => isset($route[2]) ? $route[2] : null,
+                'controller'  => $controller
+            ]
+        ]);
     }
 
     /**
