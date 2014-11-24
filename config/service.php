@@ -78,27 +78,12 @@ return [
         Framework\Mvc\Response\Dispatcher::class,
         ['setResponseManager' => new Dependency('Response\Manager')]
     ),
-    'Mvc\Route' => new Config([
-        'name' => Framework\Mvc\Route\Router::class,
-        'args' => [
-            new Service(
-                'Route',
-                [
-                    new Args([
-                        'controller' => new Param('routes.definitions.children.error.controller'),
-                        'hostname'   => new Call('request.getHost'),
-                        'method'     => new Call('request.getMethod'),
-                        'name'       => new Param('routes.definitions.children.error.name'),
-                        'path'       => new Call('request.getPathInfo'),
-                        'scheme'     => new Call('request.getScheme')
-                    ])
-                ]
-            )
-        ],
-        'calls' => [
+    'Mvc\Route' => new Hydrator(
+        Framework\Mvc\Route\Router::class,
+        [
             'setRouteManager' => new Dependency('Route\Manager')
-        ],
-    ]),
+        ]
+    ),
     'Mvc\View' => new Hydrator(
         Framework\Mvc\View\Renderer::class,
         ['setViewManager' => new Dependency('View\Manager')]
@@ -136,6 +121,19 @@ return [
     ),
     'Route\Dispatch'        => Framework\Route\Router\Dispatch::class,
     'Route\Dispatch\Filter' => Framework\Route\Router\Filter::class,
+    'Route\Error' => new Service(
+        'Route',
+        [
+            new Args([
+                'controller' => new Param('routes.definitions.children.error.controller'),
+                'hostname'   => new Call('request.getHost'),
+                'method'     => new Call('request.getMethod'),
+                'name'       => new Param('routes.definitions.children.error.name'),
+                'path'       => new Call('request.getPathInfo'),
+                'scheme'     => new Call('request.getScheme')
+            ])
+        ]
+    ),
     'Route\Generator' => new Service(
         Framework\Route\Generator\Generator::class,
         [new Param('routes.definitions'), new Invoke('Route\Builder')]

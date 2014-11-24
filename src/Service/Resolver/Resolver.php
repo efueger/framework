@@ -14,6 +14,7 @@ use Framework\Service\Config\Configuration as Config;
 use Framework\Service\Config\Dependency\ServiceDependency;
 use Framework\Service\Config\Factory\ServiceFactory;
 use Framework\Service\Config\Filter\ServiceFilter;
+use Framework\Service\Config\Invokable\ServiceInvokable;
 use Framework\Service\Config\Invoke\ServiceInvoke;
 use Framework\Service\Config\Param\ServiceParam;
 use Framework\Service\Config\ServiceConfig\ServiceConfiguration;
@@ -353,6 +354,12 @@ trait Resolver
         if ($config instanceof ServiceInvoke) {
             return function(array $args = []) use ($config) {
                 return $this->call($config->config(), $config->args() + $args);
+            };
+        }
+
+        if ($config instanceof ServiceInvokable) {
+            return function() use ($config) {
+                return $this->args($config->config());
             };
         }
 

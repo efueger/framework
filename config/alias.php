@@ -14,6 +14,8 @@ return [
     'response'      => new Dependency('Response'),
     'url'           => new Dependency('Route\Generator\Plugin'),
     'web'           => new Service('Mvc'),
+    'sm'            => new Dependency('Service\Manager'),
+    'vm'            => new Dependency('View\Manager'),
     'route:builder' => new Dependency('Route\Builder'),
     'route:create'  => new Invoke('Route\Builder')
 ];

@@ -5,8 +5,8 @@
 
 use Framework\Event\Config\Events;
 use Framework\Route\Definition\RouteDefinition;
-use Framework\Service\Config\Param\Param;
-use Framework\Service\Config\Router\Router;
+use Framework\Service\Config\Invokable\Invokable;
+use Framework\Service\Config\Service\Service;
 
 return [
     'definitions' => new RouteDefinition([
@@ -32,7 +32,7 @@ return [
         ],
         'Route\Dispatch' => [
             -1          => ['Route\Dispatch\Filter'],
-            PHP_INT_MAX => [new Router(new Param('routes.definitions.children.error'))]
+            PHP_INT_MAX => [new Invokable(new Service('Route\Error'))]
         ]
     ])
 ];

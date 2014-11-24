@@ -32,6 +32,12 @@ trait Base
      */
     public function queue($name)
     {
-        return isset($this->config[$name]) ? $this->config[$name] : [];
+        if (!isset($this->config[$name])) {
+            return [];
+        }
+
+        ksort($this->config[$name], SORT_NUMERIC);
+
+        return $this->config[$name];
     }
 }
