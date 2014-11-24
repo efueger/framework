@@ -91,6 +91,8 @@ The callable `$callback` parameter can be used to provide any additional paramet
 ```php
 $this->trigger([Dispatch::CONTROLLER, $controller], $args, $this);
 ```
+Similar to `$args`, adding `$event` will provide the current event.
+
 ##Plugins and Aliases
 The parameter names of the additional arguments can be aliases or service names. An alias maps a string of varying characters excluding the call separator `.` to any positive value. If the value is a configuration object then it will be resolved and its value returned.
 Each plugin has its own configuration specific to its own use. This enables them to be used in various ways for different purposes, e.g to provide a value or to trigger an event or to call a particular service method.
@@ -174,13 +176,33 @@ call_user_func(new Web(include __DIR__ . '/../config/web.php'));
 // or 
 // (new App($config))->call('web');
 ```
+###Microframework Support
+```php
+$app = new Web(include __DIR__ . '/../vendor/mvc5/framework/config/config.php');
+
+//services via ArrayAccess
+$app['Request']  = new Request\HttpRequest($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
+$app['Response'] = new Response\HttpResponse;
+
+//configuration via property access
+$app->templates['layout'] = '../view/layout/layout.phtml';
+$app->templates['home']   = '../view/home/index.phtml';
+
+$app->route(['home', '/'], function(array $args = []) {
+    $args['app_demo'] = 'app:home';
+
+    return new Model('home', ['args' => $args]);
+});
+
+call_user_func($app);
+```
 ##Benchmark
 *Current*
 ```
-HTML transferred:       4229135 bytes
-Requests per second:    1290.86 [#/sec] (mean)
-Time per request:       7.747 [ms] (mean)
-Time per request:       0.775 [ms] (mean, across all concurrent requests)
+HTML transferred:       9475226 bytes
+Requests per second:    1043.45 [#/sec] (mean)
+Time per request:       9.584 [ms] (mean)
+Time per request:       0.958 [ms] (mean, across all concurrent requests)
 ```
 *Other/Previous*
 ```
@@ -281,4 +303,30 @@ The [`ControllerAction`](https://github.com/mvc5/framework/blob/master/src/Servi
         },
 ]),
 ```
+###Rendering View Models
+When the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) is a [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) it is [rendered](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) prior to sending the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php). Additionally and [prior](https://github.com/mvc5/framework/blob/master/config/event.php#L19) to [rendering](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php), if a [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is to be used, it will add the current [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) to itself as its content child model and the [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is then set as the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) so that it will be [rendered](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) prior to sending the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php).
+```php
+    function __invoke($model = null, ViewModel $layout = null)
+    {
+        if (!$model || !$layout) {
+            return $model;
+        }
 
+        if (!$model instanceof ViewModel || $model instanceof LayoutModel) {
+            return $model;
+        }
+
+        $layout->child($model);
+
+        return $layout;
+    }
+```
+###View Model Plugins
+The default [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) also supports [plugins](https://github.com/mvc5/framework/blob/master/config/alias.php) which require the [`ViewManager`](https://github.com/mvc5/framework/blob/master/src/View/Manager/ViewManager.php) to be injected prior to [rendering](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) it. And because they can be created by a controller, this may not of happened. To overcome this, the current [`ViewManager`](https://github.com/mvc5/framework/blob/master/src/View/Manager/ViewManager.php) will be injected if the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) does not already have one.
+```php
+<?php
+
+/** @var Framework\View\Model\ViewModel $this */
+
+echo $this->url('home');
+```
