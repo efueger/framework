@@ -361,7 +361,7 @@ trait Resolver
 
     /**
      * @param $config
-     * @return string
+     * @return mixed
      */
     protected function solve($config)
     {

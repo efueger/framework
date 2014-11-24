@@ -19,18 +19,12 @@ class Web
     protected $config;
 
     /**
-     * @var Definition
-     */
-    protected $routes;
-
-    /**
      * @param Configuration $config
      */
     public function __construct(Configuration $config)
     {
         $this->application = new App($config);
         $this->config      = $config;
-        $this->routes      = $config[Args::ROUTES];
     }
 
     /**
@@ -98,10 +92,10 @@ class Web
         is_string($route) && $route = [$route];
 
         return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [
-                'name'        => $route[0],
-                'route'       => isset($route[1]) ? $route[1] : null,
-                'constraints' => isset($route[2]) ? $route[2] : null,
-                'controller'  => $controller
+                Definition::NAME        => $route[0],
+                Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
+                Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : null,
+                Definition::CONTROLLER  => $controller
             ]
         ]);
     }
