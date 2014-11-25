@@ -56,8 +56,8 @@ class Builder
         $definition[Definition::NAME] = $path[0];
 
         $start && empty($definition[Definition::ROUTE])
-        && $definition[Definition::ROUTE] = '/'
-            . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
+            && $definition[Definition::ROUTE] = '/'
+                . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
 
         !$start && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
 
@@ -94,17 +94,17 @@ class Builder
         !isset($definition[Definition::CONSTRAINTS]) && $definition[Definition::CONSTRAINTS] = [];
 
         !isset($definition[Definition::TOKENS])
-        && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
+            && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
 
         !isset($definition[Definition::REGEX])
-        && $definition[Definition::REGEX]
-            = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
+            && $definition[Definition::REGEX]
+                = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
         !isset($definition[Definition::PARAM_MAP])
-        && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
+            && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
 
         !empty($definition[Definition::CHILDREN])
-        && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
+            && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
 
         return new RouteDefinition($definition);
     }
