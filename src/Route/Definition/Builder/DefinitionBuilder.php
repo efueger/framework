@@ -30,6 +30,7 @@ interface DefinitionBuilder
 
     /**
      * @param array $definition
+     * @return Definition
      */
     function add(array $definition);
 

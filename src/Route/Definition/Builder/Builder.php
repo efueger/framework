@@ -28,6 +28,10 @@ class Builder
         $this->routes = $routes;
     }
 
+    /**
+     * @param array $definition
+     * @return Definition
+     */
     public function add(array $definition)
     {
         return $this->addChild(
