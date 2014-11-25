@@ -6,7 +6,7 @@
 use Framework\Event\Config\Events;
 use Framework\Route\Definition\RouteDefinition;
 use Framework\Service\Config\Invokable\Invokable;
-use Framework\Service\Config\Service\Service;
+use Framework\Service\Config\ServiceConfig\ServiceConfig;
 
 return [
     'definitions' => new RouteDefinition([
@@ -32,7 +32,7 @@ return [
         ],
         'Route\Dispatch' => [
             -1          => ['Route\Dispatch\Filter'],
-            PHP_INT_MAX => [new Invokable(new Service('Route\Error'))]
+            PHP_INT_MAX => [new Invokable(new ServiceConfig('Route\Error'))]
         ]
     ])
 ];

@@ -359,7 +359,7 @@ trait Resolver
 
         if ($config instanceof ServiceInvokable) {
             return function() use ($config) {
-                return $this->args($config->config());
+                return $this->solve($config->config());
             };
         }
 
