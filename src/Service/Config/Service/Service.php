@@ -16,12 +16,14 @@ class Service
     /**
      * @param string $name
      * @param array $args
+     * @param array $calls
      */
-    public function __construct($name, array $args = [])
+    public function __construct($name, array $args = [], array $calls = [])
     {
         $this->config = [
-            self::ARGS => $args,
-            self::NAME => $name
+            self::ARGS  => $args,
+            self::CALLS => $calls,
+            self::NAME  => $name
         ];
     }
 }

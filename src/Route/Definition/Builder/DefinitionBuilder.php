@@ -38,11 +38,11 @@ interface DefinitionBuilder
      * @param Definition $parent
      * @param array $definition
      * @param array $path
-     * @param callable $callback
+     * @param bool $start
      * @return Definition
      * @throws Exception
      */
-    static function addChild(Definition $parent, array $definition, array $path, callable $callback = null);
+    static function addChild(Definition $parent, array $definition, array $path, $start = false);
 
     /**
      * @param array $definitions

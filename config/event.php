@@ -27,6 +27,22 @@ return [
         ['Response\Exception\Dispatch'],
         ['Response\Exception\Renderer']
     ],
+    'Route\Match' => [
+        [
+            'Route\Match\Scheme',
+            'Route\Match\Hostname',
+            'Route\Match\Path',
+            'Route\Match\Wildcard',
+            'Route\Match\Method'
+        ]
+    ],
+    'Route\Dispatch' => [
+        [
+            'Route\Dispatch\Filter',
+            'Router',
+            'Route\Dispatch\Error'
+        ]
+    ],
     'View\Render' => [
         ['View\Renderer']
     ],

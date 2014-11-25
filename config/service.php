@@ -10,9 +10,11 @@ use Framework\Service\Config\ConfigLink\ConfigLink;
 use Framework\Service\Config\Dependency\Dependency;
 use Framework\Service\Config\Hydrator\Hydrator;
 use Framework\Service\Config\Invoke\Invoke;
+use Framework\Service\Config\Invokable\Invokable;
 use Framework\Service\Config\Manager\Manager;
 use Framework\Service\Config\Param\Param;
 use Framework\Service\Config\Service\Service;
+use Framework\Service\Config\ServiceConfig\ServiceConfig;
 use Framework\Service\Config\ServiceManagerLink\ServiceManagerLink;
 
 return [
@@ -120,6 +122,7 @@ return [
         [new Param('routes')]
     ),
     'Route\Dispatch'        => Framework\Route\Router\Dispatch::class,
+    'Route\Dispatch\Error'  => new Invokable(new ServiceConfig('Route\Error')),
     'Route\Dispatch\Filter' => Framework\Route\Router\Filter::class,
     'Route\Error' => new Service(
         'Route',
@@ -136,7 +139,7 @@ return [
     ),
     'Route\Generator' => new Service(
         Framework\Route\Generator\Generator::class,
-        [new Param('routes.definitions'), new Invoke('Route\Builder')]
+        [new Param('routes'), new Invoke('Route\Builder')]
     ),
     'Route\Generator\Plugin' => new Hydrator(
         Framework\Route\Generator\GeneratorPlugin::class,
@@ -145,20 +148,21 @@ return [
             'setRouteGenerator' => new Dependency('Route\Generator')
         ]
     ),
-    'Route\Manager' => new Manager(
-        Framework\Route\Manager\Manager::class, [
-            'events' => new Param('routes.events')
-        ]
-    ),
+    'Route\Manager'        => new Manager(Framework\Route\Manager\Manager::class),
     'Route\Match'          => Framework\Route\Match\Match::class,
     'Route\Match\Hostname' => Framework\Route\Match\Hostname\Hostname::class,
     'Route\Match\Method'   => Framework\Route\Match\Method\Method::class,
     'Route\Match\Path'     => Framework\Route\Match\Path\Path::class,
     'Route\Match\Scheme'   => Framework\Route\Match\Scheme\Scheme::class,
     'Route\Match\Wildcard' => Framework\Route\Match\Wildcard\Wildcard::class,
-    'Router' => new Hydrator(
+    'Router' => new Service(
         Framework\Route\Router\Router::class,
-        ['setRouteManager' => new Dependency('Route\Manager')]
+        [
+            new Param('routes')
+        ],
+        [
+            'setRouteManager' => new Dependency('Route\Manager')
+        ]
     ),
     'Service\Manager' => new ServiceManagerLink,
     'View\Manager'    => new Manager(Framework\View\Manager\Manager::class),

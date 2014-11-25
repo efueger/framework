@@ -16,14 +16,14 @@ class Builder
     implements DefinitionBuilder
 {
     /**
-     * @var Configuration
+     * @var Definition
      */
     protected $routes;
 
     /**
-     * @param Configuration $routes
+     * @param Definition $routes
      */
-    public function __construct(Configuration $routes)
+    public function __construct(Definition $routes)
     {
         $this->routes = $routes;
     }
@@ -34,25 +34,18 @@ class Builder
      */
     public function add(array $definition)
     {
-        return $this->addChild(
-            $this->routes[Args::DEFINITIONS],
-            $definition,
-            explode('/', $definition[Definition::NAME]),
-            function($definition) {
-                $this->routes[Args::EVENTS]->add(Args::ROUTE_DISPATCH, new Router($definition));
-            }
-        );
+        return $this->addChild($this->routes, $definition, explode('/', $definition[Definition::NAME]), true);
     }
 
     /**
      * @param Definition $parent
      * @param array $definition
      * @param array $path
-     * @param callable $callback
+     * @param bool $start
      * @return Definition
      * @throws RuntimeException
      */
-    public static function addChild(Definition $parent, array $definition, array $path, callable $callback = null)
+    public static function addChild(Definition $parent, array $definition, array $path, $start = false)
     {
         if ($root = $parent->child($path[0])) {
             return static::addChild($root, $definition, array_slice($path, 1));
@@ -64,17 +57,15 @@ class Builder
 
         $definition[Definition::NAME] = $path[0];
 
-        $callback && empty($definition[Definition::ROUTE])
+        $start && empty($definition[Definition::ROUTE])
             && $definition[Definition::ROUTE] = '/'
                 . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
 
-        !$callback && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
+        !$start && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
 
         $definition = static::definition($definition);
 
         $parent->add($path[0], $definition);
-
-        $callback && $callback($definition);
 
         return $definition;
     }
