@@ -125,10 +125,10 @@ return [
         'Route',
         [
             new Args([
-                'controller' => new Param('routes.definitions.children.error.controller'),
+                'controller' => 'Controller\Error',
                 'hostname'   => new Call('request.getHost'),
                 'method'     => new Call('request.getMethod'),
-                'name'       => new Param('routes.definitions.children.error.name'),
+                'name'       => 'error',
                 'path'       => new Call('request.getPathInfo'),
                 'scheme'     => new Call('request.getScheme')
             ])

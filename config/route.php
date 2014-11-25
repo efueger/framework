@@ -9,17 +9,7 @@ use Framework\Service\Config\Invokable\Invokable;
 use Framework\Service\Config\ServiceConfig\ServiceConfig;
 
 return [
-    'definitions' => new RouteDefinition([
-        'children' => [
-            'error' => new RouteDefinition([
-                'name'       => 'error',
-                'route'      => '/error',
-                'controller' => 'Controller\Error',
-                'regex'      => '/error',
-                'tokens'     => [['literal', '/error']]
-            ])
-        ]
-    ]),
+    'definitions' => new RouteDefinition,
     'events' => new Events([
         'Route\Match' => [
             [
