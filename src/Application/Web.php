@@ -101,10 +101,9 @@ class Web
             $this->config->set(
                 Args::ROUTES,
                 new RouteDefinition([
-                    Definition::NAME       => $route,
-                    Definition::ROUTE      => '/',
+                    Definition::ROUTE      => !empty($route[Definition::ROUTE]) ? $route[Definition::ROUTE] : '/',
                     Definition::CONTROLLER => $controller
-                ])
+                ] + $route)
             );
 
             return $this->config->get(Args::ROUTES);
