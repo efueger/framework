@@ -86,6 +86,7 @@ class Web
     /**
      * @param array|string $route
      * @param array|string|callable|object $controller
+     * @return Definition
      */
     public function route($route, $controller)
     {
@@ -96,14 +97,26 @@ class Web
             Definition::DEFAULTS    => isset($route[3]) ? $route[3] : []
         ];
 
-        !$this->config->has('routes') ? $this->config->set(Args::ROUTES, new RouteDefinition([
-            Definition::NAME       => $route,
-            Definition::ROUTE      => '/',
-            Definition::CONTROLLER => $controller
-        ])) : $this->call(Args::ADD_ROUTE, [
-            Args::DEFINITION => [Definition::CONTROLLER  => $controller]
-                                    + (is_string($route) ? [Definition::NAME => $route] : $route)
-        ]);
+        if (!$this->config->has('routes')) {
+            $this->config->set(
+                Args::ROUTES,
+                new RouteDefinition([
+                    Definition::NAME       => $route,
+                    Definition::ROUTE      => '/',
+                    Definition::CONTROLLER => $controller
+                ])
+            );
+
+            return $this->config->get(Args::ROUTES);
+        }
+
+        return $this->call(
+            Args::ADD_ROUTE,
+            [
+                Args::DEFINITION => [Definition::CONTROLLER  => $controller]
+                    + (is_string($route) ? [Definition::NAME => $route] : $route)
+            ]
+        );
     }
 
     /**

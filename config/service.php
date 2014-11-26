@@ -158,7 +158,7 @@ return [
     'Router' => new Service(
         Framework\Route\Router\Router::class,
         [
-            new Call('Route\Builder', [new Param('routes')])
+            new Param('routes')
         ],
         [
             'setRouteManager' => new Dependency('Route\Manager')

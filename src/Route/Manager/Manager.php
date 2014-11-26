@@ -24,8 +24,7 @@ class Manager
      */
     public function definition($definition)
     {
-        return $definition instanceof Definition ? $definition
-            : $this->call(Args::CREATE, [Args::DEFINITION => $definition]);
+        return $this->call(Args::CREATE, [Args::DEFINITION => $definition]);
     }
 
     /**

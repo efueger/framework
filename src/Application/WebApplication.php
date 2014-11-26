@@ -3,6 +3,7 @@
 namespace Framework\Application;
 
 use ArrayAccess;
+use Framework\Route\Definition\Definition;
 
 interface WebApplication
     extends ArrayAccess
@@ -24,6 +25,7 @@ interface WebApplication
     /**
      * @param array|string $route
      * @param array|string|callable|object $controller
+     * @return Definition
      */
     function route($route, $controller);
 
