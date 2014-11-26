@@ -44,14 +44,19 @@ class Router
      */
     protected function dispatch(Route $route, Definition $definition)
     {
-        $route = $this->match($definition, clone $route);
+        $route->set(Route::NAME, $route->name() ?: $definition->name());
+
+        $route = $this->match($definition, $route);
 
         if (!$route || $route->matched()) {
             return $route;
         }
 
-        foreach($definition->children() as $definition) {
-            if ($match = $this->dispatch($route, $this->create($definition))) {
+        foreach($definition->children() as $name => $definition) {
+
+            $route->set(Route::NAME, $route->name() . '/' . $name);
+
+            if ($match = $this->dispatch(clone $route, $this->create($definition))) {
                 return $match;
             }
         }
@@ -65,6 +70,6 @@ class Router
      */
     public function __invoke(Route $route)
     {
-        return $this->dispatch($route, $this->create($this->definition));
+        return $this->dispatch(clone $route, $this->create($this->definition));
     }
 }
