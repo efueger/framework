@@ -38,7 +38,7 @@ class Path
         $route->set(Route::CONTROLLER, $definition->controller());
         $route->set(Route::LENGTH,     $route->length() + strlen($matches[0]));
         $route->set(Route::MATCHED,    $route->length() == strlen($route->path()));
-        $route->set(Route::NAME,       (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
+        $route->set(Route::NAME,       !$definition->name() ? null : (!$route->name() ? '' :  $route->name() . '/') . $definition->name());
         $route->set(Route::PARAMS,     $this->params($definition->paramMap(), $matches) + $definition->defaults() + $route->params());
 
         return $route;

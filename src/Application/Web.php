@@ -97,6 +97,8 @@ class Web
             Definition::DEFAULTS    => isset($route[3]) ? $route[3] : []
         ];
 
+        is_string($route) && $route = [Definition::NAME => $route];
+
         if (!$this->config->has('routes')) {
             $this->config->set(
                 Args::ROUTES,
@@ -109,13 +111,7 @@ class Web
             return $this->config->get(Args::ROUTES);
         }
 
-        return $this->call(
-            Args::ADD_ROUTE,
-            [
-                Args::DEFINITION => [Definition::CONTROLLER  => $controller]
-                    + (is_string($route) ? [Definition::NAME => $route] : $route)
-            ]
-        );
+        return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [Definition::CONTROLLER  => $controller] + $route]);
     }
 
     /**

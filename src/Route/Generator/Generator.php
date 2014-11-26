@@ -180,7 +180,8 @@ class Generator
      */
     protected function name($name)
     {
-        return $name === $this->definition->name() ? $name : $this->definition->name() . '/' . $name;
+        return $name === $this->definition->name() ? $name
+            : strstr($name, $this->definition->name()) ?: $this->definition->name() . '/' . $name;
     }
 
     /**
