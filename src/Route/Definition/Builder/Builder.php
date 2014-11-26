@@ -217,13 +217,13 @@ class Builder
             }
 
             if ('[' === $matches['token']) {
-                $tokens[] = array('optional-start');
+                $tokens[] = ['optional-start'];
                 $level++;
                 continue;
             }
 
             if (']' === $matches['token']) {
-                $tokens[] = array('optional-end');
+                $tokens[] = ['optional-end'];
 
                 $level--;
 
