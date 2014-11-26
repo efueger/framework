@@ -194,7 +194,7 @@ trait Resolver
         }
 
         if ($config instanceof Closure) {
-            return $config->bindTo($this);
+            return $config;
         }
 
         return $this->create($config);
