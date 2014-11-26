@@ -51,7 +51,7 @@ return [
             'setViewManager' => new Dependency('View\Manager'),
         ]
     ),
-    'Exception\View'    => new Hydrator(
+    'Exception\View' => new Hydrator(
         Framework\View\Exception\View::class,
         [
             'setModel' => new Dependency('Exception\Model')
