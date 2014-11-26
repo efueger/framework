@@ -17,12 +17,6 @@ interface WebApplication
 
     /**
      * @param string $name
-     * @param array|string|callable|object $controller
-     */
-    function home($name, $controller);
-
-    /**
-     * @param string $name
      * @return mixed
      */
     function param($name);
