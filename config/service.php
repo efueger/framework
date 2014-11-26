@@ -141,13 +141,6 @@ return [
         Framework\Route\Generator\Generator::class,
         [new Param('routes'), new Invoke('Route\Builder')]
     ),
-    'Route\Generator\Plugin' => new Hydrator(
-        Framework\Route\Generator\GeneratorPlugin::class,
-        [
-            'setRoute'          => new Dependency('Route'),
-            'setRouteGenerator' => new Dependency('Route\Generator')
-        ]
-    ),
     'Route\Manager'        => new Manager(Framework\Route\Manager\Manager::class),
     'Route\Match'          => Framework\Route\Match\Match::class,
     'Route\Match\Hostname' => Framework\Route\Match\Hostname\Hostname::class,
@@ -155,6 +148,13 @@ return [
     'Route\Match\Path'     => Framework\Route\Match\Path\Path::class,
     'Route\Match\Scheme'   => Framework\Route\Match\Scheme\Scheme::class,
     'Route\Match\Wildcard' => Framework\Route\Match\Wildcard\Wildcard::class,
+    'Route\Plugin' => new Hydrator(
+        Framework\Route\Generator\GeneratorPlugin::class,
+        [
+            'setRoute'          => new Dependency('Route'),
+            'setRouteGenerator' => new Dependency('Route\Generator')
+        ]
+    ),
     'Router' => new Service(
         Framework\Route\Router\Router::class,
         [
