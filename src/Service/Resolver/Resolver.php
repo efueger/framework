@@ -193,11 +193,7 @@ trait Resolver
             return is_string($config[0]) ? $config : [$this->create($config[0]), $config[1]];
         }
 
-        if ($config instanceof Closure) {
-            return $config;
-        }
-
-        return $this->create($config);
+        return $config instanceof Closure ? $config : $this->create($config);
     }
 
     /**
