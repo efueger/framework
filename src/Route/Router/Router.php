@@ -28,14 +28,6 @@ class Router
     }
 
     /**
-     * @return Definition[]
-     */
-    protected function definitions()
-    {
-        return $this->definition->children();
-    }
-
-    /**
      * @param Route $route
      * @param Definition $definition
      * @return Route|null
@@ -63,12 +55,6 @@ class Router
      */
     public function __invoke(Route $route)
     {
-        foreach($this->definitions() as $definition) {
-            if ($match = $this->dispatch($route, $this->definition($definition))) {
-                return $match;
-            }
-        }
-
-        return null;
+        return $this->dispatch($route, $this->definition);
     }
 }

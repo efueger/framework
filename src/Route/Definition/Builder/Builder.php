@@ -55,9 +55,8 @@ class Builder
 
         $definition[Definition::NAME] = $path[0];
 
-        $start && empty($definition[Definition::ROUTE])
-            && $definition[Definition::ROUTE] = '/'
-                . (isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null);
+        $start && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE]
+            = isset($definition[Definition::NAME]) ? $definition[Definition::NAME] : null;
 
         !$start && empty($definition[Definition::ROUTE]) && $definition[Definition::ROUTE] = '/' . $path[0];
 

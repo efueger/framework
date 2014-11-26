@@ -39,6 +39,28 @@ class Web
     }
 
     /**
+     * @param array|string $route
+     * @param array|string|callable|object $controller
+     * @return Definition
+     */
+    public function home($route, $controller = null)
+    {
+        is_string($route) && $route = [$route];
+
+        $definition = $this->call(Args::CREATE_ROUTE, [Args::DEFINITION => [
+            Definition::NAME        => $route[0],
+            Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
+            Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : null,
+            Definition::CONTROLLER  => $controller
+        ]
+        ]);
+
+        $this->config->set('routes', $definition);
+
+        return $definition;
+    }
+
+    /**
      * @param mixed $config
      * @return bool
      */

@@ -45,7 +45,7 @@ class Generator
     {
         $name = is_array($name) ? $name : explode('/', $name);
 
-        $definition = $definition ? $this->create($definition->child($name[0])) : $this->create($this->child($name[0]));
+        $definition = $definition ? $this->create($definition->child($name[0])) : $this->create($this->config($name[0]));
 
         if (!$definition) {
             throw new Exception('Route generator definition not found: ' . $name[0]);
@@ -169,9 +169,18 @@ class Generator
      * @param $name
      * @return Definition
      */
-    protected function child($name)
+    protected function config($name)
     {
-        return $this->config->child($name);
+        return $name === $this->config->name() ? $this->config : $this->config->child($name);
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    protected function name($name)
+    {
+        return $name === $this->config->name() ? $name : $this->config->name() . '/' . $name;
     }
 
     /**
@@ -181,6 +190,6 @@ class Generator
      */
     public function url($name, array $args = [])
     {
-        return rtrim($this->build($name, $args), '/') ?: '/';
+        return rtrim($this->build($this->name($name), $args), '/') ?: '/';
     }
 }
