@@ -81,11 +81,11 @@ class Builder
     }
 
     /**
-     * @param array $definition
+     * @param array|Definition $definition
      * @param bool $recursive
      * @return Definition
      */
-    public static function definition(array $definition, $recursive = false)
+    public static function definition($definition, $recursive = false)
     {
         if (!isset($definition[Definition::ROUTE])) {
             throw new RuntimeException('Route not specified');
@@ -106,7 +106,7 @@ class Builder
         $recursive && !empty($definition[Definition::CHILDREN])
             && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
 
-        return new RouteDefinition($definition);
+        return $definition instanceof Definition ? $definition : new RouteDefinition($definition);
     }
 
     /**
@@ -242,10 +242,10 @@ class Builder
     }
 
     /**
-     * @param array $definition
+     * @param array|Definition $definition
      * @return Definition
      */
-    public function __invoke(array $definition)
+    public function __invoke($definition)
     {
         return static::definition($definition);
     }

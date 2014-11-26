@@ -99,9 +99,7 @@ class Web
         !$this->config->has('routes') ? $this->config->set(Args::ROUTES, new RouteDefinition([
             Definition::NAME       => $route,
             Definition::ROUTE      => '/',
-            Definition::CONTROLLER => $controller,
-            Definition::TOKENS     => [['literal', '/']],
-            Definition::REGEX      => '/'
+            Definition::CONTROLLER => $controller
         ])) : $this->call(Args::ADD_ROUTE, [
             Args::DEFINITION => [Definition::CONTROLLER  => $controller]
                                     + (is_string($route) ? [Definition::NAME => $route] : $route)
