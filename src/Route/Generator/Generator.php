@@ -22,16 +22,16 @@ class Generator
     /**
      * @var Definition
      */
-    protected $config;
+    protected $definition;
 
     /**
-     * @param Definition $config
+     * @param Definition $definition
      * @param callable $callback
      */
-    public function __construct(Definition $config, callable $callback = null)
+    public function __construct(Definition $definition, callable $callback = null)
     {
-        $this->callback = $callback;
-        $this->config   = $config;
+        $this->callback   = $callback;
+        $this->definition = $definition;
     }
 
     /**
@@ -171,7 +171,7 @@ class Generator
      */
     protected function config($name)
     {
-        return $name === $this->config->name() ? $this->config : $this->config->child($name);
+        return $name === $this->definition->name() ? $this->definition : $this->definition->child($name);
     }
 
     /**
@@ -180,7 +180,7 @@ class Generator
      */
     protected function name($name)
     {
-        return $name === $this->config->name() ? $name : $this->config->name() . '/' . $name;
+        return $name === $this->definition->name() ? $name : $this->definition->name() . '/' . $name;
     }
 
     /**
