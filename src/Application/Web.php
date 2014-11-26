@@ -4,6 +4,7 @@ namespace Framework\Application;
 
 use Framework\Config\Configuration;
 use Framework\Route\Definition\Definition;
+use Framework\Route\Definition\RouteDefinition;
 
 class Web
     implements WebApplication
@@ -39,25 +40,18 @@ class Web
     }
 
     /**
-     * @param array|string $route
+     * @param string $name
      * @param array|string|callable|object $controller
-     * @return Definition
      */
-    public function home($route, $controller = null)
+    public function home($name, $controller = null)
     {
-        is_string($route) && $route = [$route];
-
-        $definition = $this->call(Args::CREATE_ROUTE, [Args::DEFINITION => [
-            Definition::NAME        => $route[0],
-            Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
-            Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : null,
-            Definition::CONTROLLER  => $controller
-        ]
-        ]);
-
-        $this->config->set('routes', $definition);
-
-        return $definition;
+        $this->config->set('routes', new RouteDefinition([
+            Definition::NAME       => $name,
+            Definition::ROUTE      => '/',
+            Definition::CONTROLLER => $controller,
+            Definition::TOKENS     => [['literal', '/']],
+            Definition::REGEX      => '/'
+        ]));
     }
 
     /**
@@ -107,18 +101,19 @@ class Web
     /**
      * @param array|string $route
      * @param array|string|callable|object $controller
-     * @return Definition
      */
-    public function route($route, $controller = null)
+    public function route($route, $controller)
     {
-        is_string($route) && $route = [$route];
+        is_array($route) && !is_string(key($route)) && $route = [
+            Definition::NAME        => $route[0],
+            Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
+            Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : [],
+            Definition::DEFAULTS    => isset($route[3]) ? $route[3] : []
+        ];
 
-        return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [
-                Definition::NAME        => $route[0],
-                Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
-                Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : null,
-                Definition::CONTROLLER  => $controller
-            ]
+        $this->call(Args::ADD_ROUTE, [
+            Args::DEFINITION => [Definition::CONTROLLER  => $controller]
+                                    + (is_string($route) ? [Definition::NAME => $route] : $route)
         ]);
     }
 
