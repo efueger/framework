@@ -38,7 +38,7 @@ trait ManageService
         }
 
         if ($config instanceof Closure) {
-            return $this->invoke($config->bindTo($this), $args, $callback);
+            return $this->invoke($config, $args, $callback);
         }
 
         return $this->resolve($config, $args);
