@@ -44,9 +44,9 @@ class Router
      */
     protected function dispatch(Route $route, Definition $definition)
     {
-        $route->set(Route::NAME, $route->name() ?: $definition->name());
-
         $route = $this->match($definition, $route);
+
+        $route && !$route->name() && $route->set(Route::NAME, $definition->name());
 
         if (!$route || $route->matched()) {
             return $route;
