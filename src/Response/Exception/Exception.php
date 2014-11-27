@@ -48,7 +48,7 @@ class Exception
         return [
             Args::EVENT     => $this,
             Args::EXCEPTION => $this->exception,
-            Args::RESPONSE  => $this->response,
+            Args::RESPONSE  => $this->response
         ];
     }
 

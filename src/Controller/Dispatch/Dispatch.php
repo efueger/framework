@@ -40,7 +40,7 @@ class Dispatch
     {
         return [
             Args::EVENT      => $this,
-            Args::CONTROLLER => $this->controller,
+            Args::CONTROLLER => $this->controller
         ];
     }
 

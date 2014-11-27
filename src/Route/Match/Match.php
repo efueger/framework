@@ -50,7 +50,7 @@ class Match
         return [
             Args::EVENT      => $this,
             Args::DEFINITION => $this->definition,
-            Args::ROUTE      => $this->route,
+            Args::ROUTE      => $this->route
         ];
     }
 

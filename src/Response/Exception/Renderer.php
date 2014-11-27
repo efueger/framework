@@ -18,6 +18,5 @@ class Renderer
     public function __invoke(ExceptionInterface $exception, Response $response, ViewManager $vm)
     {
         $response->setContent($vm->exception($exception));
-        return $response;
     }
 }
