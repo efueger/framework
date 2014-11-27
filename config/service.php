@@ -23,19 +23,14 @@ return [
     'Controller\Dispatch'   => Framework\Controller\Dispatch\Dispatch::class,
     'Controller\Dispatcher' => new Hydrator(
         Framework\Controller\Dispatch\Dispatcher::class,
-        [
-            'setControllerManager' => new Dependency('Controller\Manager')
-        ]
+        ['setControllerManager' => new Dependency('Controller\Manager')]
     ),
     'Controller\Error' => new Hydrator(
         Framework\Controller\Error\Controller::class,
         [
             'setModel' => new Service(
                 Framework\Controller\Error\Model::class,
-                [
-                    'error/404',
-                    ['message' => 'A 404 error occurred']
-                ]
+                ['error/404', ['message' => 'A 404 error occurred']]
             )
         ]
     ),
@@ -47,28 +42,20 @@ return [
     ),
     'Exception\Renderer' => new Hydrator(
         Framework\View\Exception\Renderer::class,
-        [
-            'setViewManager' => new Dependency('View\Manager'),
-        ]
+        ['setViewManager' => new Dependency('View\Manager')]
     ),
     'Exception\View' => new Hydrator(
         Framework\View\Exception\View::class,
-        [
-            'setModel' => new Dependency('Exception\Model')
-        ]
+        ['setModel' => new Dependency('Exception\Model')]
     ),
     'Exception\Model' => new Service(Framework\View\Exception\Model::class, ['error/exception']),
-    'Factory' => new Config([
-        'args' => [new ServiceManagerLink]
-    ]),
+    'Factory' => new Config(['args' => [new ServiceManagerLink]]),
     'Layout'  => new Service(Framework\View\Layout\Model::class, ['layout']),
-    'Manager' => new Config([
-        'calls' => [
-            'aliases'       => new Param('alias'),
-            'configuration' => new ConfigLink,
-            'events'        => new Param('events'),
-            'services'      => new Param('services'),
-        ]
+    'Manager' => new Hydrator(null, [
+        'aliases'       => new Param('alias'),
+        'configuration' => new ConfigLink,
+        'events'        => new Param('events'),
+        'services'      => new Param('services'),
     ]),
     'Mvc' => new Service(Framework\Mvc\Mvc::class, [new ServiceManagerLink]),
     'Mvc\Controller' => new Hydrator(
@@ -82,9 +69,7 @@ return [
     ),
     'Mvc\Route' => new Hydrator(
         Framework\Mvc\Route\Router::class,
-        [
-            'setRouteManager' => new Dependency('Route\Manager')
-        ]
+        ['setRouteManager' => new Dependency('Route\Manager')]
     ),
     'Mvc\View' => new Hydrator(
         Framework\Mvc\View\Renderer::class,
@@ -94,14 +79,7 @@ return [
     'Response\Exception' => Framework\Response\Exception\Exception::class,
     'Response\Exception\Dispatch' => new Service(
         Framework\Response\Exception\Dispatcher::class,
-        [
-            new Hydrator(
-                'Response',
-                [
-                    'setStatus' => 500
-                ]
-            )
-        ]
+        [new Hydrator('Response', ['setStatus' => 500])]
     ),
     'Response\Exception\Renderer' => Framework\Response\Exception\Renderer::class,
     'Response\Sender'             => Framework\Response\Sender::class,
@@ -157,12 +135,8 @@ return [
     ),
     'Router' => new Service(
         Framework\Route\Router\Router::class,
-        [
-            new Param('routes')
-        ],
-        [
-            'setRouteManager' => new Dependency('Route\Manager')
-        ]
+        [new Param('routes')],
+        ['setRouteManager' => new Dependency('Route\Manager')]
     ),
     'Service\Manager' => new ServiceManagerLink,
     'View\Manager'    => new Manager(Framework\View\Manager\Manager::class),
