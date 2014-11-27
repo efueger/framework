@@ -7,15 +7,15 @@ Welcome to an enhanced php 5.5 programming environment that provides inversion o
 * Response
 * View
 * Exceptions
-* Services and Configuration Management
+* Dependency Injection
 * Plugins
 * Configurable events
 * Calling methods using named arguments and plugin support
 
-All of the components require dependency injection and use [`Configuration`](https://github.com/mvc5/framework/blob/master/src/Config/Configuration.php) objects for consistency and ease of use. For example, the [`ServiceManager`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php) is a [`Configuration`](https://github.com/mvc5/framework/blob/master/src/Config/Configuration.php) object that manages its services via the standard configuration interface and has additional [`ServiceContainer`](https://github.com/mvc5/framework/blob/master/src/Service/Container/ServiceContainer.php) methods that manage the underlying configurations of the services that the [`ServiceManager`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php) provides. The main [configuration array](https://github.com/mvc5/application/blob/master/config/service.php) can contain values, string names, callables and configuration objects that are resolvable by the [service manager](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php).
+All of the components require dependency injection and use [`Configuration`](https://github.com/mvc5/framework/blob/master/src/Config/Configuration.php) objects for consistency and ease of use. For example, the [`ServiceManager`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php) is a [`Configuration`](https://github.com/mvc5/framework/blob/master/src/Config/Configuration.php) object that manages its services via the standard configuration interface and has additional [`ServiceContainer`](https://github.com/mvc5/framework/blob/master/src/Service/Container/ServiceContainer.php) methods that manage the underlying configurations of the services that the [`ServiceManager`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php) provides. The main [configuration array](https://github.com/mvc5/framework/blob/master/config/service.php) can contain values, string names, callables and configuration objects that are resolvable by the [service manager](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ServiceManager.php).
 
 ###Demo
-The [symfony/HttpFoundation](https://github.com/symfony/HttpFoundation) `Request` and `Response` objects in the <a href="https://github.com/mvc5/application">mvc5/application</a>. Dependency injection shows that components do not require any knowledge of the `Request` object. However at this time, the `Response` object must implement the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) interface so that its status and content can be set; its content must allow any positive value and may be considered as the `model` for the `Response`.
+The [symfony/HttpFoundation](https://github.com/symfony/HttpFoundation) `Request` and `Response` objects are used in the <a href="https://github.com/mvc5/application">mvc5/application</a>. Dependency injection shows that components do not require any knowledge of the `Request` object. However at this time, the `Response` object must implement the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) interface so that its status and content can be set; its content must allow any positive value and may be considered as a `Response Model`.
 
 ###Named Arguments and Plugins
 This contrived example demonstrates named arguments and plugins.
@@ -194,7 +194,7 @@ call_user_func(new Web(include __DIR__ . '/../config/web.php'));
 // (new App($config))->call('web');
 ```
 ###Web Application and Microframework Support
-A default [`Configuration`](https://github.com/mvc5/framework/blob/master/config/config.php) is provided with the minimum [configuration](https://github.com/mvc5/framework/blob/master/config) required to run a web application. At this time, all that is then needed are the `Request` and `Response` objects, template configuration and the routes to use. Currently routes must have a name so that they can be used to build urls in via the [`url plugin`](https://github.com/mvc5/framework/blob/master/config/alias.php#L18) in the view templates.
+A default [`Configuration`](https://github.com/mvc5/framework/blob/master/config/config.php) is provided with the minimum [configuration](https://github.com/mvc5/framework/blob/master/config) required to run a web application. At this time, all that is then needed are the `Request` and `Response` objects, template configuration and the routes to use. Currently routes must have a name so that they can be used to build urls in the view templates when using the [`url plugin`](https://github.com/mvc5/framework/blob/master/config/alias.php#L18).
 ```php
 $app = new Web(include __DIR__ . '/../vendor/mvc5/framework/config/config.php');
 
@@ -203,8 +203,9 @@ $app['Request']  = new Request\HttpRequest($_GET, $_POST, [], $_COOKIE, $_FILES,
 $app['Response'] = new Response\HttpResponse;
 
 //configuration via property access
-$app->templates['layout'] = '../view/layout/layout.phtml';
-$app->templates['home']   = '../view/home/index.phtml';
+$app->templates['layout']      = '../view/layout/layout.phtml';
+$app->templates['home']        = '../view/home/index.phtml';
+$app->templates['blog:create'] = '../view/blog/create.phtml';
 
 //url: /
 $app->route('home', function(array $args = []) {
@@ -213,12 +214,27 @@ $app->route('home', function(array $args = []) {
     return new Model('home', ['args' => $args]);
 });
 
-//url: /application
-$app->route('application', function(array $args = []) {
-    $args['app_demo'] = 'app:application';
+//url: /blog
+$app->route('blog', function($sm, array $args = []) {
+    $args['demo_time'] = $sm->call('time');
 
     return new Model('home', ['args' => $args]);
 });
+
+//url: /blog/owner/web
+$app->route(
+    [
+      blog/create', 
+      '/:author[/:category]', 
+      [
+         'author'   => '[a-zA-Z0-9_-]*', 
+         'category' => '[a-zA-Z0-9_-]*'
+      ]
+    ],
+    function(array $args = []) {
+        return new Model('blog:create', ['args' => $args]);
+    }
+);
 
 call_user_func($app);
 ```
