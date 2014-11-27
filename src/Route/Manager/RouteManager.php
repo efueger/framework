@@ -11,7 +11,7 @@ interface RouteManager
      * @param Definition $definition
      * @return Definition
      */
-    public function definition($definition);
+    function definition($definition);
 
     /**
      * @param Definition $definition
