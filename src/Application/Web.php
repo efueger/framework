@@ -99,19 +99,12 @@ class Web
 
         is_string($route) && $route = [Definition::NAME => $route];
 
-        if (!$this->config->has(Args::ROUTES)) {
-            $this->config->set(
-                Args::ROUTES,
-                new RouteDefinition([
+        return isset($this->config[Args::ROUTES])
+            ? $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [Definition::CONTROLLER  => $controller] + $route])
+                : $this->config[Args::ROUTES] = new RouteDefinition([
                     Definition::ROUTE      => !empty($route[Definition::ROUTE]) ? $route[Definition::ROUTE] : '/',
                     Definition::CONTROLLER => $controller
-                ] + $route)
-            );
-
-            return $this->config->get(Args::ROUTES);
-        }
-
-        return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [Definition::CONTROLLER  => $controller] + $route]);
+                ] + $route);
     }
 
     /**
