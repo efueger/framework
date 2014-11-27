@@ -99,7 +99,7 @@ class Web
 
         is_string($route) && $route = [Definition::NAME => $route];
 
-        if (!$this->config->has('routes')) {
+        if (!$this->config->has(Args::ROUTES)) {
             $this->config->set(
                 Args::ROUTES,
                 new RouteDefinition([
