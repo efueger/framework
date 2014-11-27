@@ -75,7 +75,7 @@ return [
         Framework\Mvc\View\Renderer::class,
         ['setViewManager' => new Dependency('View\Manager')]
     ),
-    'Response\Dispatch' => Framework\Response\Dispatch::class,
+    'Response\Dispatch'  => Framework\Response\Dispatch::class,
     'Response\Exception' => Framework\Response\Exception\Exception::class,
     'Response\Exception\Dispatch' => new Service(
         Framework\Response\Exception\Dispatcher::class,
