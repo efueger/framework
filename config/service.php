@@ -34,12 +34,12 @@ return [
             )
         ]
     ),
-    'Controller\Manager'   => new Manager(Framework\Controller\Manager\Manager::class),
     'Controller\Exception' => Framework\Controller\Exception\Dispatch::class,
     'Controller\Exception\Controller' => new Hydrator(
         Framework\Controller\Exception\Controller::class,
         ['setModel' => new Dependency('Exception\Model')]
     ),
+    'Controller\Manager' => new Manager(Framework\Controller\Manager\Manager::class),
     'Exception\Renderer' => new Hydrator(
         Framework\View\Exception\Renderer::class,
         ['setViewManager' => new Dependency('View\Manager')]
