@@ -87,20 +87,20 @@ class Builder
      */
     public static function definition($definition, $recursive = false)
     {
-        if (!isset($definition[Definition::ROUTE])) {
+        if (empty($definition[Definition::ROUTE])) {
             throw new RuntimeException('Route not specified');
         }
 
         !isset($definition[Definition::CONSTRAINTS]) && $definition[Definition::CONSTRAINTS] = [];
 
-        !isset($definition[Definition::TOKENS])
+        empty($definition[Definition::TOKENS])
             && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
 
-        !isset($definition[Definition::REGEX])
+        empty($definition[Definition::REGEX])
             && $definition[Definition::REGEX]
                 = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
-        !isset($definition[Definition::PARAM_MAP])
+        $definition[Definition::CONSTRAINTS] && empty($definition[Definition::PARAM_MAP])
             && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
 
         $recursive && !empty($definition[Definition::CHILDREN])
