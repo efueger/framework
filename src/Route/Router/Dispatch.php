@@ -55,9 +55,7 @@ class Dispatch
     {
         $result = $this->signal($callable, $this->args() + $args, $callback);
 
-        if ($result && $result instanceof Route) {
-            $this->stop();
-        }
+        $result instanceof Route && $this->stop();
 
         return $result;
     }

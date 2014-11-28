@@ -48,7 +48,7 @@ class Exception
         return [
             Args::EVENT     => $this,
             Args::EXCEPTION => $this->exception,
-            Args::RESPONSE  => $this->response
+            Args::RESPONSE  => $this->response,
         ];
     }
 
@@ -62,9 +62,7 @@ class Exception
     {
         $response = $this->signal($callable, $this->args() + $args, $callback);
 
-        if ($response instanceof Response) {
-            $this->response = $response;
-        }
+        $response instanceof Response && $this->response = $response;
 
         return $response;
     }

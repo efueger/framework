@@ -64,13 +64,9 @@ class Match
     {
         $result = $this->signal($callable, $this->args() + $args, $callback);
 
-        if (!$result) {
-            $this->stop();
-        }
+        !$result && $this->stop();
 
-        if ($result instanceof Route) {
-            $this->route = $result;
-        }
+        $result instanceof Route && $this->route = $result;
 
         return $result;
     }
