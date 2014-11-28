@@ -10,14 +10,6 @@ trait GenerateRoute
     protected $generator;
 
     /**
-     * @param RouteGenerator $generator
-     */
-    public function setRouteGenerator(RouteGenerator $generator)
-    {
-        $this->generator = $generator;
-    }
-
-    /**
      * @param string $name
      * @param array $args
      * @return string
@@ -25,5 +17,13 @@ trait GenerateRoute
     public function generate($name, array $args = [])
     {
         return $this->generator->url($name, $args);
+    }
+
+    /**
+     * @param RouteGenerator $generator
+     */
+    public function setRouteGenerator(RouteGenerator $generator)
+    {
+        $this->generator = $generator;
     }
 }

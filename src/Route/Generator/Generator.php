@@ -156,6 +156,15 @@ class Generator
     }
 
     /**
+     * @param $name
+     * @return Definition
+     */
+    protected function config($name)
+    {
+        return $name === $this->definition->name() ? $this->definition : $this->definition->child($name);
+    }
+
+    /**
      * @param array|Definition $definition
      * @return array|Definition
      */
@@ -163,15 +172,6 @@ class Generator
     {
         return $definition instanceof Definition ? $definition
             : ($this->callback ? call_user_func($this->callback, [$definition]) : null);
-    }
-
-    /**
-     * @param $name
-     * @return Definition
-     */
-    protected function config($name)
-    {
-        return $name === $this->definition->name() ? $this->definition : $this->definition->child($name);
     }
 
     /**
