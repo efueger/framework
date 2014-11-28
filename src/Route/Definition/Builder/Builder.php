@@ -100,7 +100,7 @@ class Builder
             && $definition[Definition::REGEX]
                 = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
-        $definition[Definition::CONSTRAINTS] && empty($definition[Definition::PARAM_MAP])
+        empty($definition[Definition::PARAM_MAP])
             && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
 
         $recursive && !empty($definition[Definition::CHILDREN])
