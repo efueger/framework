@@ -10,6 +10,18 @@ use Traversable;
 trait EventGenerator
 {
     /**
+     * @param callable|Event|string $event
+     * @param callable $listener
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
+    {
+        return is_callable($event) ? $event($listener, $args, $callback) : $this->signal($listener, $args, $callback);
+    }
+
+    /**
      * @param Event|string $event
      * @param array $args
      * @param callable $callback
@@ -52,18 +64,6 @@ trait EventGenerator
             $event instanceof Traversable ? $event
                 : $this->listeners()->queue($event instanceof Event ? $event->event() : (string) $event)
         );
-    }
-
-    /**
-     * @param callable|Event|string $event
-     * @param callable $listener
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
-    {
-        return is_callable($event) ? $event($listener, $args, $callback) : $this->signal($listener, $args, $callback);
     }
 
     /**
