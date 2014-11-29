@@ -5,7 +5,6 @@
 
 use Framework\Service\Config\Args\Args;
 use Framework\Service\Config\Call\Call;
-use Framework\Service\Config\Config;
 use Framework\Service\Config\ConfigLink\ConfigLink;
 use Framework\Service\Config\Dependency\Dependency;
 use Framework\Service\Config\Hydrator\Hydrator;
@@ -49,7 +48,7 @@ return [
         ['setModel' => new Dependency('Exception\Model')]
     ),
     'Exception\Model' => new Service(Framework\View\Exception\Model::class, ['error/exception']),
-    'Factory' => new Config(['args' => [new ServiceManagerLink]]),
+    'Factory' => new Service(null, [new ServiceManagerLink]),
     'Layout'  => new Service(Framework\View\Layout\Model::class, ['layout']),
     'Manager' => new Hydrator(null, [
         'aliases'       => new Param('alias'),
