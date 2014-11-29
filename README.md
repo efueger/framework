@@ -1,4 +1,4 @@
-Welcome to an enhanced php 5.5 programming environment that provides inversion of control of the core behaviour of a web application or any *function*.
+Welcome to an enhanced php 5.5 programming environment that provides inversion of control of the core behaviour of a web application or any function.
 
 ### Core Behaviours
 * Configuration
@@ -75,7 +75,7 @@ boolean true
 ```
 The parameter `$args` can be used as a named argument that provides an array of the named arguments available to that method.
 
-To manage all of the parameters an optional callback can be added to call method, e.g
+To manage all of the parameters an optional callback can be added to the call method, e.g
 ```php
 $response = $web->call(
     'Controller.valid.add.response', 
@@ -226,7 +226,7 @@ $app->route('blog', function($sm, array $args = []) {
 //url: /blog/owner/web
 $app->route(
     [
-      blog/create', 
+      'blog/create', 
       '/:author[/:category]', 
       [
          'author'   => '[a-zA-Z0-9_-]*', 
@@ -315,11 +315,11 @@ A route can be configured as an `array` or as a `RouteDefinition`. If the config
 
 The routing mechanism is based on [Ben Scholzen 'DASPRiD's Router prototype for Zend Framework 3 ](https://github.com/DASPRiD/Dash), however here currently, the `array` configuration is explicit and a different shorthand version is only available directly via the [`Web Application`](https://github.com/mvc5/framework/blob/master/src/Application/WebApplication.php).
 
-In order to create a url using the `Route\Plugin`, e.g a view helper plugin, the first route must have a name that can be referred to as the base route which is typically the homepage for `/`, e.g `home`, or it can specify its own, e.g `/home`. Child routes, except for first level, will automatically have their parent name prepended to their name e.g `application/dashboard`. First level routes will not have the parent route prepended as it keeps its name simpler to use when specifying which route to create e.g `application` instead of `home/application`.
+In order to create a url using the `Route\Plugin`, e.g a view helper plugin, the first route must have a name that can be referred to as the base route which is typically the homepage for `/`, e.g `home`, or it can specify its own, e.g `/home`. Child routes, except for the first level, will automatically have their parent name prepended to their name e.g `application/dashboard`. First level routes will not have the parent route prepended as it keeps their name simpler to use when specifying which route to create e.g `application` instead of `home/application`.
 
 The `controller` param must be a service configuration value (which includes real values) that must resolve to a callable type. In the example below `@Home.test` will call the `test` method on a shared instance of `Home`. If no configuration for `Home` exists, a new instance will created but the `Home` class can not depend on any constructor arguments, otherwise a `Service` configuration is required.
 
-Controller configurations that are prefixed with an `@` will be called as plugin, so its `alias` configuration must resolve to a callable type. In the example below `@blog:create` is an `alias` to a `Blog Create Event` and is triggered as an event instead calling a single method.
+Controller configurations that are prefixed with an `@` will be called as a plugin, so its `alias` configuration must resolve to a callable type. In the example below `@blog:create` is an `alias` to a `Blog Create Event` and is triggered as an event instead calling a single method.
 
 Constraints have named keys that match the name of its corresponding `regex` parameter, optional parameters are enclosed with the square brackets `[]`.
 
@@ -353,8 +353,8 @@ echo $this->url('application/default', ['sort' => 'name', 'order' => 'desc']);
 ```
 Below is the route configured via the [`Web Application`](https://github.com/mvc5/framework/blob/master/src/Application/WebApplication.php).
 ```php
-$app->route(['application/default', '/:sort[/:order]'], function(array $args = []) {
-    return $this->call('blog:create');
+$app->route(['application/default', '/:sort[/:order]'], function($sm, array $args = []) {
+    return $sm->call('blog:create');
 });
 ```
 ##Event Configuration
@@ -412,7 +412,7 @@ The [`ControllerAction`](https://github.com/mvc5/framework/blob/master/src/Servi
 ]),
 ```
 ###Rendering View Models
-When the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) is a [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) it is [rendered](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) prior to sending the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php). Additionally and [prior](https://github.com/mvc5/framework/blob/master/config/event.php#L19) to [rendering](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php), if a [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is to be used, it will add the current [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) to itself as its content child model and the [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is then set as the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) so that it will be [rendered](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) prior to sending the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php).
+When the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php) is a [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) it is [rendered](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) prior to sending the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php). Additionally and [prior](https://github.com/mvc5/framework/blob/master/config/event.php#L19) to [rendering](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php), if a [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is to be used, it will add the current [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) to itself as its content child model and the [`LayoutModel`](https://github.com/mvc5/framework/blob/master/src/View/Layout/LayoutModel.php) is then set as the content of the [`Response`](https://github.com/mvc5/framework/blob/master/src/Response/Response.php).
 ```php
     function __invoke($model = null, ViewModel $layout = null)
     {
@@ -431,7 +431,7 @@ When the content of the [`Response`](https://github.com/mvc5/framework/blob/mast
 ```
 The [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) is then rendered via the [`View Render Event`](https://github.com/mvc5/framework/blob/master/src/View/Render/Render.php) which allows other renderers to be configured and used instead of the default [`View\Renderer`](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php).
 
-The default [`View\Renderer`](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) will bind the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) to a `Closure` that will extract the view model's variables and then include the view model's template file. The scope of the template is the view model itself which gives the template access to any of the view model's private and protected variables and functions. 
+The [`View\Renderer`](https://github.com/mvc5/framework/blob/master/src/View/Renderer/RenderView.php) will bind the [`ViewModel`](https://github.com/mvc5/framework/blob/master/src/View/Model/ViewModel.php) to a `Closure` that will extract the view model's variables and then include the view model's template file. The scope of the template is the view model itself which gives the template access to any of the view model's private and protected variables and functions. 
 ```php
 $render = Closure::bind(function() {
         extract((array) $this->assigned());
