@@ -3,9 +3,10 @@
 namespace Framework\Service\Container;
 
 use Framework\Config\ArrayAccess;
+use Serializable;
 
 class Container
-    implements ServiceContainer
+    implements Serializable, ServiceContainer
 {
     /**
      *
@@ -101,5 +102,21 @@ class Container
     public function set($name, $service)
     {
         $this->services[$name] = $service;
+    }
+
+    /**
+     * @return array|string
+     */
+    public function serialize()
+    {
+        return serialize($this->config);
+    }
+
+    /**
+     * @param string $config
+     */
+    public function unserialize($config)
+    {
+        $this->config = unserialize($config);
     }
 }
