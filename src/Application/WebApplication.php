@@ -24,10 +24,10 @@ interface WebApplication
 
     /**
      * @param array|string $route
-     * @param array|string|callable|object $controller
+     * @param array|callable|null|object|string $controller
      * @return Definition
      */
-    function route($route, $controller);
+    function route($route, $controller = null);
 
     /**
      * @param array $args

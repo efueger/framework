@@ -85,26 +85,31 @@ class Web
 
     /**
      * @param array|string $route
-     * @param array|string|callable|object $controller
+     * @param array|callable|null|object|string $controller
      * @return Definition
      */
-    public function route($route, $controller)
+    public function route($route, $controller = null)
     {
         is_array($route) && !is_string(key($route)) && $route = [
             Definition::NAME        => $route[0],
             Definition::ROUTE       => isset($route[1]) ? $route[1] : null,
             Definition::CONSTRAINTS => isset($route[2]) ? $route[2] : [],
-            Definition::DEFAULTS    => isset($route[3]) ? $route[3] : []
+            Definition::DEFAULTS    => isset($route[4]) ? $route[3] : [],
+            Definition::CONTROLLER  => isset($route[4]) ? $route[4] : isset($route[3]) ? $route[3] : []
         ];
 
-        is_string($route) && $route = [Definition::NAME => $route];
+        is_string($route) && $route = [
+            Definition::NAME       => $route,
+            Definition::CONTROLLER => $controller
+        ];
 
-        return isset($this->config[Args::ROUTES])
-            ? $this->call(Args::ADD_ROUTE, [Args::DEFINITION => [Definition::CONTROLLER  => $controller] + $route])
-                : $this->config[Args::ROUTES] = new RouteDefinition([
-                    Definition::ROUTE      => !empty($route[Definition::ROUTE]) ? $route[Definition::ROUTE] : '/',
-                    Definition::CONTROLLER => $controller
-                ] + $route);
+        if (isset($this->config[Args::ROUTES])) {
+            return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => $route]);
+        }
+
+        empty($route[Definition::ROUTE]) && $route[Definition::ROUTE] = '/';
+
+        return $this->config[Args::ROUTES] = new RouteDefinition($route);
     }
 
     /**
