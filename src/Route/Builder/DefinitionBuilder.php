@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Definition\Builder;
+namespace Framework\Route\Builder;
 
 use Exception;
 use Framework\Route\Definition\Definition;
@@ -77,4 +77,10 @@ interface DefinitionBuilder
      * @throws RuntimeException
      */
     static function tokens($pattern, $delimiter = '/');
+
+    /**
+     * @param array|Definition $definition
+     * @return Definition
+     */
+    static function url($definition);
 }

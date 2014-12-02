@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Definition\Builder;
+namespace Framework\Route\Builder;
 
 use Framework\Route\Definition\Definition;
 use Framework\Route\Definition\RouteDefinition;
@@ -82,10 +82,11 @@ class Builder
 
     /**
      * @param array|Definition $definition
+     * @param bool $compile
      * @param bool $recursive
      * @return Definition
      */
-    public static function definition($definition, $recursive = false)
+    public static function definition($definition, $compile = true, $recursive = false)
     {
         if (empty($definition[Definition::ROUTE])) {
             throw new RuntimeException('Route not specified');
@@ -96,9 +97,8 @@ class Builder
         empty($definition[Definition::TOKENS])
             && $definition[Definition::TOKENS] = static::tokens($definition[Definition::ROUTE]);
 
-        empty($definition[Definition::REGEX])
-            && $definition[Definition::REGEX]
-                = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
+        $compile && empty($definition[Definition::REGEX]) && $definition[Definition::REGEX]
+            = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
         empty($definition[Definition::PARAM_MAP])
             && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
@@ -239,6 +239,15 @@ class Builder
         }
 
         return $tokens;
+    }
+
+    /**
+     * @param array|Definition $definition
+     * @return Definition
+     */
+    public static function url($definition)
+    {
+        return static::definition($definition, false);
     }
 
     /**

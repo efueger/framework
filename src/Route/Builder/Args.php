@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Definition\Builder;
+namespace Framework\Route\Builder;
 
 interface Args
 {

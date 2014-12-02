@@ -97,7 +97,7 @@ return [
         ]
     ),
     'Route\Builder' => new Service(
-        Route\Definition\Builder\Builder::class,
+        Route\Builder\Builder::class,
         [new Param('routes')]
     ),
     'Route\Dispatch'        => Route\Router\Dispatch::class,
@@ -118,7 +118,7 @@ return [
     ),
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,
-        [new Param('routes'), new Invoke('Route\Builder')]
+        [new Param('routes'), new Invoke([new Dependency('Route\Builder'), 'url'])]
     ),
     'Route\Manager'        => new Manager(Route\Manager\Manager::class),
     'Route\Match'          => Route\Match\Match::class,

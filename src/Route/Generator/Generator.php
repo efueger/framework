@@ -3,7 +3,7 @@
 namespace Framework\Route\Generator;
 
 use Exception;
-use Framework\Route\Definition\Builder\DefinitionBuilder as Route;
+use Framework\Route\Builder\DefinitionBuilder as Route;
 use Framework\Route\Definition\Definition;
 use InvalidArgumentException;
 
