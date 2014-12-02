@@ -100,9 +100,9 @@ return [
         Route\Builder\Builder::class,
         [new Param('routes')]
     ),
-    'Route\Dispatch'        => Route\Router\Dispatch::class,
-    'Route\Dispatch\Error'  => new Invokable(new ServiceConfig('Route\Error')),
-    'Route\Error' => new Service(
+    'Route\Dispatch' => Route\Router\Dispatch::class,
+    'Route\Error'    => new Invokable(new ServiceConfig('Route\ErrorRoute')),
+    'Route\ErrorRoute' => new Service(
         'Route',
         [
             new Args([

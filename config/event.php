@@ -37,7 +37,7 @@ return [
     'Route\Dispatch' => [[
         'Route\Filter',
         'Router',
-        'Route\Dispatch\Error'
+        'Route\Error'
     ]],
     'View\Render' => [[
         'View\Renderer'
