@@ -101,8 +101,8 @@ return [
         [new Param('routes')]
     ),
     'Route\Dispatch' => Route\Router\Dispatch::class,
-    'Route\Error'    => new Invokable(new ServiceConfig('Route\ErrorRoute')),
-    'Route\ErrorRoute' => new Service(
+    'Route\Error'    => new Invokable(new ServiceConfig('Route\Error\Route')),
+    'Route\Error\Route' => new Service(
         'Route',
         [
             new Args([
