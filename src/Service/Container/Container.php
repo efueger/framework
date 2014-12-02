@@ -105,7 +105,7 @@ class Container
     }
 
     /**
-     * @return array|string
+     * @return string
      */
     public function serialize()
     {
