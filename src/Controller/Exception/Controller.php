@@ -5,7 +5,7 @@ namespace Framework\Controller\Exception;
 use Exception as ExceptionInterface;
 use Framework\Response\Response;
 use Framework\View\Exception\ExceptionModel;
-use Framework\View\Model\Service\ViewModel;
+use Framework\View\ViewModel;
 
 class Controller
     implements Exception

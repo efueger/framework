@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\View\Model\Service;
+namespace Framework\View;
 
 use Framework\View\Model\Model as Base;
 use Framework\View\Model\ViewModel as Model;

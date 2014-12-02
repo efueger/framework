@@ -6,7 +6,7 @@ use Exception;
 use Framework\Event\Base;
 use Framework\Event\Event;
 use Framework\Service\Resolver\Signal;
-use Framework\View\Model\Service\ViewModel;
+use Framework\View\ViewModel;
 
 class View
     implements Event, ViewException

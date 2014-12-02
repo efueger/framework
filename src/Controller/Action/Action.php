@@ -8,7 +8,7 @@ use Framework\Event\Base;
 use Framework\Event\Event;
 use Framework\Response\Response;
 use Framework\Service\Resolver\Signal;
-use Framework\View\Model\Service\ViewModel as Model;
+use Framework\View\ViewModel as Model;
 use Framework\View\Model\ViewModel;
 use Iterator;
 
