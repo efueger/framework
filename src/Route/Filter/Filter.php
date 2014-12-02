@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Route\Router;
+namespace Framework\Route\Filter;
 
 use Framework\Route\Route;
 

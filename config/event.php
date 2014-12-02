@@ -35,7 +35,7 @@ return [
         'Route\Match\Method'
     ]],
     'Route\Dispatch' => [[
-        'Route\Dispatch\Filter',
+        'Route\Filter',
         'Router',
         'Route\Dispatch\Error'
     ]],

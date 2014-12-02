@@ -102,7 +102,6 @@ return [
     ),
     'Route\Dispatch'        => Route\Router\Dispatch::class,
     'Route\Dispatch\Error'  => new Invokable(new ServiceConfig('Route\Error')),
-    'Route\Dispatch\Filter' => Route\Router\Filter::class,
     'Route\Error' => new Service(
         'Route',
         [
@@ -116,6 +115,7 @@ return [
             ])
         ]
     ),
+    'Route\Filter' => Route\Filter\Filter::class,
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,
         [new Param('routes'), new Invoke([new Dependency('Route\Builder'), 'url'])]
