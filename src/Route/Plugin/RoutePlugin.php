@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework\Route\Generator;
+namespace Framework\Route\Plugin;
 
-interface Plugin
+interface RoutePlugin
 {
     /**
      * @param null|string $name

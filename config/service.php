@@ -128,7 +128,7 @@ return [
     'Route\Match\Scheme'   => Route\Match\Scheme\Scheme::class,
     'Route\Match\Wildcard' => Route\Match\Wildcard\Wildcard::class,
     'Route\Plugin' => new Hydrator(
-        Route\Generator\GeneratorPlugin::class,
+        Route\Plugin\Plugin::class,
         [
             'setRoute'          => new Dependency('Route'),
             'setRouteGenerator' => new Dependency('Route\Generator')

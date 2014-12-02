@@ -1,11 +1,12 @@
 <?php
 
-namespace Framework\Route\Generator;
+namespace Framework\Route\Plugin;
 
+use Framework\Route\Generator\GenerateRoute;
 use Framework\Route\RouteService;
 
-class GeneratorPlugin
-    implements Plugin
+class Plugin
+    implements RoutePlugin
 {
     /**
      *
