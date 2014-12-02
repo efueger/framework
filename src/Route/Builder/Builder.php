@@ -69,12 +69,15 @@ class Builder
 
     /**
      * @param array $definitions
+     * @param bool $compile
+     * @param bool $recursive
      * @return array
      */
-    public static function children(array $definitions)
+    public static function children(array $definitions, $compile = true, $recursive = true)
     {
         foreach($definitions as $name => $definition) {
-            !$definition instanceof Definition && $definitions[$name] = static::definition($definition);
+            !$definition instanceof Definition
+                && $definitions[$name] = static::definition($definition, $compile, $recursive);
         }
 
         return $definitions;

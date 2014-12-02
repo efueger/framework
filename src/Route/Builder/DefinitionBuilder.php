@@ -46,15 +46,19 @@ interface DefinitionBuilder
 
     /**
      * @param array $definitions
+     * @param bool $compile
+     * @param bool $recursive
      * @return array
      */
-    static function children(array $definitions);
+    static function children(array $definitions, $compile = true, $recursive = true);
 
     /**
      * @param array|Definition $definition
+     * @param bool $compile
+     * @param bool $recursive
      * @return Definition
      */
-    static function definition($definition);
+    static function definition($definition, $compile = true, $recursive = false);
 
     /**
      * @param array $tokens
