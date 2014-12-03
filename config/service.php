@@ -76,14 +76,14 @@ return [
         Mvc\View\Renderer::class,
         ['setViewManager' => new Dependency('View\Manager')]
     ),
-    'Response\Dispatch'  => Response\Dispatch::class,
+    'Response\Dispatch'  => Response\Dispatch\Dispatch::class,
     'Response\Exception' => Response\Exception\Exception::class,
     'Response\Exception\Dispatch' => new Service(
         Response\Exception\Dispatcher::class,
         [new Hydrator('Response', ['setStatus' => 500])]
     ),
     'Response\Exception\Renderer' => Response\Exception\Renderer::class,
-    'Response\Sender'             => Response\Sender::class,
+    'Response\Sender'             => Response\Send\Sender::class,
     'Response\Manager'            => new Manager(Response\Manager\Manager::class),
     'Route' => new Service(
         Route\Config::class,

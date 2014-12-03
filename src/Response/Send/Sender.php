@@ -1,6 +1,8 @@
 <?php
 
-namespace Framework\Response;
+namespace Framework\Response\Send;
+
+use Framework\Response\Response;
 
 class Sender
     implements Send

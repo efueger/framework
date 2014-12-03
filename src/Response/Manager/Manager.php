@@ -6,7 +6,7 @@ use Exception;
 use Framework\Event\Manager\EventManager;
 use Framework\Event\Manager\Events;
 use Framework\Response\Exception\ResponseException;
-use Framework\Response\DispatchResponse;
+use Framework\Response\Dispatch\DispatchResponse;
 use Framework\Response\Response;
 use Framework\Service\Manager\ServiceManager;
 
