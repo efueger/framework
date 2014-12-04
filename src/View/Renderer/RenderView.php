@@ -7,6 +7,7 @@ use Exception;
 use Framework\View\Manager\ViewManager;
 use Framework\View\Model\Plugin;
 use Framework\View\Model\ViewModel;
+use RuntimeException;
 
 trait RenderView
 {
@@ -33,6 +34,10 @@ trait RenderView
 
         if ($template = $this->template($model->path())) {
             $model->template($template);
+        }
+
+        if (!$model->path()) {
+            throw new RuntimeException('View model path not found: ' . get_class($model));
         }
 
         $model instanceof Plugin
