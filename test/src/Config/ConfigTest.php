@@ -10,33 +10,7 @@ class ConfigTest extends TestCase
     /**
      *
      */
-    public function testIteratorWithNotNullValues()
-    {
-        $data = [
-            'a' => 'A',
-            'b' => false,
-            //'c' => null,
-            'd' => 0,
-            'e' => '',
-            'f' => '0',
-            'g' => 'G'
-        ];
-
-        $config = new Config($data);
-
-        $count = 0;
-
-        foreach($config as $k => $v) {
-            ++$count;
-        }
-
-        $this->assertTrue($count == count($data));
-    }
-
-    /**
-     *
-     */
-    public function testIteratorWithNullValue()
+    public function testIteratorWithFalseValues()
     {
         $data = [
             'a' => 'A',
@@ -56,6 +30,6 @@ class ConfigTest extends TestCase
             ++$count;
         }
 
-        $this->assertTrue($count == 2);
+        $this->assertTrue($count == count($data));
     }
 }
