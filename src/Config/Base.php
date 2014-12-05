@@ -53,7 +53,7 @@ trait Base
      */
     public function has($name)
     {
-        return isset($this->config[$name]);
+        return array_key_exists($name, $this->config);
     }
 
     /**
@@ -104,6 +104,6 @@ trait Base
      */
     public function valid()
     {
-        return array_key_exists($this->key(), $this->config);
+        return $this->has($this->key());
     }
 }
