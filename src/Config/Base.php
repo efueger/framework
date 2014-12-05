@@ -104,6 +104,6 @@ trait Base
      */
     public function valid()
     {
-        return array_key_exists($this->key(), $this->config);
+        return null !== $this->key();
     }
 }
