@@ -65,11 +65,11 @@ trait Base
     }
 
     /**
-     * @return mixed|void
+     * @return void
      */
     public function next()
     {
-        return next($this->config);
+        next($this->config);
     }
 
     /**
@@ -104,6 +104,6 @@ trait Base
      */
     public function valid()
     {
-        return $this->current() !== false;
+        return $this->has($this->key());
     }
 }

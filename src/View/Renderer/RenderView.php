@@ -28,7 +28,7 @@ trait RenderView
      */
     public function __invoke(ViewModel $model)
     {
-        foreach($model->assigned() as $k => $v) {
+        foreach($model as $k => $v) {
             $v instanceof ViewModel && $model->set($k, $this($v));
         }
 
