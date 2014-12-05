@@ -65,7 +65,7 @@ trait Base
     }
 
     /**
-     * @return void
+     *
      */
     public function next()
     {
