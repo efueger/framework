@@ -44,9 +44,7 @@ trait Resolver
         }
 
         foreach($args as $index => $value) {
-            if ($value instanceof Resolvable) {
-                $args[$index] = $this->resolve($value);
-            }
+            $value instanceof Resolvable && $args[$index] = $this->resolve($value);
         }
 
         return $args;
