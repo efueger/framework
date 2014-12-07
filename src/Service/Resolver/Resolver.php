@@ -245,7 +245,7 @@ trait Resolver
                 throw new RuntimeException('Missing required parameter $' . $param->name . ' for ' . $name);
             }
 
-            $matched[] = $this->plugin($hint->name);
+            $matched[] = $this->create($hint->name);
         }
 
         return $class->newInstanceArgs($params ? $matched : $this->args($args));
