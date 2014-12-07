@@ -306,7 +306,7 @@ trait Resolver
         !$args && $args = $config->args();
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->make($this->solve($parent), $args));
+            return $this->hydrate($config, $this->create($this->solve($parent), $args));
         }
 
         if (!$parent || $name == $parent->name()) {
