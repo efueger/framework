@@ -30,7 +30,7 @@ trait ManageService
 
         if (is_string($config)) {
             return $this->create($this->configured($config), $args) ?:
-                ($callback && !class_exists($config) ? $callback($config) : $this->newInstanceArgs($config, $args));
+                ($callback && !class_exists($config) ? $callback($config) : $this->make($config, $args));
         }
 
         if (is_array($config)) {

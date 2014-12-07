@@ -4,7 +4,6 @@ namespace Framework\Service\Factory;
 
 use Framework\Config\Configuration;
 use Framework\Service\Manager\ServiceManager;
-use ReflectionClass;
 
 trait Base
 {
@@ -56,22 +55,6 @@ trait Base
     public function get($name, array $args = [])
     {
         return $this->sm->get($name, $args);
-    }
-
-    /**
-     * @param string $name
-     * @param array $args
-     * @return object
-     */
-    protected function newInstanceArgs($name, array $args = [])
-    {
-        if (!$args) {
-            return new $name;
-        }
-
-        $class = new ReflectionClass($name);
-
-        return $class->hasMethod('__construct') ? $class->newInstanceArgs($args) : $class->newInstance();
     }
 
     /**

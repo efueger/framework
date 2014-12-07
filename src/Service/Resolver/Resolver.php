@@ -206,6 +206,52 @@ trait Resolver
     }
 
     /**
+     * @param string $name
+     * @param array $args
+     * @return object
+     */
+    protected function make($name, array $args = [])
+    {
+        $class = new ReflectionClass($name);
+
+        if (!$class->hasMethod('__construct')) {
+            return $class->newInstanceWithoutConstructor();
+        }
+
+        if ($args && !is_string(key($args))) {
+            return $class->newInstanceArgs($this->args($args));
+        }
+
+        $matched = [];
+        $params  = $class->getConstructor()->getParameters();
+
+        foreach($params as $param) {
+            if (isset($args[$param->name])) {
+                $matched[] = $args[$param->name];
+                continue;
+            }
+
+            if ($param->isOptional()) {
+                $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
+                continue;
+            }
+
+            if ($match = $this->plugin($param->name)) {
+                $matched[] = $match;
+                continue;
+            }
+
+            if (!$hint = $param->getClass()) {
+                throw new RuntimeException('Missing required parameter $' . $param->name . ' for ' . $name);
+            }
+
+            $matched[] = $this->get($hint->name);
+        }
+
+        return $class->newInstanceArgs($params ? $matched : $this->args($args));
+    }
+
+    /**
      * @param Config $parent
      * @param Config $config
      * @return Config
@@ -222,22 +268,6 @@ trait Resolver
         );
 
         return $parent;
-    }
-
-    /**
-     * @param string $name
-     * @param array $args
-     * @return object
-     */
-    protected function newInstanceArgs($name, array $args = [])
-    {
-        if (!$args) {
-            return new $name;
-        }
-
-        $class = new ReflectionClass($name);
-
-        return $class->hasMethod('__construct') ? $class->newInstanceArgs($this->args($args)) : $class->newInstance();
     }
 
     /**
@@ -276,11 +306,11 @@ trait Resolver
         !$args && $args = $config->args();
 
         if ($parent && !$parent instanceof Config) {
-            return $this->hydrate($config, $this->newInstanceArgs($this->solve($parent), $args));
+            return $this->hydrate($config, $this->make($this->solve($parent), $args));
         }
 
         if (!$parent || $name == $parent->name()) {
-            return $this->hydrate($config, $this->newInstanceArgs($name, $args));
+            return $this->hydrate($config, $this->make($name, $args));
         }
 
         return $this->provide($this->merge(clone $parent, $config), $args);
