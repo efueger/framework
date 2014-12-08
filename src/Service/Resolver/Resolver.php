@@ -236,11 +236,6 @@ trait Resolver
                 continue;
             }
 
-            if ($match = $this->plugin($param->name)) {
-                $matched[] = $match;
-                continue;
-            }
-
             if (!$hint = $param->getClass()) {
                 throw new RuntimeException('Missing required parameter $' . $param->name . ' for ' . $name);
             }
