@@ -27,7 +27,6 @@ trait Resolver
     /**
      *
      */
-    use Builder;
     use Signal;
 
     /**
@@ -213,7 +212,39 @@ trait Resolver
      */
     protected function make($name, array $args = [])
     {
-        return $this->build($name, $this->args($args), function($name) { return $this->create($name); });
+        $class = new ReflectionClass($name);
+
+        if (!$class->hasMethod('__construct')) {
+            return $class->newInstanceWithoutConstructor();
+        }
+
+        if ($args && !is_string(key($args))) {
+            return $class->newInstanceArgs($this->args($args));
+        }
+
+        $matched = [];
+        $params  = $class->getConstructor()->getParameters();
+
+        foreach($params as $param) {
+            if (isset($args[$param->name])) {
+                $matched[] = $args[$param->name];
+                continue;
+            }
+
+            if ($param->isOptional()) {
+                $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
+                continue;
+            }
+
+            if ($hint = $param->getClass()) {
+                $matched[] = $this->create($hint->name);
+                continue;
+            }
+
+            throw new RuntimeException('Missing required parameter $' . $param->name . ' for ' . $name);
+        }
+
+        return $class->newInstanceArgs($params ? $matched : $this->args($args));
     }
 
     /**
@@ -275,7 +306,7 @@ trait Resolver
         }
 
         if (!$parent || $name == $parent->name()) {
-            return $this->hydrate($config, $this->simple($name, $args));
+            return $this->hydrate($config, $this->make($name, $args));
         }
 
         return $this->provide($this->merge(clone $parent, $config), $args);
@@ -353,22 +384,6 @@ trait Resolver
         }
 
         return $config;
-    }
-
-    /**
-     * @param string $name
-     * @param array $args
-     * @return object
-     */
-    protected function simple($name, array $args = [])
-    {
-        if (!$args) {
-            return new $name;
-        }
-
-        $class = new ReflectionClass($name);
-
-        return $class->hasMethod('__construct') ? $class->newInstanceArgs($this->args($args)) : $class->newInstance();
     }
 
     /**
