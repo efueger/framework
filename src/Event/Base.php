@@ -19,7 +19,7 @@ trait Base
      */
     public function event()
     {
-        return $this->event ? : static::EVENT;
+        return $this->event ? : defined('static::EVENT') ? constant('static::EVENT') : static::class;
     }
 
     /**
