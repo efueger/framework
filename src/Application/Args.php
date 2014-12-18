@@ -17,11 +17,6 @@ interface Args
     /**
      *
      */
-    const CREATE_ROUTE = 'route:create';
-
-    /**
-     *
-     */
     const DEFINITION = 'definition';
 
     /**
