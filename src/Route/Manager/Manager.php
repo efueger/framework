@@ -19,7 +19,7 @@ class Manager
     use Events;
 
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @return Definition
      */
     public function definition($definition)

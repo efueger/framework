@@ -8,7 +8,7 @@ use Framework\Route\Route;
 interface RouteManager
 {
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @return Definition
      */
     function definition($definition);

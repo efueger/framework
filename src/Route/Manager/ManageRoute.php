@@ -13,7 +13,7 @@ trait ManageRoute
     protected $rm;
 
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @return Definition
      */
     public function definition($definition)
