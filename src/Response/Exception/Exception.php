@@ -14,13 +14,13 @@ class Exception
     /**
      *
      */
-    const EVENT = self::EXCEPTION;
+    use Base;
+    use Signal;
 
     /**
      *
      */
-    use Base;
-    use Signal;
+    const EVENT = self::EXCEPTION;
 
     /**
      * @var ExceptionInterface
