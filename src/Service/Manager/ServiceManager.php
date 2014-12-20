@@ -34,7 +34,7 @@ interface ServiceManager
     function get($name, array $args = [], callable $callback = null);
 
     /**
-     * @param $name
+     * @param string $name
      * @return mixed
      */
     function param($name);

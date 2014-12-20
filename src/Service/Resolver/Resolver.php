@@ -267,7 +267,7 @@ trait Resolver
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return mixed
      */
     public function param($name)

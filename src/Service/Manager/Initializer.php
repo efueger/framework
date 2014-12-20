@@ -31,7 +31,7 @@ trait Initializer
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @param $service
      * @return mixed
      */
@@ -45,7 +45,7 @@ trait Initializer
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return bool
      */
     protected function initializing($name)
