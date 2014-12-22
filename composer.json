@@ -9,5 +9,8 @@
         "psr-4": {
             "Framework\\": "./src"
         }
+    },
+    "require-dev": {
+        "mvc5/tests": "dev-master"
     }
 }
