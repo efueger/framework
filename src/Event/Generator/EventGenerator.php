@@ -22,7 +22,7 @@ trait EventGenerator
     }
 
     /**
-     * @param Event|string $event
+     * @param Event|string|Traversable $event
      * @param array $args
      * @param callable $callback
      * @return mixed|null
@@ -55,7 +55,7 @@ trait EventGenerator
     protected abstract function listeners();
 
     /**
-     * @param Event|string $event
+     * @param Event|string|Traversable $event
      * @return Generator
      */
     protected function queue($event)
