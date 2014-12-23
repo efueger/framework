@@ -16,7 +16,10 @@ trait EventGenerator
      * @param callable $callback
      * @return mixed
      */
-    protected abstract function emit($event, callable $listener, array $args = [], callable $callback = null);
+    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
+    {
+        return is_callable($event) ? $event($listener, $args, $callback) : $this->signal($listener, $args, $callback);
+    }
 
     /**
      * @param Event|string|Traversable $event
