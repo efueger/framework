@@ -76,8 +76,8 @@ class Builder
     public static function children(array $definitions, $compile = true, $recursive = true)
     {
         foreach($definitions as $name => $definition) {
-            !$definition instanceof Definition
-                && $definitions[$name] = static::definition($definition, $compile, $recursive);
+            !$definition instanceof Definition && $definitions[$name]
+                = static::definition($definition, $compile, $recursive);
         }
 
         return $definitions;
