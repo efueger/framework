@@ -2,7 +2,7 @@
 
 namespace Framework\Service\Config\Calls;
 
-use Framework\Service\Config\Base;
+use Framework\Service\Config\Hydrator\Base;
 use Framework\Service\Resolver\Resolvable;
 
 class Calls
@@ -12,16 +12,4 @@ class Calls
      *
      */
     use Base;
-
-    /**
-     * @param string|object $name
-     * @param array $calls
-     */
-    public function __construct($name, array $calls)
-    {
-        $this->config = [
-            self::CALLS => $calls,
-            self::NAME  => $name
-        ];
-    }
 }
