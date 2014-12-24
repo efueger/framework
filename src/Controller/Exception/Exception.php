@@ -2,15 +2,43 @@
 
 namespace Framework\Controller\Exception;
 
-use Exception as ExceptionInterface;
-use Framework\Response\Response;
+use Framework\Event\Event;
+use Framework\Service\Resolver\EventSignal;
 
-interface Exception
+class Exception
+    implements DispatchException, Event
 {
     /**
-     * @param ExceptionInterface $exception
-     * @param Response $response
-     * @return mixed
+     *
      */
-    function __invoke(ExceptionInterface $exception, Response $response);
+    use EventSignal;
+
+    /**
+     *
+     */
+    const EVENT = self::EXCEPTION;
+
+    /**
+     * @var \Exception
+     */
+    protected $exception;
+
+    /**
+     * @param \Exception $exception
+     */
+    public function __construct(\Exception $exception)
+    {
+        $this->exception = $exception;
+    }
+
+    /**
+     * @return array
+     */
+    protected function args()
+    {
+        return [
+            Args::EVENT     => $this,
+            Args::EXCEPTION => $this->exception
+        ];
+    }
 }

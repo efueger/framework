@@ -35,7 +35,7 @@ return [
             )
         ]
     ),
-    'Controller\Exception' => Controller\Exception\Dispatch::class,
+    'Controller\Exception' => Controller\Exception\Exception::class,
     'Controller\Exception\Controller' => new Hydrator(
         Controller\Exception\Controller::class,
         ['setModel' => new Dependency('Exception\Model')]
