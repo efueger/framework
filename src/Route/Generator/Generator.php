@@ -103,10 +103,9 @@ class Generator
                         }
 
                         continue;
+                    }
 
-                    } elseif (
-
-                        !$current['is_optional']
+                    if (!$current['is_optional']
                                 || !isset($defaults[$part[Route::NAME]])
                                     || $defaults[$part[Route::NAME]] !== $args[$part[Route::NAME]]
 
@@ -137,11 +136,7 @@ class Generator
 
                     $parent = array_pop($stack);
 
-                    if (
-
-                        !($current['path'] !== '' && $current['is_optional'] && $current['skippable'] && $current['skip'])
-
-                    ) {
+                    if (!($current['path'] !== '' && $current['is_optional'] && $current['skippable'] && $current['skip'])) {
                         $parent['path'] .= $current['path'];
                         $parent['skip'] = false;
                     }
