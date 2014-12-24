@@ -2,10 +2,9 @@
 
 namespace Framework\Response\Dispatch;
 
-use Framework\Event\Base;
 use Framework\Event\Event;
 use Framework\Response\Response;
-use Framework\Service\Resolver\Signal;
+use Framework\Service\Resolver\EventSignal;
 
 class Dispatch
     implements DispatchResponse, Event
@@ -13,8 +12,7 @@ class Dispatch
     /**
      *
      */
-    use Base;
-    use Signal;
+    use EventSignal;
 
     /**
      *
@@ -43,16 +41,5 @@ class Dispatch
             Args::EVENT    => $this,
             Args::RESPONSE => $this->response
         ];
-    }
-
-    /**
-     * @param callable $callable
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    public function __invoke(callable $callable, array $args = [], callable $callback = null)
-    {
-        return $this->signal($callable, $this->args() + $args, $callback);
     }
 }

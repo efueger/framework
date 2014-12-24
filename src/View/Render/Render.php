@@ -2,9 +2,8 @@
 
 namespace Framework\View\Render;
 
-use Framework\Event\Base;
 use Framework\Event\Event;
-use Framework\Service\Resolver\Signal;
+use Framework\Service\Resolver\EventSignal;
 use Framework\View\Model\ViewModel;
 
 class Render
@@ -13,8 +12,7 @@ class Render
     /**
      *
      */
-    use Base;
-    use Signal;
+    use EventSignal;
 
     /**
      *
@@ -43,16 +41,5 @@ class Render
             Args::EVENT => $this,
             Args::MODEL => $this->model
         ];
-    }
-
-    /**
-     * @param callable $callable
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    public function __invoke(callable $callable, array $args = [], callable $callback = null)
-    {
-        return $this->signal($callable, $this->args() + $args, $callback);
     }
 }
