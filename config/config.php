@@ -4,8 +4,8 @@
  */
 
 use Framework\Config\Config;
-use Framework\Service\Container\Container;
 use Framework\Event\Config\Events;
+use Framework\Service\Container\Container;
 
 return new Config([
     'alias'     => new Config(include __DIR__ . '/alias.php'),
