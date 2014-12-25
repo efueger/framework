@@ -3,8 +3,6 @@ build:
         before:
             - composer create-project mvc5/application build --stability dev --dev --keep-vcs
     tests:
-        after:
-            - ls -la build
         override:
             -
                 command: 'phpunit --configuration build/phpunit.xml --coverage-clover build/logs/clover.clover'
