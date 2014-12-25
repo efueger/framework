@@ -2,12 +2,10 @@
 
 namespace Framework\View;
 
-use Framework\Config\Configuration;
-
 trait ViewTemplates
 {
     /**
-     * @var array
+     * @var array|\ArrayAccess
      */
     protected $templates = [];
 
@@ -21,7 +19,7 @@ trait ViewTemplates
     }
 
     /**
-     * @param array|Configuration $templates
+     * @param array|\ArrayAccess $templates
      */
     public function templates($templates)
     {

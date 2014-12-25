@@ -70,7 +70,7 @@ interface DefinitionBuilder
      * @param array $tokens
      * @param array $constraints
      * @param string $delimiter
-     * @return array
+     * @return string
      */
     static function regex(array $tokens, array $constraints = [], $delimiter = '/');
 

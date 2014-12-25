@@ -8,7 +8,7 @@ use Framework\Event\Event;
 trait ManageEvent
 {
     /**
-     * @var Events
+     * @var Configuration
      */
     protected $events;
 

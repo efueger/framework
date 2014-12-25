@@ -13,9 +13,9 @@ trait Service
     use ArrayAccess;
 
     /**
-     * @var array
+     * @var array|Configuration
      */
-    protected $config = [];
+    protected $config;
 
     /**
      * @var ServiceContainer

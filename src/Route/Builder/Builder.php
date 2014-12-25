@@ -132,7 +132,7 @@ class Builder
      * @param array $tokens
      * @param array $constraints
      * @param string $delimiter
-     * @return array
+     * @return string
      */
     public static function regex(array $tokens, array $constraints = [], $delimiter = '/')
     {

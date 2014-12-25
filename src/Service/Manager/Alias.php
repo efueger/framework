@@ -5,7 +5,7 @@ namespace Framework\Service\Manager;
 trait Alias
 {
     /**
-     * @var array
+     * @var array|\ArrayAccess
      */
     protected $alias = [];
 
