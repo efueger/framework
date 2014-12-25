@@ -1,3 +1,11 @@
-tools:
-    external_code_coverage:
-        timeout: 600
+build:
+    dependencies:
+        before:
+            - composer create-project mvc5/application build --stability dev --dev --keep-vcs
+    tests:
+        override:
+            -
+                command: 'phpunit --configuration build/phpunit.xml'
+                coverage:
+                    file: 'build/logs/clover.clover'
+                    format: 'php-clover'
