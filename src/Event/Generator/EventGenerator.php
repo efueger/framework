@@ -10,7 +10,7 @@ use Traversable;
 trait EventGenerator
 {
     /**
-     * @param callable|Event|string $event
+     * @param callable|Event|string|Traversable $event
      * @param callable $listener
      * @param array $args
      * @param callable $callback
