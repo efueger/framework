@@ -31,7 +31,7 @@ trait Resolver
 
     /**
      * @param $args
-     * @return mixed
+     * @return array|callable|mixed|object|string
      */
     protected function args($args)
     {
@@ -173,7 +173,7 @@ trait Resolver
     }
 
     /**
-     * @param callable|string $config
+     * @param array|callable|object|string $config
      * @return callable|null
      */
     protected function invokable($config)
