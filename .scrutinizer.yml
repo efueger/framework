@@ -3,6 +3,8 @@ build:
         before:
             - composer create-project mvc5/application build --stability dev --dev --keep-vcs
     tests:
+        before:
+            - ls -la build/logs
         override:
             -
                 command: 'phpunit --configuration build/phpunit.xml'
