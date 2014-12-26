@@ -51,7 +51,7 @@ class Container
 
     /**
      * @param string $name
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     public function configured($name)
     {

@@ -21,7 +21,7 @@ interface ServiceContainer
 
     /**
      * @param string $name
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     function configured($name);
 
