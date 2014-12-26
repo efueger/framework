@@ -1,5 +1,5 @@
 filter:
-    paths: [build/build/vendor/mvc5/framework/src/*]
+    paths: [~/build/build/vendor/mvc5/framework/src/*]
 build:
     dependencies:
         before:
