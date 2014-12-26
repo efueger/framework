@@ -161,7 +161,7 @@ class Generator
 
     /**
      * @param array|Definition $definition
-     * @return array|Definition
+     * @return Definition|null
      */
     protected function create($definition)
     {

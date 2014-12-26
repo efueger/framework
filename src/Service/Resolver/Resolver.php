@@ -31,7 +31,7 @@ trait Resolver
 
     /**
      * @param $args
-     * @return array|callable|mixed|object|string
+     * @return array|callable|null|object|string
      */
     protected function args($args)
     {
@@ -90,7 +90,7 @@ trait Resolver
     /**
      * @param ChildService $config
      * @param array $args
-     * @return null|object
+     * @return array|callable|object|string
      */
     protected function child(ChildService $config, array $args = [])
     {
@@ -109,7 +109,7 @@ trait Resolver
     public abstract function configured($name);
 
     /**
-     * @param array|object|string $config
+     * @param array|callable|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object
@@ -315,7 +315,7 @@ trait Resolver
     /**
      * @param $config
      * @param array $args
-     * @return null|object
+     * @return array|callable|null|object|string
      */
     protected function resolve($config, array $args = [])
     {

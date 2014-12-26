@@ -2,10 +2,10 @@
 
 namespace Framework\Event\Config;
 
-use Framework\Config\Configuration as Base;
+use Framework\Config\Configuration as Config;
 
 interface Configuration
-    extends Base
+    extends Config
 {
     /**
      *

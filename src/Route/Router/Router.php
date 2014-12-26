@@ -40,7 +40,7 @@ class Router
     /**
      * @param Route $route
      * @param Definition $definition
-     * @return Route|null
+     * @return null|Route
      */
     protected function dispatch(Route $route, Definition $definition)
     {
@@ -73,7 +73,7 @@ class Router
 
     /**
      * @param Route $route
-     * @return Route|null
+     * @return null|Route
      */
     public function __invoke(Route $route)
     {
