@@ -15,6 +15,7 @@ before_script:
   - composer create-project mvc5/application build --stability dev --dev --keep-vcs
 
 after_script:
+  - composer require codeclimate/php-test-reporter
   - CODECLIMATE_REPO_TOKEN="5e341eef01e66bb0bc0cf50aaa69f38187312897c5801f225871d0a0b40dd03c" vendor/bin/test-reporter --coverage-report build/logs/clover.xml --stdout > build/logs/codeclimate.json
   - "curl -X POST -d @build/logs/codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 
