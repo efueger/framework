@@ -24,6 +24,9 @@ script:
   - php -d opcache.enable=0 -d opcache.enable_cli=0 build/public/index.php >/dev/null
   - php -n build/public/index.php >/dev/null
   - phpunit --configuration build/phpunit.xml --coverage-clover build/logs/clover.xml
+  - phpunit --configuration build/phpunit.xml --coverage-clover build/logs/coverage.clover
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
 
 notifications:
   email: false
