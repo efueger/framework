@@ -30,7 +30,7 @@ trait Base
 
     /**
      * @param $name
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     public function configured($name)
     {

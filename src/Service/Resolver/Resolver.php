@@ -104,7 +104,7 @@ trait Resolver
 
     /**
      * @param string $name
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     public abstract function configured($name);
 
