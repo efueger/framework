@@ -1,0 +1,4 @@
+coverage_clover: build/logs/clover.xml
+json_path: build/coveralls-upload.json
+service_name: %TRAVIS_REPO_SLUG%
+service_job_id: %TRAVIS_JOB_ID%

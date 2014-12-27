@@ -20,6 +20,8 @@ after_script:
   - "curl -X POST -d @build/logs/codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
+  - composer require satooshi/php-coveralls --dev
+  - php vendor/bin/coveralls -v
 
 script:
   - php -d opcache.enable=1 -d opcache.enable_cli=1 build/public/index.php >/dev/null
