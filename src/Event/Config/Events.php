@@ -2,8 +2,11 @@
 
 namespace Framework\Event\Config;
 
+use Countable;
+use Iterator;
+
 class Events
-    implements Configuration
+    implements Configuration, Countable, Iterator
 {
     /**
      *
