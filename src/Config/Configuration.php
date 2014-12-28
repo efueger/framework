@@ -2,8 +2,10 @@
 
 namespace Framework\Config;
 
+use ArrayAccess as ArrayConfig;
+
 interface Configuration
-    extends \ArrayAccess
+    extends ArrayConfig
 {
     /**
      * @param string $name
