@@ -61,8 +61,9 @@ trait EventGenerator
     protected function queue($event)
     {
         return $this->traverse(
-            $event instanceof Traversable ? $event
-                : $this->listeners()->queue($event instanceof Event ? $event->event() : (string) $event)
+            $event instanceof Traversable ? $event : $this->listeners()->queue(
+                is_object($event) ? $event instanceof Event ? $event->event() : get_class($event)  : $event
+            )
         );
     }
 
