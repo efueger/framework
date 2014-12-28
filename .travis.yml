@@ -20,7 +20,8 @@ before_script:
 
 after_script:
   - composer require codeclimate/php-test-reporter
-  - vendor/bin/test-reporter --coverage-report build/logs/clover.xml
+  - vendor/bin/test-reporter --coverage-report build/logs/clover.xml --stdout > build/logs/codeclimate.json
+  - "curl -X POST -d @build/logs/codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/coverage.clover
 
