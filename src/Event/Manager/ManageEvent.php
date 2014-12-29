@@ -35,7 +35,7 @@ trait ManageEvent
     protected abstract function generate($event, array $args = [], callable $callback = null);
 
     /**
-     * @return Events
+     * @return Configuration
      */
     protected function listeners()
     {

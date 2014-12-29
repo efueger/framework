@@ -3,7 +3,7 @@
 namespace Framework\Route\Generator;
 
 use Exception;
-use Framework\Route\Builder\DefinitionBuilder as Route;
+use Framework\Route\Builder\Args;
 use Framework\Route\Definition\Definition;
 use InvalidArgumentException;
 
@@ -85,10 +85,10 @@ class Generator
         ];
 
         foreach($tokens as $part) {
-            switch($part[Route::TYPE]) {
+            switch($part[Args::TYPE]) {
                 case 'literal':
 
-                    $current['path'] .= $part[Route::LITERAL];
+                    $current['path'] .= $part[Args::LITERAL];
 
                     break;
 
@@ -96,18 +96,18 @@ class Generator
 
                     $current['skippable'] = true;
 
-                    if (!isset($args[$part[Route::NAME]])) {
+                    if (!isset($args[$part[Args::NAME]])) {
 
                         if (!$current['is_optional']) {
-                            throw new InvalidArgumentException(sprintf('Missing parameter "%s"', $part[Route::NAME]));
+                            throw new InvalidArgumentException(sprintf('Missing parameter "%s"', $part[Args::NAME]));
                         }
 
                         continue;
                     }
 
                     if (!$current['is_optional']
-                                || !isset($defaults[$part[Route::NAME]])
-                                    || $defaults[$part[Route::NAME]] !== $args[$part[Route::NAME]]
+                                || !isset($defaults[$part[Args::NAME]])
+                                    || $defaults[$part[Args::NAME]] !== $args[$part[Args::NAME]]
 
                     ) {
 
@@ -115,7 +115,7 @@ class Generator
 
                     }
 
-                    $current['path'] .= $args[$part[Route::NAME]];
+                    $current['path'] .= $args[$part[Args::NAME]];
 
                     break;
 

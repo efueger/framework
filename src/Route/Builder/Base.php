@@ -99,7 +99,7 @@ trait Base
         $map   = [];
 
         foreach($tokens as $token) {
-            'parameter' == $token[self::TYPE] && $map['param' . $index++] = $token[self::NAME];
+            'parameter' == $token[Args::TYPE] && $map['param' . $index++] = $token[Args::NAME];
         }
 
         return $map;
@@ -118,35 +118,35 @@ trait Base
         $regex      = '';
 
         foreach($tokens as $token) {
-            if ('literal' === $token[self::TYPE]) {
-                $regex .= preg_quote($token[self::LITERAL]);
+            if ('literal' === $token[Args::TYPE]) {
+                $regex .= preg_quote($token[Args::LITERAL]);
                 continue;
             }
 
-            if ('parameter' === $token[self::TYPE]) {
+            if ('parameter' === $token[Args::TYPE]) {
                 $groupName = '?P<param' . $groupIndex++ . '>';
 
-                if (isset($constraints[$token[self::NAME]])) {
-                    $regex .= '(' . $groupName . $constraints[$token[self::NAME]] . ')';
+                if (isset($constraints[$token[Args::NAME]])) {
+                    $regex .= '(' . $groupName . $constraints[$token[Args::NAME]] . ')';
                     continue;
                 }
 
-                if (null === $token[self::DELIMITERS]) {
+                if (null === $token[Args::DELIMITERS]) {
                     $regex .= '(' . $groupName . '[^' . $delimiter . ']+)';
                     continue;
                 }
 
-                $regex .= '(' . $groupName . '[^' . $token[self::DELIMITERS] . ']+)';
+                $regex .= '(' . $groupName . '[^' . $token[Args::DELIMITERS] . ']+)';
 
                 continue;
             }
 
-            if ('optional-start' === $token[self::TYPE]) {
+            if ('optional-start' === $token[Args::TYPE]) {
                 $regex .= '(?:';
                 continue;
             }
 
-            if ('optional-end' === $token[self::TYPE]) {
+            if ('optional-end' === $token[Args::TYPE]) {
                 $regex .= ')?';
                 continue;
             }

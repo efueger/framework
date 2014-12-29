@@ -9,26 +9,6 @@ use RuntimeException;
 interface DefinitionBuilder
 {
     /**
-     *
-     */
-    const TYPE = 0;
-
-    /**
-     *
-     */
-    const NAME = 1;
-
-    /**
-     *
-     */
-    const LITERAL = 1;
-
-    /**
-     *
-     */
-    const DELIMITERS = 2;
-
-    /**
      * @param array $definition
      * @return Definition
      */
