@@ -46,7 +46,7 @@ trait RenderView
         $render = Closure::bind(function() {
                 /** @var ViewModel $this */
 
-                extract((array) $this->assigned());
+                extract($this->assigned());
 
                 ob_start();
 

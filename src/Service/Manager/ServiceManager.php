@@ -18,7 +18,7 @@ interface ServiceManager
     function call($config, array $args = [], callable $callback = null);
 
     /**
-     * @param array|callable|object|string $config
+     * @param array|callable|null|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object

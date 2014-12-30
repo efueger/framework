@@ -109,7 +109,7 @@ class Web
 
         empty($route[Definition::ROUTE]) && $route[Definition::ROUTE] = '/';
 
-        return $this->config[Args::ROUTES] = new RouteDefinition($route);
+        return $this->config[Args::ROUTES] = new RouteDefinition((array) $route);
     }
 
     /**
