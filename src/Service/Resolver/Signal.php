@@ -23,7 +23,7 @@ trait Signal
         $function = null;
         $matched  = [];
         $method   = '__invoke';
-        $params   = null;
+        $params   = [];
 
         if (is_array($config)) {
             list($config, $method) = $config;
