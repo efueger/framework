@@ -2,6 +2,7 @@
 
 namespace Framework\Service\Manager;
 
+use Framework\Service\Config\Configuration;
 use Framework\Service\Container\ServiceContainer;
 use RuntimeException;
 
@@ -18,7 +19,7 @@ interface ServiceManager
     function call($config, array $args = [], callable $callback = null);
 
     /**
-     * @param array|callable|null|object|string $config
+     * @param array|callable|Configuration|null|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object

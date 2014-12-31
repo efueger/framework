@@ -109,7 +109,7 @@ trait Resolver
     public abstract function configured($name);
 
     /**
-     * @param array|callable|object|string $config
+     * @param array|callable|Config|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object

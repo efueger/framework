@@ -3,6 +3,7 @@
 namespace Framework\Service\Manager;
 
 use Closure;
+use Framework\Service\Config\Configuration;
 use Framework\Service\Container\Service;
 use Framework\Service\Resolver\Resolver;
 
@@ -17,7 +18,7 @@ trait ManageService
     use Initializer;
 
     /**
-     * @param array|callable|null|object|string $config
+     * @param array|callable|Configuration|null|object|string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object
