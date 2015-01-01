@@ -396,7 +396,7 @@ trait Resolver
     }
 
     /**
-     * @param string $event
+     * @param array|Event|string $event
      * @param array $args
      * @param callable $callback
      * @return mixed
