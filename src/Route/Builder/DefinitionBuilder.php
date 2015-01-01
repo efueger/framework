@@ -10,13 +10,13 @@ interface DefinitionBuilder
 {
     /**
      * @param Definition $parent
-     * @param array $definition
+     * @param array|Definition $definition
      * @param array $path
      * @param bool $start
      * @return Definition
      * @throws Exception
      */
-    static function addChild(Definition $parent, array $definition, array $path, $start = false);
+    static function addChild(Definition $parent, $definition, array $path, $start = false);
 
     /**
      * @param array $definitions

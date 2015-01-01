@@ -14,13 +14,13 @@ trait Base
 {
     /**
      * @param Definition $parent
-     * @param array $definition
+     * @param array|Definition $definition
      * @param array $path
      * @param bool $start
      * @return Definition
      * @throws RuntimeException
      */
-    public static function addChild(Definition $parent, array $definition, array $path, $start = false)
+    public static function addChild(Definition $parent, $definition, array $path, $start = false)
     {
         if ($root = $parent->child($path[0])) {
             return static::addChild($root, $definition, array_slice($path, 1));
