@@ -10,7 +10,6 @@ use Framework\Service\Config\Call\Call;
 use Framework\Service\Config\ConfigLink\ConfigLink;
 use Framework\Service\Config\Dependency\Dependency;
 use Framework\Service\Config\Hydrator\Hydrator;
-use Framework\Service\Config\Invoke\Invoke;
 use Framework\Service\Config\Invokable\Invokable;
 use Framework\Service\Config\Manager\Manager;
 use Framework\Service\Config\Param\Param;
@@ -96,9 +95,10 @@ return [
             ])
         ]
     ),
-    'Route\Builder' => new Service(
-        Route\Builder\Builder::class,
-        [new Param('routes')]
+    'Route\Builder'   => Route\Builder\Builder::class,
+    'Route\Container' => new Service(
+        Route\Container\Container::class,
+        [new Dependency('Route\Builder'), new Param('routes')]
     ),
     'Route\Dispatch' => Route\Router\Dispatch::class,
     'Route\Error'    => new Invokable(new ServiceConfig('Route\Error\Route')),
@@ -118,7 +118,7 @@ return [
     'Route\Filter' => Route\Filter\Filter::class,
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,
-        [new Param('routes'), new Invoke([new Dependency('Route\Builder'), 'url'])]
+        [new Param('routes'), new Dependency('Route\Builder')]
     ),
     'Route\Manager'        => new Manager(Route\Manager\Manager::class),
     'Route\Match'          => Route\Match\Match::class,

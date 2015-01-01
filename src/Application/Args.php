@@ -7,7 +7,7 @@ interface Args
     /**
      *
      */
-    const ADD_ROUTE = 'route:builder.add';
+    const ADD_ROUTE = 'route:container';
 
     /**
      *

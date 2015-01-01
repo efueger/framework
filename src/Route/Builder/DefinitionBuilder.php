@@ -9,12 +9,6 @@ use RuntimeException;
 interface DefinitionBuilder
 {
     /**
-     * @param array $definition
-     * @return Definition
-     */
-    function add(array $definition);
-
-    /**
      * @param Definition $parent
      * @param array $definition
      * @param array $path
@@ -67,4 +61,10 @@ interface DefinitionBuilder
      * @return Definition
      */
     static function url($definition);
+
+    /**
+     * @param array|Definition $definition
+     * @return Definition
+     */
+    function __invoke($definition);
 }

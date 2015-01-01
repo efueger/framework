@@ -130,18 +130,18 @@ The parameter names of the additional arguments can be aliases or service names.
 Each plugin has a configuration specific to its own use and they are resolved each time they are used. This enables them to be used in various ways for different purposes, e.g to provide a value or to trigger an event or to call a particular service method.
 ```php
 return [
-    'blog:create' => new Service('Blog\Create'),
-    'blog:valid'  => new Invoke('Blog\Controller.valid'),
-    'config'        => new Dependency('Config'),
-    'layout'        => new Dependency('Layout'),
-    'request'       => new Dependency('Request'),
-    'response'      => new Dependency('Response'),
-    'route:builder' => new Dependency('Route\Builder'),
-    'route:create'  => new Invoke('Route\Builder'),
-    'sm'            => new Dependency('Service\Manager'),
-    'url'           => new Dependency('Route\Plugin'),
-    'web'           => new Service('Mvc'),
-    'vm'            => new Dependency('View\Manager')
+    'blog:create'     => new Service('Blog\Create'),
+    'blog:valid'      => new Invoke('Blog\Controller.valid'),
+    'config'          => new Dependency('Config'),
+    'layout'          => new Dependency('Layout'),
+    'request'         => new Dependency('Request'),
+    'response'        => new Dependency('Response'),
+    'route:container' => new Dependency('Route\Container'),
+    'route:create'    => new Invoke('Route\Builder'),
+    'sm'              => new Dependency('Service\Manager'),
+    'url'             => new Dependency('Route\Plugin'),
+    'web'             => new Service('Mvc'),
+    'vm'              => new Dependency('View\Manager')
 ];
 ```
 The [`plugin`](https://github.com/mvc5/framework/blob/master/src/Service/Manager/ManageService.php#L63) method is also used when calling an object.

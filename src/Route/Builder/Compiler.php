@@ -50,13 +50,9 @@ trait Compiler
                     }
 
                     if (!$current['is_optional']
-                        || !isset($defaults[$part[Args::NAME]])
-                        || $defaults[$part[Args::NAME]] !== $args[$part[Args::NAME]]
-
-                    ) {
-
+                            || !isset($defaults[$part[Args::NAME]])
+                                || $defaults[$part[Args::NAME]] !== $args[$part[Args::NAME]]) {
                         $current['skip'] = false;
-
                     }
 
                     $current['path'] .= $args[$part[Args::NAME]];

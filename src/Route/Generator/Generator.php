@@ -82,7 +82,7 @@ class Generator
     protected function create($definition)
     {
         return $definition instanceof Definition && !empty($definition[Definition::REGEX]) ? $definition
-            : ($this->callback ? call_user_func($this->callback, [$definition]) : null);
+            : ($this->callback ? call_user_func($this->callback, $definition) : null);
     }
 
     /**
