@@ -1,14 +1,14 @@
 <?php
 
-namespace Framework\Route\Container;
+namespace Framework\Route\Builder;
 
 use Framework\Route\Definition\Definition;
 
-interface Routes
+interface AddRoute
 {
     /**
      * @param array|Definition $definition
      * @return Definition
      */
-    function add($definition);
+    function __invoke($definition);
 }

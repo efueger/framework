@@ -1,12 +1,11 @@
 <?php
 
-namespace Framework\Route\Container;
+namespace Framework\Route\Builder;
 
-use Framework\Route\Builder\DefinitionBuilder;
 use Framework\Route\Definition\Definition;
 
-class Container
-    implements Routes
+class Add
+    implements AddRoute
 {
     /**
      * @var DefinitionBuilder
@@ -32,17 +31,8 @@ class Container
      * @param array|Definition $definition
      * @return Definition
      */
-    public function add($definition)
-    {
-        return $this->builder->addChild($this->routes, $definition, explode('/', $definition[Definition::NAME]), true);
-    }
-
-    /**
-     * @param array|Definition $definition
-     * @return Definition
-     */
     public function __invoke($definition)
     {
-        return $this->add($definition);
+        return $this->builder->addChild($this->routes, $definition, explode('/', $definition[Definition::NAME]), true);
     }
 }

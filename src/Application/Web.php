@@ -104,7 +104,7 @@ class Web
         ];
 
         if (isset($this->config[Args::ROUTES])) {
-            return $this->call(Args::ADD_ROUTE, [Args::DEFINITION => $route]);
+            return $this->call(Args::ROUTE_ADD, [Args::DEFINITION => $route]);
         }
 
         empty($route[Definition::ROUTE]) && $route[Definition::ROUTE] = '/';

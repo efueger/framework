@@ -8,14 +8,14 @@ use Framework\Service\Config\Invoke\Invoke;
 use Framework\Service\Config\Service\Service;
 
 return [
-    'config'          => new Dependency('Config'),
-    'layout'          => new Dependency('Layout'),
-    'request'         => new Dependency('Request'),
-    'response'        => new Dependency('Response'),
-    'route:container' => new Dependency('Route\Container'),
-    'route:create'    => new Invoke('Route\Builder.definition'),
-    'sm'              => new Dependency('Service\Manager'),
-    'url'             => new Dependency('Route\Plugin'),
-    'web'             => new Service('Mvc'),
-    'vm'              => new Dependency('View\Manager')
+    'config'       => new Dependency('Config'),
+    'layout'       => new Dependency('Layout'),
+    'request'      => new Dependency('Request'),
+    'response'     => new Dependency('Response'),
+    'route:add'    => new Dependency('Route\Add'),
+    'route:create' => new Invoke('Route\Builder.definition'),
+    'sm'           => new Dependency('Service\Manager'),
+    'url'          => new Dependency('Route\Plugin'),
+    'web'          => new Service('Mvc'),
+    'vm'           => new Dependency('View\Manager')
 ];
