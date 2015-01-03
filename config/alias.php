@@ -4,7 +4,6 @@
  */
 
 use Framework\Service\Config\Dependency\Dependency;
-use Framework\Service\Config\Invoke\Invoke;
 use Framework\Service\Config\Service\Service;
 
 return [
@@ -13,7 +12,7 @@ return [
     'request'      => new Dependency('Request'),
     'response'     => new Dependency('Response'),
     'route:add'    => new Dependency('Route\Add'),
-    'route:create' => new Invoke('Route\Builder.definition'),
+    'route:create' => new Dependency('Route\Create'),
     'sm'           => new Dependency('Service\Manager'),
     'url'          => new Dependency('Route\Plugin'),
     'web'          => new Service('Mvc'),

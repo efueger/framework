@@ -99,7 +99,8 @@ return [
         Route\Builder\Add::class,
         [new Dependency('Route\Builder'), new Param('routes')]
     ),
-    'Route\Builder'   => Route\Builder\Builder::class,
+    'Route\Builder'  => Route\Builder\Builder::class,
+    'Route\Create'   => Route\Builder\Create::class,
     'Route\Dispatch' => Route\Router\Dispatch::class,
     'Route\Error'    => new Invokable(new ServiceConfig('Route\Error\Route')),
     'Route\Error\Route' => new Service(
