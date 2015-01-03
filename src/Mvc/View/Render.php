@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 
 namespace Framework\Mvc\View;
 

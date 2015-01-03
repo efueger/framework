@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 
 namespace Framework\Controller\Exception;
 
