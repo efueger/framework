@@ -55,7 +55,9 @@ class Router
         foreach($definition->children() as $name => $definition) {
             $route->set(Route::NAME, ($this->name() == $route->name() ? null : $route->name() . '/') . $name);
 
-            if ($match = $this->dispatch($route, $this->create($definition))) {
+            $match = $this->dispatch($route, $this->create($definition));
+
+            if ($match) {
                 return $match;
             }
         }
