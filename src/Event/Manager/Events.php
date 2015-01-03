@@ -12,8 +12,8 @@ trait Events
      *
      */
     use EventGenerator;
-    use ManageEvent;
     use ManageService;
+    use ManageEvent;
 
     /**
      * @param array|Event|string $event
