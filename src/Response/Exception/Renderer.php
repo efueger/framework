@@ -16,7 +16,7 @@ class Renderer
      * @param ExceptionInterface $exception
      * @param Response $response
      * @param ViewManager $vm
-     * @return mixed
+     * @return Response
      */
     public function __invoke(ExceptionInterface $exception, Response $response, ViewManager $vm)
     {

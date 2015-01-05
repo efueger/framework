@@ -11,7 +11,7 @@ interface Dispatch
 {
     /**
      * @param Route $route
-     * @return Route|mixed
+     * @return Route
      */
     function __invoke(Route $route);
 }

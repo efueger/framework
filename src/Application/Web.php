@@ -53,7 +53,7 @@ class Web
 
     /**
      * @param mixed $config
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     public function offsetGet($config)
     {
@@ -136,7 +136,7 @@ class Web
 
     /**
      * @param $name
-     * @return mixed
+     * @return bool
      */
     public function __isset($name)
     {

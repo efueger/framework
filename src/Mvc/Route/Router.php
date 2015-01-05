@@ -18,7 +18,7 @@ class Router
 
     /**
      * @param Route $route
-     * @return Route|mixed
+     * @return Route
      */
     public function __invoke(Route $route)
     {

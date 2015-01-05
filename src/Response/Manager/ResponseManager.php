@@ -12,7 +12,7 @@ interface ResponseManager
 {
     /**
      * @param Exception $exception
-     * @return mixed
+     * @return Response
      */
     function exception(Exception $exception);
 

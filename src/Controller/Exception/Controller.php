@@ -7,6 +7,7 @@ namespace Framework\Controller\Exception;
 
 use Framework\Response\Response;
 use Framework\View\Exception\ExceptionModel;
+use Framework\View\Model\ViewModel as Model;
 use Framework\View\ViewModel;
 
 class Controller
@@ -20,7 +21,7 @@ class Controller
     /**
      * @param \Exception $exception
      * @param Response $response
-     * @return mixed
+     * @return Model
      */
     public function __invoke(\Exception $exception, Response $response)
     {

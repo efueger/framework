@@ -11,6 +11,7 @@ interface FilterRoute
 {
     /**
      * @param Route $route
+     * @return void
      */
     function __invoke(Route $route);
 }

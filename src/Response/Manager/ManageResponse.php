@@ -17,7 +17,7 @@ trait ManageResponse
 
     /**
      * @param Exception $exception
-     * @return mixed
+     * @return Response
      */
     public function exception(Exception $exception)
     {
