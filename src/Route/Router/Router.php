@@ -31,7 +31,7 @@ class Router
     }
 
     /**
-     * @param $definition
+     * @param array|Definition $definition
      * @return Definition
      */
     protected function create($definition)

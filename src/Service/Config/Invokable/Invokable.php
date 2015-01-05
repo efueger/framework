@@ -11,12 +11,12 @@ class Invokable
     implements Resolvable, ServiceInvokable
 {
     /**
-     * @var string
+     * @var array|callable|object|string
      */
     protected $config;
 
     /**
-     * @param $config
+     * @param array|callable|object|string $config
      */
     public function __construct($config)
     {
@@ -24,7 +24,7 @@ class Invokable
     }
 
     /**
-     * @return mixed
+     * @return array|callable|object|string
      */
     public function config()
     {

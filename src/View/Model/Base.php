@@ -25,7 +25,7 @@ trait Base
     }
 
     /**
-     * @param $model
+     * @param string|ViewModel $model
      * @return void
      */
     public function child($model)

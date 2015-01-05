@@ -11,7 +11,7 @@ interface ViewRenderer
 {
     /**
      * @param ViewModel $model
-     * @return mixed
+     * @return string
      */
     function __invoke(ViewModel $model);
 }

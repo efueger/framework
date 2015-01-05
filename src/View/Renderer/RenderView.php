@@ -15,7 +15,7 @@ use RuntimeException;
 trait RenderView
 {
     /**
-     * @param $template
+     * @param string $template
      * @return string
      */
     protected abstract function template($template);

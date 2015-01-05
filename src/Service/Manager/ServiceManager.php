@@ -53,7 +53,7 @@ interface ServiceManager
     /**
      * @param string $name
      * @param callable $callback
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     function __invoke($name, callable $callback = null);
 }

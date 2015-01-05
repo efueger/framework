@@ -13,7 +13,7 @@ class Path
 {
     /**
      * @param array $paramMap
-     * @param array $matches
+     * @param string[] $matches
      * @return array
      */
     protected function params(array $paramMap, array $matches)

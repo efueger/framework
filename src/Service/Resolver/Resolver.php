@@ -120,7 +120,7 @@ trait Resolver
     protected abstract function create($config, array $args = [], callable $callback = null);
 
     /**
-     * @param $arg
+     * @param array|callable|object|string $arg
      * @param array $filters
      * @return mixed
      */
@@ -409,7 +409,7 @@ trait Resolver
     /**
      * @param string $name
      * @param callable $callback
-     * @return mixed
+     * @return array|callable|null|object|string
      */
     public function __invoke($name, callable $callback = null)
     {

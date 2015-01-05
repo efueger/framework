@@ -8,7 +8,7 @@ namespace Framework\Service\Config\Invokable;
 interface ServiceInvokable
 {
     /**
-     * @return mixed
+     * @return array|callable|object|string
      */
     function config();
 }

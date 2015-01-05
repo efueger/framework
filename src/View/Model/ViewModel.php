@@ -28,7 +28,7 @@ interface ViewModel
     function assigned();
 
     /**
-     * @param $model
+     * @param string|self $model
      * @return void
      */
     function child($model);

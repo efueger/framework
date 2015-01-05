@@ -15,7 +15,7 @@ trait Initializer
     protected $pending = [];
 
     /**
-     * @param array|object|string $config
+     * @param string $config
      * @param array $args
      * @param callable $callback
      * @return callable|null|object
