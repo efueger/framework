@@ -141,8 +141,8 @@ trait Resolver
 
     /**
      * @param Config $config
-     * @param callable|null|object $service
-     * @return mixed
+     * @param object $service
+     * @return object
      */
     protected function hydrate(Config $config, $service)
     {
@@ -201,7 +201,7 @@ trait Resolver
      * @param array|callable|object|string $config
      * @param array $args
      * @param callable $callback
-     * @return mixed
+     * @return array|callable|object|string
      */
     protected function invoke($config, array $args = [], callable $callback = null)
     {
@@ -211,7 +211,7 @@ trait Resolver
     /**
      * @param string $name
      * @param array $args
-     * @return object
+     * @return callable|object
      */
     protected function make($name, array $args = [])
     {
@@ -295,7 +295,7 @@ trait Resolver
     /**
      * @param Config $config
      * @param array $args
-     * @return null|object
+     * @return callable|null|object
      */
     protected function provide(Config $config, array $args = [])
     {

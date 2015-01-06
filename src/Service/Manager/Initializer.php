@@ -36,7 +36,7 @@ trait Initializer
     /**
      * @param string $name
      * @param callable|null|object $service
-     * @return mixed
+     * @return callable|null|object
      */
     protected function initialized($name, $service = null)
     {
