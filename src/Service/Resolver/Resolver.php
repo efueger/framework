@@ -120,7 +120,7 @@ trait Resolver
     protected abstract function create($config, array $args = [], callable $callback = null);
 
     /**
-     * @param array|callable|object|string $arg
+     * @param array|callable|null|object|string $arg
      * @param array $filters
      * @return mixed
      */
@@ -141,7 +141,7 @@ trait Resolver
 
     /**
      * @param Config $config
-     * @param $service
+     * @param callable|null|object $service
      * @return mixed
      */
     protected function hydrate(Config $config, $service)

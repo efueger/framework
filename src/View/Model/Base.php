@@ -89,7 +89,7 @@ trait Base
 
     /**
      * @param $name
-     * @return mixed
+     * @return bool
      */
     public function __isset($name)
     {
