@@ -47,12 +47,9 @@ class Action
     {
         $response = $this->signal($callable, $this->args() + $args, $callback);
 
-        if ($response instanceof Response) {
-            $this->stop();
-            return $response;
-        }
-
         $response instanceof ViewModel && $this->setModel($response);
+
+        $response instanceof Response && $this->stop();
 
         return $response;
     }
