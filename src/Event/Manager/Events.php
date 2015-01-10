@@ -48,7 +48,8 @@ trait Events
     {
         return is_callable($event)
             ? $event instanceof Handler
-            ? $this->invoke($event, [Args::CALL => $listener, Args::ARGS => $args, Args::CALLBACK => $callback], $callback)
-            : $event($listener, $args, $callback) : $this->invoke($listener, $args, $callback);
+                ? $this->invoke($event, [Args::CALL => $listener, Args::ARGS => $args, Args::CALLBACK => $callback], $callback)
+                : $event($listener, $args, $callback)
+            : $this->invoke($listener, $args, $callback);
     }
 }
