@@ -7,6 +7,7 @@ namespace Framework\Event\Manager;
 
 use Framework\Event\Config\Configuration;
 use Framework\Event\Event;
+use Framework\Event\Handler;
 
 trait ManageEvent
 {
@@ -14,6 +15,15 @@ trait ManageEvent
      * @var Configuration
      */
     protected $events;
+
+    /**
+     * @param callable|Event|string $event
+     * @param callable|Handler $listener
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected abstract function emit($event, callable $listener, array $args = [], callable $callback = null);
 
     /**
      * @param array|Event|string $event
@@ -53,6 +63,7 @@ trait ManageEvent
      */
     public function trigger($event, array $args = [], callable $callback = null)
     {
-        return $this->generate($this->event($event), $args, $callback);
+        return $event instanceof Handler ? $this->emit($event, $event, $args, $callback)
+                : $this->generate($this->event($event), $args, $callback);
     }
 }
