@@ -16,15 +16,6 @@ trait ManageEvent
     protected $events;
 
     /**
-     * @param callable|Event|string $event
-     * @param callable $listener
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    protected abstract function emit($event, callable $listener, array $args = [], callable $callback = null);
-
-    /**
      * @param array|Event|string $event
      * @return Event|string
      */
