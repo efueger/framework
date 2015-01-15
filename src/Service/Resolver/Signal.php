@@ -55,7 +55,12 @@ trait Signal
                 continue;
             }
 
-            if ($callback && $match = $callback($param->name)) {
+            if ($callback && ($match = $callback($param->name)) !== null) {
+                $matched[] = $match;
+                continue;
+            }
+
+            if ($callback && ($hint = $param->getClass()) && ($match = $callback($hint->name)) !== null) {
                 $matched[] = $match;
                 continue;
             }
