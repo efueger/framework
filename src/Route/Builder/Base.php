@@ -16,6 +16,13 @@ use RuntimeException;
 trait Base
 {
     /**
+     *
+     */
+    use Params;
+    use Regex;
+    use Tokens;
+
+    /**
      * @param Definition $parent
      * @param array|Definition $definition
      * @param array $path
@@ -84,144 +91,12 @@ trait Base
             = static::regex($definition[Definition::TOKENS], $definition[Definition::CONSTRAINTS]);
 
         empty($definition[Definition::PARAM_MAP])
-        && $definition[Definition::PARAM_MAP] = static::paramMap($definition[Definition::TOKENS]);
+        && $definition[Definition::PARAM_MAP] = static::params($definition[Definition::TOKENS]);
 
         $recursive && !empty($definition[Definition::CHILDREN])
         && $definition[Definition::CHILDREN] = static::children($definition[Definition::CHILDREN]);
 
         return $definition instanceof Definition ? $definition : new RouteDefinition($definition);
-    }
-
-    /**
-     * @param array $tokens
-     * @return array
-     */
-    public static function paramMap(array $tokens)
-    {
-        $index = 1;
-        $map   = [];
-
-        foreach($tokens as $token) {
-            'parameter' == $token[Args::TYPE] && $map['param' . $index++] = $token[Args::NAME];
-        }
-
-        return $map;
-    }
-
-    /**
-     * @param array $tokens
-     * @param array $constraints
-     * @param string $delimiter
-     * @return string
-     */
-    public static function regex(array $tokens, array $constraints = [], $delimiter = '/')
-    {
-        $delimiter  = preg_quote($delimiter);
-        $groupIndex = 1;
-        $regex      = '';
-
-        foreach($tokens as $token) {
-            if ('literal' === $token[Args::TYPE]) {
-                $regex .= preg_quote($token[Args::LITERAL]);
-                continue;
-            }
-
-            if ('parameter' === $token[Args::TYPE]) {
-                $groupName = '?P<param' . $groupIndex++ . '>';
-
-                if (isset($constraints[$token[Args::NAME]])) {
-                    $regex .= '(' . $groupName . $constraints[$token[Args::NAME]] . ')';
-                    continue;
-                }
-
-                if (null === $token[Args::DELIMITERS]) {
-                    $regex .= '(' . $groupName . '[^' . $delimiter . ']+)';
-                    continue;
-                }
-
-                $regex .= '(' . $groupName . '[^' . $token[Args::DELIMITERS] . ']+)';
-
-                continue;
-            }
-
-            if ('optional-start' === $token[Args::TYPE]) {
-                $regex .= '(?:';
-                continue;
-            }
-
-            if ('optional-end' === $token[Args::TYPE]) {
-                $regex .= ')?';
-                continue;
-            }
-        }
-
-        return $regex;
-    }
-
-    /**
-     * @param $subject
-     * @param $delimiter
-     * @return array
-     * @throws RuntimeException
-     */
-    public static function tokens($subject, $delimiter = '/')
-    {
-        $currentPos = 0;
-        $delimiter  = preg_quote($delimiter);
-        $length     = strlen($subject);
-        $level      = 0;
-        $tokens     = [];
-
-        while($currentPos < $length) {
-
-            preg_match('(\G(?P<literal>[^:{\[\]]*)(?P<token>[:\[\]]|$))', $subject, $matches, 0, $currentPos);
-
-            $currentPos += strlen($matches[0]);
-
-            !empty($matches['literal']) && $tokens[] = ['literal', $matches['literal']];
-
-            if (':' === $matches['token']) {
-                $pattern = '(\G(?P<name>[^:' . $delimiter . '{\[\]]+)(?:{(?P<delimiters>[^}]+)})?:?)';
-                $result  = preg_match($pattern, $subject, $matches, 0, $currentPos);
-
-                if (!$result) {
-                    throw new RuntimeException('Found empty parameter name');
-                }
-
-                $tokens[] = [
-                    'parameter',
-                    $matches['name'],
-                    isset($matches['delimiters']) ? $matches['delimiters'] : null
-                ];
-
-                $currentPos += strlen($matches[0]);
-
-                continue;
-            }
-
-            if ('[' === $matches['token']) {
-                $tokens[] = ['optional-start'];
-                $level++;
-                continue;
-            }
-
-            if (']' === $matches['token']) {
-                $tokens[] = ['optional-end'];
-
-                $level--;
-
-                if ($level < 0) {
-                    throw new RuntimeException('Found closing bracket without matching opening bracket');
-                }
-                continue;
-            }
-        }
-
-        if ($level > 0) {
-            throw new RuntimeException('Found unbalanced brackets');
-        }
-
-        return $tokens;
     }
 
     /**

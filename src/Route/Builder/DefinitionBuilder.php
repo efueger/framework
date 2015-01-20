@@ -41,7 +41,7 @@ interface DefinitionBuilder
      * @param array $tokens
      * @return array
      */
-    static function paramMap(array $tokens);
+    static function params(array $tokens);
 
     /**
      * @param array $tokens
