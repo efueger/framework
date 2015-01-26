@@ -55,13 +55,13 @@ trait Signal
                 continue;
             }
 
-            if ($callback && ($match = $callback($param->name)) !== null) {
-                $matched[] = $match;
+            if ($param->isOptional()) {
+                $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
                 continue;
             }
 
-            if ($param->isOptional()) {
-                $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
+            if ($callback && null !== $match = $callback($param->name)) {
+                $matched[] = $match;
                 continue;
             }
 
