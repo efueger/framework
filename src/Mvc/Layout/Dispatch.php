@@ -5,14 +5,15 @@
 
 namespace Framework\Mvc\Layout;
 
+use Framework\View\Layout\LayoutModel;
 use Framework\View\Model\ViewModel;
 
 interface Dispatch
 {
     /**
+     * @param LayoutModel $layout
      * @param $model
-     * @param ViewModel $layout
      * @return ViewModel
      */
-    function __invoke($model, ViewModel $layout = null);
+    function __invoke(LayoutModel $layout, $model = null);
 }

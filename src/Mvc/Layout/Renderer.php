@@ -12,17 +12,13 @@ class Renderer
     implements Dispatch
 {
     /**
+     * @param LayoutModel $layout
      * @param $model
-     * @param $layout
      * @return ViewModel
      */
-    public function __invoke($model = null, ViewModel $layout = null)
+    public function __invoke(LayoutModel $layout, $model = null)
     {
-        if (!$model || !$layout || !$layout instanceof LayoutModel) {
-            return $model;
-        }
-
-        if (!$model instanceof ViewModel || $model instanceof LayoutModel) {
+        if (!$model || !$model instanceof ViewModel || $model instanceof LayoutModel) {
             return $model;
         }
 

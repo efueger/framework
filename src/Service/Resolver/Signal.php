@@ -60,24 +60,20 @@ trait Signal
                 continue;
             }
 
-            if ($callback && ($hint = $param->getClass()) && ($match = $callback($hint->name)) !== null) {
-                $matched[] = $match;
+            if ($param->isOptional()) {
+                $matched[] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : null;
                 continue;
             }
 
-            if ($param->isDefaultValueAvailable()) {
-                $matched[] = $param->getDefaultValue();
+            if ($callback && ($hint = $param->getClass())) {
+                $matched[] = $callback($hint->name);
                 continue;
             }
 
-            if (!$param->isOptional()) {
-                throw new RuntimeException(
-                    'Missing required parameter $' . $param->name
-                    . ' for ' . ($function ?: is_string($config) ? $config : get_class($config))
-                );
-            }
-
-            $matched[] = null;
+            throw new RuntimeException(
+                'Missing required parameter $' . $param->name
+                . ' for ' . ($function ?: is_string($config) ? $config : get_class($config))
+            );
         }
 
         return call_user_func_array($function ?: [$config, $method], $params ? $matched : $args);
