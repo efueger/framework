@@ -13,12 +13,12 @@ class Renderer
 {
     /**
      * @param $model
-     * @param ViewModel $layout
+     * @param $layout
      * @return ViewModel
      */
     public function __invoke($model = null, ViewModel $layout = null)
     {
-        if (!$model || !$layout) {
+        if (!$model || !$layout || !$layout instanceof LayoutModel) {
             return $model;
         }
 
