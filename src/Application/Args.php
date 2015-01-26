@@ -10,11 +10,6 @@ interface Args
     /**
      *
      */
-    const ROUTE_ADD = 'route:add';
-
-    /**
-     *
-     */
     const ALIAS = 'alias';
 
     /**
@@ -26,6 +21,11 @@ interface Args
      *
      */
     const EVENTS = 'events';
+
+    /**
+     *
+     */
+    const ROUTE_ADD = 'route:add';
 
     /**
      *
