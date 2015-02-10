@@ -5,13 +5,13 @@
 
 namespace Framework\Event\Manager;
 
-use Framework\Config\Configuration;
+use Traversable;
 use Framework\Event\Event;
 
 trait ManageEvent
 {
     /**
-     * @var Configuration
+     * @var array|Traversable
      */
     protected $events;
 
@@ -22,9 +22,9 @@ trait ManageEvent
     protected abstract function event($event);
 
     /**
-     * @param Configuration $events
+     * @param array|Traversable $events
      */
-    public function events(Configuration $events)
+    public function events($events)
     {
         $this->events = $events;
     }
@@ -38,7 +38,7 @@ trait ManageEvent
     protected abstract function generate($event, array $args = [], callable $callback = null);
 
     /**
-     * @return Configuration
+     * @return array|Traversable
      */
     protected function listeners()
     {
