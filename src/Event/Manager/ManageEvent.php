@@ -5,7 +5,7 @@
 
 namespace Framework\Event\Manager;
 
-use Framework\Event\Config\Configuration;
+use Framework\Config\Configuration;
 use Framework\Event\Event;
 
 trait ManageEvent

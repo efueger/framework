@@ -25,11 +25,6 @@ interface Args
     /**
      *
      */
-    const ROUTE_ADD = 'route:add';
-
-    /**
-     *
-     */
     const ROUTES = 'routes';
 
     /**

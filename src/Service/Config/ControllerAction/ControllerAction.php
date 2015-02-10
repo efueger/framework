@@ -22,7 +22,7 @@ class ControllerAction
     public function __construct(array $args = [])
     {
         $this->config = [
-            self::ARGS => [[$args]],
+            self::ARGS => [$args],
             self::NAME => self::CONTROLLER_ACTION
         ];
     }

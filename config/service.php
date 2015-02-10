@@ -95,10 +95,6 @@ return [
             ])
         ]
     ),
-    'Route\Add' => new Service(
-        Route\Builder\Add::class,
-        [new Dependency('Route\Builder'), new Param('routes')]
-    ),
     'Route\Builder'  => Route\Builder\Builder::class,
     'Route\Create'   => Route\Builder\Create::class,
     'Route\Dispatch' => Route\Router\Dispatch::class,

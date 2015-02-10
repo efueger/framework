@@ -11,7 +11,6 @@ return [
     'layout'       => new Dependency('Layout'),
     'request'      => new Dependency('Request'),
     'response'     => new Dependency('Response'),
-    'route:add'    => new Dependency('Route\Add'),
     'route:create' => new Dependency('Route\Create'),
     'sm'           => new Dependency('Service\Manager'),
     'url'          => new Dependency('Route\Plugin'),
