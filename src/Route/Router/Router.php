@@ -18,14 +18,14 @@ class Router
     use ManageRoute;
 
     /**
-     * @var Definition
+     * @var array|Definition
      */
     protected $definition;
 
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      */
-    public function __construct(Definition $definition)
+    public function __construct($definition)
     {
         $this->definition = $definition;
     }
@@ -71,7 +71,7 @@ class Router
      */
     protected function name()
     {
-        return $this->definition->name();
+        return $this->definition[Definition::NAME];
     }
 
     /**

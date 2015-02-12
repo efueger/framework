@@ -23,15 +23,15 @@ class Generator
     protected $callback;
 
     /**
-     * @var Definition
+     * @var array|Definition
      */
     protected $definition;
 
     /**
-     * @param Definition $definition
+     * @param array|Definition $definition
      * @param callable $callback
      */
-    public function __construct(Definition $definition, callable $callback = null)
+    public function __construct($definition, callable $callback = null)
     {
         $this->callback   = $callback;
         $this->definition = $definition;
@@ -75,7 +75,7 @@ class Generator
      */
     protected function config($name)
     {
-        return $name === $this->definition->name() ? $this->definition : $this->definition->child($name);
+        return $name === $this->definition[Definition::NAME] ? $this->definition : $this->definition->child($name);
     }
 
     /**
@@ -94,7 +94,7 @@ class Generator
      */
     protected function name($name)
     {
-        return $name === $this->definition->name() ? $name : $this->definition->name() . '/' . $name;
+        return $name === $this->definition[Definition::NAME] ? $name : $this->definition[Definition::NAME] . '/' . $name;
     }
 
     /**
