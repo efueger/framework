@@ -17,13 +17,13 @@ class App
     use Events;
 
     /**
-     * @param Configuration $config
+     * @param array|Configuration $config
      */
-    public function __construct(Configuration $config)
+    public function __construct($config)
     {
-        $this->alias    = $config->get(Args::ALIAS);
+        $this->alias    = $config[Args::ALIAS];
         $this->config   = $config;
-        $this->events   = $config->get(Args::EVENTS);
-        $this->services = $config->get(Args::SERVICES);
+        $this->events   = $config[Args::EVENTS];
+        $this->services = $config[Args::SERVICES];
     }
 }

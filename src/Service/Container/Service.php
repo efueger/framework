@@ -26,7 +26,7 @@ trait Service
     protected $services;
 
     /**
-     * @return Configuration
+     * @return array|Configuration
      */
     public function config()
     {
@@ -34,9 +34,9 @@ trait Service
     }
 
     /**
-     * @param Configuration $config
+     * @param array|Configuration $config
      */
-    public function configuration(Configuration $config)
+    public function configuration($config)
     {
         $this->config = $config;
     }

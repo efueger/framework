@@ -276,7 +276,7 @@ trait Resolver
     public function param($name)
     {
         $name  = explode(Args::CALL_SEPARATOR, $name);
-        $value = $this->config()->get(array_shift($name));
+        $value = $this->config()[array_shift($name)];
 
         foreach($name as $n) {
             $value = $value[$n];
