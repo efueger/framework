@@ -55,12 +55,16 @@ class Router
             return $route;
         }
 
+        $parent = $route->name();
+
         foreach($definition->children() as $name => $definition) {
-            $route->set(Route::NAME, ($this->name() == $route->name() ? null : $route->name() . '/') . $name);
+            $route->set(Route::NAME, ($this->name() == $route->name() ? null : $parent . '/') . $name);
 
             if ($match = $this->dispatch($route, $this->create($definition))) {
                 return $match;
             }
+
+            $route->set(Route::NAME, ($this->name() == $route->name() ? null : $parent));
         }
 
         return null;
