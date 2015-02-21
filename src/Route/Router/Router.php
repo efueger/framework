@@ -60,7 +60,7 @@ class Router
         foreach($definition->children() as $name => $definition) {
             $route->set(Route::NAME, ($this->name() == $route->name() ? null : $parent . '/') . $name);
 
-            if ($match = $this->dispatch($route, $this->create($definition))) {
+            if ($match = $this->dispatch(clone $route, $this->create($definition))) {
                 return $match;
             }
 
