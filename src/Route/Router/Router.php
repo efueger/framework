@@ -64,7 +64,7 @@ class Router
                 return $match;
             }
 
-            $route->set(Route::NAME, ($this->name() == $route->name() ? null : $parent));
+            $route->set(Route::NAME, $parent);
         }
 
         return null;
