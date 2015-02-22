@@ -58,13 +58,11 @@ class Router
         $parent = $route->name();
 
         foreach($definition->children() as $name => $definition) {
-            $route->set(Route::NAME, ($this->name() == $route->name() ? null : $parent . '/') . $name);
+            $route->set(Route::NAME, $this->name() === $parent ? $name : $parent . '/' . $name);
 
             if ($match = $this->dispatch(clone $route, $this->create($definition))) {
                 return $match;
             }
-
-            $route->set(Route::NAME, $parent);
         }
 
         return null;
