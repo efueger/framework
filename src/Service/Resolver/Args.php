@@ -15,15 +15,15 @@ interface Args
     /**
      *
      */
-    const PROPERTY = '$';
-
-    /**
-     *
-     */
     const CALL = '@';
 
     /**
      *
      */
     const CALL_SEPARATOR = '.';
+
+    /**
+     *
+     */
+    const PROPERTY = '$';
 }
