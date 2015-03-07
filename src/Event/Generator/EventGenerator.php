@@ -5,9 +5,9 @@
 
 namespace Mvc5\Event\Generator;
 
+use Generator;
 use Mvc5\Config\Configuration;
 use Mvc5\Event\Event;
-use Generator;
 use Traversable;
 
 trait EventGenerator

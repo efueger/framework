@@ -7,8 +7,8 @@ namespace Mvc5\Route\Router;
 
 use Mvc5\Event\Base;
 use Mvc5\Event\Event;
-use Mvc5\Service\Resolver\Signal;
 use Mvc5\Route\Route;
+use Mvc5\Service\Resolver\Signal;
 
 class Dispatch
     implements Event, RouteDispatch

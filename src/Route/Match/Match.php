@@ -7,9 +7,9 @@ namespace Mvc5\Route\Match;
 
 use Mvc5\Event\Base;
 use Mvc5\Event\Event;
-use Mvc5\Service\Resolver\Signal;
 use Mvc5\Route\Definition\Definition;
 use Mvc5\Route\Route;
+use Mvc5\Service\Resolver\Signal;
 
 class Match
     implements Event, RouteMatch

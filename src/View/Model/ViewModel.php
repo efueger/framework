@@ -6,8 +6,8 @@
 namespace Mvc5\View\Model;
 
 use Countable;
-use Mvc5\Config\Configuration;
 use Iterator;
+use Mvc5\Config\Configuration;
 
 interface ViewModel
     extends Configuration, Countable, Iterator

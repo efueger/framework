@@ -5,6 +5,7 @@
 
 namespace Mvc5\Controller\Action;
 
+use Iterator;
 use Mvc5\Config\Base as Config;
 use Mvc5\Config\Configuration;
 use Mvc5\Event\Base;
@@ -13,7 +14,6 @@ use Mvc5\Response\Response;
 use Mvc5\Service\Resolver\Signal;
 use Mvc5\View\ViewModel as Model;
 use Mvc5\View\Model\ViewModel;
-use Iterator;
 
 class Action
     implements Configuration, Controller, Event, Iterator
