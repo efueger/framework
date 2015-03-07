@@ -5,13 +5,12 @@
 
 namespace Mvc5\Event\Manager;
 
-use Traversable;
 use Mvc5\Event\Event;
 
 trait ManageEvent
 {
     /**
-     * @var array|Traversable
+     * @var array|\Traversable
      */
     protected $events;
 
@@ -22,7 +21,7 @@ trait ManageEvent
     protected abstract function event($event);
 
     /**
-     * @param array|Traversable $events
+     * @param array|\Traversable $events
      */
     public function events($events)
     {
@@ -38,7 +37,7 @@ trait ManageEvent
     protected abstract function generate($event, array $args = [], callable $callback = null);
 
     /**
-     * @return array|Traversable
+     * @return array|\Traversable
      */
     protected function listeners()
     {
