@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Hydrator;
+namespace Mvc5\Service\Config\Hydrator;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Hydrator
     implements Resolvable, ServiceHydrator

@@ -3,13 +3,13 @@
  *
  */
 
-namespace Framework\Route\Match;
+namespace Mvc5\Route\Match;
 
-use Framework\Event\Base;
-use Framework\Event\Event;
-use Framework\Service\Resolver\Signal;
-use Framework\Route\Definition\Definition;
-use Framework\Route\Route;
+use Mvc5\Event\Base;
+use Mvc5\Event\Event;
+use Mvc5\Service\Resolver\Signal;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Route;
 
 class Match
     implements Event, RouteMatch

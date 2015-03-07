@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Param;
+namespace Mvc5\Service\Config\Param;
 
 interface ServiceParam
 {

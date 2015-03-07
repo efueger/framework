@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Controller\Error;
+namespace Mvc5\Controller\Error;
 
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Model\ViewModel;
 
 interface ErrorModel
     extends ViewModel

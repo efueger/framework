@@ -3,13 +3,13 @@
  *
  */
 
-namespace Framework\Response\Exception;
+namespace Mvc5\Response\Exception;
 
 use Exception as ExceptionInterface;
-use Framework\Event\Base;
-use Framework\Event\Event;
-use Framework\Response\Response;
-use Framework\Service\Resolver\Signal;
+use Mvc5\Event\Base;
+use Mvc5\Event\Event;
+use Mvc5\Response\Response;
+use Mvc5\Service\Resolver\Signal;
 
 class Exception
     implements ResponseException, Event

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route\Router;
+namespace Mvc5\Route\Router;
 
-use Framework\Route\Route;
+use Mvc5\Route\Route;
 
 interface MatchRoute
 {

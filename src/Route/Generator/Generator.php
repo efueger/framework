@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Route\Generator;
+namespace Mvc5\Route\Generator;
 
 use Exception;
-use Framework\Route\Builder\Compiler;
-use Framework\Route\Definition\Definition;
+use Mvc5\Route\Builder\Compiler;
+use Mvc5\Route\Definition\Definition;
 
 class Generator
     implements RouteGenerator

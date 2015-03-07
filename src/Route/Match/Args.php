@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Match;
+namespace Mvc5\Route\Match;
 
 interface Args
 {

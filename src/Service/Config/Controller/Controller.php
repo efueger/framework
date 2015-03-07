@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Controller;
+namespace Mvc5\Service\Config\Controller;
 
-use Framework\Service\Config\Child\Base;
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Config\Child\Base;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Controller
     implements ControllerService, Resolvable

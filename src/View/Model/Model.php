@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View\Model;
+namespace Mvc5\View\Model;
 
-use Framework\View\ViewPlugin;
+use Mvc5\View\ViewPlugin;
 
 class Model
     implements Plugin, ViewModel

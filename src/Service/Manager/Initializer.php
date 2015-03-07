@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Manager;
+namespace Mvc5\Service\Manager;
 
 use RuntimeException;
 

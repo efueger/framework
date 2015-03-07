@@ -3,13 +3,13 @@
  *
  */
 
-namespace Framework\Mvc;
+namespace Mvc5\Mvc;
 
-use Framework\Config\Configuration;
-use Framework\Event\Base as Event;
-use Framework\Response\Response;
-use Framework\Route\Route;
-use Framework\Service\Resolver\Signal;
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Base as Event;
+use Mvc5\Response\Response;
+use Mvc5\Route\Route;
+use Mvc5\Service\Resolver\Signal;
 
 trait Base
 {

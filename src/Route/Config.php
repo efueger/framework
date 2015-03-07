@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route;
+namespace Mvc5\Route;
 
-use Framework\Config\Base;
+use Mvc5\Config\Base;
 
 class Config
     implements Route

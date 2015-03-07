@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Mvc\Controller;
+namespace Mvc5\Mvc\Controller;
 
 interface Dispatch
 {

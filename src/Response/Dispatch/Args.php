@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Response\Dispatch;
+namespace Mvc5\Response\Dispatch;
 
 interface Args
 {

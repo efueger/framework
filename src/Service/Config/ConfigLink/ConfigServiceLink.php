@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\ConfigLink;
+namespace Mvc5\Service\Config\ConfigLink;
 
 interface ConfigServiceLink
 {

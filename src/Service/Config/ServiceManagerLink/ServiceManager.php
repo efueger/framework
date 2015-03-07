@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\ServiceManagerLink;
+namespace Mvc5\Service\Config\ServiceManagerLink;
 
 interface ServiceManager
 {

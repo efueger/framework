@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Exception;
+namespace Mvc5\View\Exception;
 
 use Exception;
-use Framework\View\Model\Base;
+use Mvc5\View\Model\Base;
 
 class Model
     implements ExceptionModel

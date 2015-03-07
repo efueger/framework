@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Child;
+namespace Mvc5\Service\Config\Child;
 
-use Framework\Service\Config\Base as BaseConfig;
+use Mvc5\Service\Config\Base as BaseConfig;
 
 trait Base
 {

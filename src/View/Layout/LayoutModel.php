@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View\Layout;
+namespace Mvc5\View\Layout;
 
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Model\ViewModel;
 
 interface LayoutModel
     extends ViewModel

@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Event\Manager;
+namespace Mvc5\Event\Manager;
 
-use Framework\Event\Event;
-use Framework\Event\Generator\EventGenerator;
-use Framework\Service\Manager\ManageService;
+use Mvc5\Event\Event;
+use Mvc5\Event\Generator\EventGenerator;
+use Mvc5\Service\Manager\ManageService;
 
 trait Events
 {

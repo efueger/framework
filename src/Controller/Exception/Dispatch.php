@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Controller\Exception;
+namespace Mvc5\Controller\Exception;
 
 use Exception as ExceptionInterface;
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 interface Dispatch
 {

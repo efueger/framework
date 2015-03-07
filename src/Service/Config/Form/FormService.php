@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Form;
+namespace Mvc5\Service\Config\Form;
 
-use Framework\Service\Config\Child\ChildService;
+use Mvc5\Service\Config\Child\ChildService;
 
 interface FormService
     extends ChildService

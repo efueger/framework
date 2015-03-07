@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Container;
+namespace Mvc5\Service\Container;
 
-use Framework\Config\Configuration;
+use Mvc5\Config\Configuration;
 
 interface ServiceContainer
     extends Configuration

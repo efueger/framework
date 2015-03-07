@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View\Model;
+namespace Mvc5\View\Model;
 
-use Framework\Config\Base as ConfigBase;
+use Mvc5\Config\Base as ConfigBase;
 
 trait Base
 {

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\ControllerAction;
+namespace Mvc5\Service\Config\ControllerAction;
 
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Configuration;
 
 interface ControllerService
     extends Configuration

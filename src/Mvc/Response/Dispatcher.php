@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Mvc\Response;
+namespace Mvc5\Mvc\Response;
 
 use Exception;
-use Framework\Response\Manager\ManageResponse;
-use Framework\Response\Response;
+use Mvc5\Response\Manager\ManageResponse;
+use Mvc5\Response\Response;
 
 class Dispatcher
     implements Dispatch

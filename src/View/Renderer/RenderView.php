@@ -3,13 +3,13 @@
  *
  */
 
-namespace Framework\View\Renderer;
+namespace Mvc5\View\Renderer;
 
 use Closure;
 use Exception;
-use Framework\View\Manager\ViewManager;
-use Framework\View\Model\Plugin;
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Manager\ViewManager;
+use Mvc5\View\Model\Plugin;
+use Mvc5\View\Model\ViewModel;
 use RuntimeException;
 
 trait RenderView

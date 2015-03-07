@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Mvc;
+namespace Mvc5\Mvc;
 
-use Framework\Event\Event;
-use Framework\Response\Response;
-use Framework\Route\Route;
+use Mvc5\Event\Event;
+use Mvc5\Response\Response;
+use Mvc5\Route\Route;
 
 class Mvc
     implements Dispatch, Event

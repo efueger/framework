@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Response\Manager;
+namespace Mvc5\Response\Manager;
 
 use Exception;
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 interface ResponseManager
 {

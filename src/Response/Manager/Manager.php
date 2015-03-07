@@ -3,15 +3,15 @@
  *
  */
 
-namespace Framework\Response\Manager;
+namespace Mvc5\Response\Manager;
 
 use Exception;
-use Framework\Event\Manager\EventManager;
-use Framework\Event\Manager\Events;
-use Framework\Response\Exception\ResponseException;
-use Framework\Response\Dispatch\DispatchResponse;
-use Framework\Response\Response;
-use Framework\Service\Manager\ServiceManager;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Event\Manager\Events;
+use Mvc5\Response\Exception\ResponseException;
+use Mvc5\Response\Dispatch\DispatchResponse;
+use Mvc5\Response\Response;
+use Mvc5\Service\Manager\ServiceManager;
 
 class Manager
     implements EventManager, ResponseManager, ServiceManager

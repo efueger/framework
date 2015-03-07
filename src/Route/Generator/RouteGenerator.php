@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Generator;
+namespace Mvc5\Route\Generator;
 
 interface RouteGenerator
 {

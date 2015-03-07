@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Builder;
+namespace Mvc5\Route\Builder;
 
 use InvalidArgumentException;
 

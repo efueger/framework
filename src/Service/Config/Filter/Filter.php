@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Filter;
+namespace Mvc5\Service\Config\Filter;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Filter
     implements Resolvable, ServiceFilter

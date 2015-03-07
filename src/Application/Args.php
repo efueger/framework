@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Application;
+namespace Mvc5\Application;
 
 interface Args
 {

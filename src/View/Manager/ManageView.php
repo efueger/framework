@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Manager;
+namespace Mvc5\View\Manager;
 
 use Exception;
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Model\ViewModel;
 
 trait ManageView
 {

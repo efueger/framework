@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Controller\Exception;
+namespace Mvc5\Controller\Exception;
 
 interface DispatchException
 {

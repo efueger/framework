@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Filter;
+namespace Mvc5\Service\Config\Filter;
 
 interface ServiceFilter
 {

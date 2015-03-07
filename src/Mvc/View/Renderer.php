@@ -3,12 +3,12 @@
  *
  */
 
-namespace Framework\Mvc\View;
+namespace Mvc5\Mvc\View;
 
 use Exception;
-use Framework\Response\Response;
-use Framework\View\Manager\ManageView;
-use Framework\View\Model\ViewModel;
+use Mvc5\Response\Response;
+use Mvc5\View\Manager\ManageView;
+use Mvc5\View\Model\ViewModel;
 
 class Renderer
     implements Render

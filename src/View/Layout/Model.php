@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\View\Layout;
+namespace Mvc5\View\Layout;
 
-use Framework\View\Model\Base;
-use Framework\View\Model\Plugin;
-use Framework\View\ViewPlugin;
+use Mvc5\View\Model\Base;
+use Mvc5\View\Model\Plugin;
+use Mvc5\View\ViewPlugin;
 
 class Model
     implements LayoutModel, Plugin

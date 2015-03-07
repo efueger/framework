@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route\Definition;
+namespace Mvc5\Route\Definition;
 
-use Framework\Config\Configuration;
+use Mvc5\Config\Configuration;
 
 interface Definition
     extends Configuration

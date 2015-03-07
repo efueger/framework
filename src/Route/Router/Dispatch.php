@@ -3,12 +3,12 @@
  *
  */
 
-namespace Framework\Route\Router;
+namespace Mvc5\Route\Router;
 
-use Framework\Event\Base;
-use Framework\Event\Event;
-use Framework\Service\Resolver\Signal;
-use Framework\Route\Route;
+use Mvc5\Event\Base;
+use Mvc5\Event\Event;
+use Mvc5\Service\Resolver\Signal;
+use Mvc5\Route\Route;
 
 class Dispatch
     implements Event, RouteDispatch

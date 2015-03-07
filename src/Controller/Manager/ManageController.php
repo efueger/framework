@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Controller\Manager;
+namespace Mvc5\Controller\Manager;
 
 use Exception;
 

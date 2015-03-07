@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Hydrator;
+namespace Mvc5\Service\Config\Hydrator;
 
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Configuration;
 
 interface ServiceHydrator
     extends Configuration

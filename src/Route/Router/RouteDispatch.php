@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Router;
+namespace Mvc5\Route\Router;
 
 interface RouteDispatch
 {

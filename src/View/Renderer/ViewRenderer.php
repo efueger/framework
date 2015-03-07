@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View\Renderer;
+namespace Mvc5\View\Renderer;
 
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Model\ViewModel;
 
 interface ViewRenderer
 {

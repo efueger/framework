@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Container;
+namespace Mvc5\Service\Container;
 
-use Framework\Config\ArrayAccess;
+use Mvc5\Config\ArrayAccess;
 use Serializable;
 
 class Container

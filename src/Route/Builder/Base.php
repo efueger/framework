@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Builder;
+namespace Mvc5\Route\Builder;
 
-use Framework\Route\Definition\Definition;
-use Framework\Route\Definition\RouteDefinition;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Definition\RouteDefinition;
 use RuntimeException;
 
 trait Base

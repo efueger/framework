@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Invoke;
+namespace Mvc5\Service\Config\Invoke;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Invoke
     implements Resolvable, ServiceInvoke

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View;
+namespace Mvc5\View;
 
-use Framework\View\Manager\ManageView;
+use Mvc5\View\Manager\ManageView;
 
 trait ViewPlugin
 {

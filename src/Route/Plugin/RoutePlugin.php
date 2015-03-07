@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Plugin;
+namespace Mvc5\Route\Plugin;
 
 interface RoutePlugin
 {

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\View\Model;
+namespace Mvc5\View\Model;
 
-use Framework\View\Manager\ViewManager;
+use Mvc5\View\Manager\ViewManager;
 
 interface Plugin
 {

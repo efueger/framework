@@ -3,19 +3,19 @@
  *
  */
 
-namespace Framework;
+namespace Mvc5;
 
-use Framework\Service\Config\Args\Args;
-use Framework\Service\Config\Call\Call;
-use Framework\Service\Config\ConfigLink\ConfigLink;
-use Framework\Service\Config\Dependency\Dependency;
-use Framework\Service\Config\Hydrator\Hydrator;
-use Framework\Service\Config\Invokable\Invokable;
-use Framework\Service\Config\Manager\Manager;
-use Framework\Service\Config\Param\Param;
-use Framework\Service\Config\Service\Service;
-use Framework\Service\Config\ServiceConfig\ServiceConfig;
-use Framework\Service\Config\ServiceManagerLink\ServiceManagerLink;
+use Mvc5\Service\Config\Args\Args;
+use Mvc5\Service\Config\Call\Call;
+use Mvc5\Service\Config\ConfigLink\ConfigLink;
+use Mvc5\Service\Config\Dependency\Dependency;
+use Mvc5\Service\Config\Hydrator\Hydrator;
+use Mvc5\Service\Config\Invokable\Invokable;
+use Mvc5\Service\Config\Manager\Manager;
+use Mvc5\Service\Config\Param\Param;
+use Mvc5\Service\Config\Service\Service;
+use Mvc5\Service\Config\ServiceConfig\ServiceConfig;
+use Mvc5\Service\Config\ServiceManagerLink\ServiceManagerLink;
 
 return [
     'Config'                => new ConfigLink,

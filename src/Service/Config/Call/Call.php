@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Call;
+namespace Mvc5\Service\Config\Call;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Call
     implements Resolvable, ServiceCall

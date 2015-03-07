@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Invoke;
+namespace Mvc5\Service\Config\Invoke;
 
 interface ServiceInvoke
 {

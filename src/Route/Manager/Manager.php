@@ -3,15 +3,15 @@
  *
  */
 
-namespace Framework\Route\Manager;
+namespace Mvc5\Route\Manager;
 
-use Framework\Event\Manager\EventManager;
-use Framework\Event\Manager\Events;
-use Framework\Route\Definition\Definition;
-use Framework\Route\Router\RouteDispatch;
-use Framework\Route\Match\RouteMatch;
-use Framework\Route\Route;
-use Framework\Service\Manager\ServiceManager;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Event\Manager\Events;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Router\RouteDispatch;
+use Mvc5\Route\Match\RouteMatch;
+use Mvc5\Route\Route;
+use Mvc5\Service\Manager\ServiceManager;
 
 class Manager
     implements EventManager, RouteManager, ServiceManager

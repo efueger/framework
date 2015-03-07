@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Service;
+namespace Mvc5\Service\Config\Service;
 
-use Framework\Service\Config\Base;
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Config\Base;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Service
     implements Config, Resolvable

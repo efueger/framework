@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Factory;
+namespace Mvc5\Service\Factory;
 
-use Framework\Config\Configuration;
-use Framework\Service\Manager\ServiceManager;
+use Mvc5\Config\Configuration;
+use Mvc5\Service\Manager\ServiceManager;
 
 trait Base
 {

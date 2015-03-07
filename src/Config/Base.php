@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Config;
+namespace Mvc5\Config;
 
 trait Base
 {

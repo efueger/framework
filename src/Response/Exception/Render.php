@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Response\Exception;
+namespace Mvc5\Response\Exception;
 
 use Exception as ExceptionInterface;
-use Framework\Response\Response;
-use Framework\View\Manager\ViewManager;
+use Mvc5\Response\Response;
+use Mvc5\View\Manager\ViewManager;
 
 interface Render
 {

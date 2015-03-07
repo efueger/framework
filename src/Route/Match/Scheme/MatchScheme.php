@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Match\Scheme;
+namespace Mvc5\Route\Match\Scheme;
 
-use Framework\Route\Definition\Definition;
-use Framework\Route\Route;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Route;
 
 interface MatchScheme
 {

@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Factory;
+namespace Mvc5\Service\Config\Factory;
 
-use Framework\Service\Config\Child\Base;
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Config\Child\Base;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Factory
     implements Resolvable, ServiceFactory

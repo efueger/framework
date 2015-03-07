@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Application;
+namespace Mvc5\Application;
 
-use Framework\Event\Manager\EventManager;
-use Framework\Service\Manager\ServiceManager;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Service\Manager\ServiceManager;
 
 interface Application
     extends EventManager, ServiceManager

@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Controller\Dispatch;
+namespace Mvc5\Controller\Dispatch;
 
 interface Action
 {

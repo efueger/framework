@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Exception;
+namespace Mvc5\View\Exception;
 
 use Exception;
-use Framework\View\Layout\LayoutModel;
+use Mvc5\View\Layout\LayoutModel;
 
 interface ExceptionModel
     extends LayoutModel

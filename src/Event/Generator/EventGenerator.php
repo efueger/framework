@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Event\Generator;
+namespace Mvc5\Event\Generator;
 
-use Framework\Config\Configuration;
-use Framework\Event\Event;
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Event;
 use Generator;
 use Traversable;
 

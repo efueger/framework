@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Calls;
+namespace Mvc5\Service\Config\Calls;
 
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Configuration;
 
 interface ServiceCalls
     extends Configuration

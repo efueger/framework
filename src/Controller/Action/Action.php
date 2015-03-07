@@ -3,16 +3,16 @@
  *
  */
 
-namespace Framework\Controller\Action;
+namespace Mvc5\Controller\Action;
 
-use Framework\Config\Base as Config;
-use Framework\Config\Configuration;
-use Framework\Event\Base;
-use Framework\Event\Event;
-use Framework\Response\Response;
-use Framework\Service\Resolver\Signal;
-use Framework\View\ViewModel as Model;
-use Framework\View\Model\ViewModel;
+use Mvc5\Config\Base as Config;
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Base;
+use Mvc5\Event\Event;
+use Mvc5\Response\Response;
+use Mvc5\Service\Resolver\Signal;
+use Mvc5\View\ViewModel as Model;
+use Mvc5\View\Model\ViewModel;
 use Iterator;
 
 class Action

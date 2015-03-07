@@ -3,12 +3,12 @@
  *
  */
 
-namespace Framework\Controller\Exception;
+namespace Mvc5\Controller\Exception;
 
-use Framework\Response\Response;
-use Framework\View\Exception\ExceptionModel;
-use Framework\View\Model\ViewModel as Model;
-use Framework\View\ViewModel;
+use Mvc5\Response\Response;
+use Mvc5\View\Exception\ExceptionModel;
+use Mvc5\View\Model\ViewModel as Model;
+use Mvc5\View\ViewModel;
 
 class Controller
     implements Dispatch

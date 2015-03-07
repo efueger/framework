@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Dependency;
+namespace Mvc5\Service\Config\Dependency;
 
 interface ServiceDependency
 {

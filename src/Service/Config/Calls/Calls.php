@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Calls;
+namespace Mvc5\Service\Config\Calls;
 
-use Framework\Service\Config\Hydrator\Base;
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Config\Hydrator\Base;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Calls
     implements Resolvable, ServiceCalls

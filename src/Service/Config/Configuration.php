@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config;
+namespace Mvc5\Service\Config;
 
-use Framework\Config\Configuration as BaseConfiguration;
+use Mvc5\Config\Configuration as BaseConfiguration;
 
 interface Configuration
     extends BaseConfiguration

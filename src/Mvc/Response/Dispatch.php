@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Mvc\Response;
+namespace Mvc5\Mvc\Response;
 
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 interface Dispatch
 {

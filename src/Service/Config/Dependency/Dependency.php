@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Dependency;
+namespace Mvc5\Service\Config\Dependency;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Dependency
     implements Resolvable, ServiceDependency

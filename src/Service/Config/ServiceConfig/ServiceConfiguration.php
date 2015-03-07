@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\ServiceConfig;
+namespace Mvc5\Service\Config\ServiceConfig;
 
 interface ServiceConfiguration
 {

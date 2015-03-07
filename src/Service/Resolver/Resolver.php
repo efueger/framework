@@ -3,25 +3,25 @@
  *
  */
 
-namespace Framework\Service\Resolver;
+namespace Mvc5\Service\Resolver;
 
 use Closure;
-use Framework\Config\Configuration;
-use Framework\Event\Event;
-use Framework\Service\Config\Args\Arguments;
-use Framework\Service\Config\Call\ServiceCall;
-use Framework\Service\Config\Calls\ServiceCalls;
-use Framework\Service\Config\Child\ChildService;
-use Framework\Service\Config\ConfigLink\ConfigServiceLink;
-use Framework\Service\Config\Configuration as Config;
-use Framework\Service\Config\Dependency\ServiceDependency;
-use Framework\Service\Config\Factory\ServiceFactory;
-use Framework\Service\Config\Filter\ServiceFilter;
-use Framework\Service\Config\Invokable\ServiceInvokable;
-use Framework\Service\Config\Invoke\ServiceInvoke;
-use Framework\Service\Config\Param\ServiceParam;
-use Framework\Service\Config\ServiceConfig\ServiceConfiguration;
-use Framework\Service\Config\ServiceManagerLink\ServiceManager;
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Event;
+use Mvc5\Service\Config\Args\Arguments;
+use Mvc5\Service\Config\Call\ServiceCall;
+use Mvc5\Service\Config\Calls\ServiceCalls;
+use Mvc5\Service\Config\Child\ChildService;
+use Mvc5\Service\Config\ConfigLink\ConfigServiceLink;
+use Mvc5\Service\Config\Configuration as Config;
+use Mvc5\Service\Config\Dependency\ServiceDependency;
+use Mvc5\Service\Config\Factory\ServiceFactory;
+use Mvc5\Service\Config\Filter\ServiceFilter;
+use Mvc5\Service\Config\Invokable\ServiceInvokable;
+use Mvc5\Service\Config\Invoke\ServiceInvoke;
+use Mvc5\Service\Config\Param\ServiceParam;
+use Mvc5\Service\Config\ServiceConfig\ServiceConfiguration;
+use Mvc5\Service\Config\ServiceManagerLink\ServiceManager;
 use ReflectionClass;
 use RuntimeException;
 

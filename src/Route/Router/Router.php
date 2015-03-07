@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Route\Router;
+namespace Mvc5\Route\Router;
 
-use Framework\Route\Definition\Definition;
-use Framework\Route\Manager\ManageRoute;
-use Framework\Route\Route;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Manager\ManageRoute;
+use Mvc5\Route\Route;
 
 class Router
     implements MatchRoute

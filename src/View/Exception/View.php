@@ -3,12 +3,12 @@
  *
  */
 
-namespace Framework\View\Exception;
+namespace Mvc5\View\Exception;
 
 use Exception;
-use Framework\Event\Event;
-use Framework\Service\Resolver\EventSignal;
-use Framework\View\ViewModel;
+use Mvc5\Event\Event;
+use Mvc5\Service\Resolver\EventSignal;
+use Mvc5\View\ViewModel;
 
 class View
     implements Event, ViewException

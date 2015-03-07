@@ -3,8 +3,8 @@
  *
  */
 
-use Framework\Config\Config;
-use Framework\Service\Container\Container;
+use Mvc5\Config\Config;
+use Mvc5\Service\Container\Container;
 
 return new Config([
     'alias'     => new Config(include __DIR__ . '/alias.php'),

@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Application;
+namespace Mvc5\Application;
 
-use Framework\Config\Configuration;
-use Framework\Event\Manager\Events;
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Manager\Events;
 
 class App
     implements Application

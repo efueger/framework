@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route\Filter;
+namespace Mvc5\Route\Filter;
 
-use Framework\Route\Route;
+use Mvc5\Route\Route;
 
 class Filter
     implements FilterRoute

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Child;
+namespace Mvc5\Service\Config\Child;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Child
     implements ChildService, Resolvable

@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Response;
+namespace Mvc5\Response;
 
 interface Response
 {

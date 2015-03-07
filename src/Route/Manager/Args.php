@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Manager;
+namespace Mvc5\Route\Manager;
 
 interface Args
 {

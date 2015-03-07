@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Manager;
+namespace Mvc5\Service\Config\Manager;
 
-use Framework\Service\Config\Child\Base;
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Config\Child\Base;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Manager
     implements Resolvable, ServiceManager

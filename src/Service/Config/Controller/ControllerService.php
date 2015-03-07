@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Controller;
+namespace Mvc5\Service\Config\Controller;
 
-use Framework\Service\Config\Child\ChildService;
+use Mvc5\Service\Config\Child\ChildService;
 
 interface ControllerService
     extends ChildService

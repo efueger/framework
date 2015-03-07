@@ -3,12 +3,12 @@
  *
  */
 
-namespace Framework\Service\Manager;
+namespace Mvc5\Service\Manager;
 
 use Closure;
-use Framework\Service\Config\Configuration;
-use Framework\Service\Container\Service;
-use Framework\Service\Resolver\Resolver;
+use Mvc5\Service\Config\Configuration;
+use Mvc5\Service\Container\Service;
+use Mvc5\Service\Resolver\Resolver;
 
 trait ManageService
 {

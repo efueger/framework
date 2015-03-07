@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Event\Manager;
+namespace Mvc5\Event\Manager;
 
-use Framework\Event\Event;
+use Mvc5\Event\Event;
 
 interface EventManager
 {

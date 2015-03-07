@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Invokable;
+namespace Mvc5\Service\Config\Invokable;
 
 interface ServiceInvokable
 {

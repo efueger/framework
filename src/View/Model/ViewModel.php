@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Model;
+namespace Mvc5\View\Model;
 
 use Countable;
-use Framework\Config\Configuration;
+use Mvc5\Config\Configuration;
 use Iterator;
 
 interface ViewModel

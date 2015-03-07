@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View;
+namespace Mvc5\View;
 
-use Framework\View\Model\Model as Base;
-use Framework\View\Model\ViewModel as Model;
+use Mvc5\View\Model\Model as Base;
+use Mvc5\View\Model\ViewModel as Model;
 
 trait ViewModel
 {

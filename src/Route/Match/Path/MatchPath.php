@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Match\Path;
+namespace Mvc5\Route\Match\Path;
 
-use Framework\Route\Definition\Definition;
-use Framework\Route\Route;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Route;
 
 interface MatchPath
 {

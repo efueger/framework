@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Controller\Error;
+namespace Mvc5\Controller\Error;
 
-use Framework\View\Model\Base;
-use Framework\View\ViewPlugin;
+use Mvc5\View\Model\Base;
+use Mvc5\View\ViewPlugin;
 
 class Model
     implements ErrorModel

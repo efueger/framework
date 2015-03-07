@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\ServiceConfig;
+namespace Mvc5\Service\Config\ServiceConfig;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class ServiceConfig
     implements Resolvable, ServiceConfiguration

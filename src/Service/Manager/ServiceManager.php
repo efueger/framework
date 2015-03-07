@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Manager;
+namespace Mvc5\Service\Manager;
 
-use Framework\Service\Config\Configuration;
-use Framework\Service\Container\ServiceContainer;
+use Mvc5\Service\Config\Configuration;
+use Mvc5\Service\Container\ServiceContainer;
 use RuntimeException;
 
 interface ServiceManager

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config;
+namespace Mvc5\Service\Config;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Config
     implements Configuration, Resolvable

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Mvc\View;
+namespace Mvc5\Mvc\View;
 
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 interface Render
 {

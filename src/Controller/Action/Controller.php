@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Controller\Action;
+namespace Mvc5\Controller\Action;
 
 interface Controller
 {

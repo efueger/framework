@@ -3,14 +3,14 @@
  *
  */
 
-namespace Framework\Controller\Manager;
+namespace Mvc5\Controller\Manager;
 
 use Exception;
-use Framework\Controller\Dispatch\Controller;
-use Framework\Controller\Exception\DispatchException;
-use Framework\Event\Manager\EventManager;
-use Framework\Event\Manager\Events;
-use Framework\Service\Manager\ServiceManager;
+use Mvc5\Controller\Dispatch\Controller;
+use Mvc5\Controller\Exception\DispatchException;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Event\Manager\Events;
+use Mvc5\Service\Manager\ServiceManager;
 
 class Manager
     implements ControllerManager, EventManager, ServiceManager

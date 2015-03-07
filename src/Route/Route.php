@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route;
+namespace Mvc5\Route;
 
-use Framework\Config\Configuration;
+use Mvc5\Config\Configuration;
 
 interface Route
     extends Configuration

@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Event\Manager;
+namespace Mvc5\Event\Manager;
 
 use Traversable;
-use Framework\Event\Event;
+use Mvc5\Event\Event;
 
 trait ManageEvent
 {

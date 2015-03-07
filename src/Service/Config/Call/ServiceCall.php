@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Call;
+namespace Mvc5\Service\Config\Call;
 
 interface ServiceCall
 {

@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\View\Render;
+namespace Mvc5\View\Render;
 
-use Framework\Event\Event;
-use Framework\Service\Resolver\EventSignal;
-use Framework\View\Model\ViewModel;
+use Mvc5\Event\Event;
+use Mvc5\Service\Resolver\EventSignal;
+use Mvc5\View\Model\ViewModel;
 
 class Render
     implements Event, RenderView

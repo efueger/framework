@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Exception;
+namespace Mvc5\View\Exception;
 
 use Exception;
-use Framework\View\Manager\ManageView;
+use Mvc5\View\Manager\ManageView;
 
 class Renderer
     implements Render

@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route;
+namespace Mvc5\Route;
 
 trait RouteService
 {

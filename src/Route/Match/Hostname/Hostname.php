@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Match\Hostname;
+namespace Mvc5\Route\Match\Hostname;
 
-use Framework\Route\Definition\Definition;
-use Framework\Route\Route;
+use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Route;
 
 class Hostname
     implements MatchHostname

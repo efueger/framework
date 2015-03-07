@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Controller\Error;
+namespace Mvc5\Controller\Error;
 
-use Framework\Response\Response;
-use Framework\View\ViewModel;
+use Mvc5\Response\Response;
+use Mvc5\View\ViewModel;
 
 class Controller
     implements Error

@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Response\Send;
+namespace Mvc5\Response\Send;
 
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 class Sender
     implements Send

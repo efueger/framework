@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Service\Config\Hydrator;
+namespace Mvc5\Service\Config\Hydrator;
 
-use Framework\Service\Config\Base as Config;
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Base as Config;
+use Mvc5\Service\Config\Configuration;
 
 trait Base
 {

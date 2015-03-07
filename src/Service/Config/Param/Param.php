@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Param;
+namespace Mvc5\Service\Config\Param;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Param
     implements Resolvable, ServiceParam

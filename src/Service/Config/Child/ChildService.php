@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Child;
+namespace Mvc5\Service\Config\Child;
 
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Configuration;
 
 interface ChildService
     extends Configuration

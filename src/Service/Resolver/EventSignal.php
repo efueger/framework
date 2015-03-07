@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Resolver;
+namespace Mvc5\Service\Resolver;
 
-use Framework\Event\Base;
+use Mvc5\Event\Base;
 
 trait EventSignal
 {

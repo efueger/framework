@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Response\Exception;
+namespace Mvc5\Response\Exception;
 
 interface ResponseException
 {

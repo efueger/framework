@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Controller\Exception;
+namespace Mvc5\Controller\Exception;
 
-use Framework\Event\Event;
-use Framework\Service\Resolver\EventSignal;
+use Mvc5\Event\Event;
+use Mvc5\Service\Resolver\EventSignal;
 
 class Exception
     implements DispatchException, Event

@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Resolver;
+namespace Mvc5\Service\Resolver;
 
 interface Args
 {

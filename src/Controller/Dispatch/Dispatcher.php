@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Controller\Dispatch;
+namespace Mvc5\Controller\Dispatch;
 
-use Framework\Controller\Manager\ManageController;
+use Mvc5\Controller\Manager\ManageController;
 
 class Dispatcher
     implements Action

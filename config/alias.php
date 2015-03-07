@@ -3,8 +3,8 @@
  *
  */
 
-use Framework\Service\Config\Dependency\Dependency;
-use Framework\Service\Config\Service\Service;
+use Mvc5\Service\Config\Dependency\Dependency;
+use Mvc5\Service\Config\Service\Service;
 
 return [
     'config'       => new Dependency('Config'),

@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Event;
+namespace Mvc5\Event;
 
 interface Event
 {

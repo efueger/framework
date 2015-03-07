@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\ConfigLink;
+namespace Mvc5\Service\Config\ConfigLink;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class ConfigLink
     implements ConfigServiceLink, Resolvable

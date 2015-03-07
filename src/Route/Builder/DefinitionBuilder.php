@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Builder;
+namespace Mvc5\Route\Builder;
 
 use Exception;
-use Framework\Route\Definition\Definition;
+use Mvc5\Route\Definition\Definition;
 use RuntimeException;
 
 interface DefinitionBuilder

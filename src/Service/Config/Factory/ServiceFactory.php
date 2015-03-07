@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Factory;
+namespace Mvc5\Service\Config\Factory;
 
-use Framework\Service\Config\Child\ChildService;
+use Mvc5\Service\Config\Child\ChildService;
 
 interface ServiceFactory
     extends ChildService

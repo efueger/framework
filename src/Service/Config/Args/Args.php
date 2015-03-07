@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Args;
+namespace Mvc5\Service\Config\Args;
 
-use Framework\Service\Resolver\Resolvable;
+use Mvc5\Service\Resolver\Resolvable;
 
 class Args
     implements Arguments, Resolvable

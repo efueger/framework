@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Manager;
+namespace Mvc5\Service\Config\Manager;
 
-use Framework\Service\Config\Child\ChildService;
+use Mvc5\Service\Config\Child\ChildService;
 
 interface ServiceManager
     extends ChildService

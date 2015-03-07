@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Mvc\Controller;
+namespace Mvc5\Mvc\Controller;
 
 use Exception;
-use Framework\Controller\Manager\ManageController;
+use Mvc5\Controller\Manager\ManageController;
 
 class Dispatcher
     implements Dispatch

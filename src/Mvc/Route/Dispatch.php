@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Mvc\Route;
+namespace Mvc5\Mvc\Route;
 
-use Framework\Route\Route;
+use Mvc5\Route\Route;
 
 interface Dispatch
 {

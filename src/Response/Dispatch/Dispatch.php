@@ -3,11 +3,11 @@
  *
  */
 
-namespace Framework\Response\Dispatch;
+namespace Mvc5\Response\Dispatch;
 
-use Framework\Event\Event;
-use Framework\Response\Response;
-use Framework\Service\Resolver\EventSignal;
+use Mvc5\Event\Event;
+use Mvc5\Response\Response;
+use Mvc5\Service\Resolver\EventSignal;
 
 class Dispatch
     implements DispatchResponse, Event

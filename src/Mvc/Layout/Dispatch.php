@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Mvc\Layout;
+namespace Mvc5\Mvc\Layout;
 
-use Framework\View\Layout\LayoutModel;
-use Framework\View\Model\ViewModel;
+use Mvc5\View\Layout\LayoutModel;
+use Mvc5\View\Model\ViewModel;
 
 interface Dispatch
 {

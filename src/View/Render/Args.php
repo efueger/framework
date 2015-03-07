@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\View\Render;
+namespace Mvc5\View\Render;
 
 interface Args
 {

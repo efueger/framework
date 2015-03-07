@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Route\Builder;
+namespace Mvc5\Route\Builder;
 
 /**
  * Portions copyright (c) 2013 Ben Scholzen 'DASPRiD'. (http://github.com/DASPRiD/Dash)

@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Mvc\Route;
+namespace Mvc5\Mvc\Route;
 
-use Framework\Route\Manager\ManageRoute;
-use Framework\Route\Route;
+use Mvc5\Route\Manager\ManageRoute;
+use Mvc5\Route\Route;
 
 class Router
     implements Dispatch

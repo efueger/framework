@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Service\Config\Service;
+namespace Mvc5\Service\Config\Service;
 
-use Framework\Service\Config\Configuration;
+use Mvc5\Service\Config\Configuration;
 
 interface Config
     extends Configuration

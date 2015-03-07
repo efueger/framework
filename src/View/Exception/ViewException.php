@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\View\Exception;
+namespace Mvc5\View\Exception;
 
 interface ViewException
 {

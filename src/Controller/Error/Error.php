@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Controller\Error;
+namespace Mvc5\Controller\Error;
 
-use Framework\Response\Response;
+use Mvc5\Response\Response;
 
 interface Error
 {

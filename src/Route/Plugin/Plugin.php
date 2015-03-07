@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\Route\Plugin;
+namespace Mvc5\Route\Plugin;
 
-use Framework\Route\Generator\GenerateRoute;
-use Framework\Route\RouteService;
+use Mvc5\Route\Generator\GenerateRoute;
+use Mvc5\Route\RouteService;
 
 class Plugin
     implements RoutePlugin

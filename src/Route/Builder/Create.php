@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route\Builder;
+namespace Mvc5\Route\Builder;
 
-use Framework\Route\Definition\Definition;
+use Mvc5\Route\Definition\Definition;
 
 class Create
     implements CreateRoute

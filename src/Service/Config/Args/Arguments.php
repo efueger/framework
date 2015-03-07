@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\Service\Config\Args;
+namespace Mvc5\Service\Config\Args;
 
 interface Arguments
 {

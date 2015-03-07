@@ -3,7 +3,7 @@
  *
  */
 
-namespace Framework\View;
+namespace Mvc5\View;
 
 trait ViewTemplates
 {

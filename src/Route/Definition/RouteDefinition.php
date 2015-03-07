@@ -3,9 +3,9 @@
  *
  */
 
-namespace Framework\Route\Definition;
+namespace Mvc5\Route\Definition;
 
-use Framework\Config\Base;
+use Mvc5\Config\Base;
 
 class RouteDefinition
     implements Definition

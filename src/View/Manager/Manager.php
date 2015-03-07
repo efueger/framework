@@ -3,15 +3,15 @@
  *
  */
 
-namespace Framework\View\Manager;
+namespace Mvc5\View\Manager;
 
 use Exception;
-use Framework\Event\Manager\EventManager;
-use Framework\Event\Manager\Events;
-use Framework\Service\Manager\ServiceManager;
-use Framework\View\Exception\ViewException;
-use Framework\View\Model\ViewModel;
-use Framework\View\Render\Render;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Event\Manager\Events;
+use Mvc5\Service\Manager\ServiceManager;
+use Mvc5\View\Exception\ViewException;
+use Mvc5\View\Model\ViewModel;
+use Mvc5\View\Render\Render;
 
 class Manager
     implements EventManager, ServiceManager, ViewManager

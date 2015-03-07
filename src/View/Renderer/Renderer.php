@@ -3,10 +3,10 @@
  *
  */
 
-namespace Framework\View\Renderer;
+namespace Mvc5\View\Renderer;
 
-use Framework\View\Manager\ManageView;
-use Framework\View\ViewTemplates;
+use Mvc5\View\Manager\ManageView;
+use Mvc5\View\ViewTemplates;
 
 class Renderer
     implements ViewRenderer
