@@ -19,6 +19,18 @@ trait Events
     use ManageService;
 
     /**
+     * @param callable|Event|string $event
+     * @param callable $listener
+     * @param array $args
+     * @param callable $callback
+     * @return mixed
+     */
+    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
+    {
+        return is_callable($event) ? $event($listener, $args, $callback) : $this->invoke($listener, $args, $callback);
+    }
+
+    /**
      * @param array|Event|string $event
      * @return Event
      */
@@ -34,17 +46,5 @@ trait Events
     protected function listener($listener)
     {
         return $this->invokable($listener);
-    }
-
-    /**
-     * @param callable|Event|string $event
-     * @param callable $listener
-     * @param array $args
-     * @param callable $callback
-     * @return mixed
-     */
-    protected function emit($event, callable $listener, array $args = [], callable $callback = null)
-    {
-        return is_callable($event) ? $event($listener, $args, $callback) : $this->invoke($listener, $args, $callback);
     }
 }
