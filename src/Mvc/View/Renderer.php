@@ -25,7 +25,7 @@ class Renderer
      */
     public function __invoke(Response $response, $model = null)
     {
-        $model = $model ?: $response->content();
+        !$model && $model = $response->content();
 
         if (!$model instanceof ViewModel) {
             return $model;
