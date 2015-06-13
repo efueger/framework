@@ -560,4 +560,4 @@ class Example
 ```
 See the section on <a href="#dependency-injection">Dependency Injection</a> and <a href="#constructor-autowiring">Constructor Autowiring</a> for information on how the dependencies of a function can be resolved.
 
-Note that it is also possible to create a console application similar to a web application with routes and controllers.
+Note that it is also possible to create a console application similar to a web application with routes and controllers...
