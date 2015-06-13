@@ -5,3 +5,8 @@ name: devosc
 email: devosc@gmail.com
 github: devosc
 twitter: devosc
+
+root: /framework
+permalink: /framework/:year/:month/:day/:title/
+
+baseurl: /framework
