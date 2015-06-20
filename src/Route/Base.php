@@ -5,14 +5,14 @@
 
 namespace Mvc5\Route;
 
-use Mvc5\Config\Base as Config;
+use Mvc5\Config\Base as ConfigBase;
 
 trait Base
 {
     /**
      *
      */
-    use Config;
+    use ConfigBase;
 
     /**
      * @return array|callable|null|object|string

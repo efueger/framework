@@ -5,7 +5,6 @@
 
 namespace Mvc5\Event\Generator;
 
-use Generator;
 use Mvc5\Config\Configuration;
 use Mvc5\Event\Event;
 use Traversable;
@@ -59,7 +58,7 @@ trait EventGenerator
 
     /**
      * @param Event|string|Traversable $event
-     * @return Generator
+     * @return \Generator
      */
     protected function queue($event)
     {
@@ -78,7 +77,7 @@ trait EventGenerator
 
     /**
      * @param array|Traversable $iterator
-     * @return Generator
+     * @return \Generator
      */
     protected function traverse($iterator)
     {
