@@ -101,31 +101,15 @@ return [
     'Route\Error'    => new Invokable(new ServiceConfig('Route\Error\Route')),
     'Route\Error\Route' => new Service(
         'Route',
-        [
-            new Args([
-                'controller' => 'Controller\Error',
-                'hostname'   => new Call('request.getHost'),
-                'method'     => new Call('request.getMethod'),
-                'name'       => 'error',
-                'path'       => new Call('request.getPathInfo'),
-                'scheme'     => new Call('request.getScheme')
-            ])
-        ]
+        [],
+        [['set', ['controller', 'Controller\Error']], ['set', ['name', 'error']]]
     ),
     'Route\Exception'        => new Service(Route\Exception\Exception::class, [new Dependency('Route')]),
     'Route\Exception\Create' => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
     'Route\Exception\Route'  => new Service(
         Route\Exception\Config::class,
-        [
-            new Args([
-                'controller' => 'Route\Exception',
-                'hostname'   => new Call('request.getHost'),
-                'method'     => new Call('request.getMethod'),
-                'name'       => 'exception',
-                'path'       => new Call('request.getPathInfo'),
-                'scheme'     => new Call('request.getScheme')
-            ])
-        ]
+        [],
+        [['set', ['controller', 'Route\Exception']], ['set', ['name', 'exception']]]
     ),
     'Route\Exception\Controller' => new Service('Controller\Exception\Controller'),
     'Route\Filter' => Route\Filter\Filter::class,

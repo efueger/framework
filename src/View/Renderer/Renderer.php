@@ -15,6 +15,6 @@ class Renderer
      *
      */
     use ManageView;
-    use ViewTemplates;
     use RenderView;
+    use ViewTemplates;
 }

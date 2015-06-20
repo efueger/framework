@@ -9,7 +9,6 @@ use Mvc5\View\Manager\ViewManager;
 
 interface Plugin
 {
-
     /**
      * @return ViewManager
      */

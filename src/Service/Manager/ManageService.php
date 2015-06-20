@@ -16,9 +16,9 @@ trait ManageService
      *
      */
     use Alias;
+    use Initializer;
     use Resolver;
     use Service;
-    use Initializer;
 
     /**
      * @param array|callable|Configuration|null|object|string $config
