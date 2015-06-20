@@ -112,6 +112,22 @@ return [
             ])
         ]
     ),
+    'Route\Exception'        => new Service(Route\Exception\Exception::class, [new Dependency('Route')]),
+    'Route\Exception\Create' => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
+    'Route\Exception\Route'  => new Service(
+        Route\Exception\Config::class,
+        [
+            new Args([
+                'controller' => 'Route\Exception',
+                'hostname'   => new Call('request.getHost'),
+                'method'     => new Call('request.getMethod'),
+                'name'       => 'exception',
+                'path'       => new Call('request.getPathInfo'),
+                'scheme'     => new Call('request.getScheme')
+            ])
+        ]
+    ),
+    'Route\Exception\Controller' => new Service('Controller\Exception\Controller'),
     'Route\Filter' => Route\Filter\Filter::class,
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,

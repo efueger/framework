@@ -5,9 +5,11 @@
 
 namespace Mvc5\Route\Manager;
 
+use Exception;
 use Mvc5\Event\Manager\EventManager;
 use Mvc5\Event\Manager\Events;
 use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Exception\RouteException;
 use Mvc5\Route\Router\RouteDispatch;
 use Mvc5\Route\Match\RouteMatch;
 use Mvc5\Route\Route;
@@ -28,6 +30,16 @@ class Manager
     public function definition($definition)
     {
         return $this->call(Args::CREATE, [$definition]);
+    }
+
+    /**
+     * @param Route $route
+     * @param Exception $exception
+     * @return RouteException
+     */
+    public function exception(Route $route, Exception $exception)
+    {
+        return $this->call(Args::EXCEPTION, [$route, $exception]);
     }
 
     /**

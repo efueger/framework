@@ -5,6 +5,7 @@
 
 namespace Mvc5\Route\Manager;
 
+use Exception;
 use Mvc5\Route\Definition\Definition;
 use Mvc5\Route\Route;
 
@@ -22,6 +23,16 @@ trait ManageRoute
     public function definition($definition)
     {
         return $this->rm->definition($definition);
+    }
+
+    /**
+     * @param Route $route
+     * @param Exception $exception
+     * @return mixed
+     */
+    public function exception(Route $route, Exception $exception)
+    {
+        return $this->rm->exception($route, $exception);
     }
 
     /**

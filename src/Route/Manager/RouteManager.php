@@ -5,7 +5,9 @@
 
 namespace Mvc5\Route\Manager;
 
+use Exception;
 use Mvc5\Route\Definition\Definition;
+use Mvc5\Route\Exception\RouteException;
 use Mvc5\Route\Route;
 
 interface RouteManager
@@ -15,6 +17,13 @@ interface RouteManager
      * @return Definition
      */
     function definition($definition);
+
+    /**
+     * @param Route $route
+     * @param Exception $exception
+     * @return RouteException
+     */
+    function exception(Route $route, Exception $exception);
 
     /**
      * @param Definition $definition
