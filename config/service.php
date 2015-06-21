@@ -103,16 +103,19 @@ return [
         'Route',
         [['set', ['controller', 'Controller\Error']], ['set', ['name', 'error']]]
     ),
-    'Route\Exception\Create' => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
+    'Route\Exception'            => Route\Exception\Exception::class,
+    'Route\Exception\Controller' => new Service('Controller\Exception\Controller'),
+    'Route\Exception\Create'     => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
     'Route\Exception\Route'  => new Hydrator(
         Route\Exception\Config::class,
-        [['set', ['controller', 'Route\Exception\Controller']], ['set', ['name', 'exception']]]
+        [['set', ['controller', 'Route\Exception\Manager\Controller']], ['set', ['name', 'exception']]]
     ),
-    'Route\Exception\Controller' => new Hydrator(
-        Route\Exception\Controller::class,
-        ['setModel' => new Dependency('Exception\Model')]
+    'Route\Exception\Manager\Controller' => new Hydrator(
+        Route\Exception\Manager\Controller::class,
+        ['setExceptionManager' => new Dependency('Route\Exception\Manager')]
     ),
-    'Route\Filter' => Route\Filter\Filter::class,
+    'Route\Exception\Manager' => new Manager(Route\Exception\Manager\Manager::class),
+    'Route\Filter'    => Route\Filter\Filter::class,
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,
         [new Param('routes'), new Dependency('Route\Builder')]

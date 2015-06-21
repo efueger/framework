@@ -3,13 +3,16 @@
  *
  */
 
-namespace Mvc5\Route\Exception;
+namespace Mvc5\Route\Exception\Manager;
+
+use Mvc5\Route\Exception\RouteException;
+use Mvc5\View\Model\ViewModel;
 
 interface Dispatch
 {
     /**
      * @param RouteException $route
-     * @return mixed
+     * @return ViewModel
      */
     function __invoke(RouteException $route);
 }

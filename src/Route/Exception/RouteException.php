@@ -26,7 +26,7 @@ interface RouteException
     function exception();
 
     /**
-     * @return string|string[]
+     * @return Route
      */
     function route();
 }
