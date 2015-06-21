@@ -10,7 +10,8 @@ use Mvc5\Response\Response;
 interface Dispatch
 {
     /**
+     * @param Response $response
      * @return Response
      */
-    function __invoke();
+    function __invoke(Response $response);
 }

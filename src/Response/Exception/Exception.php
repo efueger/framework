@@ -36,11 +36,13 @@ class Exception
     protected $response;
 
     /**
+     * @param Response $response
      * @param ExceptionInterface $exception
      */
-    public function __construct(ExceptionInterface $exception)
+    public function __construct(Response $response, ExceptionInterface $exception)
     {
         $this->exception = $exception;
+        $this->response  = $response;
     }
 
     /**

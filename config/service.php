@@ -77,13 +77,13 @@ return [
     ),
     'Response\Dispatch'  => Response\Dispatch\Dispatch::class,
     'Response\Exception' => Response\Exception\Exception::class,
-    'Response\Exception\Dispatch' => new Service(
-        Response\Exception\Dispatcher::class,
-        [new Hydrator('Response', ['setStatus' => 500])]
+    'Response\Exception\Dispatch' => new Service(Response\Exception\Dispatcher::class, [500]),
+    'Response\Exception\Renderer' => new Hydrator(
+        Response\Exception\Renderer::class,
+        ['setViewManager' => new Dependency('View\Manager')]
     ),
-    'Response\Exception\Renderer' => Response\Exception\Renderer::class,
-    'Response\Sender'             => Response\Send\Sender::class,
-    'Response\Manager'            => new Manager(Response\Manager\Manager::class),
+    'Response\Sender'  => Response\Send\Sender::class,
+    'Response\Manager' => new Manager(Response\Manager\Manager::class),
     'Route' => new Service(
         Route\Config::class,
         [
@@ -99,16 +99,14 @@ return [
     'Route\Create'   => Route\Builder\Create::class,
     'Route\Dispatch' => Route\Router\Dispatch::class,
     'Route\Error'    => new Invokable(new ServiceConfig('Route\Error\Route')),
-    'Route\Error\Route' => new Service(
+    'Route\Error\Route' => new Hydrator(
         'Route',
-        [],
         [['set', ['controller', 'Controller\Error']], ['set', ['name', 'error']]]
     ),
     'Route\Exception'        => new Service(Route\Exception\Exception::class, [new Dependency('Route')]),
     'Route\Exception\Create' => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
-    'Route\Exception\Route'  => new Service(
+    'Route\Exception\Route'  => new Hydrator(
         Route\Exception\Config::class,
-        [],
         [['set', ['controller', 'Route\Exception']], ['set', ['name', 'exception']]]
     ),
     'Route\Exception\Controller' => new Service('Controller\Exception\Controller'),

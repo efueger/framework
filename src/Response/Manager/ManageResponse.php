@@ -16,12 +16,13 @@ trait ManageResponse
     protected $rm;
 
     /**
+     * @param Response $response
      * @param Exception $exception
      * @return Response
      */
-    public function exception(Exception $exception)
+    public function exception(Response $response, Exception $exception)
     {
-        return $this->rm->exception($exception);
+        return $this->rm->exception($response, $exception);
     }
 
     /**

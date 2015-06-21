@@ -22,12 +22,13 @@ class Manager
     use Events;
 
     /**
+     * @param Response $response
      * @param Exception $exception
      * @return Response
      */
-    public function exception(Exception $exception)
+    public function exception(Response $response, Exception $exception)
     {
-        return $this->trigger([ResponseException::EXCEPTION, $exception], [], $this);
+        return $this->trigger([ResponseException::EXCEPTION, $response, $exception], [], $this);
     }
 
     /**

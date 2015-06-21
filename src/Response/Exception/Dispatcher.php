@@ -11,23 +11,25 @@ class Dispatcher
     implements Dispatch
 {
     /**
-     * @var Response $response
+     * @var
      */
-    protected $response;
+    protected $status;
 
     /**
-     * @param Response $response
+     * @param int $status
      */
-    public function __construct(Response $response)
+    public function __construct($status)
     {
-        $this->response = $response;
+        $this->status = $status;
     }
 
     /**
+     * @param Response $response
      * @return Response
      */
-    public function __invoke()
+    public function __invoke(Response $response)
     {
-        return $this->response;
+        $response->setStatus($this->status);
+        return $response;
     }
 }

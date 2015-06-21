@@ -29,7 +29,7 @@ class Dispatcher
 
         } catch(Exception $exception) {
 
-            return $this->send($this->exception($exception));
+            return $this->send($this->exception($response, $exception));
 
         }
     }

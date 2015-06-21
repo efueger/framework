@@ -11,10 +11,11 @@ use Mvc5\Response\Response;
 interface ResponseManager
 {
     /**
+     * @param Response $response
      * @param Exception $exception
      * @return Response
      */
-    function exception(Exception $exception);
+    function exception(Response $response, Exception $exception);
 
     /**
      * @param Response $response

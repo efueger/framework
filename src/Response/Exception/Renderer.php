@@ -7,20 +7,24 @@ namespace Mvc5\Response\Exception;
 
 use Exception as ExceptionInterface;
 use Mvc5\Response\Response;
-use Mvc5\View\Manager\ViewManager;
+use Mvc5\View\Manager\ManageView;
 
 class Renderer
     implements Render
 {
     /**
+     *
+     */
+    use ManageView;
+
+    /**
      * @param ExceptionInterface $exception
      * @param Response $response
-     * @param ViewManager $vm
      * @return Response
      */
-    public function __invoke(ExceptionInterface $exception, Response $response, ViewManager $vm)
+    public function __invoke(ExceptionInterface $exception, Response $response)
     {
-        $response->setContent($vm->exception($exception));
+        $response->setContent($this->exception($exception));
         return $response;
     }
 }
