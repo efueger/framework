@@ -39,9 +39,6 @@ return [
         'Router',
         'Route\Error'
     ],
-    'Route\Exception' => [
-        'Route\Exception\Controller'
-    ],
     'View\Render' => [
         'View\Renderer'
     ],

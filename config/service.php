@@ -103,13 +103,15 @@ return [
         'Route',
         [['set', ['controller', 'Controller\Error']], ['set', ['name', 'error']]]
     ),
-    'Route\Exception'        => new Service(Route\Exception\Exception::class, [new Dependency('Route')]),
     'Route\Exception\Create' => new Service(Route\Exception\Create::class, [new Service('Route\Exception\Route')]),
     'Route\Exception\Route'  => new Hydrator(
         Route\Exception\Config::class,
-        [['set', ['controller', 'Route\Exception']], ['set', ['name', 'exception']]]
+        [['set', ['controller', 'Route\Exception\Controller']], ['set', ['name', 'exception']]]
     ),
-    'Route\Exception\Controller' => new Service('Controller\Exception\Controller'),
+    'Route\Exception\Controller' => new Hydrator(
+        Route\Exception\Controller::class,
+        ['setModel' => new Dependency('Exception\Model')]
+    ),
     'Route\Filter' => Route\Filter\Filter::class,
     'Route\Generator' => new Service(
         Route\Generator\Generator::class,
