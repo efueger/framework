@@ -5,14 +5,12 @@
 
 namespace Mvc5\Service\Config\ServiceProvider;
 
-use Mvc5\Service\Config\Configuration;
-use Mvc5\Service\Config\Hydrator\Base;
-use Mvc5\Service\Config\Hydrator\ServiceHydrator;
+use Mvc5\Service\Config\Base;
 use Mvc5\Service\Config\ServiceManagerLink\ServiceManagerLink;
 use Mvc5\Service\Resolver\Resolvable;
 
 class ServiceProvider
-    implements Provider, Resolvable, ServiceHydrator
+    implements Provider, Resolvable
 {
     /**
      *
@@ -21,13 +19,15 @@ class ServiceProvider
 
     /**
      * @param string $name
+     * @param array $args
      * @param array $calls
      */
-    public function __construct($name, array $calls = [])
+    public function __construct($name, array $args = [], array $calls = [])
     {
         $this->config = [
-            Configuration::CALLS => $calls + ['provider' => new ServiceManagerLink],
-            Configuration::NAME  => $name
+            self::ARGS  => $args,
+            self::CALLS => $calls + [self::PROVIDER => new ServiceManagerLink],
+            self::NAME  => $name
         ];
     }
 }
