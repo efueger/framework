@@ -386,7 +386,7 @@ trait Resolver
             };
         }
 
-        return $config;
+        return $this->call(Args::PROVIDER, [Args::SERVICE => $config]);
     }
 
     /**

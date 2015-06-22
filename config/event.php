@@ -42,6 +42,8 @@ return [
     'Route\Exception' => [
         'Route\Exception\Controller'
     ],
+    'Service\Provider' => [
+    ],
     'View\Render' => [
         'View\Renderer'
     ],

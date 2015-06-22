@@ -16,6 +16,7 @@ use Mvc5\Service\Config\Param\Param;
 use Mvc5\Service\Config\Service\Service;
 use Mvc5\Service\Config\ServiceConfig\ServiceConfig;
 use Mvc5\Service\Config\ServiceManagerLink\ServiceManagerLink;
+use Mvc5\Service\Provider\Provider;
 
 return [
     'Config'                => new ConfigLink,
@@ -139,11 +140,12 @@ return [
         [new Param('routes')],
         ['setRouteManager' => new Dependency('Route\Manager')]
     ),
-    'Service\Manager' => new ServiceManagerLink,
-    'View\Manager'    => new Manager(View\Manager\Manager::class),
-    'View\Model'      => View\Model\Model::class,
-    'View\Render'     => View\Render\Render::class,
-    'View\Renderer'   => new Hydrator(
+    'Service\Provider' => Provider::class,
+    'Service\Manager'  => new ServiceManagerLink,
+    'View\Manager'     => new Manager(View\Manager\Manager::class),
+    'View\Model'       => View\Model\Model::class,
+    'View\Render'      => View\Render\Render::class,
+    'View\Renderer'    => new Hydrator(
         View\Renderer\Renderer::class,
         [
             'templates'      => new Param('templates'),

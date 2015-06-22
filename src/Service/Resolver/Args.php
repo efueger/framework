@@ -25,5 +25,15 @@ interface Args
     /**
      *
      */
+    const PROVIDER = 'service:provider';
+
+    /**
+     *
+     */
+    const SERVICE = 'service';
+
+    /**
+     *
+     */
     const PROPERTY = '$';
 }
