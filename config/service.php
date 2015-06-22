@@ -17,6 +17,7 @@ use Mvc5\Service\Config\Service\Service;
 use Mvc5\Service\Config\ServiceConfig\ServiceConfig;
 use Mvc5\Service\Config\ServiceManagerLink\ServiceManagerLink;
 use Mvc5\Service\Provider\Provider;
+use Mvc5\Service\Provider\Resolver;
 
 return [
     'Config'                => new ConfigLink,
@@ -141,6 +142,7 @@ return [
         ['setRouteManager' => new Dependency('Route\Manager')]
     ),
     'Service\Provider' => Provider::class,
+    'Service\Provider\DefaultResolver' => Resolver::class,
     'Service\Manager'  => new ServiceManagerLink,
     'View\Manager'     => new Manager(View\Manager\Manager::class),
     'View\Model'       => View\Model\Model::class,
