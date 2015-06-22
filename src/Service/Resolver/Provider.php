@@ -10,6 +10,7 @@ use Mvc5\Event\Event;
 use Mvc5\Event\Manager\EventManager;
 use Mvc5\Service\Config\Configuration as Config;
 use Mvc5\Service\Manager\ServiceManager;
+use Mvc5\Service\Provider\ServiceProvider;
 
 trait Provider
 {
@@ -19,7 +20,7 @@ trait Provider
     use Resolver;
 
     /**
-     * @var EventManager|ServiceManager
+     * @var EventManager|ServiceManager|ServiceProvider
      */
     protected $provider;
 
@@ -71,7 +72,7 @@ trait Provider
     }
 
     /**
-     * @param EventManager|ServiceManager $provider
+     * @param EventManager|ServiceManager|ServiceProvider $provider
      */
     public function provider($provider)
     {

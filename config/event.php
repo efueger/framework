@@ -43,7 +43,7 @@ return [
         'Route\Exception\Controller'
     ],
     'Service\Provider' => [
-        'Service\Provider\DefaultResolver'
+        'Service\DefaultResolver'
     ],
     'View\Render' => [
         'View\Renderer'

@@ -7,9 +7,7 @@ namespace Mvc5\Service\Provider;
 
 use Mvc5\Config\Configuration;
 use Mvc5\Event\Event;
-use Mvc5\Event\Manager\EventManager;
 use Mvc5\Service\Config\Configuration as Config;
-use Mvc5\Service\Manager\ServiceManager;
 
 interface ServiceProvider
 {
@@ -59,11 +57,6 @@ interface ServiceProvider
      * @return callable|null|object
      */
     function plugin($name, callable $callback = null);
-
-    /**
-     * @param EventManager|ServiceManager $provider
-     */
-    function provider($provider);
 
     /**
      * @param array|Event|string $event

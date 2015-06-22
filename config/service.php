@@ -141,13 +141,13 @@ return [
         [new Param('routes')],
         ['setRouteManager' => new Dependency('Route\Manager')]
     ),
-    'Service\Provider' => Provider::class,
-    'Service\Provider\DefaultResolver' => Resolver::class,
-    'Service\Manager'  => new ServiceManagerLink,
-    'View\Manager'     => new Manager(View\Manager\Manager::class),
-    'View\Model'       => View\Model\Model::class,
-    'View\Render'      => View\Render\Render::class,
-    'View\Renderer'    => new Hydrator(
+    'Service\DefaultResolver' => Resolver::class,
+    'Service\Provider'        => Provider::class,
+    'Service\Manager'         => new ServiceManagerLink,
+    'View\Manager'            => new Manager(View\Manager\Manager::class),
+    'View\Model'              => View\Model\Model::class,
+    'View\Render'             => View\Render\Render::class,
+    'View\Renderer' => new Hydrator(
         View\Renderer\Renderer::class,
         [
             'templates'      => new Param('templates'),
