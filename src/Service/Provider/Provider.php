@@ -10,7 +10,7 @@ use Mvc5\Service\Resolver\EventSignal;
 use Mvc5\Service\Resolver\Resolvable;
 
 class Provider
-    implements Event, ServiceProvider
+    implements Event, Locator
 {
     /**
      *

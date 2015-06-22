@@ -5,18 +5,71 @@
 
 namespace Mvc5\Service\Provider;
 
+use Mvc5\Config\Configuration;
+use Mvc5\Event\Event;
+use Mvc5\Event\Manager\EventManager;
+use Mvc5\Service\Config\Configuration as Config;
+use Mvc5\Service\Manager\ServiceManager;
+
 interface ServiceProvider
 {
     /**
-     *
+     * @param array|callable|object|string $config
+     * @param array $args
+     * @param callable $callback
+     * @return callable|mixed|null|object
+     * @throws \RuntimeException
      */
-    const PROVIDER = 'Service\Provider';
+    function call($config, array $args = [], callable $callback = null);
 
     /**
-     * @param callable $callable
+     * @return Configuration
+     */
+    function config();
+
+    /**
+     * @param string $name
+     * @return array|callable|Config|null|object|string
+     */
+    function configured($name);
+
+    /**
+     * @param array|callable|Configuration|null|object|string $config
+     * @param array $args
+     * @param callable $callback
+     * @return callable|null|object
+     */
+    function create($config, array $args = [], callable $callback = null);
+
+    /**
+     * @param string $name
+     * @return null|object|callable
+     */
+    function get($name);
+    
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    function param($name);
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     * @return callable|null|object
+     */
+    function plugin($name, callable $callback = null);
+
+    /**
+     * @param EventManager|ServiceManager $provider
+     */
+    function provider($provider);
+
+    /**
+     * @param array|Event|string $event
      * @param array $args
      * @param callable $callback
      * @return mixed
      */
-    function __invoke(callable $callable, array $args = [], callable $callback = null);
+    function trigger($event, array $args = [], callable $callback = null);
 }
