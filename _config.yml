@@ -1,12 +1,22 @@
-title: Mvc5 Framework
-tagline: A PHP 5.5 framework with dependency injection, events, and named arguments
+kramdown:
+  input: GFM
+
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Mvc5 Framework
+tagline:             'Dependency Injection, Events, and Named Arguments.'
+description:         'Enhanced php programming with dependency injection, events, and named arguments.'
+url:                 http://mvc5.github.io
+baseurl:             '/framework'
+paginate:            5
+
+# About/contact
 author:
-name: devosc
-email: devosc@gmail.com
-github: devosc
-twitter: devosc
-
-root: /framework
-permalink: /framework/:year/:month/:day/:title/
-
-baseurl: /framework
+  name:              devosc
+  url:               https://twitter.com/devosc
+  email:             devosc@gmail.com
