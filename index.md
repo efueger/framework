@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: none
+title: Home
 ---
 <style type="text/css">
     body {
