@@ -20,8 +20,10 @@ trait Base
      */
     public function __construct($template = null, array $config = [])
     {
-        $config   && $this->config = $config;
-        $template && $this->template($template);
+        $this->config = $config + [
+            ViewModel::TEMPLATE => $template
+                ?: (defined('static::TEMPLATE_NAME') ? constant('static::TEMPLATE_NAME') : null)
+        ];
     }
 
     /**
