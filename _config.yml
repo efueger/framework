@@ -13,7 +13,6 @@ tagline:             'Dependency Injection, Events, and Named Arguments.'
 description:         'Enhanced php programming with dependency injection, events, and named arguments.'
 url:                 http://mvc5.github.io
 baseurl:             '/framework'
-paginate:            5
 
 # About/contact
 author:

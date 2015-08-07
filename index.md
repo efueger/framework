@@ -1,6 +1,7 @@
 ---
 layout: none
 title: Home
+redirect: /
 ---
 <style type="text/css">
     body {
