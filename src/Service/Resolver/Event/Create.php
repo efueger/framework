@@ -20,7 +20,7 @@ class Create
 
     /**
      * @param array|\ArrayAccess $events
-     * @param Callable $callback
+     * @param callable $callback
      */
     public function __construct($events, callable $callback = null)
     {
