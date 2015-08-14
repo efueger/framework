@@ -8,6 +8,7 @@ use Mvc5\Service\Config\Service\Service;
 
 return [
     'config'           => new Dependency('Config'),
+    'event:create'     => new Dependency('Service\Event\Create'),
     'layout'           => new Dependency('Layout'),
     'request'          => new Dependency('Request'),
     'response'         => new Dependency('Response'),

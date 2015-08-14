@@ -16,6 +16,7 @@ use Mvc5\Service\Config\Param\Param;
 use Mvc5\Service\Config\Service\Service;
 use Mvc5\Service\Config\ServiceConfig\ServiceConfig;
 use Mvc5\Service\Config\ServiceManagerLink\ServiceManagerLink;
+use Mvc5\Service\Resolver\Event;
 use Mvc5\Service\Provider\Provider;
 use Mvc5\Service\Provider\Resolver;
 
@@ -142,6 +143,7 @@ return [
         ['setRouteManager' => new Dependency('Route\Manager')]
     ),
     'Service\DefaultResolver' => Resolver::class,
+    'Service\Event\Create'    => new Service(Event\Create::class, [new Param('events')]),
     'Service\Provider'        => Provider::class,
     'Service\Manager'         => new ServiceManagerLink,
     'View\Manager'            => new Manager(View\Manager\Manager::class),

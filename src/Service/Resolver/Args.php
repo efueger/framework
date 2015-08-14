@@ -25,6 +25,16 @@ interface Args
     /**
      *
      */
+    const EVENT_CREATE = 'event:create';
+
+    /**
+     *
+     */
+    const NAME = 'name';
+
+    /**
+     *
+     */
     const PROVIDER = 'service:provider';
 
     /**
