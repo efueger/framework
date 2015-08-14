@@ -9,16 +9,23 @@ class Create
     implements Creator
 {
     /**
+     * @var callable
+     */
+    protected $callback;
+
+    /**
      * @var array|\ArrayAccess
      */
     protected $events;
 
     /**
      * @param array|\ArrayAccess $events
+     * @param Callable $callback
      */
-    public function __construct($events)
+    public function __construct($events, callable $callback = null)
     {
-        $this->events = $events;
+        $this->callback = $callback;
+        $this->events   = $events;
     }
 
     /**
@@ -27,6 +34,7 @@ class Create
      */
     public function __invoke($service)
     {
-        return isset($this->events[$service]) ? new Dispatch($service) : null;
+        return !isset($this->events[$service])
+            ? null : ($this->callback ? call_user_func_array($this->callback, [$service]) : new Dispatch($service));
     }
 }

@@ -17,7 +17,7 @@ class Dispatch
     use EventSignal;
 
     /**
-     * @param event $event
+     * @param string $event
      */
     public function __construct($event)
     {
