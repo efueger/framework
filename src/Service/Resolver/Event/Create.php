@@ -5,6 +5,8 @@
 
 namespace Mvc5\Service\Resolver\Event;
 
+use Mvc5\Event\Event;
+
 class Create
     implements Creator
 {
@@ -30,7 +32,7 @@ class Create
 
     /**
      * @param string $service
-     * @return mixed
+     * @return Dispatch|Event
      */
     public function __invoke($service)
     {
