@@ -58,7 +58,7 @@ trait EventGenerator
 
     /**
      * @param Event|string|Traversable $event
-     * @return \Generator
+     * @return array|Traversable
      */
     protected function queue($event)
     {

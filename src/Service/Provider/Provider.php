@@ -25,7 +25,7 @@ class Provider
     /**
      * @return array
      */
-    public function args()
+    protected function args()
     {
         return [
             Args::EVENT => $this

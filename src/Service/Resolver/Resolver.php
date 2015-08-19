@@ -72,7 +72,11 @@ trait Resolver
         $method = array_pop($config);
 
         $plugin = $this->plugin($plugin, function($plugin) {
-            if (!is_callable($plugin) && !$plugin = $this->call(Args::EVENT_CREATE, [Args::SERVICE => $plugin])) {
+            if (!is_callable($plugin)) {
+                if ($event = $this->call(Args::EVENT_CREATE, [Args::SERVICE => $plugin])) {
+                    return $event;
+                }
+
                 throw new RuntimeException('Plugin is not callable: ' . $plugin);
             }
 
